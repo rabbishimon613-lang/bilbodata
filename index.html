@@ -88,7 +88,7 @@
     <h1>Bilbo Data</h1>
     <nav><a href="/" class="active">Live</a><a href="/about.html">About</a></nav>
   </div>
-  <div class="sub" id="sub">9 NYC DOT feeds · 2.0 mi circle on Kingston Ave &amp; President St · aggregate counts only · internal</div>
+  <div class="sub" id="sub">30 NYC DOT feeds · 2.5 mi circle on Kingston Ave &amp; President St · aggregate counts only · internal</div>
 
   <div class="hero">
     <div class="cell">
@@ -193,7 +193,7 @@ function tick(){
         <div class="peak">${peak}</div></div>`;
     }).join('');
     if(s.series && s.series.length) drawChart(s.series);
-    $('sub').textContent=`9 NYC DOT feeds · 2.0 mi circle on Kingston Ave & President St · aggregate only · ${s.total_passes} passes logged · internal`;
+    $('sub').textContent=`30 NYC DOT feeds · 2.5 mi circle on Kingston Ave & President St · aggregate only · ${s.total_passes} passes logged · internal`;
   });
 }
 </script>
