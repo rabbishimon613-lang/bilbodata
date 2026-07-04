@@ -25,7 +25,7 @@ already calls stats inline; call this for the richer layers).
 import os, glob, csv, sys
 
 import stats as statsmod
-import calibrate, fleet, crosscam
+import calibrate, fleet, crosscam, trajectories
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -63,7 +63,8 @@ def aggregate():
     for name, fn in (("stats", statsmod.compute),
                      ("calibrate", calibrate.compute),
                      ("fleet", fleet.compute),
-                     ("crosscam", crosscam.compute)):
+                     ("crosscam", crosscam.compute),
+                     ("trajectories", trajectories.build)):
         try:
             fn()
             print("  ok  %s" % name)

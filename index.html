@@ -60,10 +60,32 @@
 
   /* thumbs */
   .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
-  .thumb{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+  .thumb{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);cursor:pointer;position:relative}
   .thumb img{width:100%;display:block;aspect-ratio:352/240;background:#000}
   .thumb .cap{padding:6px 10px;font-size:11px;color:var(--dim)}
+  .thumb .seen{position:absolute;top:6px;right:6px;background:rgba(10,14,20,.82);border:1px solid var(--line);border-radius:6px;font-size:10px;padding:2px 6px;color:var(--accent)}
   .collecting{color:var(--warn);font-size:11px}
+
+  /* vehicle tracker */
+  .tracker{display:grid;grid-template-columns:308px 1fr;gap:14px;margin-top:6px}
+  .trailList{max-height:430px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding-right:4px}
+  .trailCard{border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;background:var(--panel2)}
+  .trailCard:hover{border-color:var(--accent)}
+  .trailCard.on{border-color:var(--accent);background:#0f1a2b}
+  .trailCard .row1{display:flex;align-items:center;gap:8px;font-weight:600}
+  .swatch{width:12px;height:12px;border-radius:3px;border:1px solid #0006;flex:none}
+  .trailCard .meta{color:var(--dim);font-size:11px;margin-top:4px}
+  .conf{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:auto;font-weight:600}
+  .conf.high{background:#123a1a;color:var(--up)} .conf.medium{background:#3a3212;color:var(--warn)} .conf.low{background:#3a1212;color:var(--down)}
+  .trailDetail{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--panel2);min-height:300px}
+  #trailMap{width:100%;height:300px;background:#0a0e14;border-radius:8px;border:1px solid var(--line)}
+  .timeline{margin-top:10px;font-size:12px}
+  .timeline .stop{display:flex;gap:10px;padding:5px 0;border-top:1px solid var(--line)}
+  .timeline .stop .tm{color:var(--accent);font-variant-numeric:tabular-nums;flex:none;width:66px}
+  .timeline .stop .pl{color:var(--txt)}
+  .timeline .stop .ago{color:var(--dim);margin-left:auto}
+  .trailEmpty{color:var(--dim);font-size:12px;display:flex;align-items:center;justify-content:center;height:280px;text-align:center}
+  @media (max-width:720px){ .tracker{grid-template-columns:1fr} .trailList{max-height:220px} }
 
   /* ---- mobile ---- */
   @media (max-width:720px){
@@ -109,6 +131,19 @@
     <h2>Traffic over time</h2>
     <div class="note">avg cars &amp; pedestrians in view, 1-min buckets · fills in as data accrues</div>
     <canvas id="chart"></canvas>
+  </div>
+
+  <div class="panel chartwrap">
+    <h2>Vehicle tracker — where has this vehicle been? <span style="color:var(--dim);font-weight:400">last 24 h</span></h2>
+    <div class="note">best-match trail across cameras by type · color · measured size · timing · pick a vehicle to see its path. not a plate read — a shared look can mean two different cars, so each trail carries a confidence.</div>
+    <div class="tracker">
+      <div class="trailList" id="trailList"></div>
+      <div class="trailDetail" id="trailDetail">
+        <div class="trailEmpty" id="trailEmpty">Pick a vehicle on the left to trace where it travelled.</div>
+        <svg id="trailMap" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet" style="display:none"></svg>
+        <div class="timeline" id="trailTimeline"></div>
+      </div>
+    </div>
   </div>
 
   <div class="panel chartwrap">
@@ -186,7 +221,72 @@ let cams=[], chart=null, hodChart=null, mixChart=null, colorChart=null, bodyChar
 const COL={car:'#4ea1ff',ped:'#3fb950',dim:'#7d8896',grid:'#1e2734'};
 const BODY_LABELS={sedan:'Sedan',suv_van:'SUV/van',pickup_large:'Pickup+',truck:'Truck',bus:'Bus',moto:'Moto'};
 const BODY_COL=['#4ea1ff','#3fb950','#f0883e','#f85149','#a371f7','#d29922'];
+const COLOR_HEX={red:'#f85149',blue:'#4ea1ff',green:'#3fb950',yellow:'#d29922',white:'#e6edf3',black:'#6e7681',silver:'#b1bac4'};
+let TRAILS=[], SEEN_NOW={};
 const $=id=>document.getElementById(id);
+const clock=ms=>new Date(ms).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+function agoTxt(ms){const s=(Date.now()-ms)/1000; if(s<90)return 'just now'; if(s<3600)return Math.round(s/60)+' min ago'; return Math.round(s/3600)+' h ago';}
+
+function trailCardHTML(t,i){
+  const sw=COLOR_HEX[t.color]||'#7d8896';
+  const size=t.width_ft?` · ~${t.width_ft} ft`:'';
+  return `<div class="trailCard" data-i="${i}" onclick="selectTrail(${i})">
+    <div class="row1"><span class="swatch" style="background:${sw}"></span>
+      ${(t.color||'?')} ${BODY_LABELS[t.type]||t.type}
+      <span class="conf ${t.conf_label}">${t.conf_label}</span></div>
+    <div class="meta">${t.n_stops} sightings · ${t.cams} cameras · ${t.span_min} min${size}</div>
+  </div>`;
+}
+
+function renderTracker(){
+  const list=$('trailList');
+  if(!TRAILS.length){ list.innerHTML='<div class="collecting" style="padding:8px">collecting… trails appear once a vehicle is re-seen at another camera</div>'; return; }
+  list.innerHTML=TRAILS.map(trailCardHTML).join('');
+  if(!$('trailMap').dataset.on) selectTrail(0);
+}
+
+function selectTrail(i){
+  const t=TRAILS[i]; if(!t)return;
+  document.querySelectorAll('.trailCard').forEach(c=>c.classList.toggle('on', +c.dataset.i===i));
+  $('trailEmpty').style.display='none';
+  const map=$('trailMap'); map.style.display='block'; map.dataset.on='1';
+  drawTrailMap(t.stops);
+  $('trailTimeline').innerHTML=t.stops.map((s,k)=>{
+    const nm=k?'':'<b>start</b> ';
+    return `<div class="stop"><span class="tm">${clock(s.t)}</span><span class="pl">${nm}${s.name}</span><span class="ago">${agoTxt(s.t)}</span></div>`;
+  }).join('');
+}
+
+function drawTrailMap(stops){
+  const pts=stops.filter(s=>s.lat!=null&&s.lon!=null);
+  const map=$('trailMap');
+  if(pts.length<2){ map.innerHTML='<text x="50" y="30" fill="#7d8896" font-size="4" text-anchor="middle">map needs camera coordinates</text>'; return; }
+  let laN=Math.min(...pts.map(p=>p.lat)), laX=Math.max(...pts.map(p=>p.lat));
+  let loN=Math.min(...pts.map(p=>p.lon)), loX=Math.max(...pts.map(p=>p.lon));
+  const pad=6, W=100, H=60;
+  const sx=(laX-laN)||1e-4, sy=(loX-loN)||1e-4;
+  const X=lon=>pad+(lon-loN)/sy*(W-2*pad);
+  const Y=lat=>H-pad-(lat-laN)/sx*(H-2*pad);   // north up
+  const xy=pts.map(p=>[X(p.lon),Y(p.lat)]);
+  let svg='';
+  // path line
+  svg+=`<polyline points="${xy.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#4ea1ff" stroke-width="0.7" stroke-linejoin="round" opacity="0.9"/>`;
+  // arrow-ish direction dots + numbered stops
+  xy.forEach((p,k)=>{
+    const first=k===0, last=k===xy.length-1;
+    const col=first?'#3fb950':last?'#f0883e':'#4ea1ff';
+    svg+=`<circle cx="${p[0]}" cy="${p[1]}" r="${first||last?2.2:1.6}" fill="${col}" stroke="#0a0e14" stroke-width="0.4"/>`;
+    svg+=`<text x="${p[0]}" y="${p[1]-2.6}" fill="#e6edf3" font-size="2.6" text-anchor="middle">${k+1}</text>`;
+  });
+  map.innerHTML=svg;
+}
+
+// clicking a camera thumbnail jumps to a trail that passed through it
+function thumbClick(camId){
+  const idx=TRAILS.findIndex(t=>t.stops.some(s=>s.cam===camId));
+  if(idx>=0){ selectTrail(idx); $('trailList').scrollTop=Math.max(0,idx*64-64);
+    document.getElementById('trailMap').scrollIntoView({behavior:'smooth',block:'center'}); }
+}
 
 function delta(now,base){
   if(base==null) return '<span class="delta flat">— no data yet</span>';
@@ -247,6 +347,12 @@ fetch(D('stats.json')).then(r=>r.json()).then(s=>{
 
 function loadIntel(){
   const t=Date.now();
+  fetch(D('trajectories.json')+'?t='+t).then(r=>r.ok?r.json():null).then(tj=>{
+    if(!tj)return;
+    TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{};
+    renderTracker(); paintSeenBadges();
+  }).catch(()=>{});
+
   fetch(D('calibration.json')+'?t='+t).then(r=>r.ok?r.json():null).then(cal=>{
     if(!cal)return;
     const h=cal.body_hist||{}, keys=Object.keys(BODY_LABELS).filter(k=>h[k]);
@@ -285,10 +391,20 @@ function loadIntel(){
 fetch(D('cams.json')).then(r=>r.json()).then(c=>{
   cams=c;
   $('thumbs').innerHTML=cams.map(c=>
-    `<div class="thumb"><img id="img_${c.id}"><div class="cap">${c.name}</div></div>`).join('');
+    `<div class="thumb" title="trace a vehicle seen here" onclick="thumbClick('${c.id}')">
+       <img id="img_${c.id}"><span class="seen" id="seen_${c.id}" style="display:none"></span>
+       <div class="cap">${c.name}</div></div>`).join('');
   tick(); setInterval(tick,REFRESH_MS);
   loadIntel(); setInterval(loadIntel,60000);
 });
+
+function paintSeenBadges(){
+  cams.forEach(c=>{
+    const b=$('seen_'+c.id); if(!b)return;
+    const n=(SEEN_NOW[c.id]||[]).length;
+    if(n){ b.style.display='block'; b.textContent=n+' now'; } else b.style.display='none';
+  });
+}
 
 function tick(){
   const t=Date.now();
