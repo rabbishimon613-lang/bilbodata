@@ -24,9 +24,9 @@ python3 counter.py --minute >>"$REPO/runner.log" 2>&1     # detect + track + tag
 python3 storage.py compact   >>"$REPO/runner.log" 2>&1 || true   # archive finished days (never today)
 python3 pipeline.py          >>"$REPO/runner.log" 2>&1 || true   # metric/fleet/speed/trails over ALL history
 
-git add counts.csv vehicles.csv counts.json stats.json \
+git add counts.csv vehicles.csv trips.csv counts.json stats.json \
         calibration.json fleet.json speed.json trajectories.json \
-        data data_vehicles 2>/dev/null
+        data data_vehicles data_trips 2>/dev/null
 # thumbnails are heavy in git history -> refresh them only on the hour and half-hour
 case "$(date +%M)" in 00|05|30|35) git add preview 2>/dev/null ;; esac
 

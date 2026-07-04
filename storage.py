@@ -19,8 +19,12 @@ DATA_DIR = os.path.join(HERE, "data")
 # Per-vehicle tags get their OWN forever-archive, same hot->cold->query design.
 VEH_CSV = os.path.join(HERE, "vehicles.csv")
 VEH_DIR = os.path.join(HERE, "data_vehicles")
+# Reconstructed journeys (cross-camera trips) — the third forever table.
+TRIPS_CSV = os.path.join(HERE, "trips.csv")
+TRIPS_DIR = os.path.join(HERE, "data_trips")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(VEH_DIR, exist_ok=True)
+os.makedirs(TRIPS_DIR, exist_ok=True)
 
 
 def _con():
@@ -71,6 +75,37 @@ def compact_vehicles(include_today=False):
     return _compact(VEH_CSV, VEH_DIR, include_today, drop_cols=["emb"])
 
 
+def compact_trips(include_today=False):
+    """Roll completed journeys into the forever archive (data_trips/<date>.parquet).
+    Keyed on first_ts, so a trip lands in the day it started."""
+    if not os.path.exists(TRIPS_CSV):
+        return []
+    # trips.csv has no `ts` column; _compact keys on the first column named ts.
+    # Give it one via a view alias by temporarily reading first_ts AS ts.
+    c = _con()
+    c.execute("CREATE VIEW traw AS SELECT *, first_ts AS ts FROM read_csv_auto('%s', header=true)"
+              % TRIPS_CSV)
+    today = dt.date.today().isoformat()
+    dates = [str(r[0]) for r in c.execute(
+        "SELECT DISTINCT CAST(first_ts AS DATE) d FROM traw ORDER BY d").fetchall()]
+    written, archived = [], []
+    for d in dates:
+        if d == today and not include_today:
+            continue
+        out = os.path.join(TRIPS_DIR, d + ".parquet")
+        c.execute("COPY (SELECT * EXCLUDE (ts) FROM traw WHERE CAST(first_ts AS DATE)='%s') "
+                  "TO '%s' (FORMAT parquet, COMPRESSION zstd)" % (d, out))
+        written.append((out, os.path.getsize(out)))
+        archived.append(d)
+    if archived:
+        keep = " AND ".join("CAST(first_ts AS DATE)<>'%s'" % d for d in archived)
+        tmp = TRIPS_CSV + ".tmp"
+        c.execute("COPY (SELECT * EXCLUDE (ts) FROM traw WHERE %s) TO '%s' (FORMAT csv, HEADER)"
+                  % (keep, tmp))
+        os.replace(tmp, TRIPS_CSV)
+    return written
+
+
 def _union_sql(archive_dir, hot_glob):
     parts = []
     if glob.glob(os.path.join(archive_dir, "*.parquet")):
@@ -91,12 +126,21 @@ def _vehicles_sql():
     return _union_sql(VEH_DIR, os.path.join(HERE, "vehicles*.csv"))
 
 
+def _trips_sql():
+    """UNION over every trips archive + today's hot trips log."""
+    return _union_sql(TRIPS_DIR, os.path.join(HERE, "trips*.csv"))
+
+
 def query(sql):
-    """Run SQL against `readings` (aggregate counts) AND `vehicles` (per-vehicle),
-    each spanning the entire archive + hot log — all of history as one table."""
+    """Run SQL against three forever tables, each spanning archive + hot log:
+      readings  — aggregate per-camera/minute counts
+      vehicles  — every individually tagged vehicle sighting
+      trips     — every reconstructed cross-camera journey
+    All of history, one query."""
     c = _con()
     c.execute("CREATE VIEW readings AS " + _readings_sql())
     c.execute("CREATE VIEW vehicles AS " + _vehicles_sql())
+    c.execute("CREATE VIEW trips AS " + _trips_sql())
     return c.execute(sql).fetchall()
 
 
@@ -125,11 +169,19 @@ if __name__ == "__main__":
             print("archived counts   %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
         for path, size in compact_vehicles(include_today=inc):
             print("archived vehicles %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
+        for path, size in compact_trips(include_today=inc):
+            print("archived trips    %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
     elif len(sys.argv) > 1:
         for row in query(sys.argv[1]):
             print(row)
     else:
-        # default: show how much history we hold
+        # default: show how much history we hold across all three tables
         r = query("SELECT count(*) n, count(DISTINCT cam_id) cams, "
                   "min(ts) first_ts, max(ts) last_ts FROM readings")[0]
         print("readings=%d  cameras=%d  span=%s -> %s" % r)
+        try:
+            v = query("SELECT count(*) FROM vehicles")[0][0]
+            t = query("SELECT count(*) FROM trips")[0][0]
+            print("vehicles=%d  trips=%d" % (v, t))
+        except Exception:
+            pass

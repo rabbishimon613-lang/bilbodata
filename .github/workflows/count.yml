@@ -34,7 +34,7 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           # roll any FINISHED days out of the hot logs into forever Parquet archives
           python storage.py compact || true
-          git add counts.csv vehicles.csv data data_vehicles 2>/dev/null || true
+          git add counts.csv vehicles.csv trips.csv data data_vehicles data_trips 2>/dev/null || true
           git commit -m "compact archives $(date -u +%F)" && { git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true; git push || true; } || true
           END=$(( $(date +%s) + 240 ))     # ~4 min of work, safely inside the 5-min cron
           i=0
@@ -42,7 +42,7 @@ jobs:
             python counter.py --minute       # ~50s of dense sampling -> one averaged row/cam + per-vehicle log
             python pipeline.py || true        # roll up metric/fleet/speed analytics on the fresh data
             i=$((i+1))
-            git add counts.csv stats.json counts.json vehicles.csv calibration.json fleet.json speed.json trajectories.json
+            git add counts.csv stats.json counts.json vehicles.csv trips.csv calibration.json fleet.json speed.json trajectories.json
             [ $((i % 4)) -eq 0 ] && git add preview   # frames every 4th min -> curb history bloat
             git commit -m "tick $(date -u +%FT%TZ)" || { echo "nothing to commit"; continue; }
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true

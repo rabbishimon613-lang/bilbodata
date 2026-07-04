@@ -23,7 +23,7 @@ cadence grow. No individual is identified; there is no PII in a colour + size.
 Writes trajectories.json: reconstructed trails + a per-camera "seen here now"
 index so the UI can answer "click this vehicle -> where has it been."
 """
-import os, csv, glob, json, math, datetime as dt
+import os, csv, glob, json, math, hashlib, datetime as dt
 from collections import defaultdict
 
 import calibrate as cal
@@ -31,6 +31,52 @@ import embed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "trajectories.json")
+TRIPS_CSV = os.path.join(HERE, "trips.csv")   # forever log of completed journeys
+TRIP_FIELDS = ["trip_id", "first_ts", "last_ts", "type", "color", "width_ft",
+               "n_stops", "cams", "span_min", "match", "confidence", "path"]
+
+
+def _persist_trips(out_trails, now):
+    """Save every COMPLETED trip into the forever DB (trips.csv). A trip is
+    complete once its last stop is older than one hop window — no new camera can
+    extend it — so we record it exactly once. Dedup by a stable id hashed from its
+    (camera, ~5s time) stop sequence, since the 24h window recomputes overlaps
+    every run. This is the only durable record of a journey: the fingerprints that
+    built it are ephemeral, so if we don't store the trip here it's gone."""
+    finalized = [t for t in out_trails
+                 if t["stops"] and t["stops"][-1]["t"] / 1000.0 < now - HOP_MAX_S]
+    if not finalized:
+        return 0
+    existing = set()
+    if os.path.exists(TRIPS_CSV):
+        try:
+            existing = {r["trip_id"] for r in csv.DictReader(open(TRIPS_CSV))}
+        except Exception:
+            pass
+
+    def iso(ms):
+        return dt.datetime.fromtimestamp(ms / 1000.0).isoformat(timespec="seconds")
+
+    new = []
+    for t in finalized:
+        key = "|".join("%s@%d" % (s["cam"], round(s["t"] / 5000)) for s in t["stops"])
+        tid = hashlib.sha1(key.encode()).hexdigest()[:16]
+        if tid in existing:
+            continue
+        existing.add(tid)
+        path = json.dumps([{"cam": s["cam"], "name": s["name"], "t": s["t"],
+                            "lat": s.get("lat"), "lon": s.get("lon")} for s in t["stops"]])
+        new.append([tid, iso(t["stops"][0]["t"]), iso(t["stops"][-1]["t"]),
+                    t["type"], t["color"], t.get("width_ft"), t["n_stops"], t["cams"],
+                    t["span_min"], t.get("match"), t["confidence"], path])
+    if new:
+        first = not os.path.exists(TRIPS_CSV)
+        with open(TRIPS_CSV, "a", newline="") as f:
+            w = csv.writer(f)
+            if first:
+                w.writerow(TRIP_FIELDS)
+            w.writerows(new)
+    return len(new)
 
 WINDOW_S = 24 * 3600        # look back 24h
 HOP_MAX_S = 1200            # max gap between two stops on one trail (20 min)
@@ -178,11 +224,23 @@ def build():
                     "moving": s["moving"], "t": int(s["epoch"] * 1000),
                 })
 
+    # persist completed journeys into the forever DB, then report the running total
+    now = dt.datetime.now().timestamp()
+    added = _persist_trips(out_trails, now)
+    total_trips = 0
+    if os.path.exists(TRIPS_CSV):
+        try:
+            total_trips = sum(1 for _ in open(TRIPS_CSV)) - 1
+        except Exception:
+            pass
+
     data = {
         "generated": dt.datetime.now().isoformat(timespec="seconds"),
         "trails": out_trails,
         "trails_found": len(trails),
         "sightings_24h": len(sights),
+        "trips_logged": total_trips,
+        "trips_added_now": added,
         "seen_now": latest,
     }
     json.dump(data, open(OUT, "w"))

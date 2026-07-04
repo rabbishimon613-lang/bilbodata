@@ -21,34 +21,45 @@ a ~1000× reduction before anything else happens.
 
 ---
 
-## 2. The two storage tiers
+## 2. Three forever tables, each hot→cold
 
-| Tier | File | Role | Format |
-|------|------|------|--------|
-| **Hot** | `counts.csv` | today's readings, append-friendly | text CSV |
-| **Cold** | `data/<date>.parquet` | every finished day, one file | Parquet + zstd |
+Everything is kept forever. There are three parallel logs, all on the same
+hot-CSV → cold-Parquet design:
 
-- New readings append to the **hot log** all day (cheap to append to).
+| Table | Hot (today) | Cold (archive) | What one row is |
+|-------|-------------|----------------|-----------------|
+| **readings** | `counts.csv` | `data/<date>.parquet` | one camera, one minute: class counts + colour tallies |
+| **vehicles** | `vehicles.csv` | `data_vehicles/<date>.parquet` | one tagged vehicle: class, size, aspect, colour, heading, moving, epoch (+ a short-lived appearance fingerprint `emb`, kept in hot only) |
+| **trips** | `trips.csv` | `data_trips/<date>.parquet` | one reconstructed cross-camera journey: type, colour, match confidence, and the full ordered path of (camera, time, lat/lon) stops |
+
+- New rows append to the **hot log** all day (cheap to append to).
 - Once a day finishes, `storage.py compact` rolls it into a **Parquet archive**
-  file and it leaves the hot log. The hot log therefore only ever holds ~1 day.
+  and prunes it from the hot log, so hot only ever holds ~1 day and archive+hot
+  never double-count.
 - Parquet is columnar + compressed: measured **~17× smaller than CSV, lossless.**
-  Every reading is still there, byte-for-byte recoverable.
+  The one deliberate exception: the per-vehicle fingerprint (`emb`) is dropped on
+  archive — it only helps match cars within hours, so keeping it forever would
+  bloat the store. That's why **trips are persisted as their own records**: the
+  fingerprints that built them are gone from the archive, so the journey itself
+  is the durable artifact.
 
-Nothing is ever thinned. "Small" comes from *format*, not from *discarding data*.
+Nothing else is ever thinned. "Small" comes from *format*, not from *discarding data*.
 
 ---
 
 ## 3. Querying — all of history as one table
 
-`storage.py` exposes a virtual table called **`readings`** that is the UNION of
-every Parquet archive file **plus** today's hot CSV. DuckDB reads them together
-as a single table, so any query spans all cameras and all of history at full
-resolution:
+`storage.py` exposes three virtual tables — **`readings`**, **`vehicles`**, and
+**`trips`** — each the UNION of its Parquet archive **plus** today's hot CSV.
+DuckDB reads them together, so any query spans all cameras and all of history at
+full resolution:
 
 ```bash
 python3 storage.py "SELECT name, avg(car) FROM readings GROUP BY name ORDER BY 2 DESC"
-python3 storage.py                     # summary: rows / cameras / time span
-python3 storage.py compact             # archive finished days (run nightly)
+python3 storage.py "SELECT color, count(*) FROM vehicles GROUP BY color ORDER BY 2 DESC"
+python3 storage.py "SELECT type, avg(cams), count(*) FROM trips GROUP BY type"
+python3 storage.py                     # summary: readings / vehicles / trips totals
+python3 storage.py compact             # archive finished days for all three (run nightly)
 python3 storage.py compact --all       # include today (testing only)
 ```
 
