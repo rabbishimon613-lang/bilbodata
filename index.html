@@ -111,6 +111,59 @@
     <canvas id="chart"></canvas>
   </div>
 
+  <div class="panel chartwrap">
+    <h2>Rush curve — average by hour of day</h2>
+    <div class="note">all history · local time · when does the block wake up and quiet down</div>
+    <canvas id="hodChart"></canvas>
+  </div>
+
+  <div class="panel chartwrap" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <div>
+      <h2>Vehicle mix</h2>
+      <div class="note">share of every object detected, all-time</div>
+      <canvas id="mixChart"></canvas>
+    </div>
+    <div>
+      <h2>Car colors seen</h2>
+      <div class="note">detected paint color · recent readings sample the vehicle body only (older ones caught some background)</div>
+      <canvas id="colorChart"></canvas>
+    </div>
+  </div>
+
+  <div class="panel chartwrap">
+    <h2>Vehicle types — measured, not guessed</h2>
+    <div class="note" id="bodyNote">each camera learns its own scale from the typical car, then sizes every vehicle · sedan / SUV-van / pickup-large / truck / bus</div>
+    <canvas id="bodyChart"></canvas>
+  </div>
+
+  <div class="strip" id="speedStrip" style="grid-template-columns:repeat(3,1fr)"></div>
+
+  <div class="panel tblwrap">
+    <h2>Corridor speeds — same vehicle, camera to camera</h2>
+    <div class="note" style="margin:0 18px 4px">matched a moving vehicle leaving one camera to its arrival down the road · distance ÷ time · median mph</div>
+    <table>
+      <thead><tr><th class="name">Corridor</th><th>Distance</th><th>Median mph</th><th>Matches</th></tr></thead>
+      <tbody id="speedBody"></tbody>
+    </table>
+  </div>
+
+  <div class="panel tblwrap">
+    <h2>Fleet fingerprint — every corner's personality</h2>
+    <div class="note" style="margin:0 18px 4px">the vehicle type that runs highest here vs. the citywide baseline</div>
+    <table>
+      <thead><tr><th class="name">Intersection</th><th class="name">Signature</th><th>Sedan</th><th>SUV/van</th><th>Pickup+</th><th>Truck</th><th>Bus</th><th>Seen</th></tr></thead>
+      <tbody id="fleetBody"></tbody>
+    </table>
+  </div>
+
+  <div class="panel tblwrap">
+    <h2>Busiest intersections — all time</h2>
+    <table>
+      <thead><tr><th class="name">Intersection</th><th>Vehicles</th><th>Peds</th><th>Passes</th></tr></thead>
+      <tbody id="busiestBody"></tbody>
+    </table>
+  </div>
+
   <div class="panel tblwrap">
     <h2>By intersection — this pass</h2>
     <table>
@@ -129,7 +182,10 @@ const REFRESH_MS=15000, WLABEL={"1m":"Last minute","1h":"Last hour","24h":"Last 
 // Live data comes from the GitHub repo (the bot commits every 5 min). Empty = same-origin (local dev).
 const DATA_BASE="https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/";
 const D=p=>DATA_BASE+p;
-let cams=[], chart=null;
+let cams=[], chart=null, hodChart=null, mixChart=null, colorChart=null, bodyChart=null;
+const COL={car:'#4ea1ff',ped:'#3fb950',dim:'#7d8896',grid:'#1e2734'};
+const BODY_LABELS={sedan:'Sedan',suv_van:'SUV/van',pickup_large:'Pickup+',truck:'Truck',bus:'Bus',moto:'Moto'};
+const BODY_COL=['#4ea1ff','#3fb950','#f0883e','#f85149','#a371f7','#d29922'];
 const $=id=>document.getElementById(id);
 
 function delta(now,base){
@@ -155,11 +211,83 @@ function drawChart(series){
   }
 }
 
+function barChart(ref,cv,labels,values,colors,horizontal){
+  if(ref)ref.destroy();
+  return new Chart($(cv),{type:'bar',
+    data:{labels,datasets:[{data:values,backgroundColor:colors,borderRadius:5}]},
+    options:{indexAxis:horizontal?'y':'x',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:COL.dim},grid:{color:COL.grid}},
+              y:{ticks:{color:COL.dim},grid:{color:COL.grid},beginAtZero:true}}}});
+}
+
+function drawHod(hod){
+  if(!hod||!hod.length)return;
+  const labels=hod.map(h=>String(h.h).padStart(2,'0'));
+  if(hodChart){hodChart.data.datasets[0].data=hod.map(h=>h.cars);hodChart.data.datasets[1].data=hod.map(h=>h.ped);hodChart.update('none');return;}
+  hodChart=new Chart($('hodChart'),{type:'line',
+    data:{labels,datasets:[
+      {label:'Cars',data:hod.map(h=>h.cars),borderColor:COL.car,backgroundColor:'rgba(78,161,255,.12)',fill:true,tension:.35,pointRadius:0,borderWidth:2},
+      {label:'Pedestrians',data:hod.map(h=>h.ped),borderColor:COL.ped,backgroundColor:'rgba(63,185,80,.10)',fill:true,tension:.35,pointRadius:0,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:COL.dim,boxWidth:12}}},
+      scales:{x:{ticks:{color:COL.dim},grid:{color:COL.grid}},y:{ticks:{color:COL.dim},grid:{color:COL.grid},beginAtZero:true}}}});
+}
+
+fetch(D('stats.json')).then(r=>r.json()).then(s=>{
+  drawHod(s.hour_of_day);
+  const m=s.vehicle_mix||{}, mk=Object.keys(m).filter(k=>m[k]);
+  if(mk.length)mixChart=barChart(mixChart,'mixChart',mk.map(k=>k),mk.map(k=>m[k]),BODY_COL,true);
+  const c=s.color_mix||{}, ck=Object.keys(c).filter(k=>c[k]);
+  if(ck.length)colorChart=barChart(colorChart,'colorChart',ck,ck.map(k=>c[k]),
+    ck.map(k=>({red:'#f85149',blue:'#4ea1ff',green:'#3fb950',yellow:'#d29922',white:'#e6edf3',black:'#6e7681',silver:'#b1bac4'}[k]||'#7d8896')),true);
+  const b=s.busiest||[];
+  $('busiestBody').innerHTML=b.map(r=>`<tr><td class="name">${r.name}</td><td>${r.veh}</td><td>${r.ped}</td><td class="dim">${r.samples}</td></tr>`).join('')
+    ||'<tr><td class="name dim" colspan="4">collecting…</td></tr>';
+}).catch(()=>{});
+
+function loadIntel(){
+  const t=Date.now();
+  fetch(D('calibration.json')+'?t='+t).then(r=>r.ok?r.json():null).then(cal=>{
+    if(!cal)return;
+    const h=cal.body_hist||{}, keys=Object.keys(BODY_LABELS).filter(k=>h[k]);
+    if(keys.length){
+      bodyChart=barChart(bodyChart,'bodyChart',keys.map(k=>BODY_LABELS[k]),keys.map(k=>h[k]),BODY_COL,false);
+      const cv=cal.coverage||{};
+      $('bodyNote').innerHTML=`each camera learns its own scale from the typical car · <b>${cal.cameras_calibrated}</b> cameras calibrated · sized <b>${cv.pct}%</b> of ${cv.vehicles} vehicles`;
+    }
+  }).catch(()=>{});
+
+  fetch(D('speed.json')+'?t='+t).then(r=>r.ok?r.json():null).then(sp=>{
+    if(!sp)return;
+    const city=sp.city_median_mph!=null?sp.city_median_mph+'<span class="u"> mph</span>':'—';
+    $('speedStrip').innerHTML=`
+      <div class="box"><div class="w">City median speed</div><div class="v">${city}</div><div class="u">across measured corridors</div></div>
+      <div class="box"><div class="w">Corridors measured</div><div class="v">${sp.corridors_measured||0}</div><div class="u">of ${sp.neighbor_pairs} camera pairs</div></div>
+      <div class="box"><div class="w">Vehicle matches</div><div class="v">${sp.total_matches||0}</div><div class="u">camera-to-camera hops</div></div>`;
+    const c=sp.corridors||[];
+    $('speedBody').innerHTML=c.map(r=>`<tr><td class="name">${r.a} → ${r.b}</td><td class="dim">${r.dist_mi} mi</td><td>${r.median_mph}</td><td class="dim">${r.matches}</td></tr>`).join('')
+      ||'<tr><td class="name dim" colspan="4">collecting… vehicles must be seen at two cameras</td></tr>';
+  }).catch(()=>{});
+
+  fetch(D('fleet.json')+'?t='+t).then(r=>r.ok?r.json():null).then(fl=>{
+    if(!fl)return;
+    const f=fl.fingerprints||[];
+    const pct=(m,k)=>m&&m[k]?Math.round(m[k]*100)+'%':'·';
+    $('fleetBody').innerHTML=f.slice(0,20).map(r=>{
+      const sig=BODY_LABELS[r.signature]||r.signature;
+      return `<tr><td class="name">${r.name}</td><td class="name" style="color:var(--accent)">${sig}</td>
+        <td>${pct(r.mix,'sedan')}</td><td>${pct(r.mix,'suv_van')}</td><td>${pct(r.mix,'pickup_large')}</td>
+        <td>${pct(r.mix,'truck')}</td><td>${pct(r.mix,'bus')}</td><td class="dim">${r.n}</td></tr>`;
+    }).join('')||'<tr><td class="name dim" colspan="8">collecting…</td></tr>';
+  }).catch(()=>{});
+}
+
 fetch(D('cams.json')).then(r=>r.json()).then(c=>{
   cams=c;
   $('thumbs').innerHTML=cams.map(c=>
     `<div class="thumb"><img id="img_${c.id}"><div class="cap">${c.name}</div></div>`).join('');
   tick(); setInterval(tick,REFRESH_MS);
+  loadIntel(); setInterval(loadIntel,60000);
 });
 
 function tick(){

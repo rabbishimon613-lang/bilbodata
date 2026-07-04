@@ -14,6 +14,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from ultralytics import YOLO
 import stats as statsmod
+from track import link_tracks, VEH_FIELDS
 
 urllib3.disable_warnings()
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -31,6 +32,7 @@ CAMS = _ALL[SHARD_INDEX::SHARD_COUNT] if SHARD_COUNT > 1 else _ALL
 _sfx = "" if SHARD_COUNT == 1 else "_shard%d" % SHARD_INDEX
 CSV_PATH = os.path.join(HERE, "counts%s.csv" % _sfx)
 JSON_PATH = os.path.join(HERE, "counts%s.json" % _sfx)
+VEH_PATH = os.path.join(HERE, "vehicles%s.csv" % _sfx)   # per-vehicle log (tracked)
 PREVIEW_DIR = os.path.join(HERE, "preview")   # one annotated frame per cam, overwritten
 os.makedirs(PREVIEW_DIR, exist_ok=True)
 
@@ -68,15 +70,24 @@ def grab_all(cams):
 
 
 def bucket_color(crop):
-    a = np.asarray(crop).reshape(-1, 3).mean(axis=0)
+    """Nearest coarse color of a vehicle. Sample the CENTER of the box only —
+    the outer ring is mostly road / sky / foliage, which is what used to make
+    'silver' and 'green' explode with background instead of paint."""
+    a = np.asarray(crop)
+    h, w = a.shape[:2]
+    if h > 6 and w > 6:                      # keep the central 50% (the body)
+        a = a[h // 4:h - h // 4, w // 4:w - w // 4]
+    a = a.reshape(-1, 3).mean(axis=0)
     best = min(COLOR_REF, key=lambda k: np.linalg.norm(a - np.array(COLOR_REF[k])))
     return best
 
 
 def analyze(img):
+    """Return (counts, colors, annotated, dets). `dets` is the per-detection list
+    the tracker links across frames: one dict per box with its pixel geometry."""
     big = img.resize((img.width * UPSCALE, img.height * UPSCALE)) if UPSCALE != 1 else img
     res = model.predict(np.array(big), classes=list(CLASSES), conf=CONF, verbose=False)[0]
-    counts, colors = Counter(), Counter()
+    counts, colors, dets = Counter(), Counter(), []
     draw = ImageDraw.Draw(big)
     for b in res.boxes:
         cid = int(b.cls)
@@ -86,9 +97,22 @@ def analyze(img):
         counts[label] += 1
         x1, y1, x2, y2 = map(int, b.xyxy[0])
         draw.rectangle([x1, y1, x2, y2], outline=(78, 161, 255), width=2)
-        if cid in (2, 5, 7):  # vehicles -> aggregate color tally only
-            colors[bucket_color(big.crop((x1, y1, x2, y2)))] += 1
-    return counts, colors, big
+        col = None
+        if cid in (2, 5, 7):  # vehicles -> color tally + per-vehicle geometry
+            col = bucket_color(big.crop((x1, y1, x2, y2)))
+            colors[col] += 1
+        dets.append({"box": (x1, y1, x2, y2), "cls": label, "color": col})
+    return counts, colors, big, dets
+
+
+def write_vehicles(rows):
+    """Append per-vehicle records to vehicles.csv (header written once)."""
+    new = not os.path.exists(VEH_PATH)
+    with open(VEH_PATH, "a", newline="") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(["ts", "epoch", "cam_id", "name"] + VEH_FIELDS)
+        w.writerows(rows)
 
 
 def minute_pass(writer):
@@ -97,8 +121,10 @@ def minute_pass(writer):
     acc = {c["id"]: Counter() for c in CAMS}        # summed class counts over the minute
     col = {c["id"]: Counter() for c in CAMS}        # summed color tallies
     nsamp = {c["id"]: 0 for c in CAMS}              # frames captured this minute
+    fbuf = {c["id"]: [] for c in CAMS}              # per-cam per-frame detections (for tracking)
     shots = 0
-    t_end = time.time() + MINUTE_SECONDS
+    t_start = time.time()
+    t_end = t_start + MINUTE_SECONDS
     while time.time() < t_end:
         imgs = grab_all(CAMS)               # all cams fetched in parallel (~4x faster)
         for c in CAMS:
@@ -106,10 +132,11 @@ def minute_pass(writer):
             if img is None:
                 continue
             try:
-                counts, colors, annotated = analyze(img)
+                counts, colors, annotated, dets = analyze(img)
                 if SAVE_PREVIEW:
                     annotated.save(os.path.join(PREVIEW_DIR, c["id"] + ".jpg"), quality=70)
                 acc[c["id"]].update(counts); col[c["id"]].update(colors)
+                fbuf[c["id"]].append(dets)
                 nsamp[c["id"]] += 1
             except Exception as e:
                 print("  !", c["name"], e)
@@ -118,6 +145,7 @@ def minute_pass(writer):
 
     ts = dt.datetime.now().replace(second=0, microsecond=0).isoformat(timespec="minutes")
     snap = {}
+    vehicles = []   # per-vehicle records for this pass (tracked, deduped)
     for c in CAMS:
         n = max(nsamp[c["id"]], 1)
         avg = {k: round(acc[c["id"]][k] / n) for k in CLASSES.values()}
@@ -126,9 +154,17 @@ def minute_pass(writer):
         writer.writerow([ts, c["id"], c["name"]] + [avg[k] for k in CLASSES.values()] +
                         [veh] + [avgcol[k] for k in COLOR_REF])
         snap[c["id"]] = {"classes": avg, "veh": veh, "ped": avg["person"], "samples": nsamp[c["id"]]}
+        # link this cam's frames into individual vehicles for the metric/fleet/speed layers
+        try:
+            for t in link_tracks(fbuf[c["id"]]):
+                epoch = round(t_start + t["f0"] * SAMPLE_INTERVAL, 1)   # ~2s wall-clock resolution
+                vehicles.append([ts, epoch, c["id"], c["name"]] + [t[f] for f in VEH_FIELDS])
+        except Exception as e:
+            print("  ! track:", c["name"], e)
         print("%-30s cars=%-2d ped=%-2d  (%d frames)" %
               (c["name"][:30], avg["car"], avg["person"], nsamp[c["id"]]))
     json.dump({"ts": ts, "cams": snap}, open(JSON_PATH, "w"))
+    write_vehicles(vehicles)
     if SHARD_COUNT == 1:            # single runner rolls up stats inline; sharded runs aggregate separately
         try:
             statsmod.compute()

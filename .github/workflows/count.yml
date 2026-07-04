@@ -35,9 +35,10 @@ jobs:
           END=$(( $(date +%s) + 240 ))     # ~4 min of work, safely inside the 5-min cron
           i=0
           while [ "$(date +%s)" -lt "$END" ]; do
-            python counter.py --minute       # ~50s of dense sampling -> one averaged row/cam
+            python counter.py --minute       # ~50s of dense sampling -> one averaged row/cam + per-vehicle log
+            python pipeline.py || true        # roll up metric/fleet/speed analytics on the fresh data
             i=$((i+1))
-            git add counts.csv stats.json counts.json
+            git add counts.csv stats.json counts.json vehicles.csv calibration.json fleet.json speed.json
             [ $((i % 4)) -eq 0 ] && git add preview   # frames every 4th min -> curb history bloat
             git commit -m "tick $(date -u +%FT%TZ)" || { echo "nothing to commit"; continue; }
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
