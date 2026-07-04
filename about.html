@@ -15,12 +15,24 @@
   nav a.active{color:var(--txt);border-color:var(--line);background:var(--panel)}
   h2{font-size:15px;margin:26px 0 8px;color:var(--txt)}
   p{color:#c4ccd6;margin:8px 0}
+  .lead{font-size:17px;color:var(--txt);line-height:1.55}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
   .muted{color:var(--dim);font-size:13px}
   ul{color:#c4ccd6;padding-left:18px} li{margin:5px 0}
   .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;background:#132a1a;color:var(--accent2);border:1px solid #204a2a;margin-right:6px}
   code{background:#0e141d;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px}
   a.link{color:var(--accent)}
+  .divider{height:1px;background:var(--line);margin:28px 0}
+  blockquote{margin:20px 0;padding:16px 20px;border-left:3px solid var(--accent);background:var(--panel);
+    border-radius:0 12px 12px 0;font-size:15px;line-height:1.7;color:#d6dee8;font-style:italic}
+  blockquote b{color:var(--txt);font-style:normal}
+  blockquote cite{display:block;margin-top:12px;font-style:normal;font-size:13px;color:var(--dim)}
+  .creed{margin:34px 0 42px;text-align:center}
+  .creed .line{font-size:27px;line-height:1.32;font-weight:650;letter-spacing:-.2px;color:var(--txt);margin:0}
+  .creed .line + .line{margin-top:6px}
+  .creed .punch{color:var(--accent);font-weight:750}
+  .creed .kick{display:block;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+  @media (max-width:600px){.creed .line{font-size:20px}}
 </style>
 <div class="wrap">
   <div class="topbar">
@@ -28,22 +40,56 @@
     <nav><a href="/">Live</a><a href="/about.html" class="active">About</a></nav>
   </div>
 
-  <p>Bilbo Data measures how busy the streets of Crown Heights are — how many cars,
-  trucks, buses, bikes, and pedestrians move through key intersections, and how that
-  rises and falls through the day.</p>
-
-  <div class="card">
-    <span class="tag">AGGREGATE ONLY</span>
-    <p style="margin-bottom:0">Bilbo Data counts <b>how many</b>, never <b>who</b>. It
-    records totals by type — it does not identify, follow, or keep a record of any
-    individual person or vehicle. Nothing here re-identifies a car or tracks anyone's
-    movements.</p>
+  <div class="creed">
+    <span class="kick">The premise</span>
+    <p class="line">If you hold a gun and I hold a gun, we talk about the law.</p>
+    <p class="line">If you hold a knife and I hold a knife, we talk about rules.</p>
+    <p class="line">If we come empty-handed, we talk as equals.</p>
+    <p class="line"><span class="punch">But if you hold a gun and I hold nothing —<br>there is no conversation.</span></p>
   </div>
 
+  <h2>The idea</h2>
+  <p class="lead">Truth isn't neutral, and it isn't free-floating. It's produced — by whoever
+  owns the instruments that measure the world. Whoever holds those instruments decides what
+  counts as real. That's power.</p>
+
+  <blockquote>
+    "Truth is a thing of this world: it is produced only by virtue of multiple forms of
+    constraint. And it induces regular effects of power. Each society has its régime of
+    truth… the types of discourse which it accepts and makes function as true; the techniques
+    and procedures accorded value in the acquisition of truth; <b>the status of those who are
+    charged with saying what counts as true.</b>"
+    <cite>— Michel Foucault, <i>Truth and Power</i></cite>
+  </blockquote>
+
+  <p>Right now a handful of institutions are "charged with saying what counts as true" about
+  the city. The state runs the cameras. Palantir and its cousins run the analysis. Real-estate
+  and traffic and policing "facts" get produced inside rooms you'll never enter, then handed
+  down to you as objective. The instrument is the power. Own the instrument, own the truth.</p>
+
+  <p><b>Bilbo Data breaks that monopoly.</b> Same class of instrument — a full Palantir-style
+  eye on the streets — pointed at the same city, running the same computer vision. The only
+  difference is who holds it: <b>everyone.</b> The dataset is open, the code is open, the
+  numbers are public the second they exist. Not a gentler tool. Not a watered-down one. The
+  real thing, taken out of the private room and put in the street.</p>
+
+  <p>This isn't about changing what's in anyone's head. It's Foucault's actual point — the
+  fight isn't over opinions, it's over <b>the régime that produces truth in the first place.</b>
+  Who gets to measure. Who gets to count. Who gets believed. Bilbo Data is a small crack in
+  that régime: a public instrument for producing public truth about a public city.</p>
+
+  <div class="divider"></div>
+
+  <h2>What it is</h2>
+  <p>Bilbo Data measures the streets of <b>New York City</b> — every vehicle and every person
+  moving through the intersections, minute by minute, and how that rises and falls across the
+  day. It starts with a cluster of cameras and scales toward <b>every public traffic camera in
+  the city</b> (~900+). One New Yorker's area of operation is NYC, so NYC is where it begins.</p>
+
   <h2>Where the data comes from</h2>
-  <p>Thirty public <b>NYC DOT traffic cameras</b> within a 2.5-mile circle centered on
-  Kingston Avenue &amp; President Street. These are the city's own low-resolution
-  (352×240) traffic stills, published for public use.</p>
+  <p>Public <b>NYC DOT traffic cameras</b> — the city's own low-resolution (352×240) traffic
+  stills, already published for public use. Nothing here is hacked, scraped from private
+  systems, or hidden. It's the city's own eyes, read back to the people who paid for them.</p>
 
   <h2>How it works</h2>
   <ul>
@@ -55,15 +101,19 @@
       (last minute / hour / 24 h / 30 days), and charts.</li>
   </ul>
 
-  <h2>How often it updates</h2>
-  <p>Fresh data lands about <b>every minute</b>. Numbers reflect the average count in
-  view during that minute, not a single snapshot.</p>
-
   <h2>How it runs</h2>
-  <p class="muted">A scheduled cloud job does the sampling and counting; the results are
-  stored as an open dataset and this page reads from it directly. No servers to keep on,
-  no cost. Camera imagery isn't rebroadcast — only the counts derived from it.</p>
+  <p class="muted">A scheduled cloud job does the sampling and counting; the results are stored
+  as an open dataset and this page reads from it directly. No servers to keep on, no cost, no
+  gatekeeper. Camera imagery isn't rebroadcast — only the counts derived from it. The data is
+  the point, and the data is yours.</p>
 
-  <p class="muted" style="margin-top:22px">Internal tool · aggregate traffic analytics ·
+  <div class="divider"></div>
+
+  <h2>The name</h2>
+  <p>It's named Bilbo Data because my girlfriend's dog is named Bilbo — and we're keeping the
+  LOTR theme going. A small creature, no one's idea of a hero, who ends up carrying something
+  the powerful would rather keep for themselves. Made anonymously, in New York.</p>
+
+  <p class="muted" style="margin-top:22px">Open-access street intelligence · NYC ·
   <a class="link" href="/">back to live dashboard →</a></p>
 </div>
