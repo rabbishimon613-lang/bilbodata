@@ -1,0 +1,5 @@
+counter.log
+*.bak
+sample_*.jpg
+__pycache__/
+*.pyc

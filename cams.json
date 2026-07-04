@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Eastern Pkwy @ Utica Ave",
+    "id": "c89b62d1-35be-4bb8-b22b-a77c2583733c",
+    "lat": 40.668766,
+    "lon": -73.931145,
+    "dist": 0.56,
+    "img": "https://webcams.nyctmc.org/api/cameras/c89b62d1-35be-4bb8-b22b-a77c2583733c/image"
+  },
+  {
+    "name": "Eastern Pkwy @ Bedford Ave",
+    "id": "f4c47f52-9c8d-494a-92da-4dcc09a19fab",
+    "lat": 40.670398,
+    "lon": -73.955127,
+    "dist": 0.76,
+    "img": "https://webcams.nyctmc.org/api/cameras/f4c47f52-9c8d-494a-92da-4dcc09a19fab/image"
+  },
+  {
+    "name": "Atlantic Ave @ Bedford Ave",
+    "id": "2fe54994-17f6-499d-a3ab-8c6dc9dbda9e",
+    "lat": 40.678742,
+    "lon": -73.953032,
+    "dist": 1.04,
+    "img": "https://webcams.nyctmc.org/api/cameras/2fe54994-17f6-499d-a3ab-8c6dc9dbda9e/image"
+  },
+  {
+    "name": "Flatbush Ave @ Empire Blvd",
+    "id": "2e43a9d0-1df8-4a38-ae20-2e0f359bb55d",
+    "lat": 40.663093,
+    "lon": -73.96236,
+    "dist": 1.12,
+    "img": "https://webcams.nyctmc.org/api/cameras/2e43a9d0-1df8-4a38-ae20-2e0f359bb55d/image"
+  },
+  {
+    "name": "Grand Army Plaza",
+    "id": "1c51b3ec-3d29-4025-928d-4e182e7c0bd5",
+    "lat": 40.672744,
+    "lon": -73.968781,
+    "dist": 1.49,
+    "img": "https://webcams.nyctmc.org/api/cameras/1c51b3ec-3d29-4025-928d-4e182e7c0bd5/image"
+  },
+  {
+    "name": "Flatbush Ave @ Eastern Pkwy",
+    "id": "cb68b8b1-9093-4f2e-acf2-8133b047e8df",
+    "lat": 40.672796,
+    "lon": -73.969278,
+    "dist": 1.52,
+    "img": "https://webcams.nyctmc.org/api/cameras/cb68b8b1-9093-4f2e-acf2-8133b047e8df/image"
+  },
+  {
+    "name": "7 Ave @ Union St",
+    "id": "2064d8ab-597a-45d8-a3c9-5ab95a4e69e6",
+    "lat": 40.674443,
+    "lon": -73.975468,
+    "dist": 1.86,
+    "img": "https://webcams.nyctmc.org/api/cameras/2064d8ab-597a-45d8-a3c9-5ab95a4e69e6/image"
+  },
+  {
+    "name": "Atlantic Ave @ Eastern Pkwy",
+    "id": "fde1748c-7c0f-4df8-8acd-120df29a9305",
+    "lat": 40.67635,
+    "lon": -73.908282,
+    "dist": 1.87,
+    "img": "https://webcams.nyctmc.org/api/cameras/fde1748c-7c0f-4df8-8acd-120df29a9305/image"
+  },
+  {
+    "name": "8 Ave @ 9 St",
+    "id": "6851bbf7-e079-4379-b021-e5c7dafcb8c9",
+    "lat": 40.665895,
+    "lon": -73.979249,
+    "dist": 1.98,
+    "img": "https://webcams.nyctmc.org/api/cameras/6851bbf7-e079-4379-b021-e5c7dafcb8c9/image"
+  }
+]

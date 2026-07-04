@@ -1,0 +1,41 @@
+name: count
+# The always-on worker: runs on a schedule, counts one pass, commits the data.
+# Free on public repos. git is the database; Cloudflare Pages redeploys on push.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"      # every 5 min (GitHub's minimum granularity)
+  workflow_dispatch: {}        # lets you trigger a run by hand
+
+permissions:
+  contents: write              # built-in GITHUB_TOKEN — no PAT needed
+
+concurrency:
+  group: count
+  cancel-in-progress: true     # a fresh tick supersedes a slow one
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: count one pass
+        run: python counter.py --once
+
+      - name: commit data
+        run: |
+          git config user.name  "pedcount-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add counts.csv stats.json counts.json preview
+          git commit -m "tick $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          git push
