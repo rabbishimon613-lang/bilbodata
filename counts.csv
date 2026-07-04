@@ -1313,3 +1313,201 @@ ts,cam_id,name,person,bike,car,moto,bus,truck,veh_total,red,blue,green,yellow,wh
 2026-07-04T01:13:32,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,0,0,0,0,2,0
 2026-07-04T01:13:32,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,8,0,0,0,8,0,0,2,0,0,1,5
 2026-07-04T01:13:32,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:39,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:39,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:13:39,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,2,0,0,1,3,0,0,1,0,0,0,2
+2026-07-04T01:13:39,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:13:39,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,5,0,0,0,5,0,0,2,0,0,0,3
+2026-07-04T01:13:39,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,4,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:39,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,1,0,0,0,1,0,0,0,0,0,1,0
+2026-07-04T01:13:39,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,9,0,0,0,9,0,0,0,0,0,1,8
+2026-07-04T01:13:39,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:46,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:46,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:46,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,1,0,0,1,2,0,0,0,0,0,2,0
+2026-07-04T01:13:46,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:13:46,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:46,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:13:46,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,0,0,0,0,1,1
+2026-07-04T01:13:46,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,8,0,0,0,8,0,0,4,0,0,0,4
+2026-07-04T01:13:46,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:53,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:53,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:13:53,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:53,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:13:53,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:13:53,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:13:53,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,1,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:13:53,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,7,0,0,0,7,0,0,1,0,0,0,6
+2026-07-04T01:13:53,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:00,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:00,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:00,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:00,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:14:00,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:14:00,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:00,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,4,0,0,0,4,1,1,1,0,0,0,1
+2026-07-04T01:14:00,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,5,0,0,0,5,0,0,3,0,0,1,1
+2026-07-04T01:14:00,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:14:07,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:07,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:07,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,7,0,0,0,7,0,1,1,0,0,1,4
+2026-07-04T01:14:07,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:07,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:07,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:14:07,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:14:07,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,4,2,0,0,4,0,0,2,0,0,1,1
+2026-07-04T01:14:07,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:14:14,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:14,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:14,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,6,0,0,0,6,0,0,3,0,0,0,3
+2026-07-04T01:14:14,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:14,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:14,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,2,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:14,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,3,0,0,0,3,1,0,0,0,0,0,2
+2026-07-04T01:14:14,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:14:14,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,1,3,0,0,0,0,0,2,1
+2026-07-04T01:14:21,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:21,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:21,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,1,0,5,0,0,0,5,0,0,1,0,0,0,4
+2026-07-04T01:14:21,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:21,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:21,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,2,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:21,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,1,0,2,0,0,0,2,0,1,0,0,0,1,0
+2026-07-04T01:14:21,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:14:21,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,0,2,0,0,0,0,0,1,1
+2026-07-04T01:14:28,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:28,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:28,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,7,0,0,0,7,0,0,2,0,0,1,4
+2026-07-04T01:14:28,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:28,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:28,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:28,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,4,0,0,0,4,0,1,1,0,0,2,0
+2026-07-04T01:14:28,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,1,1,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:14:28,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:14:35,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:35,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:35,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,5,0,0,0,5,0,0,1,0,0,0,4
+2026-07-04T01:14:35,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:35,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:35,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:35,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,1,0,5,0,0,0,5,0,1,2,0,0,2,0
+2026-07-04T01:14:35,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,8,0,0,0,8,0,0,4,0,0,0,4
+2026-07-04T01:14:35,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,3,0,0,0,3,0,0,0,0,0,1,2
+2026-07-04T01:14:42,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:42,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:42,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,6,0,0,1,7,0,0,3,0,0,0,4
+2026-07-04T01:14:42,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,1,1,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:14:42,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:42,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:42,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,4,0,0,0,4,0,1,1,0,0,2,0
+2026-07-04T01:14:42,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,6,0,0,0,6,0,1,2,0,0,0,3
+2026-07-04T01:14:42,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:14:49,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:49,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:49,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,6,0,0,1,7,0,1,1,0,0,0,5
+2026-07-04T01:14:49,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:49,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:49,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:49,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,0,0,0,0,2,0
+2026-07-04T01:14:49,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,7,0,0,0,7,0,0,1,0,0,0,6
+2026-07-04T01:14:49,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,0,2,0,0,0,0,0,1,1
+2026-07-04T01:14:56,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:56,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:56,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,6,0,0,0,6,0,0,1,0,0,0,5
+2026-07-04T01:14:56,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:56,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:56,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:14:56,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,1,0,0,0,1,0
+2026-07-04T01:14:56,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,6,0,0,0,6,0,0,2,0,0,0,4
+2026-07-04T01:14:56,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,1,0,2,0,0,1,3,0,0,2,0,0,0,1
+2026-07-04T01:15:02,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:02,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:02,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,3,0,0,0,3,0,0,3,0,0,0,0
+2026-07-04T01:15:02,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:15:02,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:02,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:02,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,4,0,0,0,4,0,0,1,0,0,2,1
+2026-07-04T01:15:02,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,5,0,0,0,5,0,1,1,0,0,0,3
+2026-07-04T01:15:02,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:10,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:10,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:10,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,3,0,0,0,3,0,0,1,0,0,0,2
+2026-07-04T01:15:10,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:10,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,3,0,0,0,3,0,0,0,0,0,0,3
+2026-07-04T01:15:10,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:10,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:15:10,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,5,0,0,0,5,0,0,3,0,0,0,2
+2026-07-04T01:15:10,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:17,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:17,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:17,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:17,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:17,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,1,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:17,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:17,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,1,0,0,0,1,0,1,0,0,0,0,0
+2026-07-04T01:15:17,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,7,0,0,0,7,0,1,2,0,0,0,4
+2026-07-04T01:15:17,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:24,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:24,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,2,0,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:24,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:15:24,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:24,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:24,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:24,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,3,0,0,0,3,0,0,2,0,0,0,1
+2026-07-04T01:15:24,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,4,0,0,0,4,0,0,1,0,0,0,3
+2026-07-04T01:15:24,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,3,0,0,0,3,0,0,1,0,0,0,2
+2026-07-04T01:15:31,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:31,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,1,0,3,0,0,3,0,0,0,0
+2026-07-04T01:15:31,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,9,0,0,1,10,0,2,1,0,0,0,7
+2026-07-04T01:15:31,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:38,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:38,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:38,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:38,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:38,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:38,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:38,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,0,2,0,0,0,0
+2026-07-04T01:15:38,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,6,4,0,0,6,0,1,1,0,0,0,4
+2026-07-04T01:15:38,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:45,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:45,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:45,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,1,0,0,0,1,0,0,1,0,0,0,0
+2026-07-04T01:15:45,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:45,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:45,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,2,0,2,0,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:45,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,3,0,0,0,3,0,0,2,0,0,0,1
+2026-07-04T01:15:45,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,2,2,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:45,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:52,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:52,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:52,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,1,0
+2026-07-04T01:15:52,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:52,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:52,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:52,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,0,0,0,2,0,0,1,0,0,1,0
+2026-07-04T01:15:52,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,3,1,0,0,3,0,0,1,0,0,0,2
+2026-07-04T01:15:52,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,1,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:15:58,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:58,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:58,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,1,0,0,0,1,0,0,0,0,0,1,0
+2026-07-04T01:15:58,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:58,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,3,0,0,0,3,0,0,0,0,0,0,3
+2026-07-04T01:15:58,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,2,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:15:58,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,2,1,0,0,2,0,0,1,0,0,0,1
+2026-07-04T01:15:58,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,2,2,0,0,2,0,0,0,0,0,0,2
+2026-07-04T01:15:58,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,1,0,2,0,0,0,2,0,0,0,0,0,1,1
+2026-07-04T01:26,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:26,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:26,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:26,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-07-04T01:26,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,1,0,0,0,1,0,0,0,0,0,0,1
+2026-07-04T01:26,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,1,0,0,0,1,0,0,0,0,0,0,0
+2026-07-04T01:26,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,0,0,3,0,0,0,3,0,0,1,0,0,0,1
+2026-07-04T01:26,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,0,0,7,0,0,0,7,0,0,1,0,0,1,6
+2026-07-04T01:26,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,0,0,1,0,0,1,2,0,0,0,0,0,1,1

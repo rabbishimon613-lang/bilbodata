@@ -12,12 +12,12 @@ permissions:
 
 concurrency:
   group: count
-  cancel-in-progress: true     # a fresh tick supersedes a slow one
+  cancel-in-progress: true     # a fresh scheduled launch supersedes the tail of the old one
 
 jobs:
   tick:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
 
@@ -28,14 +28,18 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: count one pass
-        run: python counter.py --once
-
-      - name: commit data
+      - name: sample continuously, commit every minute
         run: |
           git config user.name  "pedcount-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add counts.csv stats.json counts.json preview
-          git commit -m "tick $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
-          git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
-          git push
+          END=$(( $(date +%s) + 240 ))     # ~4 min of work, safely inside the 5-min cron
+          i=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            python counter.py --minute       # ~50s of dense sampling -> one averaged row/cam
+            i=$((i+1))
+            git add counts.csv stats.json counts.json
+            [ $((i % 4)) -eq 0 ] && git add preview   # frames every 4th min -> curb history bloat
+            git commit -m "tick $(date -u +%FT%TZ)" || { echo "nothing to commit"; continue; }
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            git push || true
+          done

@@ -3,3 +3,4 @@ counter.log
 sample_*.jpg
 __pycache__/
 *.pyc
+.vercel

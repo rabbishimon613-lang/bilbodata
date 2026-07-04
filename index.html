@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Crown Heights Traffic</title>
+<title>Bilbo Data — Crown Heights Traffic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root{
@@ -11,7 +12,12 @@
   *{box-sizing:border-box}
   body{margin:0;font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt)}
   .wrap{max-width:1180px;margin:0 auto;padding:22px}
-  h1{font-size:17px;margin:0;letter-spacing:.2px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  h1{font-size:19px;margin:0;letter-spacing:.3px;font-weight:750}
+  nav{display:flex;gap:6px}
+  nav a{color:var(--dim);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid transparent}
+  nav a:hover{color:var(--txt);background:var(--panel)}
+  nav a.active{color:var(--txt);border-color:var(--line);background:var(--panel)}
   .sub{color:var(--dim);font-size:12px;margin:4px 0 20px}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 
@@ -58,9 +64,30 @@
   .thumb img{width:100%;display:block;aspect-ratio:352/240;background:#000}
   .thumb .cap{padding:6px 10px;font-size:11px;color:var(--dim)}
   .collecting{color:var(--warn);font-size:11px}
+
+  /* ---- mobile ---- */
+  @media (max-width:720px){
+    .wrap{padding:14px}
+    .hero{grid-template-columns:1fr}
+    .hero .big{font-size:44px}
+    .strip{grid-template-columns:1fr 1fr}
+    canvas{height:200px!important}
+    .tblwrap{overflow-x:auto}
+    table{min-width:560px}
+    .thumbs{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:420px){
+    .strip{grid-template-columns:1fr 1fr}
+    .hero .big{font-size:38px}
+    h1{font-size:17px}
+    .thumbs{grid-template-columns:1fr}
+  }
 </style>
 <div class="wrap">
-  <h1>Crown Heights Traffic</h1>
+  <div class="topbar">
+    <h1>Bilbo Data</h1>
+    <nav><a href="/" class="active">Live</a><a href="/about.html">About</a></nav>
+  </div>
   <div class="sub" id="sub">9 NYC DOT feeds · 2.0 mi circle on Kingston Ave &amp; President St · aggregate counts only · internal</div>
 
   <div class="hero">
@@ -80,7 +107,7 @@
 
   <div class="panel chartwrap">
     <h2>Traffic over time</h2>
-    <div class="note">avg cars &amp; pedestrians in view, 10-min buckets · fills in as data accrues</div>
+    <div class="note">avg cars &amp; pedestrians in view, 1-min buckets · fills in as data accrues</div>
     <canvas id="chart"></canvas>
   </div>
 
@@ -98,7 +125,7 @@
 </div>
 
 <script>
-const REFRESH_MS=6000, WLABEL={"10m":"Last 10 min","1h":"Last hour","24h":"Last 24 h","1mo":"Last 30 days"};
+const REFRESH_MS=15000, WLABEL={"1m":"Last minute","1h":"Last hour","24h":"Last 24 h","1mo":"Last 30 days"};
 // Live data comes from the GitHub repo (the bot commits every 5 min). Empty = same-origin (local dev).
 const DATA_BASE="https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/";
 const D=p=>DATA_BASE+p;

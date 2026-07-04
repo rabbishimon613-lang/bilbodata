@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(HERE, "counts.csv")
 OUT = os.path.join(HERE, "stats.json")
 
-WINDOWS = {"10m": 600, "1h": 3600, "24h": 86400, "1mo": 2592000}
+WINDOWS = {"1m": 60, "1h": 3600, "24h": 86400, "1mo": 2592000}
 
 
 def load_passes():
@@ -63,8 +63,8 @@ def yesterday_same(passes, now):
             "ped": round(sum(p for _, p in near) / n, 1)}
 
 
-def series(passes, now, secs=86400, bucket=600):
-    """Bucketed avg cars/ped for charting over the last `secs`."""
+def series(passes, now, secs=86400, bucket=60):
+    """Bucketed avg cars/ped for charting over the last `secs`. 1-min buckets."""
     lo = now - secs
     buckets = defaultdict(lambda: [0, 0, 0])  # sum_cars, sum_ped, n
     for e, c, p in passes:

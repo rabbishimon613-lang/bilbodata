@@ -1,0 +1,69 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>About — Bilbo Data</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--bg:#0a0e14;--panel:#111722;--line:#1e2734;--txt:#e6edf3;--dim:#7d8896;--accent:#4ea1ff;--accent2:#3fb950}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+  .wrap{max-width:760px;margin:0 auto;padding:22px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+  h1{font-size:19px;margin:0;letter-spacing:.3px;font-weight:750}
+  nav{display:flex;gap:6px}
+  nav a{color:var(--dim);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:8px;border:1px solid transparent}
+  nav a:hover{color:var(--txt);background:var(--panel)}
+  nav a.active{color:var(--txt);border-color:var(--line);background:var(--panel)}
+  h2{font-size:15px;margin:26px 0 8px;color:var(--txt)}
+  p{color:#c4ccd6;margin:8px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .muted{color:var(--dim);font-size:13px}
+  ul{color:#c4ccd6;padding-left:18px} li{margin:5px 0}
+  .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;background:#132a1a;color:var(--accent2);border:1px solid #204a2a;margin-right:6px}
+  code{background:#0e141d;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px}
+  a.link{color:var(--accent)}
+</style>
+<div class="wrap">
+  <div class="topbar">
+    <h1>Bilbo Data</h1>
+    <nav><a href="/">Live</a><a href="/about.html" class="active">About</a></nav>
+  </div>
+
+  <p>Bilbo Data measures how busy the streets of Crown Heights are — how many cars,
+  trucks, buses, bikes, and pedestrians move through key intersections, and how that
+  rises and falls through the day.</p>
+
+  <div class="card">
+    <span class="tag">AGGREGATE ONLY</span>
+    <p style="margin-bottom:0">Bilbo Data counts <b>how many</b>, never <b>who</b>. It
+    records totals by type — it does not identify, follow, or keep a record of any
+    individual person or vehicle. Nothing here re-identifies a car or tracks anyone's
+    movements.</p>
+  </div>
+
+  <h2>Where the data comes from</h2>
+  <p>Nine public <b>NYC DOT traffic cameras</b> within a 2-mile circle centered on
+  Kingston Avenue &amp; President Street. These are the city's own low-resolution
+  (352×240) traffic stills, published for public use.</p>
+
+  <h2>How it works</h2>
+  <ul>
+    <li>Every minute, each camera is sampled repeatedly (~25 frames).</li>
+    <li>A computer-vision model counts objects by type in each frame.</li>
+    <li>The minute is averaged into a single reading — <b>one minute is the finest
+      measurement</b> — and added to the running history.</li>
+    <li>The dashboard rolls that history into live numbers, windowed totals
+      (last minute / hour / 24 h / 30 days), and charts.</li>
+  </ul>
+
+  <h2>How often it updates</h2>
+  <p>Fresh data lands about <b>every minute</b>. Numbers reflect the average count in
+  view during that minute, not a single snapshot.</p>
+
+  <h2>How it runs</h2>
+  <p class="muted">A scheduled cloud job does the sampling and counting; the results are
+  stored as an open dataset and this page reads from it directly. No servers to keep on,
+  no cost. Camera imagery isn't rebroadcast — only the counts derived from it.</p>
+
+  <p class="muted" style="margin-top:22px">Internal tool · aggregate traffic analytics ·
+  <a class="link" href="/">back to live dashboard →</a></p>
+</div>
