@@ -15,6 +15,7 @@ from PIL import Image, ImageDraw
 from ultralytics import YOLO
 import stats as statsmod
 from track import link_tracks, VEH_FIELDS
+import embed
 
 urllib3.disable_warnings()
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -97,21 +98,41 @@ def analyze(img):
         counts[label] += 1
         x1, y1, x2, y2 = map(int, b.xyxy[0])
         draw.rectangle([x1, y1, x2, y2], outline=(78, 161, 255), width=2)
-        col = None
-        if cid in (2, 5, 7):  # vehicles -> color tally + per-vehicle geometry
+        col, crop = None, None
+        if cid in (2, 5, 7):  # vehicles -> color tally + geometry + crop for fingerprint
+            crop = np.asarray(big.crop((x1, y1, x2, y2)))
             col = bucket_color(big.crop((x1, y1, x2, y2)))
             colors[col] += 1
-        dets.append({"box": (x1, y1, x2, y2), "cls": label, "color": col})
+        dets.append({"box": (x1, y1, x2, y2), "cls": label, "color": col, "crop": crop})
     return counts, colors, big, dets
+
+
+def _ensure_veh_schema(path, expected):
+    """Self-heal an older vehicles.csv (e.g. pre-`emb`) so appends never misalign
+    columns. Rewrites the header and pads missing fields with '' — runs once when
+    the schema changes, then it's a no-op."""
+    with open(path) as f:
+        first = f.readline().strip()
+    if not first or first.split(",") == expected:
+        return
+    rows = list(csv.DictReader(open(path)))
+    with open(path, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(expected)
+        for r in rows:
+            w.writerow([r.get(k, "") for k in expected])
 
 
 def write_vehicles(rows):
     """Append per-vehicle records to vehicles.csv (header written once)."""
+    expected = ["ts", "epoch", "cam_id", "name"] + VEH_FIELDS + ["emb"]
     new = not os.path.exists(VEH_PATH)
+    if not new:
+        _ensure_veh_schema(VEH_PATH, expected)
     with open(VEH_PATH, "a", newline="") as f:
         w = csv.writer(f)
         if new:
-            w.writerow(["ts", "epoch", "cam_id", "name"] + VEH_FIELDS)
+            w.writerow(expected)
         w.writerows(rows)
 
 
@@ -158,7 +179,16 @@ def minute_pass(writer):
         try:
             for t in link_tracks(fbuf[c["id"]]):
                 epoch = round(t_start + t["f0"] * SAMPLE_INTERVAL, 1)   # ~2s wall-clock resolution
-                vehicles.append([ts, epoch, c["id"], c["name"]] + [t[f] for f in VEH_FIELDS])
+                crop = t.get("crop")
+                emb_hex = ""
+                if crop is not None and getattr(crop, "size", 0):
+                    v = embed.embed(crop)
+                    emb_hex = embed.to_hex(v)
+                    vcol = embed.dominant_colour(crop)    # honest HSV colour off the best look
+                    if vcol:
+                        t["color"] = vcol
+                vehicles.append([ts, epoch, c["id"], c["name"]] +
+                                [t[f] for f in VEH_FIELDS] + [emb_hex])
         except Exception as e:
             print("  ! track:", c["name"], e)
         print("%-30s cars=%-2d ped=%-2d  (%d frames)" %

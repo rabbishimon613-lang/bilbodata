@@ -23,6 +23,7 @@ import os, csv, glob, json, math
 from collections import defaultdict
 
 import calibrate as cal
+import embed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "speed.json")
@@ -30,6 +31,7 @@ OUT = os.path.join(HERE, "speed.json")
 MAX_LINK_MI = 0.60          # cameras farther apart than this aren't "down the road"
 MIN_MPH, MAX_MPH = 3, 75    # implausible speeds => bad match, drop it
 MATCH_WINDOW_S = 240        # a vehicle should reach a neighbour within this many seconds
+EMB_THRESH = 0.85           # min appearance-fingerprint cosine to call it the same car
 
 
 def _cams():
@@ -79,9 +81,10 @@ def _load_moving_vehicles():
             e = float(r["epoch"])
         except Exception:
             continue
-        bt = cal.body_type(r, scales)
-        sig = (bt, r.get("color"))
-        seen[r["cam_id"]].append((e, sig, r.get("name", r["cam_id"])))
+        v = embed.from_hex(r.get("emb", ""))
+        if v is None:                       # no fingerprint -> can't safely re-identify
+            continue
+        seen[r["cam_id"]].append((e, v, r.get("cls"), r.get("name", r["cam_id"])))
     return seen
 
 
@@ -93,13 +96,18 @@ def compute():
     corridors = []
     for (a, b), dist in pairs.items():
         speeds = []
-        # match A->B and B->A by nearest-in-time same-signature sighting
+        # A vehicle only counts as "the same car" at both cameras if its
+        # appearance FINGERPRINT matches (cosine >= EMB_THRESH), it's the same
+        # coarse class, and the travel time is physically possible. Fingerprint
+        # gating is what stops every silver blob matching every other one.
         for src, dst in ((a, b), (b, a)):
-            for e0, sig0, _ in seen.get(src, []):
+            for e0, v0, cls0, _ in seen.get(src, []):
                 best = None
-                for e1, sig1, _ in seen.get(dst, []):
+                for e1, v1, cls1, _ in seen.get(dst, []):
                     dt = e1 - e0
-                    if dt <= 0 or dt > MATCH_WINDOW_S or sig0 != sig1:
+                    if dt <= 0 or dt > MATCH_WINDOW_S or cls1 != cls0:
+                        continue
+                    if embed.cosine(v0, v1) < EMB_THRESH:
                         continue
                     if best is None or dt < best:
                         best = dt

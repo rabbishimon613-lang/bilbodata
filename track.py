@@ -79,6 +79,7 @@ def link_tracks(frames, iou_thresh=0.2, max_gap=2):
             tr["centers"].append(_center(d["box"]))
             tr["colors"].append(d["color"])
             tr["cls"].append(d["cls"])
+            tr["crops"].append(d.get("crop"))
             tr["last_frame"] = fi
             matched_tracks.add(ti)
             used.add(di)
@@ -88,7 +89,8 @@ def link_tracks(frames, iou_thresh=0.2, max_gap=2):
                 continue
             active.append({"first_frame": fi, "last_frame": fi, "boxes": [d["box"]],
                            "centers": [_center(d["box"])],
-                           "colors": [d["color"]], "cls": [d["cls"]]})
+                           "colors": [d["color"]], "cls": [d["cls"]],
+                           "crops": [d.get("crop")]})
     for tr in active:
         close(tr)
 
@@ -111,7 +113,10 @@ def _mode(seq):
 def summarize(tr):
     """Collapse a track into one per-vehicle record for logging."""
     # pick the biggest box as the "best look" (nearest / clearest)
-    best = max(tr["boxes"], key=lambda b: (b[2] - b[0]) * (b[3] - b[1]))
+    areas = [(b[2] - b[0]) * (b[3] - b[1]) for b in tr["boxes"]]
+    bi = max(range(len(areas)), key=lambda i: areas[i])
+    best = tr["boxes"][bi]
+    best_crop = tr["crops"][bi] if tr.get("crops") else None
     w, h = best[2] - best[0], best[3] - best[1]
     area = w * h
     aspect = round(w / h, 3) if h else 0.0
@@ -130,6 +135,7 @@ def summarize(tr):
         "px_per_frame": round(dist / frames_span, 2),
         "moving": dist > max(w, h) * 0.4,   # moved ~half its own size => not parked
         "f0": tr["first_frame"], "f1": tr["last_frame"],   # frame indices (for wall-clock timing)
+        "crop": best_crop,                  # best look, for fingerprint + colour (not logged raw)
     }
 
 

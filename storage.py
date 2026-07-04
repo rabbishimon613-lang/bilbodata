@@ -27,14 +27,16 @@ def _con():
     return duckdb.connect()
 
 
-def _compact(csv_path, archive_dir, include_today):
+def _compact(csv_path, archive_dir, include_today, drop_cols=None):
     """Move finished days from a hot CSV into <archive_dir>/<date>.parquet (zstd,
     lossless) AND prune those days out of the hot CSV, so the hot log only ever
-    holds unarchived days and archive+hot never double-count."""
+    holds unarchived days and archive+hot never double-count. `drop_cols` are
+    excluded from the ARCHIVE only (e.g. fingerprints, useful only while fresh)."""
     if not os.path.exists(csv_path):
         return []
     c = _con()
     c.execute("CREATE VIEW raw AS SELECT * FROM read_csv_auto('%s', header=true)" % csv_path)
+    sel = "* EXCLUDE (%s)" % ", ".join(drop_cols) if drop_cols else "*"
     today = dt.date.today().isoformat()
     dates = [str(r[0]) for r in c.execute(
         "SELECT DISTINCT CAST(ts AS DATE) d FROM raw ORDER BY d").fetchall()]
@@ -44,8 +46,8 @@ def _compact(csv_path, archive_dir, include_today):
             continue
         out = os.path.join(archive_dir, d + ".parquet")
         c.execute(
-            "COPY (SELECT * FROM raw WHERE CAST(ts AS DATE)='%s') "
-            "TO '%s' (FORMAT parquet, COMPRESSION zstd)" % (d, out))
+            "COPY (SELECT %s FROM raw WHERE CAST(ts AS DATE)='%s') "
+            "TO '%s' (FORMAT parquet, COMPRESSION zstd)" % (sel, d, out))
         written.append((out, os.path.getsize(out)))
         archived.append(d)
     if archived:                                   # prune archived days from the hot log
@@ -63,8 +65,10 @@ def compact(include_today=False):
 
 def compact_vehicles(include_today=False):
     """Same hot->cold roll for the per-vehicle log: finished days -> Parquet.
-    Keeps every tagged vehicle forever, byte-for-byte, ~17x smaller than CSV."""
-    return _compact(VEH_CSV, VEH_DIR, include_today)
+    Keeps every tag forever, but DROPS the appearance fingerprint (`emb`) from the
+    archive — it's only useful for matching within hours, and keeping it forever
+    would bloat the store. Every other tag is preserved byte-for-byte."""
+    return _compact(VEH_CSV, VEH_DIR, include_today, drop_cols=["emb"])
 
 
 def _union_sql(archive_dir, hot_glob):

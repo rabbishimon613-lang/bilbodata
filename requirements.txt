@@ -1,4 +1,5 @@
 ultralytics==8.4.87
+torchvision
 pillow
 numpy
 urllib3

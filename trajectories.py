@@ -27,6 +27,7 @@ import os, csv, glob, json, math, datetime as dt
 from collections import defaultdict
 
 import calibrate as cal
+import embed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "trajectories.json")
@@ -36,6 +37,7 @@ HOP_MAX_S = 1200            # max gap between two stops on one trail (20 min)
 HOP_MIN_S = 4              # below this it's the same pass, not travel
 MIN_MPH, MAX_MPH = 3, 75
 MAX_TRAILS = 60
+EMB_THRESH = 0.85           # min appearance-fingerprint cosine to link two sightings
 
 
 def _cams():
@@ -73,6 +75,7 @@ def _load(scales):
         out.append({
             "epoch": e, "cam": r["cam_id"], "name": r.get("name", r["cam_id"]),
             "type": cal.body_type(r, scales), "color": r.get("color"),
+            "cls": r.get("cls"), "emb": embed.from_hex(r.get("emb", "")),
             "w_ft": w_ft, "moving": str(r.get("moving")).lower() in ("true", "1"),
         })
     out.sort(key=lambda x: x["epoch"])
@@ -89,19 +92,23 @@ def build():
     scales = cal.learn_scales(cal.load_vehicles())   # calibrate on ALL history
     sights = _load(scales)
 
-    # group by signature; how common each signature is drives confidence
-    by_sig = defaultdict(list)
+    # Only vehicles that carry an appearance fingerprint can be trailed — that's
+    # what makes "the same car" mean the same car. Pre-group by coarse class just
+    # to limit comparisons; the real link test is fingerprint cosine + geo + time.
+    sights = [s for s in sights if s.get("emb") is not None]
+    by_cls = defaultdict(list)
     for s in sights:
-        by_sig[_sig(s)].append(s)
+        by_cls[s.get("cls") or "car"].append(s)
 
     trails = []
-    for sig, group in by_sig.items():
+    for group in by_cls.values():
         group.sort(key=lambda x: x["epoch"])
         used = [False] * len(group)
         for i in range(len(group)):
             if used[i]:
                 continue
             chain = [group[i]]
+            links = []                       # per-hop fingerprint cosine
             used[i] = True
             last = group[i]
             for j in range(i + 1, len(group)):
@@ -115,6 +122,9 @@ def build():
                     break
                 if nxt["cam"] == last["cam"]:
                     continue
+                cos = embed.cosine(last["emb"], nxt["emb"])
+                if cos < EMB_THRESH:          # not the same-looking car -> not a hop
+                    continue
                 a, b = cams.get(last["cam"]), cams.get(nxt["cam"])
                 if not a or not b or "lat" not in a or "lat" not in b:
                     continue
@@ -123,13 +133,14 @@ def build():
                 if not (MIN_MPH <= mph <= MAX_MPH):
                     continue
                 chain.append(nxt)
+                links.append(cos)
                 used[j] = True
                 last = nxt
             if len(chain) >= 2 and len({c["cam"] for c in chain}) >= 2:
-                trails.append((sig, chain, len(by_sig[sig])))
+                trails.append((chain, links))
 
-    # rank: more stops first, then rarer signature (higher confidence)
-    trails.sort(key=lambda t: (-len(t[1]), t[2]))
+    # rank: more stops first, then stronger fingerprint agreement
+    trails.sort(key=lambda t: (-len(t[0]), -(sum(t[1]) / len(t[1]) if t[1] else 0)))
 
     def stop(s):
         c = cams.get(s["cam"], {})
@@ -137,13 +148,18 @@ def build():
                 "lat": c.get("lat"), "lon": c.get("lon")}
 
     out_trails = []
-    for sig, chain, pop in trails[:MAX_TRAILS]:
-        typ, color, wb = sig.split("|")
+    for chain, links in trails[:MAX_TRAILS]:
         span = chain[-1]["epoch"] - chain[0]["epoch"]
-        # confidence: rarer signature + more stops => more trustworthy
-        conf = min(1.0, (len(chain) / 4.0) * (1.0 / max(1, pop / 25.0)))
+        avg_cos = sum(links) / len(links) if links else 0.0
+        # confidence: how strongly the fingerprints agree, plus a small bonus for
+        # more corroborating stops. A tight match across many cameras is trustworthy.
+        conf = min(1.0, max(0.0, (avg_cos - EMB_THRESH) / (1.0 - EMB_THRESH))
+                   * 0.7 + min(len(chain) / 6.0, 1.0) * 0.3)
+        rep = chain[0]
         out_trails.append({
-            "type": typ, "color": color, "width_ft": None if wb == "?" else int(wb),
+            "type": rep["type"], "color": rep["color"],
+            "width_ft": None if rep.get("w_ft") is None else int(round(rep["w_ft"])),
+            "match": round(avg_cos, 2),
             "stops": [stop(s) for s in chain],
             "n_stops": len(chain), "cams": len({c["cam"] for c in chain}),
             "span_min": round(span / 60.0, 1),
