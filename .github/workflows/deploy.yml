@@ -1,18 +1,15 @@
 name: deploy-shell
 
-# Deploys the site shell to Vercel production whenever shell files change.
-# Data-tick commits (counts.csv, *.json, preview/) do NOT match these paths,
-# so the ~288 daily worker commits never trigger a deploy. The live page reads
-# its data straight from raw.githubusercontent, not from Vercel, so the shell
-# only needs redeploying when the HTML/config actually changes.
+# MANUAL ONLY — never auto-deploys. Vercel's free plan caps deploys at 100/day
+# ACCOUNT-WIDE (shared across every shimonindustries project), so nothing here
+# fires on a push. The live page reads its data straight from raw.githubusercontent,
+# not from Vercel, so the shell almost never needs redeploying. When the HTML/config
+# genuinely changes, publish it deliberately:
+#     gh workflow run deploy-shell         (or the Actions tab -> Run workflow)
+# This is the ONLY path that deploys Bilbo. Data ticks, the local runner, and code
+# pushes never touch Vercel.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
-      - 'vercel.json'
-      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 concurrency:
