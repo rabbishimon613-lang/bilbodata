@@ -1,1 +1,1 @@
-{"neighbor_pairs": 7320, "corridors": [], "corridors_measured": 0, "city_median_mph": null, "total_matches": 0}
+{"neighbor_pairs": 7320, "corridors": [{"a": "Flatbush Ave and 4 Ave", "b": "3 Ave @ Atlantic Ave", "dist_mi": 0.18, "matches": 1, "median_mph": 14.2}, {"a": "3 Ave @ Atlantic Ave", "b": "Flatbush Ave and Atlantic Ave", "dist_mi": 0.249, "matches": 1, "median_mph": 16.7}], "corridors_measured": 2, "city_median_mph": null, "total_matches": 2}
