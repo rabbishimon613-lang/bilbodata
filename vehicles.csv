@@ -16995,3 +16995,498 @@ ts,epoch,cam_id,name,cls,box_w,box_h,area_px,aspect,color,frames,heading,px_per_
 2026-07-04T22:15,1783203305.1,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,64,51,3264,1.255,green,1,0.0,0.0,False
 2026-07-04T22:15,1783203305.1,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,76,39,2964,1.949,silver,1,0.0,0.0,False
 2026-07-04T22:15,1783203305.1,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,51,36,1836,1.417,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,61,40,2440,1.525,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,24,18,432,1.333,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,33,19,627,1.737,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,56,40,2240,1.4,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,truck,91,150,13650,0.607,green,5,122.7,2.08,False
+2026-07-04T22:16,1783203341.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,82,45,3690,1.822,silver,4,144.7,13.27,True
+2026-07-04T22:16,1783203343.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,bus,90,154,13860,0.584,green,4,122.5,2.17,False
+2026-07-04T22:16,1783203351.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,42,31,1302,1.355,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,24,17,408,1.412,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,truck,84,98,8232,0.857,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,98,59,5782,1.661,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,48,34,1632,1.412,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,87,55,4785,1.582,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,60,50,3000,1.2,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,22,19,418,1.158,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,car,36,48,1728,0.75,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,79,132,10428,0.598,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,158,189,29862,0.836,silver,6,45.0,0.14,False
+2026-07-04T22:16,1783203341.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,truck,157,176,27632,0.892,silver,6,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,270,347,93690,0.778,silver,6,63.0,16.95,False
+2026-07-04T22:16,1783203341.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,281,322,90482,0.873,silver,6,239.1,15.38,False
+2026-07-04T22:16,1783203343.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,171,123,21033,1.39,silver,5,90.0,3.75,False
+2026-07-04T22:16,1783203343.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,121,62,7502,1.952,silver,7,9.0,4.81,False
+2026-07-04T22:16,1783203347.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,300,162,48600,1.852,silver,5,134.0,5.22,False
+2026-07-04T22:16,1783203347.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,184,208,38272,0.885,silver,5,35.8,6.63,False
+2026-07-04T22:16,1783203347.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,157,175,27475,0.897,silver,6,244.0,4.56,False
+2026-07-04T22:16,1783203341.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,car,270,336,90720,0.804,silver,12,83.4,3.57,False
+2026-07-04T22:16,1783203359.5,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,truck,240,205,49200,1.171,silver,3,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,51,54,2754,0.944,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,bus,295,240,70800,1.229,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,truck,106,150,15900,0.707,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,bus,188,144,27072,1.306,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,69,77,5313,0.896,green,2,267.5,35.03,True
+2026-07-04T22:16,1783203343.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,135,126,17010,1.071,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,30,23,690,1.304,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,36,32,1152,1.125,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,21,20,420,1.05,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,75,101,7575,0.743,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,33,29,957,1.138,green,3,197.4,12.57,True
+2026-07-04T22:16,1783203347.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,111,97,10767,1.144,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,69,72,4968,0.958,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,19,15,285,1.267,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,41,45,1845,0.911,green,4,296.6,0.75,False
+2026-07-04T22:16,1783203349.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,25,20,500,1.25,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,102,159,16218,0.642,green,3,103.9,45.84,True
+2026-07-04T22:16,1783203349.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,149,64,9536,2.328,silver,2,121.8,12.35,False
+2026-07-04T22:16,1783203351.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,110,95,10450,1.158,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,62,58,3596,1.069,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,117,121,14157,0.967,green,5,129.9,9.94,False
+2026-07-04T22:16,1783203353.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,95,122,11590,0.779,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,37,37,1369,1.0,silver,3,36.9,1.25,False
+2026-07-04T22:16,1783203353.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,42,48,2016,0.875,silver,3,250.2,6.64,False
+2026-07-04T22:16,1783203341.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,78,93,7254,0.839,silver,9,71.0,11.7,True
+2026-07-04T22:16,1783203343.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,63,69,4347,0.913,silver,6,236.7,8.02,True
+2026-07-04T22:16,1783203353.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,50,48,2400,1.042,silver,4,234.5,1.43,False
+2026-07-04T22:16,1783203353.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,truck,96,123,11808,0.78,silver,6,302.3,2.25,False
+2026-07-04T22:16,1783203355.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,53,43,2279,1.233,green,4,109.7,4.96,False
+2026-07-04T22:16,1783203355.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,truck,91,107,9737,0.85,silver,5,104.8,4.4,False
+2026-07-04T22:16,1783203355.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,29,28,812,1.036,silver,2,230.7,7.11,False
+2026-07-04T22:16,1783203357.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,91,105,9555,0.867,silver,2,0.0,0.5,False
+2026-07-04T22:16,1783203359.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,truck,50,49,2450,1.02,green,2,135.0,0.71,False
+2026-07-04T22:16,1783203361.5,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,car,23,38,874,0.605,silver,2,90.0,0.5,False
+2026-07-04T22:16,1783203341.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,truck,57,48,2736,1.188,silver,2,0.0,0.5,False
+2026-07-04T22:16,1783203341.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,56,47,2632,1.191,silver,2,71.6,1.58,False
+2026-07-04T22:16,1783203345.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,21,16,336,1.312,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,46,43,1978,1.07,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,68,47,3196,1.447,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,21,15,315,1.4,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,93,60,5580,1.55,black,12,22.6,0.59,False
+2026-07-04T22:16,1783203341.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,79,71,5609,1.113,red,12,34.5,1.77,False
+2026-07-04T22:16,1783203341.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,56,30,1680,1.867,silver,11,6.0,0.96,False
+2026-07-04T22:16,1783203363.5,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,car,22,14,308,1.571,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,bus,122,63,7686,1.937,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,101,35,3535,2.886,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,121,43,5203,2.814,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,29,19,551,1.526,green,2,303.7,1.8,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,36,23,828,1.565,silver,2,187.1,4.03,False
+2026-07-04T22:16,1783203343.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,25,19,475,1.316,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,37,21,777,1.762,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,45,24,1080,1.875,silver,3,298.6,3.13,False
+2026-07-04T22:16,1783203345.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,89,34,3026,2.618,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,27,16,432,1.688,green,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,28,26,728,1.077,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,54,28,1512,1.929,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,28,23,644,1.217,green,3,188.5,5.06,False
+2026-07-04T22:16,1783203349.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,17,14,238,1.214,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,30,22,660,1.364,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,51,35,1785,1.457,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,135,59,7965,2.288,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,23,13,299,1.769,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,19,15,285,1.267,green,2,257.5,4.61,False
+2026-07-04T22:16,1783203355.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,32,19,608,1.684,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,52,24,1248,2.167,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,53,27,1431,1.963,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,40,19,760,2.105,black,8,45.0,0.3,False
+2026-07-04T22:16,1783203357.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,21,13,273,1.615,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,56,25,1400,2.24,black,12,41.2,0.48,False
+2026-07-04T22:16,1783203363.5,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,car,46,15,690,3.067,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,car,53,44,2332,1.205,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,car,28,18,504,1.556,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,car,15,20,300,0.75,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,car,36,32,1152,1.125,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,car,54,52,2808,1.038,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,car,41,35,1435,1.171,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,car,116,101,11716,1.149,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,car,40,30,1200,1.333,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,103,79,8137,1.304,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,truck,124,81,10044,1.531,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,truck,105,80,8400,1.312,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,76,52,3952,1.462,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,94,76,7144,1.237,silver,2,159.3,32.6,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,130,89,11570,1.461,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,23,22,506,1.045,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,53,48,2544,1.104,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,41,28,1148,1.464,green,2,320.2,3.91,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,70,62,4340,1.129,green,2,125.5,30.11,True
+2026-07-04T22:16,1783203347.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,63,57,3591,1.105,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,81,140,11340,0.579,black,3,83.2,21.15,False
+2026-07-04T22:16,1783203343.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,70,63,4410,1.111,green,3,336.8,9.52,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,70,51,3570,1.373,green,2,36.0,27.2,False
+2026-07-04T22:16,1783203349.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,83,65,5395,1.277,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,78,90,7020,0.867,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,58,49,2842,1.184,black,4,308.7,2.13,False
+2026-07-04T22:16,1783203347.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,28,31,868,0.903,black,2,69.4,17.09,True
+2026-07-04T22:16,1783203347.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,43,42,1806,1.024,black,2,0.0,3.5,False
+2026-07-04T22:16,1783203349.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,153,100,15300,1.53,black,2,59.3,58.74,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,33,23,759,1.435,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,49,69,3381,0.71,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,35,31,1085,1.129,blue,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,99,103,10197,0.961,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,35,34,1190,1.029,green,2,123.7,5.41,False
+2026-07-04T22:16,1783203353.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,23,27,621,0.852,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,84,52,4368,1.615,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,123,81,9963,1.519,black,11,359.3,8.0,True
+2026-07-04T22:16,1783203341.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,35,54,1890,0.648,black,11,180.0,0.05,False
+2026-07-04T22:16,1783203345.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,157,111,17427,1.414,black,9,47.3,7.65,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,37,68,2516,0.544,black,7,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,97,57,5529,1.702,silver,7,312.5,2.71,False
+2026-07-04T22:16,1783203353.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,112,73,8176,1.534,black,6,130.6,0.92,False
+2026-07-04T22:16,1783203355.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,55,38,2090,1.447,silver,5,135.0,0.18,False
+2026-07-04T22:16,1783203359.5,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,car,31,22,682,1.409,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,50,44,2200,1.136,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,67,67,4489,1.0,silver,3,76.6,16.19,True
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,35,28,980,1.25,green,3,90.0,2.0,False
+2026-07-04T22:16,1783203343.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,165,96,15840,1.719,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,23,95,2185,0.242,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,170,169,28730,1.006,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,32,28,896,1.143,silver,5,144.5,1.08,False
+2026-07-04T22:16,1783203347.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,68,73,4964,0.932,black,2,106.4,17.72,False
+2026-07-04T22:16,1783203349.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,138,118,16284,1.169,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,53,52,2756,1.019,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,43,42,1806,1.024,silver,4,107.7,11.54,True
+2026-07-04T22:16,1783203343.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,65,56,3640,1.161,silver,4,143.1,2.5,False
+2026-07-04T22:16,1783203349.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,43,42,1806,1.024,silver,2,276.3,4.53,False
+2026-07-04T22:16,1783203351.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,140,186,26040,0.753,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,109,81,8829,1.346,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,60,71,4260,0.845,green,11,198.4,0.16,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,38,42,1596,0.905,silver,10,315.0,0.24,False
+2026-07-04T22:16,1783203341.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,60,71,4260,0.845,silver,11,206.6,0.11,False
+2026-07-04T22:16,1783203351.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,car,22,17,374,1.294,silver,6,270.0,0.2,False
+2026-07-04T22:16,1783203357.5,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,truck,100,64,6400,1.562,green,2,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,94,74,6956,1.27,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,28,17,476,1.647,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,63,53,3339,1.189,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,109,152,16568,0.717,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,72,89,6408,0.809,silver,6,291.8,2.15,False
+2026-07-04T22:16,1783203353.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,46,42,1932,1.095,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,45,43,1935,1.047,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,144,142,20448,1.014,green,7,129.6,7.46,False
+2026-07-04T22:16,1783203355.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,66,84,5544,0.786,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,224,113,25312,1.982,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,20,17,340,1.176,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,93,77,7161,1.208,green,6,45.0,0.14,False
+2026-07-04T22:16,1783203359.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,88,79,6952,1.114,silver,2,48.6,34.01,False
+2026-07-04T22:16,1783203359.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,bus,87,130,11310,0.669,silver,2,83.7,49.8,False
+2026-07-04T22:16,1783203359.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,87,130,11310,0.669,silver,2,113.7,13.66,False
+2026-07-04T22:16,1783203361.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,46,36,1656,1.278,silver,2,356.4,8.02,False
+2026-07-04T22:16,1783203361.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,38,45,1710,0.844,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,truck,94,76,7144,1.237,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,car,43,34,1462,1.265,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,21,31,651,0.677,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,24,20,480,1.2,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,truck,41,49,2009,0.837,silver,4,225.0,0.24,False
+2026-07-04T22:16,1783203347.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,29,33,957,0.879,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,40,50,2000,0.8,silver,5,251.6,3.56,False
+2026-07-04T22:16,1783203343.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,40,24,960,1.667,silver,4,218.7,1.07,False
+2026-07-04T22:16,1783203345.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,56,33,1848,1.697,silver,2,0.0,1.0,False
+2026-07-04T22:16,1783203349.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,79,93,7347,0.849,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,51,51,2601,1.0,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,21,20,420,1.05,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,46,35,1610,1.314,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,35,38,1330,0.921,silver,2,63.4,1.12,False
+2026-07-04T22:16,1783203353.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,24,31,744,0.774,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,51,36,1836,1.417,silver,6,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,34,36,1224,0.944,silver,7,180.0,0.17,False
+2026-07-04T22:16,1783203349.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,truck,134,95,12730,1.411,green,3,211.3,13.46,False
+2026-07-04T22:16,1783203355.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,55,33,1815,1.667,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,25,19,475,1.316,silver,12,270.0,0.09,False
+2026-07-04T22:16,1783203341.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,133,94,12502,1.415,green,11,30.8,3.03,False
+2026-07-04T22:16,1783203343.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,37,46,1702,0.804,silver,10,225.0,0.16,False
+2026-07-04T22:16,1783203347.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,22,32,704,0.688,white,7,206.6,0.19,False
+2026-07-04T22:16,1783203351.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,35,37,1295,0.946,silver,4,232.1,3.8,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,260,71,18460,3.662,silver,2,174.8,99.41,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,34,27,918,1.259,silver,2,326.3,1.8,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,62,69,4278,0.899,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,truck,37,41,1517,0.902,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,truck,62,69,4278,0.899,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,21,20,420,1.05,silver,2,180.0,0.5,False
+2026-07-04T22:16,1783203361.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,97,86,8342,1.128,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,51,36,1836,1.417,silver,2,63.4,1.12,False
+2026-07-04T22:16,1783203361.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,33,34,1122,0.971,silver,2,90.0,1.0,False
+2026-07-04T22:16,1783203361.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,49,52,2548,0.942,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,104,35,3640,2.971,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,61,36,2196,1.694,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,25,18,450,1.389,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,car,27,24,648,1.125,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,car,48,35,1680,1.371,black,3,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,truck,113,74,8362,1.527,silver,6,90.0,0.3,False
+2026-07-04T22:16,1783203349.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,car,48,35,1680,1.371,black,3,315.0,0.35,False
+2026-07-04T22:16,1783203345.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,car,115,81,9315,1.42,silver,10,243.4,0.12,False
+2026-07-04T22:16,1783203357.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,truck,88,72,6336,1.222,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,truck,41,34,1394,1.206,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,truck,116,75,8700,1.547,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,truck,36,29,1044,1.241,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,55,46,2530,1.196,silver,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,32,26,832,1.231,silver,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,36,31,1116,1.161,silver,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,37,27,999,1.37,silver,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,66,79,5214,0.835,black,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,22,18,396,1.222,silver,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,153,84,12852,1.821,green,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,car,80,47,3760,1.702,black,12,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,115,83,9545,1.386,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,23,19,437,1.211,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,41,60,2460,0.683,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,18,13,234,1.385,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,50,33,1650,1.515,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,76,64,4864,1.188,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,54,27,1458,2.0,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,24,16,384,1.5,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,26,27,702,0.963,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,34,27,918,1.259,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,20,18,360,1.111,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,28,21,588,1.333,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,40,29,1160,1.379,green,3,93.2,4.51,False
+2026-07-04T22:16,1783203351.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,69,32,2208,2.156,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,19,21,399,0.905,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,37,18,666,2.056,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,35,36,1260,0.972,silver,6,42.7,1.77,False
+2026-07-04T22:16,1783203355.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,34,23,782,1.478,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,17,11,187,1.545,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,39,25,975,1.56,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,19,22,418,0.864,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,46,58,2668,0.793,white,10,90.0,0.5,False
+2026-07-04T22:16,1783203341.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,61,48,2928,1.271,silver,11,0.0,0.2,False
+2026-07-04T22:16,1783203343.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,39,36,1404,1.083,silver,9,33.7,1.58,False
+2026-07-04T22:16,1783203345.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,61,42,2562,1.452,green,10,40.4,1.46,False
+2026-07-04T22:16,1783203353.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,22,21,462,1.048,silver,5,90.0,0.12,False
+2026-07-04T22:16,1783203357.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,60,57,3420,1.053,white,4,100.8,3.56,False
+2026-07-04T22:16,1783203361.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,33,22,726,1.5,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,30,40,1200,0.75,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,28,30,840,0.933,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,car,18,19,342,0.947,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,truck,62,48,2976,1.292,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,39,26,1014,1.5,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,78,76,5928,1.026,silver,2,222.8,27.24,False
+2026-07-04T22:16,1783203345.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,15,41,615,0.366,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,44,24,1056,1.833,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,40,32,1280,1.25,blue,2,320.5,11.01,False
+2026-07-04T22:16,1783203347.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,26,21,546,1.238,red,2,301.0,8.75,False
+2026-07-04T22:16,1783203349.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,80,65,5200,1.231,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,truck,82,46,3772,1.783,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,44,29,1276,1.517,red,2,315.0,2.12,False
+2026-07-04T22:16,1783203355.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,68,68,4624,1.0,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,truck,67,83,5561,0.807,black,7,316.6,2.06,False
+2026-07-04T22:16,1783203349.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,78,45,3510,1.733,black,5,349.4,6.1,False
+2026-07-04T22:16,1783203359.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,truck,98,75,7350,1.307,black,2,136.8,44.57,True
+2026-07-04T22:16,1783203361.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,31,30,930,1.033,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,20,47,940,0.426,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,20,17,340,1.176,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,21,14,294,1.5,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,car,38,35,1330,1.086,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,917,315,288855,2.911,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,116,83,9628,1.398,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,166,127,21082,1.307,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,121,101,12221,1.198,silver,2,81.9,42.43,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,236,221,52156,1.068,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,145,115,16675,1.261,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,132,106,13992,1.245,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,truck,445,431,191795,1.032,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,85,69,5865,1.232,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,444,428,190032,1.037,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,459,302,138618,1.52,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,283,176,49808,1.608,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,94,60,5640,1.567,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,106,90,9540,1.178,silver,3,326.8,22.4,True
+2026-07-04T22:16,1783203349.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,250,221,55250,1.131,silver,2,353.2,58.92,False
+2026-07-04T22:16,1783203351.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,177,68,12036,2.603,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,348,253,88044,1.375,silver,4,62.4,71.27,True
+2026-07-04T22:16,1783203353.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,660,484,319440,1.364,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,81,63,5103,1.286,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,truck,538,669,359922,0.804,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,541,668,361388,0.81,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,162,142,23004,1.141,silver,3,54.8,26.91,False
+2026-07-04T22:16,1783203351.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,113,112,12656,1.009,silver,2,268.0,28.02,False
+2026-07-04T22:16,1783203355.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,379,388,147052,0.977,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,149,119,17731,1.252,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,78,86,6708,0.907,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,129,69,8901,1.87,white,7,226.5,2.3,False
+2026-07-04T22:16,1783203359.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,241,182,43862,1.324,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,128,106,13568,1.208,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,114,102,11628,1.118,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,185,136,25160,1.36,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,612,425,260100,1.44,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,87,64,5568,1.359,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,151,141,21291,1.071,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,79,69,5451,1.145,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,388,229,88852,1.694,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,79,70,5530,1.129,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,car,108,60,6480,1.8,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,car,19,17,323,1.118,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,car,79,48,3792,1.646,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,car,87,44,3828,1.977,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,car,119,72,8568,1.653,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,bus,163,69,11247,2.362,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,car,75,33,2475,2.273,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,65,86,5590,0.756,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,119,113,13447,1.053,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,86,80,6880,1.075,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,91,126,11466,0.722,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,30,52,1560,0.577,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,89,57,5073,1.561,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,295,110,32450,2.682,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,69,60,4140,1.15,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,truck,142,134,19028,1.06,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,bus,142,134,19028,1.06,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,truck,68,90,6120,0.756,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,67,91,6097,0.736,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,99,90,8910,1.1,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,truck,37,60,2220,0.617,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,92,56,5152,1.643,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,49,36,1764,1.361,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,71,59,4189,1.203,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,19,29,551,0.655,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,truck,100,115,11500,0.87,white,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,91,108,9828,0.843,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,88,60,5280,1.467,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,129,121,15609,1.066,green,3,170.0,21.58,False
+2026-07-04T22:16,1783203357.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,146,120,17520,1.217,white,3,21.2,17.97,False
+2026-07-04T22:16,1783203357.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,33,99,3267,0.333,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,40,44,1760,0.909,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,128,80,10240,1.6,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,car,93,59,5487,1.576,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,truck,54,62,3348,0.871,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,32,34,1088,0.941,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,26,25,650,1.04,green,2,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,22,23,506,0.957,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,truck,43,30,1290,1.433,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,25,25,625,1.0,green,2,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,18,15,270,1.2,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,32,17,544,1.882,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,25,26,650,0.962,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,car,19,16,304,1.188,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,91,93,8463,0.978,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,truck,57,47,2679,1.213,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,bus,61,56,3416,1.089,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,32,27,864,1.185,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,30,19,570,1.579,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,48,39,1872,1.231,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,47,27,1269,1.741,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,bus,62,52,3224,1.192,silver,3,352.9,6.05,False
+2026-07-04T22:16,1783203343.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,23,18,414,1.278,green,2,225.0,3.54,False
+2026-07-04T22:16,1783203345.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,56,58,3248,0.966,silver,2,231.1,23.11,False
+2026-07-04T22:16,1783203347.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,23,16,368,1.438,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,29,27,783,1.074,green,3,22.6,6.5,True
+2026-07-04T22:16,1783203349.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,33,25,825,1.32,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,57,37,2109,1.541,green,5,161.6,0.79,False
+2026-07-04T22:16,1783203343.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,34,32,1088,1.062,silver,4,350.5,1.01,False
+2026-07-04T22:16,1783203347.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,164,74,12136,2.216,silver,3,101.3,1.27,False
+2026-07-04T22:16,1783203347.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,95,57,5415,1.667,silver,2,166.0,4.12,False
+2026-07-04T22:16,1783203351.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,bus,39,39,1521,1.0,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,44,27,1188,1.63,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,truck,40,39,1560,1.026,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,91,85,7735,1.071,silver,4,260.7,8.27,False
+2026-07-04T22:16,1783203341.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,bus,107,58,6206,1.845,silver,6,337.1,2.82,False
+2026-07-04T22:16,1783203345.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,59,49,2891,1.204,green,3,285.9,1.82,False
+2026-07-04T22:16,1783203353.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,37,24,888,1.542,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,bus,67,50,3350,1.34,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,51,36,1836,1.417,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,23,21,483,1.095,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,21,27,567,0.778,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,242,123,29766,1.967,white,10,140.5,6.99,False
+2026-07-04T22:16,1783203347.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,55,55,3025,1.0,green,9,135.0,0.35,False
+2026-07-04T22:16,1783203349.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,47,55,2585,0.855,silver,7,49.8,3.49,False
+2026-07-04T22:16,1783203351.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,43,45,1935,0.956,silver,7,333.4,0.19,False
+2026-07-04T22:16,1783203351.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,35,37,1295,0.946,silver,4,97.1,1.34,False
+2026-07-04T22:16,1783203355.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,26,17,442,1.529,silver,4,78.7,0.85,False
+2026-07-04T22:16,1783203359.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,car,50,37,1850,1.351,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,truck,68,52,3536,1.308,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,truck,52,58,3016,0.897,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,truck,43,49,2107,0.878,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,truck,41,38,1558,1.079,silver,12,198.4,0.14,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,58,41,2378,1.415,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,103,108,11124,0.954,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,23,19,437,1.211,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,46,41,1886,1.122,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,75,60,4500,1.25,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,53,36,1908,1.472,silver,2,84.3,10.05,False
+2026-07-04T22:16,1783203349.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,116,26,3016,4.462,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,116,92,10672,1.261,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,truck,149,104,15496,1.433,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,161,28,4508,5.75,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,38,18,684,2.111,silver,3,177.3,5.26,False
+2026-07-04T22:16,1783203351.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,120,78,9360,1.538,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,32,29,928,1.103,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,35,29,1015,1.207,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,104,69,7176,1.507,green,11,145.9,4.1,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,99,171,16929,0.579,green,11,270.0,0.25,False
+2026-07-04T22:16,1783203341.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,79,47,3713,1.681,silver,11,100.3,0.56,False
+2026-07-04T22:16,1783203343.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,80,49,3920,1.633,silver,11,173.8,3.22,True
+2026-07-04T22:16,1783203349.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,151,103,15553,1.466,silver,7,155.4,5.41,False
+2026-07-04T22:16,1783203351.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,142,83,11786,1.711,silver,5,339.2,11.63,False
+2026-07-04T22:16,1783203355.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,148,117,17316,1.265,green,4,78.7,0.85,False
+2026-07-04T22:16,1783203357.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,36,20,720,1.8,silver,3,33.7,0.9,False
+2026-07-04T22:16,1783203359.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,truck,99,171,16929,0.579,black,3,180.0,0.25,False
+2026-07-04T22:16,1783203361.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,74,58,4292,1.276,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,car,53,43,2279,1.233,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,71,49,3479,1.449,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,41,35,1435,1.171,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,68,54,3672,1.259,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,76,58,4408,1.31,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,49,32,1568,1.531,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,187,95,17765,1.968,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,75,55,4125,1.364,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,truck,132,133,17556,0.992,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203353.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,63,64,4032,0.984,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,94,62,5828,1.516,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,87,82,7134,1.061,black,2,86.9,46.57,True
+2026-07-04T22:16,1783203359.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,66,52,3432,1.269,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,car,41,27,1107,1.519,black,2,42.5,16.28,False
+2026-07-04T22:16,1783203363.5,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,truck,89,82,7298,1.085,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,truck,44,27,1188,1.63,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,19,15,285,1.267,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,25,18,450,1.389,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,25,20,500,1.25,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,40,32,1280,1.25,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,22,18,396,1.222,blue,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,19,12,228,1.583,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,32,17,544,1.882,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,56,31,1736,1.806,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,57,35,1995,1.629,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,26,19,494,1.368,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,34,29,986,1.172,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,truck,35,31,1085,1.129,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203363.5,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,car,47,28,1316,1.679,red,1,0.0,0.0,False
+2026-07-04T22:16,1783203343.5,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,car,21,17,357,1.235,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,car,28,16,448,1.75,black,4,203.2,1.27,False
+2026-07-04T22:16,1783203341.5,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,car,27,28,756,0.964,silver,11,108.4,0.16,False
+2026-07-04T22:16,1783203345.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,truck,80,69,5520,1.159,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,truck,84,76,6384,1.105,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,truck,107,124,13268,0.863,black,6,270.0,0.2,False
+2026-07-04T22:16,1783203355.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,car,107,93,9951,1.151,green,5,143.9,11.45,True
+2026-07-04T22:16,1783203355.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,truck,90,72,6480,1.25,green,4,167.8,11.08,False
+2026-07-04T22:16,1783203359.5,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,moto,67,64,4288,1.047,,2,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,71,59,4189,1.203,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,132,94,12408,1.404,green,2,358.3,16.51,False
+2026-07-04T22:16,1783203345.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,40,32,1280,1.25,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,39,22,858,1.773,black,3,166.0,1.03,False
+2026-07-04T22:16,1783203349.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,55,40,2200,1.375,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,39,15,585,2.6,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,truck,99,93,9207,1.065,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,46,35,1610,1.314,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,truck,127,154,19558,0.825,silver,8,97.2,5.69,False
+2026-07-04T22:16,1783203359.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,101,26,2626,3.885,silver,2,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,car,31,53,1643,0.585,black,2,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,67,59,3953,1.136,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,100,85,8500,1.176,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,75,45,3375,1.667,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203341.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,24,19,456,1.263,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203345.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,87,82,7134,1.061,black,2,219.5,22.02,False
+2026-07-04T22:16,1783203347.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,51,36,1836,1.417,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203347.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,76,63,4788,1.206,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,85,90,7650,0.944,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,36,32,1152,1.125,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,73,65,4745,1.123,black,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,98,55,5390,1.782,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203349.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,29,21,609,1.381,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,62,45,2790,1.378,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203351.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,26,22,572,1.182,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203355.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,26,18,468,1.444,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203357.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,102,75,7650,1.36,green,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,truck,100,125,12500,0.8,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203359.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,101,125,12625,0.808,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,49,36,1764,1.361,silver,1,0.0,0.0,False
+2026-07-04T22:16,1783203361.5,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,car,30,36,1080,0.833,silver,1,0.0,0.0,False
