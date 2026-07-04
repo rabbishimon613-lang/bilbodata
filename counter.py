@@ -9,6 +9,7 @@ AGGREGATE ONLY BY DESIGN:
 """
 import json, time, csv, os, sys, io, urllib3, datetime as dt
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 from PIL import Image, ImageDraw
 from ultralytics import YOLO
@@ -16,14 +17,26 @@ import stats as statsmod
 
 urllib3.disable_warnings()
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAMS = json.load(open(os.path.join(HERE, "cams.json")))
-CSV_PATH = os.path.join(HERE, "counts.csv")
-JSON_PATH = os.path.join(HERE, "counts.json")
+
+# --- sharding: split the camera list across N parallel runners (SHARD_COUNT) ---
+# Each runner handles CAMS[SHARD_INDEX::SHARD_COUNT] and writes to its own files,
+# so 20 machines never collide on the same CSV. SHARD_COUNT=1 == the classic path.
+SHARD_INDEX = int(os.environ.get("PEDCOUNT_SHARD_INDEX", "0"))
+SHARD_COUNT = int(os.environ.get("PEDCOUNT_SHARD_COUNT", "1"))
+CAMS_FILE = os.environ.get("PEDCOUNT_CAMS", "cams.json")
+FETCH_WORKERS = int(os.environ.get("PEDCOUNT_FETCH_WORKERS", "16"))
+
+_ALL = json.load(open(os.path.join(HERE, CAMS_FILE)))
+CAMS = _ALL[SHARD_INDEX::SHARD_COUNT] if SHARD_COUNT > 1 else _ALL
+_sfx = "" if SHARD_COUNT == 1 else "_shard%d" % SHARD_INDEX
+CSV_PATH = os.path.join(HERE, "counts%s.csv" % _sfx)
+JSON_PATH = os.path.join(HERE, "counts%s.json" % _sfx)
 PREVIEW_DIR = os.path.join(HERE, "preview")   # one annotated frame per cam, overwritten
 os.makedirs(PREVIEW_DIR, exist_ok=True)
 
 SAMPLE_INTERVAL = float(os.environ.get("PEDCOUNT_INTERVAL", "2"))   # seconds between frames (DOT refreshes ~1-2s)
 MINUTE_SECONDS = int(os.environ.get("PEDCOUNT_MINUTE_SECONDS", "50"))  # sample this long, then write one row/cam
+SAVE_PREVIEW = os.environ.get("PEDCOUNT_PREVIEW", "1") == "1"   # off at scale to save storage
 CONF = 0.25
 UPSCALE = 2
 # COCO ids we care about -> friendly label
@@ -34,13 +47,24 @@ COLOR_REF = {
     "yellow": (220, 200, 40), "white": (235, 235, 235), "black": (25, 25, 25),
     "silver": (160, 160, 165),
 }
-http = urllib3.PoolManager(cert_reqs="CERT_NONE")
+http = urllib3.PoolManager(cert_reqs="CERT_NONE", maxsize=FETCH_WORKERS * 2)
 model = YOLO("yolo11n.pt")
 
 
 def grab(url):
     r = http.request("GET", url + "?t=" + str(time.time()), timeout=8.0)
     return Image.open(io.BytesIO(r.data)).convert("RGB")
+
+
+def grab_all(cams):
+    """Fetch every cam image in parallel (network is I/O-bound -> ~4x faster)."""
+    def one(c):
+        try:
+            return c["id"], grab(c["img"])
+        except Exception as e:
+            return c["id"], None
+    with ThreadPoolExecutor(max_workers=FETCH_WORKERS) as ex:
+        return dict(ex.map(one, cams))
 
 
 def bucket_color(crop):
@@ -76,10 +100,15 @@ def minute_pass(writer):
     shots = 0
     t_end = time.time() + MINUTE_SECONDS
     while time.time() < t_end:
+        imgs = grab_all(CAMS)               # all cams fetched in parallel (~4x faster)
         for c in CAMS:
+            img = imgs.get(c["id"])
+            if img is None:
+                continue
             try:
-                counts, colors, annotated = analyze(grab(c["img"]))
-                annotated.save(os.path.join(PREVIEW_DIR, c["id"] + ".jpg"), quality=70)
+                counts, colors, annotated = analyze(img)
+                if SAVE_PREVIEW:
+                    annotated.save(os.path.join(PREVIEW_DIR, c["id"] + ".jpg"), quality=70)
                 acc[c["id"]].update(counts); col[c["id"]].update(colors)
                 nsamp[c["id"]] += 1
             except Exception as e:
@@ -100,11 +129,13 @@ def minute_pass(writer):
         print("%-30s cars=%-2d ped=%-2d  (%d frames)" %
               (c["name"][:30], avg["car"], avg["person"], nsamp[c["id"]]))
     json.dump({"ts": ts, "cams": snap}, open(JSON_PATH, "w"))
-    try:
-        statsmod.compute()
-    except Exception as e:
-        print("  ! stats:", e)
-    print("minute %s written across ~%d rounds" % (ts, shots))
+    if SHARD_COUNT == 1:            # single runner rolls up stats inline; sharded runs aggregate separately
+        try:
+            statsmod.compute()
+        except Exception as e:
+            print("  ! stats:", e)
+    print("minute %s (%d cams, shard %d/%d) across ~%d rounds" %
+          (ts, len(CAMS), SHARD_INDEX, SHARD_COUNT, shots))
 
 
 def main():

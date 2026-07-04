@@ -4,3 +4,7 @@ sample_*.jpg
 __pycache__/
 *.pyc
 .vercel
+
+# sharded runner outputs (scale testing)
+counts_shard*.csv
+counts_shard*.json

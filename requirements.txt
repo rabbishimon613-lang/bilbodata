@@ -2,3 +2,5 @@ ultralytics==8.4.87
 pillow
 numpy
 urllib3
+duckdb
+pyarrow
