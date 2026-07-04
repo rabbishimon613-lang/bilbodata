@@ -3,6 +3,8 @@
 <title>Bilbo Data — Crown Heights Traffic</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
   :root{
     --bg:#0a0e14;--panel:#111722;--panel2:#0e141d;--line:#1e2734;
@@ -78,7 +80,11 @@
   .conf{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:auto;font-weight:600}
   .conf.high{background:#123a1a;color:var(--up)} .conf.medium{background:#3a3212;color:var(--warn)} .conf.low{background:#3a1212;color:var(--down)}
   .trailDetail{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--panel2);min-height:300px}
-  #trailMap{width:100%;height:300px;background:#0a0e14;border-radius:8px;border:1px solid var(--line)}
+  #trailMap{width:100%;height:320px;background:#0a0e14;border-radius:8px;border:1px solid var(--line);z-index:0}
+  .leaflet-container{background:#0a0e14;font:inherit}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--txt);border:1px solid var(--line)}
+  .leaflet-popup-content{margin:8px 10px;font-size:12px}
+  .stopPin{background:var(--accent);color:#0a0e14;border:2px solid #0a0e14;border-radius:50%;width:22px;height:22px;line-height:19px;text-align:center;font-weight:700;font-size:11px;box-shadow:0 0 0 1.5px currentColor}
   .timeline{margin-top:10px;font-size:12px}
   .timeline .stop{display:flex;gap:10px;padding:5px 0;border-top:1px solid var(--line)}
   .timeline .stop .tm{color:var(--accent);font-variant-numeric:tabular-nums;flex:none;width:66px}
@@ -140,7 +146,7 @@
       <div class="trailList" id="trailList"></div>
       <div class="trailDetail" id="trailDetail">
         <div class="trailEmpty" id="trailEmpty">Pick a vehicle on the left to trace where it travelled.</div>
-        <svg id="trailMap" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet" style="display:none"></svg>
+        <div id="trailMap" style="display:none"></div>
         <div class="timeline" id="trailTimeline"></div>
       </div>
     </div>
@@ -257,28 +263,33 @@ function selectTrail(i){
   }).join('');
 }
 
+let LMAP=null, Lmarks=null, Lline=null;
 function drawTrailMap(stops){
   const pts=stops.filter(s=>s.lat!=null&&s.lon!=null);
-  const map=$('trailMap');
-  if(pts.length<2){ map.innerHTML='<text x="50" y="30" fill="#7d8896" font-size="4" text-anchor="middle">map needs camera coordinates</text>'; return; }
-  let laN=Math.min(...pts.map(p=>p.lat)), laX=Math.max(...pts.map(p=>p.lat));
-  let loN=Math.min(...pts.map(p=>p.lon)), loX=Math.max(...pts.map(p=>p.lon));
-  const pad=6, W=100, H=60;
-  const sx=(laX-laN)||1e-4, sy=(loX-loN)||1e-4;
-  const X=lon=>pad+(lon-loN)/sy*(W-2*pad);
-  const Y=lat=>H-pad-(lat-laN)/sx*(H-2*pad);   // north up
-  const xy=pts.map(p=>[X(p.lon),Y(p.lat)]);
-  let svg='';
-  // path line
-  svg+=`<polyline points="${xy.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#4ea1ff" stroke-width="0.7" stroke-linejoin="round" opacity="0.9"/>`;
-  // arrow-ish direction dots + numbered stops
-  xy.forEach((p,k)=>{
-    const first=k===0, last=k===xy.length-1;
+  const el=$('trailMap');
+  if(!pts.length){ el.style.display='none'; return; }
+  el.style.display='block';
+  if(!LMAP){
+    LMAP=L.map(el,{zoomControl:true,scrollWheelZoom:false});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {maxZoom:19, attribution:'© OpenStreetMap'}).addTo(LMAP);
+    Lline=L.layerGroup().addTo(LMAP);
+    Lmarks=L.layerGroup().addTo(LMAP);
+  }
+  Lline.clearLayers(); Lmarks.clearLayers();
+  const latlngs=pts.map(p=>[p.lat,p.lon]);
+  L.polyline(latlngs,{color:'#4ea1ff',weight:3,opacity:.85}).addTo(Lline);
+  pts.forEach((p,k)=>{
+    const first=k===0, last=k===pts.length-1;
     const col=first?'#3fb950':last?'#f0883e':'#4ea1ff';
-    svg+=`<circle cx="${p[0]}" cy="${p[1]}" r="${first||last?2.2:1.6}" fill="${col}" stroke="#0a0e14" stroke-width="0.4"/>`;
-    svg+=`<text x="${p[0]}" y="${p[1]-2.6}" fill="#e6edf3" font-size="2.6" text-anchor="middle">${k+1}</text>`;
+    const icon=L.divIcon({className:'',iconSize:[22,22],iconAnchor:[11,11],
+      html:`<div class="stopPin" style="background:${col};color:${col}"><span style="color:#0a0e14">${k+1}</span></div>`});
+    L.marker([p.lat,p.lon],{icon}).bindPopup(`<b>${p.name}</b><br>${clock(p.t)} · ${agoTxt(p.t)}`).addTo(Lmarks);
   });
-  map.innerHTML=svg;
+  setTimeout(()=>{ LMAP.invalidateSize();
+    if(latlngs.length>1) LMAP.fitBounds(latlngs,{padding:[34,34],maxZoom:16});
+    else LMAP.setView(latlngs[0],15);
+  },60);
 }
 
 // clicking a camera thumbnail jumps to a trail that passed through it

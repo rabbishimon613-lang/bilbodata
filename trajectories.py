@@ -55,13 +55,8 @@ def haversine_mi(a, b):
 
 
 def _load(scales):
-    rows = []
-    for path in glob.glob(os.path.join(HERE, "vehicles*.csv")):
-        try:
-            rows.extend(list(csv.DictReader(open(path))))
-        except Exception:
-            continue
     now = dt.datetime.now().timestamp()
+    rows = cal.load_vehicles(since_epoch=now - WINDOW_S)   # last 24h, archive + hot
     out = []
     for r in rows:
         try:
@@ -91,9 +86,7 @@ def _sig(s):
 
 def build():
     cams = _cams()
-    scales = cal.learn_scales(
-        [r for p in glob.glob(os.path.join(HERE, "vehicles*.csv"))
-         for r in csv.DictReader(open(p))])
+    scales = cal.learn_scales(cal.load_vehicles())   # calibrate on ALL history
     sights = _load(scales)
 
     # group by signature; how common each signature is drives confidence

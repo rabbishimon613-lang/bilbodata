@@ -8,3 +8,7 @@ __pycache__/
 # sharded runner outputs (scale testing)
 counts_shard*.csv
 counts_shard*.json
+runner.log
+runner.out
+runner.err
+.runner.lock

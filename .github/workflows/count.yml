@@ -32,6 +32,10 @@ jobs:
         run: |
           git config user.name  "pedcount-bot"
           git config user.email "actions@users.noreply.github.com"
+          # roll any FINISHED days out of the hot logs into forever Parquet archives
+          python storage.py compact || true
+          git add counts.csv vehicles.csv data data_vehicles 2>/dev/null || true
+          git commit -m "compact archives $(date -u +%F)" && { git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true; git push || true; } || true
           END=$(( $(date +%s) + 240 ))     # ~4 min of work, safely inside the 5-min cron
           i=0
           while [ "$(date +%s)" -lt "$END" ]; do

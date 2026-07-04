@@ -67,16 +67,11 @@ def adjacency(cams):
 
 def _load_moving_vehicles():
     """Per-vehicle sightings that are actually moving, with a wall-clock epoch."""
+    import datetime as _dt
     seen = defaultdict(list)   # cam_id -> [(epoch, signature, name)]
-    scales = None
-    rows = []
-    for path in glob.glob(os.path.join(HERE, "vehicles*.csv")):
-        try:
-            with open(path) as f:
-                rows.extend(list(csv.DictReader(f)))
-        except Exception:
-            continue
-    scales = cal.learn_scales(rows)
+    scales = cal.learn_scales(cal.load_vehicles())            # scale from ALL history
+    now = _dt.datetime.now().timestamp()
+    rows = cal.load_vehicles(since_epoch=now - 6 * 3600)      # match within recent 6h
     for r in rows:
         if str(r.get("moving")).lower() not in ("true", "1"):
             continue

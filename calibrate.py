@@ -36,14 +36,22 @@ def _f(v, d=0.0):
         return d
 
 
-def load_vehicles():
-    """Read every vehicles*.csv (hot log + shards). Yields dict rows."""
+def load_vehicles(since_epoch=None):
+    """Every tagged vehicle across ALL history — the forever-archive (Parquet)
+    plus today's hot log — so calibration and fleet mix keep accumulating instead
+    of resetting daily. Falls back to raw CSVs if the storage layer is unavailable."""
+    try:
+        import storage
+        rows = storage.vehicle_rows(since_epoch=since_epoch)
+        if rows:
+            return rows
+    except Exception:
+        pass
     rows = []
     for path in glob.glob(os.path.join(HERE, "vehicles*.csv")):
         try:
             with open(path) as f:
-                for r in csv.DictReader(f):
-                    rows.append(r)
+                rows.extend(list(csv.DictReader(f)))
         except Exception:
             continue
     return rows
