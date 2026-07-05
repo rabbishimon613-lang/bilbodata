@@ -72,7 +72,7 @@ jobs:
           git push || true
 
       - name: relay -> launch next generation (the chain)
-        if: always()
+        if: ${{ !cancelled() }}   # error still chains; a manual CANCEL stops the chain cleanly
         env:
           GH_TOKEN: ${{ secrets.WORKER_PAT }}
         run: |
