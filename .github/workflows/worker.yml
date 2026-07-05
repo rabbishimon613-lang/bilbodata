@@ -1,0 +1,87 @@
+name: worker
+
+# ALWAYS-ON, FREE, NO CARD — GitHub Actions as a self-perpetuating worker.
+#
+# Public repos get unlimited Actions minutes and a job can run ~6h. So each
+# generation of this workflow samples the cameras CONTINUOUSLY for ~5.5h (no
+# hourly blind gaps), then its last step DISPATCHES THE NEXT GENERATION via a
+# stored token (the default GITHUB_TOKEN is blocked from doing that on purpose).
+# The chain never stops -> a 24/7 worker for $0.
+#
+# The sample loop is bounded to run_seconds (< the job timeout) so it exits
+# cleanly and the relay step always gets to fire the next generation.
+#
+# Scale-up (later): add a `shard` matrix + point PEDCOUNT_CAMS at cams_all.json;
+# GitHub runs up to 20 jobs at once = ~20 parallel workers for all 900 cameras.
+
+on:
+  workflow_dispatch:
+    inputs:
+      generation:
+        description: chain counter (auto-increments)
+        default: "0"
+      run_seconds:
+        description: how long this generation samples before handing off (~5.5h default; set small to test the chain)
+        default: "20000"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worker
+  cancel-in-progress: false      # let a generation finish; the next one queues behind it
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350          # < 6h hard cap; the loop stops before this
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: continuous sample + tag + analyze
+        run: |
+          git config user.name  "bilbo-worker"
+          git config user.email "actions@users.noreply.github.com"
+          python storage.py compact || true            # archive finished days once per generation
+          END=$(( $(date +%s) + ${{ inputs.run_seconds }} ))
+          i=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            python counter.py --minute                 # ~50s: detect, track, fingerprint, tag one minute
+            python pipeline.py || true                 # merge + metric/fleet/speed/trips over all history
+            i=$((i+1))
+            # commit data every ~5 minutes to curb git-history bloat; frames on the 30s
+            git add counts.csv vehicles.csv counts.json stats.json \
+                    calibration.json fleet.json speed.json trajectories.json \
+                    data data_vehicles 2>/dev/null || true
+            git add trips.csv data_trips 2>/dev/null || true
+            case "$(date +%M)" in 00|30) git add preview 2>/dev/null || true ;; esac
+            if [ $((i % 5)) -eq 0 ]; then
+              git commit -m "pulse $(date -u +%FT%TZ)" || true
+              git pull --rebase --autostash origin main || true
+              git push || true
+            fi
+          done
+          # flush whatever is staged before handing off
+          git commit -m "pulse $(date -u +%FT%TZ)" || true
+          git pull --rebase --autostash origin main || true
+          git push || true
+
+      - name: relay -> launch next generation (the chain)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.WORKER_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "no WORKER_PAT secret -> chain stops here. Set it to run 24/7."
+            exit 0
+          fi
+          NEXT=$(( ${{ inputs.generation }} + 1 ))
+          gh workflow run worker.yml \
+            -f generation="$NEXT" \
+            -f run_seconds="${{ inputs.run_seconds }}" \
+            && echo "launched generation $NEXT" || echo "relay dispatch failed"

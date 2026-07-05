@@ -1,11 +1,11 @@
 name: count
-# The always-on worker: runs on a schedule, counts one pass, commits the data.
-# Free on public repos. git is the database; Cloudflare Pages redeploys on push.
+# LEGACY short-pass worker, now MANUAL-ONLY. The continuous 24/7 worker is
+# worker.yml (self-perpetuating). This is kept as a hand-triggered backup for a
+# single ~4-minute pass; its schedule is disabled so the two never fight over
+# the same files.
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"      # every 5 min (GitHub's minimum granularity)
-  workflow_dispatch: {}        # lets you trigger a run by hand
+  workflow_dispatch: {}        # manual backup only — worker.yml is the live one
 
 permissions:
   contents: write              # built-in GITHUB_TOKEN — no PAT needed
