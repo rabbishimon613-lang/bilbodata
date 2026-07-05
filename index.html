@@ -141,6 +141,19 @@
   .thumb .cap{padding:7px 10px;font-size:11px;color:var(--dim);font-family:var(--mono)}
   .thumb .seen{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);border:1px solid var(--line2);border-radius:2px;font-size:10px;padding:2px 6px;color:var(--live);font-family:var(--mono)}
 
+  /* live profiles feed */
+  .profStrip{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px;margin-top:8px}
+  .profCard{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--panel);cursor:pointer;transition:border-color .15s}
+  .profCard:hover{border-color:var(--line2)}
+  .profPic{position:relative;aspect-ratio:352/240;background:#000;overflow:hidden}
+  .profPic img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
+  .profPic .swatch{position:absolute;left:8px;top:8px;width:16px;height:16px;border-radius:3px;border:1.5px solid #000;box-shadow:0 0 0 1px #ffffff33}
+  .profPic .roam{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.78);border:1px solid var(--line2);border-radius:2px;font-size:9.5px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;color:var(--live)}
+  .profBody{padding:11px 13px}
+  .profBody .id{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400;text-transform:capitalize}
+  .profBody .meta{color:var(--mut);font-size:11px;font-family:var(--mono);margin-top:6px}
+  .profBody .last{color:var(--dim);font-size:11px;font-family:var(--mono);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
   /* about */
   .manifesto{padding:64px 0}
   .manifesto h2{font-weight:200;font-size:clamp(30px,4.5vw,52px);letter-spacing:-.02em;line-height:1.05;margin:14px 0 0;max-width:20ch}
@@ -225,6 +238,14 @@
   </section>
 
   <section class="blk">
+    <div class="eyebrow">Identity layer</div>
+    <h2>Vehicles we can follow</h2>
+    <div class="note">we count every vehicle — and for the ones distinctive enough to re-recognize across cameras, we keep a profile · a look and a path, never a plate, so each carries a confidence · click one to trace it</div>
+    <div class="grid g3" id="profStats" style="margin-bottom:14px"></div>
+    <div class="profStrip" id="profStrip"><div class="collecting" style="padding:8px">collecting… profiles appear once a vehicle is re-seen at another camera</div></div>
+  </section>
+
+  <section class="blk">
     <div class="eyebrow">Time series</div><h2>Traffic over time</h2>
     <div class="note">avg cars &amp; pedestrians in view · 1-min buckets</div>
     <div class="card"><canvas id="chart"></canvas></div>
@@ -232,7 +253,7 @@
 
   <section class="blk">
     <div class="eyebrow">Rhythm</div><h2>Rush curve — average by hour</h2>
-    <div class="note">all history · local time · when the block wakes and quiets</div>
+    <div class="note" id="hodNote">all history · local time · when the block wakes and quiets</div>
     <div class="card"><canvas id="hodChart"></canvas></div>
   </section>
 
@@ -290,7 +311,7 @@
   <section class="hero" style="padding-bottom:36px">
     <div class="eyebrow">BrainView · what the system noticed</div>
     <h1 style="font-size:clamp(34px,5vw,58px)">The city, narrated.</h1>
-    <p class="sub">Bilbo watches every corner and writes down what stands out — surges, quiet streets, and the vehicles roaming widest today. Ranked by surprise, not by volume.</p>
+    <p class="sub">Bilbo doesn't just count — it recognizes. Every corner is watched, the distinctive vehicles are profiled, and their paths are drawn across the map. Surges, quiet streets, and today's widest roamers — ranked by surprise, not by volume.</p>
   </section>
 
   <section class="blk">
@@ -345,6 +366,10 @@
     </div>
     <p class="about-p" style="margin-top:22px">That's the whole thesis: same seeing-stone, opposite hands. The instrument only kings and dark lords were meant to hold, put in the paws of the one creature that doesn't get ruled by it. And — literally — Bilbo is my girlfriend's dog: a small creature, no one's idea of a hero, who ends up carrying something the powerful would rather keep for themselves. Made anonymously, in New York.</p>
 
+    <h3 class="about-h3">From counting to recognizing</h3>
+    <p class="about-p">Bilbo began as a counter — <b>how many</b> cars and people cross a corner each minute. It still counts everything. But a count throws every car into one grey heap and never follows a single one. So Bilbo now also <b>recognizes</b>: for the vehicles distinctive enough to re-identify — a color, a body type, a size, a path — it keeps a <b>profile</b> and traces that vehicle camera to camera, turning raw volume into <b>movement</b> across the city.</p>
+    <p class="about-p">This is the sharper edge of the same instrument, and it's exactly why the rules below matter. A profile is a <b>pattern, never a person</b>: a look and a route, held only long enough to map the traffic, then dropped. People are recognized coarser still — a pedestrian is at most a shirt color and a pants color, never a face and never a name. The eye that recognizes is the more powerful eye; the discipline is in what we refuse to let it see.</p>
+
     <div class="prod">
       <div class="p"><div class="code">CURB-OS</div><h3>Rebuilding American parking supremacy</h3><p>An operating system for the world's most contested eight feet of asphalt. Deployed at scale on President Street.</p></div>
       <div class="p"><div class="code">DOUBLE-PARK</div><h3>Full-spectrum hazard awareness</h3><p>Real-time detection of the delivery van that stopped exactly where it shouldn't. Mission-critical. Hydrant-adjacent.</p></div>
@@ -357,7 +382,9 @@
       <ul>
         <li><b>No faces.</b> Never detected, never stored. At a traffic camera's resolution a person is a smudge, and we keep it that way.</li>
         <li><b>No plates.</b> A car is about 23 pixels wide. Plates are physically unreadable — so we never try to read one.</li>
-        <li><b>No make, no model, no name.</b> We describe a pattern, never a person. There is no owner in our data because we cannot know one.</li>
+        <li><b>A pattern, never a person.</b> A vehicle profile is a color, a size, and a distinctive look used to follow it corner to corner — never a face, a plate, or an owner's name. There is no owner in our data because we cannot know one.</li>
+        <li><b>People, coarser still.</b> A pedestrian is only ever a shirt color and a pants color — enough to notice a crossing, never enough to name a soul.</li>
+        <li><b>Ephemeral by design.</b> Profiles live for hours, then expire. Only the aggregate counts are kept; the individual look is let go.</li>
         <li><b>Findings, not footage.</b> Every frame is read, then discarded. We keep the count and the shape of the traffic — not the video.</li>
         <li><b>Auditable.</b> Public cameras in, open method, every claim stamped with a time and a confidence.</li>
       </ul>
@@ -455,15 +482,48 @@ function buildNotices(){
     <div class="tag ${n.cls}">${n.tag}</div></div>`).join('');
 }
 
+/* ---------- live profiles feed (identity layer) ---------- */
+function renderProfiles(){
+  const strip=$('profStrip'); if(!strip)return;
+  if(!TRAILS.length){ strip.innerHTML='<div class="collecting" style="padding:8px">collecting… profiles appear once a vehicle is re-seen at another camera</div>'; $('profStats').innerHTML=''; return; }
+  const ranked=[...TRAILS].sort((a,b)=>(b.cams-a.cams)||(b.span_min-a.span_min));
+  const top=ranked.slice(0,12);
+  strip.innerHTML=top.map(t=>{
+    const i=TRAILS.indexOf(t), last=t.stops[t.stops.length-1]||{};
+    const sw=COLOR_HEX[t.color]||'#8b909a';
+    const roam=t.cams>=6?`${t.cams} corners`:'';
+    return `<div class="profCard" onclick="openProfile(${i})" title="trace this vehicle">
+      <div class="profPic"><img loading="lazy" src="${D('preview/'+last.cam+'.jpg')}" alt="">
+        <span class="swatch" style="background:${sw}"></span>${roam?`<span class="roam">${roam}</span>`:''}</div>
+      <div class="profBody">
+        <div class="id"><span>${(t.color||'?')} ${BODY_LABELS[t.type]||t.type}</span><span class="conf ${t.conf_label}" style="margin-left:auto">${t.conf_label}</span></div>
+        <div class="meta">${t.cams} cameras · ${t.n_stops} sightings · ${t.span_min} min</div>
+        <div class="last">last seen · ${last.name||'—'}</div>
+      </div></div>`;
+  }).join('');
+  const wide=ranked[0]||{}, long=[...TRAILS].sort((a,b)=>b.span_min-a.span_min)[0]||{};
+  $('profStats').innerHTML=`
+    <div class="cell"><div class="k">Vehicles profiled — 24 h</div><div class="v">${TRAILS.length}</div><div class="u">re-identified across ≥2 cameras</div></div>
+    <div class="cell"><div class="k">Widest roamer</div><div class="v">${wide.cams||0}<span class="u"> corners</span></div><div class="u">${(wide.color||'')} ${BODY_LABELS[wide.type]||wide.type||''}</div></div>
+    <div class="cell"><div class="k">Longest trail</div><div class="v">${long.span_min||0}<span class="u"> min</span></div><div class="u">across ${long.cams||0} cameras</div></div>`;
+}
+function openProfile(i){
+  showTab('brain'); selectTrail(i);
+  $('trailList').scrollTop=Math.max(0,i*66-66);
+  setTimeout(()=>$('trailMap').scrollIntoView({behavior:'smooth',block:'center'}),150);
+}
+
 /* ---------- vehicle profiles / tracker ---------- */
 function trailCardHTML(t,i){
   const sw=COLOR_HEX[t.color]||'#8b909a';
   const size=t.width_ft?` · ~${t.width_ft} ft`:'';
+  const last=t.stops[t.stops.length-1]||{};
   return `<div class="trailCard" data-i="${i}" onclick="selectTrail(${i})">
     <div class="row1"><span class="swatch" style="background:${sw}"></span>
       ${(t.color||'?')} ${BODY_LABELS[t.type]||t.type}
       <span class="conf ${t.conf_label}">${t.conf_label}</span></div>
     <div class="meta">${t.n_stops} sightings · ${t.cams} cameras · ${t.span_min} min${size}</div>
+    <div class="meta" style="color:var(--dim)">last · ${last.name||'—'}</div>
   </div>`;
 }
 function renderTracker(){
@@ -571,8 +631,12 @@ function barChart(ref,cv,labels,values,colors,horizontal){
 }
 function drawHod(hod){
   if(!hod||!hod.length)return;
+  hod=hod.filter(h=>h.samples>0);            // only hours we've actually collected
+  const note=document.getElementById('hodNote');
+  if(note) note.innerHTML=`all history · local time · <b>${hod.length}</b> of 24 hours collected so far`;
+  if(!hod.length)return;
   const labels=hod.map(h=>String(h.h).padStart(2,'0'));
-  if(hodChart){hodChart.data.datasets[0].data=hod.map(h=>h.cars);hodChart.data.datasets[1].data=hod.map(h=>h.ped);hodChart.update('none');return;}
+  if(hodChart){hodChart.data.datasets[0].data=hod.map(h=>h.cars);hodChart.data.datasets[1].data=hod.map(h=>h.ped);hodChart.data.labels=labels;hodChart.update('none');return;}
   hodChart=new Chart($('hodChart'),{type:'line',data:{labels,datasets:[
     {label:'Cars',data:hod.map(h=>h.cars),borderColor:COL.car,backgroundColor:'rgba(91,141,239,.12)',fill:true,tension:.35,pointRadius:0,borderWidth:2},
     {label:'Pedestrians',data:hod.map(h=>h.ped),borderColor:COL.ped,backgroundColor:'rgba(74,217,145,.10)',fill:true,tension:.35,pointRadius:0,borderWidth:2}]},
@@ -593,7 +657,7 @@ fetch(D('stats.json')).then(r=>r.json()).then(s=>{
 function loadIntel(){
   const t=Date.now();
   fetch(D('trajectories.json')+'?t='+t).then(r=>r.ok?r.json():null).then(tj=>{
-    if(!tj)return; TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{}; renderTracker(); paintSeenBadges();
+    if(!tj)return; TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{}; renderTracker(); renderProfiles(); paintSeenBadges();
     if($('tab-brain').classList.contains('on')) buildNotices();
   }).catch(()=>{});
   fetch(D('calibration.json')+'?t='+t).then(r=>r.ok?r.json():null).then(cal=>{
