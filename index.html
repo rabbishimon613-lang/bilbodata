@@ -522,10 +522,23 @@ function thumbClick(camId){
 }
 
 /* ---------- charts + live ---------- */
-function delta(now,base){
-  if(base==null) return '<span class="delta flat">— no data yet</span>';
-  const d=Math.round((now-base)*10)/10, cls=d>0?'up':d<0?'down':'flat', arw=d>0?'▲':d<0?'▼':'=';
-  return `<span class="delta ${cls}">${arw} ${Math.abs(d)}</span> vs same time yesterday (${base})`;
+function recentAvg(series,key,n){
+  if(!series||!series.length) return null;
+  const pts=series.slice(-(n||20)).map(p=>p[key]).filter(v=>v!=null);
+  if(!pts.length) return null;
+  return Math.round(pts.reduce((a,b)=>a+b,0)/pts.length*10)/10;
+}
+function vsLine(nowVal,base,label){
+  if(base==null||isNaN(base)) return '';
+  const d=Math.round((nowVal-base)*10)/10, cls=d>0?'up':d<0?'down':'flat';
+  if(d===0) return `<span class="delta flat">≈ steady</span> ${label}`;
+  return `<span class="delta ${cls}">${d>0?'▲':'▼'} ${Math.abs(d)}</span> ${label}`;
+}
+function heroVs(s,key){
+  const now=s.now[key], y=s.yesterday?s.yesterday[key]:null;
+  if(y!=null) return vsLine(now,y,`vs same time yesterday (${y})`);
+  const ra=recentAvg(s.series,key);
+  return vsLine(now,ra,ra!=null?`vs the recent average (${ra})`:'');
 }
 function stateSentence(s){
   if(!s||!s.now){return;}
@@ -634,8 +647,8 @@ function tick(){
   fetch(D('stats.json')+'?t='+t).then(r=>r.ok?r.json():null).then(s=>{
     if(!s)return; LAST.stats=s;
     $('now_cars').textContent=s.now.cars; $('now_ped').textContent=s.now.ped;
-    $('vs_cars').innerHTML=delta(s.now.cars, s.yesterday?s.yesterday.cars:null);
-    $('vs_ped').innerHTML=delta(s.now.ped, s.yesterday?s.yesterday.ped:null);
+    $('vs_cars').innerHTML=heroVs(s,'cars');
+    $('vs_ped').innerHTML=heroVs(s,'ped');
     stateSentence(s);
     $('strip').innerHTML=Object.keys(WLABEL).map(w=>{const x=s.windows[w];
       const val=x&&x.avg_cars!=null?x.avg_cars:'—';
