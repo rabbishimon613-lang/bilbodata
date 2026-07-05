@@ -145,6 +145,17 @@
   .manifesto{padding:64px 0}
   .manifesto h2{font-weight:200;font-size:clamp(30px,4.5vw,52px);letter-spacing:-.02em;line-height:1.05;margin:14px 0 0;max-width:20ch}
   .manifesto .lead{color:var(--dim);font-size:19px;font-weight:300;max-width:58ch;margin:26px 0 0}
+  .creed{margin:44px 0;padding:28px 30px;border:1px solid var(--line);border-left:2px solid var(--live);border-radius:0 4px 4px 0;background:var(--panel2);max-width:62ch}
+  .creed p{font-size:22px;font-weight:200;line-height:1.42;margin:0;color:var(--ink);letter-spacing:-.01em}
+  .creed p.pun{color:var(--live);margin-top:12px}
+  .creed cite{display:block;margin-top:18px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .creed a,blockquote a{color:inherit;border-bottom:1px solid var(--line2)}
+  blockquote{margin:24px 0;padding:2px 0 2px 24px;border-left:2px solid var(--line2);font-size:18px;font-weight:300;line-height:1.62;color:var(--dim);max-width:64ch;font-style:normal}
+  blockquote b{color:var(--ink);font-weight:400}
+  blockquote cite{display:block;margin-top:14px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .about-h3{font-weight:300;font-size:26px;letter-spacing:-.01em;margin:52px 0 8px}
+  .about-p{color:var(--dim);font-size:16px;max-width:64ch;margin:14px 0}
+  .about-p b{color:var(--ink);font-weight:400}
   .prod{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:36px}
   .prod .p{background:var(--panel);padding:24px}
   .prod .p .code{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--live);text-transform:uppercase}
@@ -308,7 +319,31 @@
   <section class="manifesto">
     <div class="eyebrow">About Bilbo Data</div>
     <h2>The ethical Palantir.</h2>
-    <p class="lead">Same instinct — make a city legible from its own data streams. The opposite ethics. Where the archetype is closed, contracted, and pointed at people, Bilbo is open, public, and pointed at patterns. We keep the shape of the traffic, never the identity of the driver.</p>
+    <p class="lead">Truth about a city isn't neutral, and it isn't free-floating. It's produced — by whoever owns the instruments that measure the world. Own the instrument, own the truth. Bilbo Data takes one of those instruments out of the private room and hands it to everyone.</p>
+
+    <div class="creed">
+      <p>If you hold a gun and I hold a gun, we talk about the law.</p>
+      <p>If you hold a knife and I hold a knife, we talk about rules.</p>
+      <p>If we come empty-handed, we talk as equals.</p>
+      <p class="pun">But if you hold a gun and I hold nothing — there is no conversation.</p>
+      <cite>— <a href="https://en.wikipedia.org/wiki/Michel_Foucault" target="_blank" rel="noopener">Michel Foucault</a></cite>
+    </div>
+
+    <h3 class="about-h3">The régime of truth</h3>
+    <p class="about-p">A handful of institutions are "charged with saying what counts as true" about the city. The state runs the cameras. Palantir and its cousins run the analysis. The facts get produced inside rooms you'll never enter, then handed down to you as objective. The instrument is the power.</p>
+    <blockquote>
+      "Truth is a thing of this world… Each society has its régime of truth… the techniques and procedures accorded value in the acquisition of truth; <b>the status of those who are charged with saying what counts as true.</b>"
+      <cite>— <a href="https://en.wikipedia.org/wiki/Michel_Foucault" target="_blank" rel="noopener">Michel Foucault</a>, Truth and Power</cite>
+    </blockquote>
+    <p class="about-p"><b>Bilbo Data breaks that monopoly.</b> The same class of instrument — a full Palantir-style eye on the streets, the same computer vision — pointed at the same city. The only difference is who holds it: <b>everyone</b>. Open data, open method, public the second it exists. Not a gentler tool, not a watered-down one — the real thing, taken out of the private room and put in the street.</p>
+
+    <h3 class="about-h3">The name — a tale of two Tolkien references</h3>
+    <p class="about-p">Both companies reached into the same book. They chose opposite ends of it.</p>
+    <div class="prod" style="margin-top:22px">
+      <div class="p"><div class="code">Palantír · the Seeing Stone</div><h3>What they named themselves after</h3><p>The palantíri were the elves' crystal spheres that let you see across the world. By the Third Age they belonged to the powerful — Stewards, wizards, the Dark Lord — and they <b>corrupted</b> nearly everyone who looked in: Denethor to despair and suicide, Saruman to ruin. Even Sauron couldn't make the Stone lie; he could only show selective truths. An all-seeing instrument that rots the hand that holds it.</p></div>
+      <div class="p"><div class="code">Bilbo · the Ring-bearer</div><h3>What we named ourselves after</h3><p>In the Ring-verse power is rationed to the elite — three rings for the Elven-kings, seven for the Dwarf-lords, nine for Mortal Men, one for the Dark Lord. Then a hobbit, the smallest and most overlooked creature alive, ends up holding the master ring itself — carries the ultimate instrument of power and <b>stays himself</b>, and becomes the first bearer ever to give it up freely.</p></div>
+    </div>
+    <p class="about-p" style="margin-top:22px">That's the whole thesis: same seeing-stone, opposite hands. The instrument only kings and dark lords were meant to hold, put in the paws of the one creature that doesn't get ruled by it. And — literally — Bilbo is my girlfriend's dog: a small creature, no one's idea of a hero, who ends up carrying something the powerful would rather keep for themselves. Made anonymously, in New York.</p>
 
     <div class="prod">
       <div class="p"><div class="code">CURB-OS</div><h3>Rebuilding American parking supremacy</h3><p>An operating system for the world's most contested eight feet of asphalt. Deployed at scale on President Street.</p></div>
@@ -318,7 +353,7 @@
     </div>
 
     <div class="pledge">
-      <div class="h">Privacy &amp; Civil Liberties — and we actually mean it</div>
+      <div class="h">How we hold it without being corrupted — Privacy &amp; Civil Liberties</div>
       <ul>
         <li><b>No faces.</b> Never detected, never stored. At a traffic camera's resolution a person is a smudge, and we keep it that way.</li>
         <li><b>No plates.</b> A car is about 23 pixels wide. Plates are physically unreadable — so we never try to read one.</li>
@@ -337,9 +372,6 @@
         <a href="#about" data-tab="about">Investor Relations (there are none)</a>
         <a href="#about" data-tab="about">Bilbo Apparel Store</a>
         <a href="#about" data-tab="about">Contact</a>
-      </div>
-      <div class="silent">
-        <b>Silent Consultant — S. Baron Cohen.</b> Embedded across every review session in the field. A method practitioner of long standing, best known for deep-cover character work; here retained strictly in a non-speaking capacity. Observed traffic. Rode along. Contributed no words. Nodded, on the record, twice. Invoice waived. Great success.
       </div>
       <div class="fine">
         BILBO DATA · UNCLASSIFIED // OPEN DATA · A CIVIC COMPUTER-VISION PROJECT ON NEW YORK CITY'S PUBLIC TRAFFIC CAMERAS<br>
