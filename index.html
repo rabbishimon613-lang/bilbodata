@@ -154,6 +154,56 @@
   .profBody .meta{color:var(--mut);font-size:11px;font-family:var(--mono);margin-top:6px}
   .profBody .last{color:var(--dim);font-size:11px;font-family:var(--mono);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+  /* live track (hero tracker) */
+  .livetrack .note{max-width:72ch}
+  .ltFeature{margin-top:2px}
+  .ltCard{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+  .ltFrames{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;background:#000}
+  .ltFrame{margin:0;display:flex;flex-direction:column}
+  .ltImg{position:relative;aspect-ratio:352/240;background:#000;overflow:hidden}
+  .ltImg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9) contrast(1.06)}
+  .ltTag{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:rgba(0,0,0,.72);border:1px solid var(--line2)}
+  .ltTag.was{color:var(--dim)}
+  .ltTag.now{color:var(--live);border-color:#1f4a3b}
+  .ltsw{width:13px;height:13px;border-radius:3px;border:1.5px solid #000;box-shadow:0 0 0 1px #ffffff33;display:inline-block;flex:none}
+  .ltsw.big{position:absolute;right:10px;top:10px;width:20px;height:20px}
+  .ltFrame figcaption{padding:11px 14px}
+  .ltFrame figcaption b{display:block;font-weight:400;font-size:13.5px}
+  .ltFrame figcaption span{font-family:var(--mono);font-size:11px;color:var(--mut)}
+  .ltHop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:0 16px;background:#000;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .ltArrow{font-size:30px;color:var(--live);line-height:1}
+  .ltHopDot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 4px rgba(74,217,145,.12)}
+  .ltHopMeta{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-align:center;white-space:nowrap}
+  .ltBar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:15px 18px;border-top:1px solid var(--line)}
+  .ltId{display:flex;align-items:center;gap:10px;font-size:16px;text-transform:capitalize}
+  .ltId .ltdim{font-family:var(--mono);font-size:12px;color:var(--mut);text-transform:none}
+  .ltPath{font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .ltPath b{color:var(--ink)}
+  .ltBar .btn{margin-left:auto}
+  .ltBar .conf{font-size:10.5px}
+  .ltBar .btn[disabled]{opacity:.4;cursor:default}
+  .ltProg{height:2px;background:var(--line)}
+  .ltProg i{display:block;height:100%;background:var(--live);transform-origin:left;animation:ltprog 7s linear forwards}
+  .ltCard:hover .ltProg i{animation-play-state:paused}
+  @keyframes ltprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .ltStrip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:18px}
+  .ltMore{border:1px dashed var(--line2);border-radius:5px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;background:var(--panel2);font-family:var(--mono);font-size:11px;color:var(--dim);padding:10px;line-height:1.5}
+  .ltMore:hover{border-color:var(--live);color:var(--ink)}
+  .ltMini{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--panel2);cursor:pointer;transition:border-color .15s}
+  .ltMini:hover{border-color:var(--line2)}
+  .ltMini.on{border-color:var(--live);box-shadow:inset 0 0 0 1px var(--live)}
+  .ltMiniPic{position:relative;aspect-ratio:352/240;background:#000}
+  .ltMiniPic img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85)}
+  .ltMiniPic .ltsw{position:absolute;left:6px;top:6px;width:12px;height:12px}
+  .ltMiniPic .n{position:absolute;right:6px;bottom:6px;font-family:var(--mono);font-size:9.5px;color:var(--live);background:rgba(0,0,0,.72);border:1px solid var(--line2);border-radius:2px;padding:1px 5px}
+  .ltMiniId{padding:8px 10px 2px;font-size:12.5px;text-transform:capitalize}
+  .ltMiniMeta{padding:0 10px 9px;font-family:var(--mono);font-size:10.5px;color:var(--mut)}
+  @media(max-width:820px){
+    .ltFrames{grid-template-columns:1fr}
+    .ltHop{border-left:0;border-right:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px}
+    .ltArrow{transform:rotate(90deg)}
+  }
+
   /* about */
   .manifesto{padding:64px 0}
   .manifesto h2{font-weight:200;font-size:clamp(30px,4.5vw,52px);letter-spacing:-.02em;line-height:1.05;margin:14px 0 0;max-width:20ch}
@@ -215,15 +265,20 @@
 
 <!-- ========== LIVE ========== -->
 <div class="tabpane on" id="tab-live">
-  <section class="hero">
+  <section class="hero" style="padding:52px 0 30px">
     <div class="eyebrow">Situational awareness platform · Unclassified // Open Data</div>
-    <h1>Awareness for every sidewalk.</h1>
-    <p class="sub">The world's most consequential intersections run on Bilbo. We read the city's own cameras in real time — and we watch the traffic, never the people.</p>
-    <div class="cta">
-      <button class="btn solid" data-tab="brain">Enter BrainView</button>
-      <button class="btn" data-tab="about">Why we're the ethical one</button>
-    </div>
+    <h1>Watch the city move,<br>one car at a time.</h1>
+    <p class="sub">We read New York's own traffic cameras in real time — counting the crowd, and following the vehicles distinctive enough to recognize as they cross from one camera to the next. The traffic, never the people.</p>
     <div class="statesent" id="stateSent">Reading the streets…</div>
+  </section>
+
+  <section class="blk livetrack" id="liveTrackBlk">
+    <div class="eyebrow">Live tracking · re-identified across cameras</div>
+    <h2>The same car, two corners apart</h2>
+    <div class="note">a vehicle distinctive enough to recognize — caught at one camera, then picked up again down the road. same look, minutes and blocks later. no plate, no face — just a pattern of colour, body and size, carried with a confidence.</div>
+    <div class="grid g3" id="ltStats" style="margin:18px 0 20px"></div>
+    <div class="ltFeature" id="ltFeature"><div class="collecting" style="padding:26px 8px">collecting… the live track appears the moment a vehicle is recognized at a second camera.</div></div>
+    <div class="ltStrip" id="ltStrip"></div>
   </section>
 
   <section class="blk">
@@ -235,14 +290,6 @@
       <div class="cell"><div class="k">Pedestrians — now</div><div class="big ped" id="now_ped">—</div><div class="vs" id="vs_ped"></div></div>
     </div>
     <div class="grid g4" id="strip"></div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Identity layer</div>
-    <h2>Vehicles we can follow</h2>
-    <div class="note">we count every vehicle — and for the ones distinctive enough to re-recognize across cameras, we keep a profile · a look and a path, never a plate, so each carries a confidence · click one to trace it</div>
-    <div class="grid g3" id="profStats" style="margin-bottom:14px"></div>
-    <div class="profStrip" id="profStrip"><div class="collecting" style="padding:8px">collecting… profiles appear once a vehicle is re-seen at another camera</div></div>
   </section>
 
   <section class="blk">
@@ -482,28 +529,119 @@ function buildNotices(){
     <div class="tag ${n.cls}">${n.tag}</div></div>`).join('');
 }
 
-/* ---------- live profiles feed (identity layer) ---------- */
-function renderProfiles(){
-  const strip=$('profStrip'); if(!strip)return;
-  if(!TRAILS.length){ strip.innerHTML='<div class="collecting" style="padding:8px">collecting… profiles appear once a vehicle is re-seen at another camera</div>'; $('profStats').innerHTML=''; return; }
+/* ---------- live track (hero: same car, two corners apart) ---------- */
+let LT_roamers=[], LT_total=0, LT_i=0, LT_timer=null, LT_curKey='', LT_stripSig='', LT_paused=false, LT_hoverBound=false;
+const LT_POOL=12;   // interactive pool = the most-travelled dozen (rest live in BrainView)
+const LT_REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+function haverMi(a,b){
+  if(a.lat==null||b.lat==null||a.lon==null||b.lon==null) return null;
+  const R=3958.8, r=x=>x*Math.PI/180;
+  const dLat=r(b.lat-a.lat), dLon=r(b.lon-a.lon), la1=r(a.lat), la2=r(b.lat);
+  const h=Math.sin(dLat/2)**2+Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function ltPick(t){                 // choose an early "was" and latest "now" stop at DIFFERENT cameras
+  const s=t.stops||[]; if(s.length<2) return null;
+  const now=s[s.length-1]; let was=s[0];
+  for(let k=s.length-2;k>=0;k--){ if(s[k].cam!==now.cam){ was=s[k]; break; } }
+  if(was.cam===now.cam) return null;
+  return {was,now};
+}
+function ltKey(t){ const s=t.stops; return s[0].cam+s[0].t+'>'+s[s.length-1].cam+s[s.length-1].t; }
+function distTxt(mi){ if(mi==null)return ''; return mi<0.19?Math.round(mi*5280)+' ft':mi.toFixed(mi<10?1:0)+' mi'; }
+function gapTxt(ms){ const s=ms/1000; if(s<60)return 'moments later'; const m=Math.round(s/60);
+  if(m<60)return m+' min later'; const h=m/60; return (h<10?h.toFixed(1):Math.round(h))+' h later'; }
+function ltFresh(ms){ return (Date.now()-ms)/1000 < 180; }   // only call it "now" if seen in the last 3 min
+function buildLiveTrack(){
+  const feat=$('ltFeature'), strip=$('ltStrip'); if(!feat)return;
+  const all=(TRAILS||[]).filter(t=>t.cams>=2 && ltPick(t))
+    .sort((a,b)=>(b.cams-a.cams)||(b.span_min-a.span_min));
+  LT_total=all.length; LT_roamers=all.slice(0,LT_POOL);
+  if(!LT_roamers.length){
+    if(LT_timer){clearInterval(LT_timer);LT_timer=null;}
+    LT_curKey=''; LT_stripSig='';
+    feat.innerHTML='<div class="collecting" style="padding:26px 8px;color:var(--mut)">waiting for a vehicle to reappear at a second camera…</div>';
+    strip.innerHTML=''; ltStats(); return;
+  }
+  if(LT_i>=LT_roamers.length) LT_i=0;
+  renderFeature(false);                                  // reuse frames if same car is still featured
+  const sig=LT_roamers.map(ltKey).join('|');
+  if(sig!==LT_stripSig || !strip.children.length){       // only rebuild the strip when the set changes
+    const more=LT_total-LT_roamers.length;
+    strip.innerHTML=LT_roamers.map((t,i)=>{
+      const p=ltPick(t), sw=COLOR_HEX[t.color]||'#8b909a';
+      return `<div class="ltMini${i===LT_i?' on':''}" data-i="${i}" onclick="ltSelect(${i})" title="watch this one">
+        <div class="ltMiniPic"><img loading="lazy" src="${D('preview/'+p.now.cam+'.jpg')}" alt="">
+          <span class="ltsw" style="background:${sw}"></span><span class="n">${t.cams} corners</span></div>
+        <div class="ltMiniId">${t.color||'?'} ${BODY_LABELS[t.type]||t.type}</div>
+        <div class="ltMiniMeta">${t.n_stops} sightings · ${t.span_min} min</div></div>`;
+    }).join('') + (more>0?`<div class="ltMore" onclick="showTab('brain')">+${more} more<br>tracked → BrainView</div>`:'');
+    LT_stripSig=sig;
+  }
+  ltStats(); ltAutoRotate(); ltHoverBind();
+}
+function renderFeature(force){
+  const feat=$('ltFeature'), t=LT_roamers[LT_i]; if(!t)return;
+  const p=ltPick(t); if(!p)return;
+  const key=ltKey(t);
+  if(!force && key===LT_curKey){ ltHilite(); return; }   // same car: don't tear down / reload the frames
+  LT_curKey=key;
+  const sw=COLOR_HEX[t.color]||'#8b909a';
+  const dist=distTxt(haverMi(p.was,p.now));
+  const gap=gapTxt(p.now.t-p.was.t);
+  const idx=TRAILS.indexOf(t);
+  const nowTag=ltFresh(p.now.t)?'now here':'seen again';
+  const frameTitle="the camera's current view of this corner — not a photo of the tracked vehicle";
+  feat.innerHTML=`<div class="ltCard">
+    <div class="ltFrames">
+      <figure class="ltFrame">
+        <div class="ltImg"><img src="${D('preview/'+p.was.cam+'.jpg')}" alt="" decoding="async" title="${frameTitle}">
+          <span class="ltTag was">was here</span><span class="ltsw big" style="background:${sw}"></span></div>
+        <figcaption><b>${p.was.name}</b><span>${clock(p.was.t)} · ${agoTxt(p.was.t)}</span></figcaption>
+      </figure>
+      <div class="ltHop">
+        <div class="ltHopDot" style="background:${sw}"></div>
+        <div class="ltArrow">→</div>
+        <div class="ltHopMeta">${gap}${dist?` · ${dist}`:''}</div>
+      </div>
+      <figure class="ltFrame">
+        <div class="ltImg"><img src="${D('preview/'+p.now.cam+'.jpg')}" alt="" decoding="async" title="${frameTitle}">
+          <span class="ltTag now">${nowTag} · ${t.conf_label}</span><span class="ltsw big" style="background:${sw}"></span></div>
+        <figcaption><b>${p.now.name}</b><span>${clock(p.now.t)} · ${agoTxt(p.now.t)}</span></figcaption>
+      </figure>
+    </div>
+    <div class="ltBar">
+      <div class="ltId"><span class="ltsw" style="background:${sw}"></span><b>${t.color||'?'} ${BODY_LABELS[t.type]||t.type}</b>${t.width_ft?`<span class="ltdim">~${t.width_ft} ft</span>`:''}<span class="conf ${t.conf_label}">${t.conf_label} match</span></div>
+      <div class="ltPath">seen at <b>${t.cams}</b> corners · <b>${t.n_stops}</b> sightings · <b>${t.span_min}</b> min</div>
+      <button class="btn"${idx<0?' disabled':` onclick="openProfile(${idx})"`}>Trace full path →</button>
+    </div>
+    <div class="ltProg">${LT_REDUCED?'':'<i></i>'}</div></div>`;
+  ltHilite();
+}
+function ltHilite(){ document.querySelectorAll('.ltMini').forEach(m=>m.classList.toggle('on',+m.dataset.i===LT_i)); }
+function ltSelect(i){ LT_i=i; renderFeature(true); ltAutoRotate(); }
+function ltAutoRotate(){
+  if(LT_timer){clearInterval(LT_timer);LT_timer=null;}
+  if(LT_REDUCED || LT_roamers.length<2) return;
+  LT_timer=setInterval(()=>{
+    if(LT_paused) return;
+    if(!$('tab-live').classList.contains('on')) return;   // only cycle while visible
+    LT_i=(LT_i+1)%LT_roamers.length; renderFeature(true);
+  },7000);
+}
+function ltHoverBind(){
+  if(LT_hoverBound)return; const feat=$('ltFeature'); if(!feat)return;
+  feat.addEventListener('mouseenter',()=>{LT_paused=true;});
+  feat.addEventListener('mouseleave',()=>{LT_paused=false;});
+  LT_hoverBound=true;
+}
+function ltStats(){
+  const el=$('ltStats'); if(!el)return;
+  if(!TRAILS.length){ el.innerHTML=''; return; }
   const ranked=[...TRAILS].sort((a,b)=>(b.cams-a.cams)||(b.span_min-a.span_min));
-  const top=ranked.slice(0,12);
-  strip.innerHTML=top.map(t=>{
-    const i=TRAILS.indexOf(t), last=t.stops[t.stops.length-1]||{};
-    const sw=COLOR_HEX[t.color]||'#8b909a';
-    const roam=t.cams>=6?`${t.cams} corners`:'';
-    return `<div class="profCard" onclick="openProfile(${i})" title="trace this vehicle">
-      <div class="profPic"><img loading="lazy" src="${D('preview/'+last.cam+'.jpg')}" alt="">
-        <span class="swatch" style="background:${sw}"></span>${roam?`<span class="roam">${roam}</span>`:''}</div>
-      <div class="profBody">
-        <div class="id"><span>${(t.color||'?')} ${BODY_LABELS[t.type]||t.type}</span><span class="conf ${t.conf_label}" style="margin-left:auto">${t.conf_label}</span></div>
-        <div class="meta">${t.cams} cameras · ${t.n_stops} sightings · ${t.span_min} min</div>
-        <div class="last">last seen · ${last.name||'—'}</div>
-      </div></div>`;
-  }).join('');
   const wide=ranked[0]||{}, long=[...TRAILS].sort((a,b)=>b.span_min-a.span_min)[0]||{};
-  $('profStats').innerHTML=`
-    <div class="cell"><div class="k">Vehicles profiled — 24 h</div><div class="v">${TRAILS.length}</div><div class="u">re-identified across ≥2 cameras</div></div>
+  el.innerHTML=`
+    <div class="cell"><div class="k">Vehicles tracked — 24 h</div><div class="v">${TRAILS.length}</div><div class="u">re-identified across ≥2 cameras</div></div>
     <div class="cell"><div class="k">Widest roamer</div><div class="v">${wide.cams||0}<span class="u"> corners</span></div><div class="u">${(wide.color||'')} ${BODY_LABELS[wide.type]||wide.type||''}</div></div>
     <div class="cell"><div class="k">Longest trail</div><div class="v">${long.span_min||0}<span class="u"> min</span></div><div class="u">across ${long.cams||0} cameras</div></div>`;
 }
@@ -657,7 +795,7 @@ fetch(D('stats.json')).then(r=>r.json()).then(s=>{
 function loadIntel(){
   const t=Date.now();
   fetch(D('trajectories.json')+'?t='+t).then(r=>r.ok?r.json():null).then(tj=>{
-    if(!tj)return; TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{}; renderTracker(); renderProfiles(); paintSeenBadges();
+    if(!tj)return; TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{}; renderTracker(); buildLiveTrack(); paintSeenBadges();
     if($('tab-brain').classList.contains('on')) buildNotices();
   }).catch(()=>{});
   fetch(D('calibration.json')+'?t='+t).then(r=>r.ok?r.json():null).then(cal=>{
