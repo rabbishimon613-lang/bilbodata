@@ -44,6 +44,11 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: continuous sample + tag + analyze
+        env:
+          # Optional live mirror to Turso. Absent secrets -> counter no-ops the
+          # DB writes and files-in-repo stay the sole source of truth.
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
         run: |
           git config user.name  "bilbo-worker"
           git config user.email "actions@users.noreply.github.com"

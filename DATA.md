@@ -96,3 +96,24 @@ library. A hosted database (Supabase / Turso, both no-credit-card) becomes usefu
 **only** if the public website needs to run live SQL over the full archive itself.
 Until then, the Parquet-in-repo + DuckDB setup covers capture, full-history
 storage, and analysis with zero signups.
+
+### Optional Turso mirror (wired, off by default)
+
+`turso_sync.py` mirrors the three tables into a Turso (libsql) database so the
+site can run live SQL without shipping Parquet. It is **fail-open**: with the env
+vars unset it is a complete no-op, and if the DB is ever unreachable the write is
+logged and skipped — the CSV/Parquet pipeline stays authoritative and the counter
+never stalls. To turn it on, add two GitHub Actions **secrets** (never commit
+them — this repo is public):
+
+    TURSO_DATABASE_URL   libsql://<db>-<org>.aws-<region>.turso.io
+    TURSO_AUTH_TOKEN     <token from `turso db tokens create <db>`>
+
+`worker.yml` / `count.yml` already pass them through. From then on every minute's
+`readings` + tagged `vehicles` (minus the ephemeral `emb` fingerprint) and every
+reconstructed `trip` land in Turso. It talks the libsql HTTP protocol directly
+over urllib3, so there is no extra dependency. One-time load of existing history:
+
+    python turso_sync.py init       # create the schema
+    python turso_sync.py backfill    # push the current archive + hot logs
+    python turso_sync.py status      # connectivity check + row counts

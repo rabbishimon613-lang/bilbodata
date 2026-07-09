@@ -26,6 +26,7 @@ import os, glob, csv, sys
 
 import stats as statsmod
 import calibrate, fleet, crosscam, trajectories
+import turso_sync
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -70,6 +71,9 @@ def aggregate():
             print("  ok  %s" % name)
         except Exception as e:
             print("  !!  %s: %s" % (name, e))
+
+    # Live mirror of the freshly (re)built journeys to Turso (no-op if unset).
+    turso_sync.sync_trips_file(os.path.join(HERE, "trips.csv"))
 
 
 if __name__ == "__main__":

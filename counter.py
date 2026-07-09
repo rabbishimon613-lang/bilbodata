@@ -16,6 +16,7 @@ from ultralytics import YOLO
 import stats as statsmod
 from track import link_tracks, VEH_FIELDS
 import embed
+import turso_sync
 
 urllib3.disable_warnings()
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -166,14 +167,17 @@ def minute_pass(writer):
 
     ts = dt.datetime.now().replace(second=0, microsecond=0).isoformat(timespec="minutes")
     snap = {}
+    count_rows = []  # per-camera averaged rows (mirrored to Turso alongside the CSV)
     vehicles = []   # per-vehicle records for this pass (tracked, deduped)
     for c in CAMS:
         n = max(nsamp[c["id"]], 1)
         avg = {k: round(acc[c["id"]][k] / n) for k in CLASSES.values()}
         avgcol = {k: round(col[c["id"]][k] / n) for k in COLOR_REF}
         veh = avg["car"] + avg["truck"] + avg["bus"]
-        writer.writerow([ts, c["id"], c["name"]] + [avg[k] for k in CLASSES.values()] +
-                        [veh] + [avgcol[k] for k in COLOR_REF])
+        row = ([ts, c["id"], c["name"]] + [avg[k] for k in CLASSES.values()] +
+               [veh] + [avgcol[k] for k in COLOR_REF])
+        writer.writerow(row)
+        count_rows.append(row)
         snap[c["id"]] = {"classes": avg, "veh": veh, "ped": avg["person"], "samples": nsamp[c["id"]]}
         # link this cam's frames into individual vehicles for the metric/fleet/speed layers
         try:
@@ -195,6 +199,9 @@ def minute_pass(writer):
               (c["name"][:30], avg["car"], avg["person"], nsamp[c["id"]]))
     json.dump({"ts": ts, "cams": snap}, open(JSON_PATH, "w"))
     write_vehicles(vehicles)
+    # Best-effort live mirror to Turso (no-op unless the DB env vars are set).
+    turso_sync.sync_readings(count_rows)
+    turso_sync.sync_vehicles(vehicles)   # trailing `emb` is dropped inside sync
     if SHARD_COUNT == 1:            # single runner rolls up stats inline; sharded runs aggregate separately
         try:
             statsmod.compute()
