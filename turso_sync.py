@@ -5,8 +5,9 @@ Fail-open and zero-config BY DESIGN. If TURSO_DATABASE_URL / TURSO_AUTH_TOKEN
 are not set, every function here is a no-op, so the counter runs exactly as it
 always has with files-in-repo as the source of truth (see DATA.md sections 5-6).
 When the two vars ARE present (supplied as GitHub Actions secrets), each minute's
-readings + tagged vehicles and every reconstructed trip are pushed into Turso so
-the public site can run live SQL over the full archive without shipping Parquet.
+readings + tagged vehicles are pushed into Turso so the public site can run live
+SQL over the full archive without shipping Parquet. (No colour, no fingerprint,
+no cross-camera trips — those were removed as unreliable.)
 
 No new dependency and no secret ever hardcoded:
   - talks the libsql/Hrana HTTP protocol (POST /v2/pipeline) over the same
@@ -23,18 +24,14 @@ _TOKEN = os.environ.get("TURSO_AUTH_TOKEN", "").strip()
 
 CHUNK = 64   # statements per HTTP round-trip; keeps request bodies modest
 
-# Column order for each table — must match the CSV writers in counter.py and the
-# trips.csv header. `emb` is intentionally NOT mirrored: like the Parquet archive
-# (storage.compact_vehicles), the appearance fingerprint is short-lived matching
-# state, not something worth keeping forever in the query DB.
-READINGS_COLS = ["ts", "cam_id", "name", "person", "bike", "car", "moto", "bus",
-                 "truck", "veh_total", "red", "blue", "green", "yellow", "white",
-                 "black", "silver"]
+# Column order for each table — must match the CSV writers in counter.py.
+# Vehicles only; brightness/lit = day-night reliability; samples/stale expose the
+# stale-frame guard (how many distinct vs frozen frames the minute saw).
+READINGS_COLS = ["ts", "cam_id", "name", "car", "moto", "bus", "truck",
+                 "veh_total", "brightness", "lit", "samples", "stale"]
 VEHICLE_COLS = ["ts", "epoch", "cam_id", "name", "cls", "box_w", "box_h",
-                "area_px", "aspect", "color", "frames", "heading",
+                "area_px", "aspect", "frames", "heading",
                 "px_per_frame", "moving"]
-TRIP_COLS = ["trip_id", "first_ts", "last_ts", "type", "color", "width_ft",
-             "n_stops", "cams", "span_min", "match", "confidence", "path"]
 
 
 def enabled():
@@ -113,26 +110,18 @@ def _pipeline(stmts):
 _SCHEMA = [
     """CREATE TABLE IF NOT EXISTS readings (
         ts TEXT, cam_id TEXT, name TEXT,
-        person INTEGER, bike INTEGER, car INTEGER, moto INTEGER, bus INTEGER,
-        truck INTEGER, veh_total INTEGER,
-        red INTEGER, blue INTEGER, green INTEGER, yellow INTEGER, white INTEGER,
-        black INTEGER, silver INTEGER,
+        car INTEGER, moto INTEGER, bus INTEGER, truck INTEGER, veh_total INTEGER,
+        brightness REAL, lit INTEGER, samples INTEGER, stale INTEGER,
         PRIMARY KEY (ts, cam_id)
     )""",
     """CREATE TABLE IF NOT EXISTS vehicles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         ts TEXT, epoch REAL, cam_id TEXT, name TEXT, cls TEXT,
-        box_w INTEGER, box_h INTEGER, area_px INTEGER, aspect REAL, color TEXT,
+        box_w INTEGER, box_h INTEGER, area_px INTEGER, aspect REAL,
         frames INTEGER, heading REAL, px_per_frame REAL, moving INTEGER
     )""",
     "CREATE INDEX IF NOT EXISTS vehicles_epoch ON vehicles(epoch)",
     "CREATE INDEX IF NOT EXISTS vehicles_cam ON vehicles(cam_id)",
-    """CREATE TABLE IF NOT EXISTS trips (
-        trip_id TEXT PRIMARY KEY,
-        first_ts TEXT, last_ts TEXT, type TEXT, color TEXT, width_ft REAL,
-        n_stops INTEGER, cams INTEGER, span_min REAL, match REAL,
-        confidence REAL, path TEXT
-    )""",
 ]
 
 _ready = False
@@ -169,8 +158,8 @@ def sync_readings(rows):
 
 
 def sync_vehicles(rows):
-    """Mirror this minute's tagged vehicles. Accepts rows WITH or without the
-    trailing `emb` field; only the first len(VEHICLE_COLS) values are stored."""
+    """Mirror this minute's tagged vehicles (only the first len(VEHICLE_COLS)
+    values of each row are stored)."""
     if not enabled() or not rows:
         return
     sql = ("INSERT INTO vehicles (%s) VALUES (%s)"
@@ -179,28 +168,6 @@ def sync_vehicles(rows):
         _insert(sql, [list(r)[:len(VEHICLE_COLS)] for r in rows])
     except Exception as e:
         print("  ! turso vehicles:", e)
-
-
-def sync_trips(rows):
-    """Upsert reconstructed journeys (trip_id is the key, so a refined trip
-    overwrites its earlier version)."""
-    if not enabled() or not rows:
-        return
-    sql = ("INSERT OR REPLACE INTO trips (%s) VALUES (%s)"
-           % (",".join(TRIP_COLS), ",".join(["?"] * len(TRIP_COLS))))
-    try:
-        _insert(sql, [list(r)[:len(TRIP_COLS)] for r in rows])
-    except Exception as e:
-        print("  ! turso trips:", e)
-
-
-def sync_trips_file(path):
-    """Push every row of a trips.csv (the whole file is small)."""
-    if not enabled() or not os.path.exists(path):
-        return
-    with open(path) as f:
-        rows = [[row.get(c, "") for c in TRIP_COLS] for row in csv.DictReader(f)]
-    sync_trips(rows)
 
 
 # --- CLI: init / smoke test / one-shot backfill of existing history ----------
@@ -215,9 +182,6 @@ def _backfill():
     vh = storage.query("SELECT %s FROM vehicles" % ",".join(VEHICLE_COLS))
     sync_vehicles([list(r) for r in vh])
     print("backfilled vehicles: %d" % len(vh))
-    tp = storage.query("SELECT %s FROM trips" % ",".join(TRIP_COLS))
-    sync_trips([list(r) for r in tp])
-    print("backfilled trips:    %d" % len(tp))
 
 
 if __name__ == "__main__":
@@ -232,7 +196,7 @@ if __name__ == "__main__":
         _backfill()
     else:  # status: prove connectivity + show row counts
         _ensure()
-        for t in ("readings", "vehicles", "trips"):
+        for t in ("readings", "vehicles"):
             n = _pipeline([("SELECT count(*) FROM %s" % t, [])])
             val = n["results"][0]["response"]["result"]["rows"][0][0]["value"]
             print("turso %-9s rows=%s" % (t, val))

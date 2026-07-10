@@ -258,7 +258,7 @@
     <button data-tab="brain">BrainView</button>
     <button data-tab="about">About</button>
   </nav>
-  <div class="mark"><span class="dot"></span> Open Data · No Faces · No Plates</div>
+  <div class="mark"><span class="dot"></span> Open Data · No Faces · No Plates · No Re-ID</div>
 </div></header>
 
 <main class="wrap">
@@ -268,17 +268,8 @@
   <section class="hero" style="padding:52px 0 30px">
     <div class="eyebrow">Situational awareness platform · Unclassified // Open Data</div>
     <h1>Watch the city move,<br>one car at a time.</h1>
-    <p class="sub">We read New York's own traffic cameras in real time — counting the crowd, and following the vehicles distinctive enough to recognize as they cross from one camera to the next. The traffic, never the people.</p>
+    <p class="sub">We read New York's own traffic cameras in real time — counting and measuring the vehicles on every block: how many, what type, how big. The traffic, never the people — and, by design, never followed from one camera to the next.</p>
     <div class="statesent" id="stateSent">Reading the streets…</div>
-  </section>
-
-  <section class="blk livetrack" id="liveTrackBlk">
-    <div class="eyebrow">Live tracking · re-identified across cameras</div>
-    <h2>The same car, two corners apart</h2>
-    <div class="note">a vehicle distinctive enough to recognize — caught at one camera, then picked up again down the road. same look, minutes and blocks later. no plate, no face — just a pattern of colour, body and size, carried with a confidence.</div>
-    <div class="grid g3" id="ltStats" style="margin:18px 0 20px"></div>
-    <div class="ltFeature" id="ltFeature"><div class="collecting" style="padding:26px 8px">collecting… the live track appears the moment a vehicle is recognized at a second camera.</div></div>
-    <div class="ltStrip" id="ltStrip"></div>
   </section>
 
   <section class="blk">
@@ -287,14 +278,14 @@
     <div class="note">live counts from the cameras · aggregate only</div>
     <div class="grid g2" style="margin-bottom:14px">
       <div class="cell"><div class="k">Cars in view — now</div><div class="big car" id="now_cars">—</div><div class="vs" id="vs_cars"></div></div>
-      <div class="cell"><div class="k">Pedestrians — now</div><div class="big ped" id="now_ped">—</div><div class="vs" id="vs_ped"></div></div>
+      <div class="cell"><div class="k">Cameras reporting live</div><div class="big" id="now_live" style="color:var(--live)">—</div><div class="vs" id="vs_live">fresh frames · stale feeds flagged, not counted</div></div>
     </div>
     <div class="grid g4" id="strip"></div>
   </section>
 
   <section class="blk">
     <div class="eyebrow">Time series</div><h2>Traffic over time</h2>
-    <div class="note">avg cars &amp; pedestrians in view · 1-min buckets</div>
+    <div class="note">avg cars in view · 1-min buckets</div>
     <div class="card"><canvas id="chart"></canvas></div>
   </section>
 
@@ -306,26 +297,14 @@
 
   <section class="blk">
     <div class="eyebrow">Composition</div><h2>What's out there</h2>
-    <div class="note">all-time · vehicle mix and detected paint color</div>
-    <div class="split2">
-      <div class="card"><canvas id="mixChart"></canvas></div>
-      <div class="card"><canvas id="colorChart"></canvas></div>
-    </div>
+    <div class="note">all-time · vehicle mix by type</div>
+    <div class="card"><canvas id="mixChart"></canvas></div>
   </section>
 
   <section class="blk">
     <div class="eyebrow">Measured, not guessed</div><h2>Vehicle types by size</h2>
     <div class="note" id="bodyNote">each camera learns its own scale from the typical car, then sizes every vehicle</div>
     <div class="card"><canvas id="bodyChart"></canvas></div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Corridors</div><h2>Speeds — camera to camera</h2>
-    <div class="note">a moving vehicle matched leaving one camera to its arrival down the road · distance ÷ time</div>
-    <div class="grid g3" id="speedStrip" style="margin-bottom:14px"></div>
-    <div class="tbl"><table>
-      <thead><tr><th class="name">Corridor</th><th>Distance</th><th>Median mph</th><th>Matches</th></tr></thead>
-      <tbody id="speedBody"></tbody></table></div>
   </section>
 
   <section class="blk">
@@ -339,15 +318,15 @@
   <section class="blk">
     <div class="eyebrow">Leaderboard</div><h2>Busiest intersections — all time</h2>
     <div class="tbl"><table>
-      <thead><tr><th class="name">Intersection</th><th>Vehicles</th><th>Peds</th><th>Passes</th></tr></thead>
+      <thead><tr><th class="name">Intersection</th><th>Vehicles</th><th>Passes</th></tr></thead>
       <tbody id="busiestBody"></tbody></table></div>
   </section>
 
   <section class="blk" style="border-bottom:0">
     <div class="eyebrow">Ground truth</div><h2>By intersection — this pass</h2>
-    <div class="note">live per-camera counts · click a frame to trace a vehicle seen there</div>
+    <div class="note">live per-camera vehicle counts · aggregate only</div>
     <div class="tbl"><table>
-      <thead><tr><th class="name">Intersection</th><th>Cars</th><th>Trucks</th><th>Buses</th><th>Moto</th><th>Bikes</th><th>Peds</th><th>mi</th></tr></thead>
+      <thead><tr><th class="name">Intersection</th><th>Cars</th><th>Trucks</th><th>Buses</th><th>Moto</th><th>mi</th></tr></thead>
       <tbody id="tbody"></tbody></table></div>
     <div class="thumbs" id="thumbs"></div>
   </section>
@@ -358,7 +337,7 @@
   <section class="hero" style="padding-bottom:36px">
     <div class="eyebrow">BrainView · what the system noticed</div>
     <h1 style="font-size:clamp(34px,5vw,58px)">The city, narrated.</h1>
-    <p class="sub">Bilbo doesn't just count — it recognizes. Every corner is watched, the distinctive vehicles are profiled, and their paths are drawn across the map. Surges, quiet streets, and today's widest roamers — ranked by surprise, not by volume.</p>
+    <p class="sub">Bilbo reads every corner and writes down what changed — surges, quiet streets, heavy-vehicle clusters, the busiest blocks on record. Plain-English dispatches, ranked by surprise, every one traceable back to the count.</p>
   </section>
 
   <section class="blk">
@@ -368,16 +347,10 @@
   </section>
 
   <section class="blk" style="border-bottom:0">
-    <div class="eyebrow">Re-identification</div><h2>Vehicle profiles — where has it been?</h2>
-    <div class="note">best-match trail across cameras · last 24h · not a plate read — a shared look can mean two cars, so each trail carries a confidence</div>
-    <div class="tracker">
-      <div class="trailList" id="trailList"></div>
-      <div class="trailDetail" id="trailDetail">
-        <div class="idline" id="trailId" style="display:none"></div>
-        <div class="trailEmpty" id="trailEmpty">Pick a vehicle on the left to trace where it travelled.</div>
-        <div id="trailMap" style="display:none"></div>
-        <div class="timeline" id="trailTimeline"></div>
-      </div>
+    <div class="eyebrow">By design</div><h2>What we don't do</h2>
+    <div class="note">the ethical line, drawn inside the product itself</div>
+    <div class="card" style="padding:22px 20px;line-height:1.65;max-width:760px">
+      Bilbo does not re-identify vehicles across cameras, does not profile paint colour, and does not read plates or faces. We built cross-camera matching and measured it honestly — at this resolution it was close to a coin-flip, so we removed it rather than ship a guess dressed as a fact. Everything on this site is a <b>count</b>, a <b>type</b>, or a <b>measured size</b> at a single camera, in a single minute. Findings, not footage.
     </div>
   </section>
 </div>
@@ -414,8 +387,8 @@
     <p class="about-p" style="margin-top:22px">That's the whole thesis: same seeing-stone, opposite hands. The instrument only kings and dark lords were meant to hold, put in the paws of the one creature that doesn't get ruled by it. And — literally — Bilbo is my girlfriend's dog: a small creature, no one's idea of a hero, who ends up carrying something the powerful would rather keep for themselves. Made anonymously, in New York.</p>
 
     <h3 class="about-h3">From counting to recognizing</h3>
-    <p class="about-p">Bilbo began as a counter — <b>how many</b> cars and people cross a corner each minute. It still counts everything. But a count throws every car into one grey heap and never follows a single one. So Bilbo now also <b>recognizes</b>: for the vehicles distinctive enough to re-identify — a color, a body type, a size, a path — it keeps a <b>profile</b> and traces that vehicle camera to camera, turning raw volume into <b>movement</b> across the city.</p>
-    <p class="about-p">This is the sharper edge of the same instrument, and it's exactly why the rules below matter. A profile is a <b>pattern, never a person</b>: a look and a route, held only long enough to map the traffic, then dropped. People are recognized coarser still — a pedestrian is at most a shirt color and a pants color, never a face and never a name. The eye that recognizes is the more powerful eye; the discipline is in what we refuse to let it see.</p>
+    <p class="about-p">Bilbo began as a counter — <b>how many</b> cars cross a corner each minute — and it still is one. It also <b>measures</b>: each camera learns its own scale from the typical car, so a vehicle isn't just counted but <b>sized and typed</b> — sedan, van, truck, bus. What it deliberately does <b>not</b> do is follow one car from camera to camera. A count throws every car into one grey heap; we leave it there, on purpose.</p>
+    <p class="about-p">That restraint is the whole point, and it's exactly why the rules below matter. We <i>built</i> cross-camera re-identification — a color, a look, a route drawn across the map — then measured it honestly and found it barely better than a guess at this resolution. So we took it out. The eye that recognizes is the more powerful eye; the discipline is in what we refuse to let it see, even when we could.</p>
 
     <div class="prod">
       <div class="p"><div class="code">CURB-OS</div><h3>Rebuilding American parking supremacy</h3><p>An operating system for the world's most contested eight feet of asphalt. Deployed at scale on President Street.</p></div>
@@ -429,8 +402,8 @@
       <ul>
         <li><b>No faces.</b> Never detected, never stored. At a traffic camera's resolution a person is a smudge, and we keep it that way.</li>
         <li><b>No plates.</b> A car is about 23 pixels wide. Plates are physically unreadable — so we never try to read one.</li>
-        <li><b>A pattern, never a person.</b> A vehicle profile is a color, a size, and a distinctive look used to follow it corner to corner — never a face, a plate, or an owner's name. There is no owner in our data because we cannot know one.</li>
-        <li><b>People, coarser still.</b> A pedestrian is only ever a shirt color and a pants color — enough to notice a crossing, never enough to name a soul.</li>
+        <li><b>No re-identification.</b> Bilbo does not follow a vehicle from one camera to the next, does not profile its colour, and does not read plates or faces. Every figure is a count, a type, or a measured size at a single camera. There is no owner in our data because we cannot — and will not — know one.</li>
+        <li><b>Vehicles, not people.</b> Bilbo counts and measures vehicles. It does not profile pedestrians — no shirt, no face, no name. People stay part of the crowd.</li>
         <li><b>Ephemeral by design.</b> Profiles live for hours, then expire. Only the aggregate counts are kept; the individual look is let go.</li>
         <li><b>Findings, not footage.</b> Every frame is read, then discarded. We keep the count and the shape of the traffic — not the video.</li>
         <li><b>Auditable.</b> Public cameras in, open method, every claim stamped with a time and a confidence.</li>
@@ -488,7 +461,7 @@ document.addEventListener('click',e=>{
 function buildNotices(){
   const el=$('feed'); if(!el)return;
   const out=[]; const now=Date.now();
-  const s=LAST.stats, c=LAST.counts, sp=LAST.speed;
+  const s=LAST.stats, c=LAST.counts;
   // state vs yesterday
   if(s&&s.now){
     if(s.yesterday&&s.yesterday.cars!=null){
@@ -514,14 +487,6 @@ function buildNotices(){
     if(topCar) out.push({t:now,tag:'busy',cls:'',txt:`${topCar.name} is carrying the most traffic this minute, with ${topCar.n} cars in view.`,src:'source · this pass'});
     if(quiet) out.push({t:now,tag:'quiet',cls:'quiet',txt:`${quiet.name} is quiet — nothing moving through it this pass.`,src:'source · this pass'});
   }
-  // widest roamer from trails
-  if(TRAILS&&TRAILS.length){
-    const wide=[...TRAILS].sort((a,b)=>(b.cams||0)-(a.cams||0))[0];
-    if(wide&&wide.cams>=2) out.push({t:now,tag:'roam',cls:'roam',txt:`A ${wide.color||''} ${BODY_LABELS[wide.type]||wide.type||'vehicle'} is one of today's widest roamers — seen at ${wide.cams} corners over ${wide.span_min} minutes.`,src:'source · re-identification trail'});
-  }
-  // speed
-  if(sp&&sp.city_median_mph!=null) out.push({t:now,tag:'flow',cls:'',txt:`Vehicles are moving at about ${sp.city_median_mph} mph across the ${sp.corridors_measured||0} corridors we can measure.`,src:'source · corridor speeds'});
-
   if(!out.length){ el.innerHTML='<div class="notice"><div class="bd"><div class="txt collecting">Listening… dispatches appear as the cameras report and vehicles are re-seen.</div></div></div>'; return; }
   el.innerHTML=out.map(n=>`<div class="notice">
     <div class="tm">${clock(n.t)}</div>
@@ -776,8 +741,7 @@ function drawHod(hod){
   const labels=hod.map(h=>String(h.h).padStart(2,'0'));
   if(hodChart){hodChart.data.datasets[0].data=hod.map(h=>h.cars);hodChart.data.datasets[1].data=hod.map(h=>h.ped);hodChart.data.labels=labels;hodChart.update('none');return;}
   hodChart=new Chart($('hodChart'),{type:'line',data:{labels,datasets:[
-    {label:'Cars',data:hod.map(h=>h.cars),borderColor:COL.car,backgroundColor:'rgba(91,141,239,.12)',fill:true,tension:.35,pointRadius:0,borderWidth:2},
-    {label:'Pedestrians',data:hod.map(h=>h.ped),borderColor:COL.ped,backgroundColor:'rgba(74,217,145,.10)',fill:true,tension:.35,pointRadius:0,borderWidth:2}]},
+    {label:'Cars',data:hod.map(h=>h.cars),borderColor:COL.car,backgroundColor:'rgba(91,141,239,.12)',fill:true,tension:.35,pointRadius:0,borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:COL.dim,boxWidth:12,font:{family:'IBM Plex Mono'}}}},
       scales:{x:{ticks:{color:COL.dim},grid:{color:COL.grid}},y:{ticks:{color:COL.dim},grid:{color:COL.grid},beginAtZero:true}}}});
 }
@@ -786,32 +750,16 @@ fetch(D('stats.json')).then(r=>r.json()).then(s=>{
   LAST.stats=s; drawHod(s.hour_of_day);
   const m=s.vehicle_mix||{}, mk=Object.keys(m).filter(k=>m[k]);
   if(mk.length)mixChart=barChart(mixChart,'mixChart',mk,mk.map(k=>m[k]),BODY_COL,true);
-  const c=s.color_mix||{}, ck=Object.keys(c).filter(k=>c[k]);
-  if(ck.length)colorChart=barChart(colorChart,'colorChart',ck,ck.map(k=>c[k]),ck.map(k=>COLOR_HEX[k]||'#8b909a'),true);
   const b=s.busiest||[];
-  $('busiestBody').innerHTML=b.map(r=>`<tr><td class="name">${r.name}</td><td>${r.veh}</td><td>${r.ped}</td><td class="dim">${r.samples}</td></tr>`).join('')||'<tr><td class="name dim" colspan="4">collecting…</td></tr>';
+  $('busiestBody').innerHTML=b.map(r=>`<tr><td class="name">${r.name}</td><td>${r.veh}</td><td class="dim">${r.samples}</td></tr>`).join('')||'<tr><td class="name dim" colspan="3">collecting…</td></tr>';
 }).catch(()=>{});
 
 function loadIntel(){
   const t=Date.now();
-  fetch(D('trajectories.json')+'?t='+t).then(r=>r.ok?r.json():null).then(tj=>{
-    if(!tj)return; TRAILS=tj.trails||[]; SEEN_NOW=tj.seen_now||{}; renderTracker(); buildLiveTrack(); paintSeenBadges();
-    if($('tab-brain').classList.contains('on')) buildNotices();
-  }).catch(()=>{});
   fetch(D('calibration.json')+'?t='+t).then(r=>r.ok?r.json():null).then(cal=>{
     if(!cal)return; const h=cal.body_hist||{}, keys=Object.keys(BODY_LABELS).filter(k=>h[k]);
     if(keys.length){ bodyChart=barChart(bodyChart,'bodyChart',keys.map(k=>BODY_LABELS[k]),keys.map(k=>h[k]),BODY_COL,false);
       const cv=cal.coverage||{}; $('bodyNote').innerHTML=`each camera learns its own scale · <b>${cal.cameras_calibrated}</b> cameras calibrated · sized <b>${cv.pct}%</b> of ${cv.vehicles} vehicles`; }
-  }).catch(()=>{});
-  fetch(D('speed.json')+'?t='+t).then(r=>r.ok?r.json():null).then(sp=>{
-    if(!sp)return; LAST.speed=sp;
-    const city=sp.city_median_mph!=null?sp.city_median_mph+'<span class="u"> mph</span>':'—';
-    $('speedStrip').innerHTML=`
-      <div class="cell"><div class="k">City median speed</div><div class="v">${city}</div><div class="u">across measured corridors</div></div>
-      <div class="cell"><div class="k">Corridors measured</div><div class="v">${sp.corridors_measured||0}</div><div class="u">of ${sp.neighbor_pairs} camera pairs</div></div>
-      <div class="cell"><div class="k">Vehicle matches</div><div class="v">${sp.total_matches||0}</div><div class="u">camera-to-camera hops</div></div>`;
-    const c=sp.corridors||[];
-    $('speedBody').innerHTML=c.map(r=>`<tr><td class="name">${r.a} → ${r.b}</td><td class="dim">${r.dist_mi} mi</td><td>${r.median_mph}</td><td class="dim">${r.matches}</td></tr>`).join('')||'<tr><td class="name dim" colspan="4">collecting… vehicles must be seen at two cameras</td></tr>';
   }).catch(()=>{});
   fetch(D('fleet.json')+'?t='+t).then(r=>r.ok?r.json():null).then(fl=>{
     if(!fl)return; const f=fl.fingerprints||[]; const pct=(m,k)=>m&&m[k]?Math.round(m[k]*100)+'%':'·';
@@ -840,17 +788,18 @@ function tick(){
   cams.forEach(c=>{ const el=$('img_'+c.id); if(el) el.src=D('preview/'+c.id+'.jpg')+'?t='+t; });
   fetch(D('counts.json')+'?t='+t).then(r=>r.ok?r.json():null).then(d=>{
     if(!d)return; LAST.counts=d;
+    let live=0; cams.forEach(c=>{const cd=d.cams[c.id]; if(cd&&cd.samples>0&&!cd.frozen)live++;});
+    const nl=$('now_live'); if(nl) nl.textContent=live;
     $('tbody').innerHTML=cams.map(c=>{const k=(d.cams[c.id]||{}).classes||{};
       const cell=(v)=>`<td class="${v?'':'n0'}">${v||0}</td>`;
-      return `<tr><td class="name">${c.name}</td>${cell(k.car)}${cell(k.truck)}${cell(k.bus)}${cell(k.moto)}${cell(k.bike)}${cell(k.person)}<td class="dim">${c.dist}</td></tr>`;
+      return `<tr><td class="name">${c.name}</td>${cell(k.car)}${cell(k.truck)}${cell(k.bus)}${cell(k.moto)}<td class="dim">${c.dist}</td></tr>`;
     }).join('');
     if($('tab-brain').classList.contains('on')) buildNotices();
   });
   fetch(D('stats.json')+'?t='+t).then(r=>r.ok?r.json():null).then(s=>{
     if(!s)return; LAST.stats=s;
-    $('now_cars').textContent=s.now.cars; $('now_ped').textContent=s.now.ped;
+    $('now_cars').textContent=s.now.cars;
     $('vs_cars').innerHTML=heroVs(s,'cars');
-    $('vs_ped').innerHTML=heroVs(s,'ped');
     stateSentence(s);
     $('strip').innerHTML=Object.keys(WLABEL).map(w=>{const x=s.windows[w];
       const val=x&&x.avg_cars!=null?x.avg_cars:'—';
