@@ -56,14 +56,13 @@ jobs:
           END=$(( $(date +%s) + ${{ inputs.run_seconds }} ))
           i=0
           while [ "$(date +%s)" -lt "$END" ]; do
-            python counter.py --minute                 # ~50s: detect, track, fingerprint, tag one minute
-            python pipeline.py || true                 # merge + metric/fleet/speed/trips over all history
+            python counter.py --minute                 # ~50s: detect, track, tag one minute (vehicles only)
+            python pipeline.py || true                 # merge + per-camera type/size aggregation
             i=$((i+1))
             # commit data every ~5 minutes to curb git-history bloat; frames on the 30s
-            git add counts.csv vehicles.csv counts.json stats.json \
-                    calibration.json fleet.json speed.json trajectories.json \
+            git add counts.csv vehicles.csv counts.csv.legacy vehicles.csv.legacy \
+                    counts.json stats.json calibration.json fleet.json \
                     data data_vehicles 2>/dev/null || true
-            git add trips.csv data_trips 2>/dev/null || true
             case "$(date +%M)" in 00|30) git add preview 2>/dev/null || true ;; esac
             if [ $((i % 5)) -eq 0 ]; then
               git commit -m "pulse $(date -u +%FT%TZ)" || true

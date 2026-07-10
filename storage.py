@@ -40,7 +40,11 @@ def _compact(csv_path, archive_dir, include_today, drop_cols=None):
         return []
     c = _con()
     c.execute("CREATE VIEW raw AS SELECT * FROM read_csv_auto('%s', header=true)" % csv_path)
-    sel = "* EXCLUDE (%s)" % ", ".join(drop_cols) if drop_cols else "*"
+    # Only exclude drop_cols that actually exist (schema varies over time, e.g. the
+    # old `emb` fingerprint column is gone in the vehicles-only rebuild).
+    have = {r[0] for r in c.execute("DESCRIBE raw").fetchall()}
+    present_drop = [d for d in (drop_cols or []) if d in have]
+    sel = "* EXCLUDE (%s)" % ", ".join(present_drop) if present_drop else "*"
     today = dt.date.today().isoformat()
     dates = [str(r[0]) for r in c.execute(
         "SELECT DISTINCT CAST(ts AS DATE) d FROM raw ORDER BY d").fetchall()]

@@ -25,8 +25,7 @@ already calls stats inline; call this for the richer layers).
 import os, glob, csv, sys
 
 import stats as statsmod
-import calibrate, fleet, crosscam, trajectories
-import turso_sync
+import calibrate, fleet
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -60,20 +59,18 @@ def aggregate():
     merged_veh = _merge("vehicles_shard*.csv", "vehicles.csv")
     print("merged: %d count-rows, %d vehicle-rows" % (merged_counts, merged_veh))
 
-    # heavy rollups, each guarded so one failure doesn't sink the cycle
+    # heavy rollups, each guarded so one failure doesn't sink the cycle.
+    # Cross-camera correlation (crosscam speed corridors, trajectory trips) was
+    # removed as unreliable (~40% match confidence); only per-camera type/size
+    # aggregation remains.
     for name, fn in (("stats", statsmod.compute),
                      ("calibrate", calibrate.compute),
-                     ("fleet", fleet.compute),
-                     ("crosscam", crosscam.compute),
-                     ("trajectories", trajectories.build)):
+                     ("fleet", fleet.compute)):
         try:
             fn()
             print("  ok  %s" % name)
         except Exception as e:
             print("  !!  %s: %s" % (name, e))
-
-    # Live mirror of the freshly (re)built journeys to Turso (no-op if unset).
-    turso_sync.sync_trips_file(os.path.join(HERE, "trips.csv"))
 
 
 if __name__ == "__main__":

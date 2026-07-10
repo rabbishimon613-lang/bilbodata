@@ -13,8 +13,7 @@ OUT = os.path.join(HERE, "stats.json")
 WINDOWS = {"1m": 60, "1h": 3600, "24h": 86400, "1mo": 2592000}
 
 
-VEH_KEYS = ("car", "truck", "bus", "moto", "bike", "person")
-COLOR_KEYS = ("red", "blue", "green", "yellow", "white", "black", "silver")
+VEH_KEYS = ("car", "truck", "bus", "moto")   # vehicles only (person/bike dropped)
 
 
 def _i(r, k):
@@ -116,14 +115,6 @@ def vehicle_mix(rows):
     return tot
 
 
-def color_mix(rows):
-    tot = {k: 0 for k in COLOR_KEYS}
-    for _, r in rows:
-        for k in COLOR_KEYS:
-            tot[k] += _i(r, k)
-    return tot
-
-
 def busiest_intersections(rows, limit=15):
     """Total cars+trucks+buses per intersection, all-time."""
     tot = defaultdict(lambda: [0, 0, 0])  # veh, ped, samples
@@ -200,7 +191,6 @@ def compute():
         "hour_of_day": hour_of_day(rows),
         "day_of_week": day_of_week(rows),
         "vehicle_mix": vehicle_mix(rows),
-        "color_mix": color_mix(rows),
         "busiest": busiest_intersections(rows),
         "total_passes": len(passes),
     }

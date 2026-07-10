@@ -42,10 +42,10 @@ def link_tracks(frames, iou_thresh=0.2, max_gap=2):
     """Link per-frame detections into tracks by greedy IOU association.
 
     `frames` = ordered list (one per captured frame) of detection lists;
-    each detection = {"box":(x1,y1,x2,y2), "cls":str, "color":str}.
+    each detection = {"box":(x1,y1,x2,y2), "cls":str}.
     Returns a list of tracks; each track summarises one vehicle's pass.
     """
-    active = []   # {last_frame, boxes:[...], cls:Counter-ish, colors:[...], centers:[...]}
+    active = []   # {last_frame, boxes:[...], cls:[...], centers:[...]}
     done = []
 
     def close(tr):
@@ -77,9 +77,7 @@ def link_tracks(frames, iou_thresh=0.2, max_gap=2):
             tr, d = active[ti], dets[di]
             tr["boxes"].append(d["box"])
             tr["centers"].append(_center(d["box"]))
-            tr["colors"].append(d["color"])
             tr["cls"].append(d["cls"])
-            tr["crops"].append(d.get("crop"))
             tr["last_frame"] = fi
             matched_tracks.add(ti)
             used.add(di)
@@ -88,9 +86,7 @@ def link_tracks(frames, iou_thresh=0.2, max_gap=2):
             if di in used:
                 continue
             active.append({"first_frame": fi, "last_frame": fi, "boxes": [d["box"]],
-                           "centers": [_center(d["box"])],
-                           "colors": [d["color"]], "cls": [d["cls"]],
-                           "crops": [d.get("crop")]})
+                           "centers": [_center(d["box"])], "cls": [d["cls"]]})
     for tr in active:
         close(tr)
 
@@ -116,7 +112,6 @@ def summarize(tr):
     areas = [(b[2] - b[0]) * (b[3] - b[1]) for b in tr["boxes"]]
     bi = max(range(len(areas)), key=lambda i: areas[i])
     best = tr["boxes"][bi]
-    best_crop = tr["crops"][bi] if tr.get("crops") else None
     w, h = best[2] - best[0], best[3] - best[1]
     area = w * h
     aspect = round(w / h, 3) if h else 0.0
@@ -129,15 +124,13 @@ def summarize(tr):
     return {
         "cls": _mode([c for c in tr["cls"] if c in VEH_CLASSES]) or _mode(tr["cls"]),
         "box_w": int(w), "box_h": int(h), "area_px": int(area), "aspect": aspect,
-        "color": _mode(tr["colors"]),
         "frames": len(tr["boxes"]),
         "heading": heading,
         "px_per_frame": round(dist / frames_span, 2),
         "moving": dist > max(w, h) * 0.4,   # moved ~half its own size => not parked
         "f0": tr["first_frame"], "f1": tr["last_frame"],   # frame indices (for wall-clock timing)
-        "crop": best_crop,                  # best look, for fingerprint + colour (not logged raw)
     }
 
 
-VEH_FIELDS = ["cls", "box_w", "box_h", "area_px", "aspect", "color",
+VEH_FIELDS = ["cls", "box_w", "box_h", "area_px", "aspect",
               "frames", "heading", "px_per_frame", "moving"]
