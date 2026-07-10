@@ -106,6 +106,15 @@
   .notice .tag.surge{color:var(--warn);border-color:#4a3c1c}
   .notice .tag.quiet{color:var(--accent);border-color:#243a5e}
   .notice .tag.roam{color:var(--live);border-color:#1f4a3b}
+  .notice .tag.archive{color:var(--warn);border-color:#4a3c1c}
+
+  /* the record (history browser) */
+  .recBar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .recDay{width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:12px 0 2px}
+  .recDay:first-child{margin-top:0}
+  .recChip{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line2);border-radius:2px;color:var(--dim);cursor:pointer;background:var(--panel2)}
+  .recChip:hover{color:var(--ink);border-color:var(--ink)}
+  .recChip.on{color:var(--live);border-color:#1f4a3b;background:#08120d}
 
   /* tracker / profiles */
   .tracker{display:grid;grid-template-columns:320px 1fr;gap:14px}
@@ -346,6 +355,17 @@
     <div class="feed" id="feed"><div class="notice"><div class="bd"><div class="txt collecting">Listening to the streets…</div></div></div></div>
   </section>
 
+  <section class="blk">
+    <div class="eyebrow">The Record</div><h2>Go back on the record</h2>
+    <div class="note">every pass the system makes is committed to a public ledger, forever · pick a moment and read what it saw then — auditable down to the commit</div>
+    <div class="recBar" id="recBar"><span class="collecting">opening the ledger…</span></div>
+    <div class="feed" id="recView" style="margin-top:16px;display:none"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn" id="recMore" onclick="recFetch()">Load older passes</button>
+      <span class="note" style="margin:0" id="recCount"></span>
+    </div>
+  </section>
+
   <section class="blk" style="border-bottom:0">
     <div class="eyebrow">By design</div><h2>What we don't do</h2>
     <div class="note">the ethical line, drawn inside the product itself</div>
@@ -444,54 +464,158 @@ const $=id=>document.getElementById(id);
 const clock=ms=>new Date(ms).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
 function agoTxt(ms){const s=(Date.now()-ms)/1000; if(s<90)return 'just now'; if(s<3600)return Math.round(s/60)+' min ago'; return Math.round(s/3600)+' h ago';}
 
+/* ---------- camera name standardization ----------
+   DOT internal designations ("C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5") become
+   human corners ("Prospect Expwy @ Ft Hamilton Pkwy · Exit 5"). Everything
+   else is normalized to the "X @ Y" house style. */
+const HWY={PE:'Prospect Expwy',BQE:'Brooklyn-Queens Expwy',GOW:'Gowanus Expwy',
+  LIE:'Long Island Expwy',GCP:'Grand Central Pkwy',VWE:'Van Wyck Expwy',
+  CVE:'Clearview Expwy',WSE:'West Shore Expwy',SIE:'Staten Island Expwy',
+  MDE:'Major Deegan Expwy',BRE:'Bruckner Expwy',CBX:'Cross Bronx Expwy',
+  CBE:'Cross Bronx Expwy',SHE:'Sheridan Expwy',HRP:'Hutchinson River Pkwy',
+  BRP:'Bronx River Pkwy',HHP:'Henry Hudson Pkwy',FDR:'FDR Drive',
+  NSP:'Northern State Pkwy',KVP:'Korean War Veterans Pkwy'};
+const DIRW={NB:'northbound',SB:'southbound',EB:'eastbound',WB:'westbound'};
+function pretty(n){
+  if(!n) return n;
+  const m=n.match(/^C\d+-([A-Z]{2,4})-\d+[A-Z]?[-_](.*)$/);
+  if(m&&HWY[m[1]]){
+    let rest=m[2], dir='';
+    const dm=rest.match(/^(NB|SB|EB|WB|N|S|E|W)(?=[_-])/i);
+    if(dm) dir=DIRW[dm[1].toUpperCase().slice(0,1)+'B'];
+    let cross=rest.replace(/^(NB|SB|EB|WB|N|S|E|W|Ctr|Cntr|Center|Med|Btwn)(?=[_-])[_-]*/i,'');
+    const am=cross.match(/at[_ ](.+)$/i); if(am) cross=am[1];
+    let exit=''; const em=cross.match(/[-_]?Ex[_.]?(\w+)$/i);
+    if(em){exit=em[1]; cross=cross.replace(/[-_]?Ex[_.]?\w+$/i,'');}
+    cross=cross.replace(/_/g,' ').replace(/[- ]+$/,'').trim()
+      .replace(/\bHamltn\b/gi,'Hamilton').replace(/\bBrx\.?\s?Rvr\b/gi,'Bronx River')
+      .replace(/\bStewrt\b/gi,'Stewart').replace(/\bKosc\b/gi,'Kosciuszko')
+      .replace(/\bTwn\b/gi,'Town').replace(/\bHutch\b/gi,'Hutchinson')
+      .replace(/[-_\s]Br\.?$/i,' Bridge').replace(/\bAvenue\b/gi,'Ave').replace(/\bStreet\b/gi,'St');
+    let out=HWY[m[1]]+(cross?' @ '+cross:'');
+    if(exit) out+=' · Exit '+exit;
+    if(dir) out+=' ('+dir+')';
+    return out;
+  }
+  return n.replace(/\s+and\s+/g,' @ ').replace(/\bFt\.\s?/g,'Ft ').replace(/_/g,' ').replace(/\s{2,}/g,' ').trim();
+}
+function prettifyStats(s){ if(s&&s.busiest) s.busiest.forEach(r=>r.name=pretty(r.name)); }
+function prettifyFleet(fl){ (fl&&fl.fingerprints||[]).forEach(r=>r.name=pretty(r.name)); }
+
 /* ---------- tabs ---------- */
 function showTab(name){
   document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('on', p.id==='tab-'+name));
   document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===name));
   window.scrollTo({top:0});
   if(name==='live'){[chart,hodChart,mixChart,colorChart,bodyChart].forEach(c=>{try{c&&c.resize()}catch(e){}});}
-  if(name==='brain'){ buildNotices(); setTimeout(()=>{try{LMAP&&LMAP.invalidateSize()}catch(e){}},80); }
+  if(name==='brain'){ buildNotices(); if(!REC_items.length) recFetch(); setTimeout(()=>{try{LMAP&&LMAP.invalidateSize()}catch(e){}},80); }
 }
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-tab]'); if(!t)return;
   e.preventDefault(); showTab(t.dataset.tab);
 });
 
-/* ---------- brainview notices (generated from live data) ---------- */
-function buildNotices(){
-  const el=$('feed'); if(!el)return;
-  const out=[]; const now=Date.now();
-  const s=LAST.stats, c=LAST.counts;
+/* ---------- brainview notices (generated from any pass, live or archived) ---------- */
+function noticesFrom(src, now){
+  const out=[];
+  const s=src.stats, c=src.counts;
   // state vs yesterday
   if(s&&s.now){
     if(s.yesterday&&s.yesterday.cars!=null){
       const d=s.now.cars-s.yesterday.cars;
       if(Math.abs(d)>=2) out.push({t:now,tag:d>0?'surge':'quiet',cls:d>0?'surge':'quiet',
-        txt:`Traffic is running ${d>0?'heavier':'lighter'} than this time yesterday — about ${s.now.cars} cars in view now versus ${s.yesterday.cars} then.`,
+        txt:`Traffic is running ${d>0?'heavier':'lighter'} than the same time a day earlier — about ${s.now.cars} cars in view versus ${s.yesterday.cars} then.`,
         src:'source · live count vs yesterday'});
     }
     const busy=(s.busiest||[])[0];
     if(busy) out.push({t:now,tag:'surge',cls:'surge',txt:`${busy.name} is the busiest corner on record — ${busy.veh.toLocaleString()} vehicles logged across ${busy.samples.toLocaleString()} passes.`,src:'source · all-time leaderboard'});
   }
-  // truck / surge scan on this pass
+  // truck / surge / quiet scan on this pass
   if(c&&c.cams){
-    let topTruck=null,topCar=null,quiet=null;
+    let topTruck=null,topCar=null,quiet=null,quietN=0;
     cams.forEach(cm=>{
       const k=(c.cams[cm.id]||{}).classes||{};
       if((k.truck||0)>=1 && (!topTruck||k.truck>topTruck.n)) topTruck={name:cm.name,n:k.truck};
       if((k.car||0)>=1 && (!topCar||k.car>topCar.n)) topCar={name:cm.name,n:k.car};
       const tot=(k.car||0)+(k.truck||0)+(k.bus||0);
-      if(tot===0 && !quiet) quiet={name:cm.name};
+      if(tot===0){ quietN++; if(!quiet) quiet={name:cm.name}; }
     });
-    if(topTruck&&topTruck.n>=2) out.push({t:now,tag:'surge',cls:'surge',txt:`Heavy vehicles clustering at ${topTruck.name} — ${topTruck.n} trucks in frame right now.`,src:'source · this pass'});
+    if(topTruck&&topTruck.n>=2) out.push({t:now,tag:'surge',cls:'surge',txt:`Heavy vehicles clustering at ${topTruck.name} — ${topTruck.n} trucks in frame.`,src:'source · this pass'});
     if(topCar) out.push({t:now,tag:'busy',cls:'',txt:`${topCar.name} is carrying the most traffic this minute, with ${topCar.n} cars in view.`,src:'source · this pass'});
-    if(quiet) out.push({t:now,tag:'quiet',cls:'quiet',txt:`${quiet.name} is quiet — nothing moving through it this pass.`,src:'source · this pass'});
+    if(quietN>=3) out.push({t:now,tag:'quiet',cls:'quiet',txt:`${quietN} of ${cams.length} corners are completely quiet — nothing moving through them this pass.`,src:'source · this pass'});
+    else if(quiet) out.push({t:now,tag:'quiet',cls:'quiet',txt:`${quiet.name} is quiet — nothing moving through it this pass.`,src:'source · this pass'});
   }
-  if(!out.length){ el.innerHTML='<div class="notice"><div class="bd"><div class="txt collecting">Listening… dispatches appear as the cameras report and vehicles are re-seen.</div></div></div>'; return; }
-  el.innerHTML=out.map(n=>`<div class="notice">
+  // rush-curve context for this hour
+  if(s&&s.hour_of_day){
+    const hh=new Date(now).getHours();
+    const hod=(s.hour_of_day||[]).filter(h=>h.samples>0);
+    const cur=hod.find(h=>h.h===hh), peak=[...hod].sort((a,b)=>b.cars-a.cars)[0];
+    if(cur&&peak){
+      if(cur.h===peak.h) out.push({t:now,tag:'surge',cls:'surge',txt:`This is historically the peak hour — the heaviest sixty minutes of the block's day.`,src:'source · rush curve'});
+      else out.push({t:now,tag:'flow',cls:'',txt:`Typical for this hour: about ${cur.cars} cars in view. The block peaks around ${String(peak.h).padStart(2,'0')}:00.`,src:'source · rush curve'});
+    }
+  }
+  return out;
+}
+function noticeHTML(n){
+  return `<div class="notice">
     <div class="tm">${clock(n.t)}</div>
     <div class="bd"><div class="txt">${n.txt}</div><div class="src">${n.src}</div></div>
-    <div class="tag ${n.cls}">${n.tag}</div></div>`).join('');
+    <div class="tag ${n.cls}">${n.tag}</div></div>`;
+}
+function buildNotices(){
+  const el=$('feed'); if(!el)return;
+  const out=noticesFrom({stats:LAST.stats,counts:LAST.counts},Date.now());
+  if(!out.length){ el.innerHTML='<div class="notice"><div class="bd"><div class="txt collecting">Listening… dispatches appear as the cameras report.</div></div></div>'; return; }
+  el.innerHTML=out.map(noticeHTML).join('');
+}
+
+/* ---------- the record: browse any past pass via the public commit ledger ---------- */
+const REPO='rabbishimon613-lang/bilbodata';
+let REC_items=[], REC_page=1, REC_sel=null, REC_loading=false;
+function recFetch(){
+  if(REC_loading) return; REC_loading=true;
+  const btn=$('recMore'); if(btn) btn.textContent='Loading…';
+  fetch(`https://api.github.com/repos/${REPO}/commits?path=counts.json&per_page=48&page=${REC_page}`)
+    .then(r=>r.ok?r.json():[]).then(list=>{
+      REC_page++;
+      REC_items=REC_items.concat((list||[]).map(c=>({sha:c.sha,t:new Date(c.commit.committer.date).getTime()})));
+      renderRecChips();
+    }).catch(()=>{ $('recBar').innerHTML='<span class="collecting">the ledger is busy — try again in a minute</span>'; })
+    .finally(()=>{ REC_loading=false; const b=$('recMore'); if(b) b.textContent='Load older passes'; });
+}
+function renderRecChips(){
+  const bar=$('recBar'); if(!bar) return;
+  if(!REC_items.length){ bar.innerHTML='<span class="collecting">no archived passes yet</span>'; return; }
+  let html='', lastDay='';
+  REC_items.forEach((it,i)=>{
+    const day=new Date(it.t).toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
+    if(day!==lastDay){ html+=`<div class="recDay">${day}</div>`; lastDay=day; }
+    html+=`<span class="recChip${it.sha===REC_sel?' on':''}" onclick="recShow(${i})">${clock(it.t)}</span>`;
+  });
+  bar.innerHTML=html;
+  $('recCount').textContent=`${REC_items.length} passes loaded · the ledger goes back to the first pulse`;
+}
+function recShow(i){
+  const it=REC_items[i]; if(!it) return;
+  REC_sel=it.sha; renderRecChips();
+  const rv=$('recView'); rv.style.display='flex';
+  rv.innerHTML='<div class="notice"><div class="bd"><div class="txt collecting">Reading the record…</div></div></div>';
+  const base=`https://raw.githubusercontent.com/${REPO}/${it.sha}/`;
+  Promise.all(['counts.json','stats.json'].map(f=>
+    fetch(base+f).then(r=>r.ok?r.json():null).catch(()=>null)
+  )).then(([c,s])=>{
+    prettifyStats(s);
+    const out=noticesFrom({stats:s,counts:c},it.t);
+    const when=new Date(it.t).toLocaleString([], {weekday:'long',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    const head=`<div class="notice"><div class="tm">${clock(it.t)}</div>
+      <div class="bd"><div class="txt">The record — <b>${when}</b></div>
+      <div class="src">reconstructed from the public ledger · commit ${it.sha.slice(0,7)}</div></div>
+      <div class="tag archive">archive</div></div>`;
+    rv.innerHTML=head+(out.length?out.map(noticeHTML).join(''):
+      '<div class="notice"><div class="bd"><div class="txt" style="color:var(--mut)">This pass was recorded, but nothing notable was in it.</div></div></div>');
+    rv.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
 }
 
 /* ---------- live track (hero: same car, two corners apart) ---------- */
@@ -747,7 +871,7 @@ function drawHod(hod){
 }
 
 fetch(D('stats.json')).then(r=>r.json()).then(s=>{
-  LAST.stats=s; drawHod(s.hour_of_day);
+  prettifyStats(s); LAST.stats=s; drawHod(s.hour_of_day);
   const m=s.vehicle_mix||{}, mk=Object.keys(m).filter(k=>m[k]);
   if(mk.length)mixChart=barChart(mixChart,'mixChart',mk,mk.map(k=>m[k]),BODY_COL,true);
   const b=s.busiest||[];
@@ -762,7 +886,7 @@ function loadIntel(){
       const cv=cal.coverage||{}; $('bodyNote').innerHTML=`each camera learns its own scale · <b>${cal.cameras_calibrated}</b> cameras calibrated · sized <b>${cv.pct}%</b> of ${cv.vehicles} vehicles`; }
   }).catch(()=>{});
   fetch(D('fleet.json')+'?t='+t).then(r=>r.ok?r.json():null).then(fl=>{
-    if(!fl)return; const f=fl.fingerprints||[]; const pct=(m,k)=>m&&m[k]?Math.round(m[k]*100)+'%':'·';
+    if(!fl)return; prettifyFleet(fl); const f=fl.fingerprints||[]; const pct=(m,k)=>m&&m[k]?Math.round(m[k]*100)+'%':'·';
     $('fleetBody').innerHTML=f.slice(0,20).map(r=>{const sig=BODY_LABELS[r.signature]||r.signature;
       return `<tr><td class="name">${r.name}</td><td class="name" style="color:var(--live)">${sig}</td>
         <td>${pct(r.mix,'sedan')}</td><td>${pct(r.mix,'suv_van')}</td><td>${pct(r.mix,'pickup_large')}</td>
@@ -772,7 +896,7 @@ function loadIntel(){
 }
 
 fetch(D('cams.json')).then(r=>r.json()).then(c=>{
-  cams=c;
+  cams=c; cams.forEach(x=>x.name=pretty(x.name));
   $('thumbs').innerHTML=cams.map(c=>`<div class="thumb" title="trace a vehicle seen here" onclick="thumbClick('${c.id}')">
      <img id="img_${c.id}"><span class="seen" id="seen_${c.id}" style="display:none"></span>
      <div class="cap">${c.name}</div></div>`).join('');
@@ -797,7 +921,7 @@ function tick(){
     if($('tab-brain').classList.contains('on')) buildNotices();
   });
   fetch(D('stats.json')+'?t='+t).then(r=>r.ok?r.json():null).then(s=>{
-    if(!s)return; LAST.stats=s;
+    if(!s)return; prettifyStats(s); LAST.stats=s;
     $('now_cars').textContent=s.now.cars;
     $('vs_cars').innerHTML=heroVs(s,'cars');
     stateSentence(s);
