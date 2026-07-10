@@ -265,6 +265,7 @@
   <nav class="tabs">
     <button data-tab="live" class="on">Live Dashboard</button>
     <button data-tab="brain">BrainView</button>
+    <button data-tab="academy">Academy</button>
     <button data-tab="about">About</button>
   </nav>
   <div class="mark"><span class="dot"></span> Open Data · No Faces · No Plates · No Re-ID</div>
@@ -371,6 +372,66 @@
     <div class="note">the ethical line, drawn inside the product itself</div>
     <div class="card" style="padding:22px 20px;line-height:1.65;max-width:760px">
       Bilbo does not re-identify vehicles across cameras, does not profile paint colour, and does not read plates or faces. We built cross-camera matching and measured it honestly — at this resolution it was close to a coin-flip, so we removed it rather than ship a guess dressed as a fact. Everything on this site is a <b>count</b>, a <b>type</b>, or a <b>measured size</b> at a single camera, in a single minute. Findings, not footage.
+    </div>
+  </section>
+</div>
+
+<!-- ========== ACADEMY ========== -->
+<div class="tabpane" id="tab-academy">
+  <section class="hero" style="padding-bottom:36px">
+    <div class="eyebrow">Bilbo Academy · the eye, teaching itself · watch-only</div>
+    <h1 style="font-size:clamp(34px,5vw,58px)">Watch it learn.</h1>
+    <p class="sub">Every reading on this site comes from a vision model — and this is where that model goes to school. A perpetual loop trains it on thousands of archived NYC camera frames, grades each generation on a camera it has never seen, and drills its worst mistakes. Telemetry published live from the training rig.</p>
+    <div class="statesent" id="acadState">Contacting the academy…</div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">This generation</div><h2>The current report card</h2>
+    <div class="note" id="acadNote">graded against the teacher model on held-back frames · updated as each epoch lands</div>
+    <div class="grid g4" id="acadTiles"></div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">Generations</div><h2>The staircase — is it actually getting better?</h2>
+    <div class="note">each step = one full generation, scored on a <b>frozen, never-trained</b> camera · the only honest number here</div>
+    <div class="card"><canvas id="acadGen"></canvas>
+      <div style="display:flex;gap:16px;font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:8px">
+        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#4ad991;margin-right:5px;vertical-align:-1px"></i>overall</span>
+        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#5b8def;margin-right:5px;vertical-align:-1px"></i>day</span>
+        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#e0a44a;margin-right:5px;vertical-align:-1px"></i>night</span>
+        <span id="acadGenHead" style="margin-left:auto;color:var(--ink)"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">Inside the epoch</div><h2>Accuracy up, loss down</h2>
+    <div class="note">left: how often it's right (higher is better) · right: how wrong it still is (lower is better)</div>
+    <div class="split2">
+      <div class="card"><canvas id="acadAcc"></canvas></div>
+      <div class="card"><canvas id="acadLoss"></canvas></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">Through its eyes</div><h2>What the student sees right now</h2>
+    <div class="note">a random frame from the training library, read by the <b>current</b> weights — boxes and confidence are its live guesses</div>
+    <div class="card" style="padding:10px;max-width:760px">
+      <img id="acadFrame" style="width:100%;border-radius:3px;display:block;background:#000" alt="">
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">Side quest</div><h2>The close-up library</h2>
+    <div class="note" id="acadHarvest">a second collector watches the sharper cameras for vehicles close enough to truly read — the seed corpus for future make &amp; model work</div>
+    <div id="acadCrops" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px"></div>
+  </section>
+
+  <section class="blk" style="border-bottom:0">
+    <div class="eyebrow">By design</div><h2>How this stays honest</h2>
+    <div class="note">the fine print, printed large</div>
+    <div class="card" style="padding:22px 20px;line-height:1.65;max-width:760px">
+      The report card is graded against a stronger <b>teacher model's</b> answers, not human ground truth. The staircase is scored on a <b>camera the student never trains on</b>, split day and night, so a step up means real generalization — not memorization. The student learns <b>counts and coarse types only</b> (car, truck, bus, motorcycle): no make, no model, no colour, no plates — at these resolutions those would be guesses, and we don't ship guesses. And this page is <b>watch-only</b>: the training rig publishes telemetry outward; nothing on the internet can reach back in.
     </div>
   </section>
 </div>
@@ -509,6 +570,7 @@ function showTab(name){
   window.scrollTo({top:0});
   if(name==='live'){[chart,hodChart,mixChart,colorChart,bodyChart].forEach(c=>{try{c&&c.resize()}catch(e){}});}
   if(name==='brain'){ buildNotices(); if(!REC_items.length) recFetch(); setTimeout(()=>{try{LMAP&&LMAP.invalidateSize()}catch(e){}},80); }
+  if(name==='academy'){ loadAcademy(); }
 }
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-tab]'); if(!t)return;
@@ -569,6 +631,81 @@ function buildNotices(){
   if(!out.length){ el.innerHTML='<div class="notice"><div class="bd"><div class="txt collecting">Listening… dispatches appear as the cameras report.</div></div></div>'; return; }
   el.innerHTML=out.map(noticeHTML).join('');
 }
+
+/* ---------- academy: live training telemetry (published by the rig) ---------- */
+const T=p=>DATA_BASE+'training/'+p;
+let acadAcc=null, acadLoss=null;
+function etaTxt(s){ if(!s&&s!==0)return '—'; const m=Math.round(s/60);
+  return m<1?'<1 min':m<60?m+' min':Math.floor(m/60)+' h '+(m%60)+' min'; }
+function acadStair(cv,gens){
+  const dpr=2,c=cv.getContext('2d'),W=cv.width=cv.clientWidth*dpr,H=cv.height=240*dpr,P=44*dpr;
+  c.clearRect(0,0,W,H);
+  if(!gens||!gens.length){c.fillStyle='#585d66';c.font=(13*dpr)+'px IBM Plex Mono';c.fillText('first generation still in training…',P,H/2);return;}
+  const keys=['mAP','day','night'],cols=['#4ad991','#5b8def','#e0a44a'];
+  let all=[];gens.forEach(g=>keys.forEach(k=>all.push(g[k]||0)));
+  let mn=Math.min(...all,0),mx=Math.max(...all,0.05);const pad=(mx-mn)*.15||.02;mn=Math.max(0,mn-pad);mx+=pad;
+  const n=Math.max(gens.length,2);
+  const X=i=>P+(gens.length===1?0.5:i/(n-1))*(W-1.4*P), Y=v=>H-P-(v-mn)/(mx-mn)*(H-1.7*P);
+  c.strokeStyle='#1b1c1f';c.lineWidth=dpr;
+  for(let k=0;k<=4;k++){const y=P/2+k/4*(H-1.2*P);c.beginPath();c.moveTo(P,y);c.lineTo(W-P/3,y);c.stroke();}
+  c.fillStyle='#585d66';c.font=(10*dpr)+'px IBM Plex Mono';
+  c.fillText(mx.toFixed(2),6,P/2+5*dpr);c.fillText(mn.toFixed(2),6,H-P/2);
+  keys.forEach((k,ki)=>{c.strokeStyle=cols[ki];c.lineWidth=2.2*dpr;c.beginPath();
+    gens.forEach((g,i)=>{const x=X(i),y=Y(g[k]||0);
+      if(i===0)c.moveTo(x,y);
+      else{const mx2=(X(i-1)+x)/2;c.lineTo(mx2,Y(gens[i-1][k]||0));c.lineTo(mx2,y);c.lineTo(x,y);}});
+    c.stroke();
+    gens.forEach((g,i)=>{c.fillStyle=cols[ki];c.beginPath();c.arc(X(i),Y(g[k]||0),3*dpr,0,7);c.fill();});
+  });
+  c.fillStyle='#585d66';gens.forEach((g,i)=>c.fillText('gen '+g.gen,X(i)-12*dpr,H-P/2+13*dpr));
+}
+function acadLine(refName,cv,labels,sets){
+  const cfg={type:'line',data:{labels,datasets:sets.map(s=>({label:s.l,data:s.d,borderColor:s.c,
+      backgroundColor:'transparent',tension:.3,pointRadius:0,borderWidth:2}))},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,
+      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,font:{family:'IBM Plex Mono'}}}},
+      scales:{x:{ticks:{color:COL.dim,maxTicksLimit:8},grid:{color:COL.grid}},
+              y:{ticks:{color:COL.dim},grid:{color:COL.grid}}}}};
+  if(refName==='acc'){ if(acadAcc){acadAcc.data=cfg.data;acadAcc.update('none');} else acadAcc=new Chart($('acadAcc'),cfg); }
+  else{ if(acadLoss){acadLoss.data=cfg.data;acadLoss.update('none');} else acadLoss=new Chart($('acadLoss'),cfg); }
+}
+function loadAcademy(){
+  fetch(T('status.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(a=>{
+    if(!a){ $('acadState').textContent='No telemetry yet — the academy has not published its first pulse.'; return; }
+    const ageMin=Math.round((Date.now()/1000-(a.ts||0))/60);
+    const v=a.live||{};
+    if(ageMin>20){
+      $('acadState').innerHTML=`The academy is <b>asleep</b> — last pulse ${ageMin} min ago. The staircase below is the record so far.`;
+    }else if(v.phase==='train'){
+      const pct=v.total?Math.round(100*v.epoch/v.total):0;
+      $('acadState').innerHTML=`<b>Generation ${v.gen}</b> in training — epoch <b>${v.epoch}/${v.total}</b> (${pct}%) · ~${etaTxt(v.eta_s)} to the next step of the staircase · pulse ${ageMin<1?'just now':ageMin+' min ago'}.`;
+    }else{
+      $('acadState').innerHTML=`Between generations — scoring and re-labeling the hardest frames · pulse ${ageMin} min ago.`;
+    }
+    const c=a.cur||{}, f=(x,d)=>x==null?'—':(+x).toFixed(d==null?3:d);
+    $('acadTiles').innerHTML=[
+      ['Strict grade — mAP50-95',f(c.mAP)],['Loose grade — mAP50',f(c.mAP50)],
+      ['Precision — when it speaks',f(c.P)],['Recall — what it finds',f(c.R)]
+    ].map(t=>`<div class="cell"><div class="k">${t[0]}</div><div class="v">${t[1]}</div></div>`).join('');
+    const gens=a.gens||[];
+    acadStair($('acadGen'),gens);
+    if(gens.length){const g=gens[gens.length-1],d=g.delta||0;
+      $('acadGenHead').innerHTML=`gen ${g.gen} · best ${(Math.max(...gens.map(x=>x.mAP))).toFixed(3)} · <span style="color:${d>=0?'#4ad991':'#e2645f'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(3)}</span>`;}
+    const s=a.series||{};
+    if((s.epoch||[]).length){
+      const lb=s.epoch.map(e=>'ep '+e);
+      acadLine('acc',null,lb,[{l:'mAP50-95',d:s.mAP,c:'#4ad991'},{l:'mAP50',d:s.mAP50,c:'#5b8def'},{l:'precision',d:s.P,c:'#a371f7'},{l:'recall',d:s.R,c:'#e0a44a'}]);
+      acadLine('loss',null,lb,[{l:'box loss',d:s.box,c:'#e2645f'},{l:'class loss',d:s.cls,c:'#d29922'}]);
+    }
+    $('acadFrame').src=T('live_pred.jpg')+'?t='+Date.now();
+    const h=a.harvest||{};
+    if(h.crops_total!=null) $('acadHarvest').innerHTML=`a second collector watches <b>${h.cams_watched||0}</b> sharper cameras (${h.cams_live||0} awake) for vehicles close enough to truly read — <b>${(h.crops_total||0).toLocaleString()}</b> close-ups banked so far · the seed corpus for future make &amp; model work`;
+    $('acadCrops').innerHTML=(a.crops||[]).map(cr=>
+      `<figure style="margin:0"><img src="${T('crop_'+cr.i+'.jpg')}?t=${a.ts}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
+       <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">${cr.cls} · ${cr.h}px · ${(cr.cam||'').slice(0,20)}</figcaption></figure>`).join('');
+  }).catch(()=>{ $('acadState').textContent='Telemetry unreachable.'; });
+}
+setInterval(()=>{ if($('tab-academy').classList.contains('on')) loadAcademy(); },60000);
 
 /* ---------- the record: browse any past pass via the public commit ledger ---------- */
 const REPO='rabbishimon613-lang/bilbodata';
