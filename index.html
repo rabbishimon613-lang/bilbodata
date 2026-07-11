@@ -29,9 +29,12 @@
 
   /* top banner */
   .banner{border-bottom:1px solid var(--line);background:#050505}
-  .banner .wrap{display:flex;align-items:center;justify-content:center;gap:8px;height:36px;font-size:12.5px;color:var(--dim)}
+  .banner .wrap{display:flex;align-items:center;justify-content:center;gap:8px;height:36px;font-size:12.5px;color:var(--dim);white-space:nowrap;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+  .banner .wrap::-webkit-scrollbar{display:none}
   .banner a{color:var(--ink);border-bottom:1px solid var(--line2)}
-  .banner b{color:var(--live);font-family:var(--mono);font-size:10px;letter-spacing:.2em}
+  .banner span b{color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:0}
+  .banner .db-sep{color:var(--line2);padding:0 2px}
+  .banner>.wrap>b:first-child{color:var(--live);font-family:var(--mono);font-size:10px;letter-spacing:.2em}
 
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -247,18 +250,49 @@
   .silent b{color:var(--warn)}
   .fine{font-family:var(--mono);font-size:10.5px;color:var(--mut);letter-spacing:.06em;margin-top:18px;line-height:1.9}
 
+  /* ===== evaluation room ===== */
+  .livedot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--live);margin-right:8px;vertical-align:1px;animation:pulse 1.8s infinite}
+  .evalgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:6px}
+  .ecard{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--panel2);display:flex;flex-direction:column;opacity:0;transform:translateY(6px);animation:eIn .5s forwards}
+  @keyframes eIn{to{opacity:1;transform:none}}
+  .ecard .im{position:relative;aspect-ratio:16/10;background:#000;overflow:hidden}
+  .ecard .im img{width:100%;height:100%;object-fit:cover;display:block}
+  .ecard .badges{position:absolute;top:7px;left:7px;right:7px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em}
+  .ecard .tag{background:rgba(0,0,0,.68);backdrop-filter:blur(3px);color:var(--ink);padding:3px 7px;border-radius:3px;text-transform:uppercase}
+  .ecard .chip{display:inline-flex;align-items:center;gap:5px;background:rgba(0,0,0,.68);backdrop-filter:blur(3px);padding:3px 7px 3px 5px;border-radius:3px;color:var(--ink)}
+  .ecard .sw{width:11px;height:11px;border-radius:2px;border:1px solid rgba(255,255,255,.35);flex:none}
+  .ecard .ago{margin-left:auto;background:rgba(0,0,0,.68);backdrop-filter:blur(3px);color:var(--live);padding:3px 7px;border-radius:3px}
+  .ecard .body{padding:11px 12px 13px}
+  .ecard .verd{display:flex;align-items:baseline;gap:8px}
+  .ecard .mk{font-size:19px;font-weight:400;color:var(--ink);letter-spacing:-.01em}
+  .ecard .su{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .ecard .conf{display:flex;height:7px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.05);margin:10px 0 8px}
+  .ecard .conf i{display:block;height:100%;transition:width .6s cubic-bezier(.4,0,.2,1)}
+  .ecard .legend{display:flex;flex-wrap:wrap;gap:3px 12px;font-family:var(--mono);font-size:10px;color:var(--mut)}
+  .ecard .legend b{color:var(--dim);font-weight:400}
+  .ecard .legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
+  .ecard .cam{font-family:var(--mono);font-size:9.5px;color:var(--mut);margin-top:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .graded .ecard .teach{font-family:var(--mono);font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .graded .ecard .teach b{color:var(--ink);font-size:15px;font-family:var(--sans);letter-spacing:0;text-transform:none;display:block;margin-top:2px}
+  .gmark{margin-left:auto;font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:3px}
+  .gmark.ok{color:#08170f;background:var(--live)}
+  .gmark.no{color:var(--ink);border:1px solid var(--red)}
+  .gmark.na{color:var(--mut);border:1px solid var(--line2)}
+
   @media(max-width:820px){
     .g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr}
     .split2{grid-template-columns:1fr}.tracker{grid-template-columns:1fr}
     .prod{grid-template-columns:1fr}.mark{display:none}
     header .wrap{gap:10px;height:60px}nav.tabs button{padding:7px 10px;font-size:12.5px}
     .brand .dt{display:none}
+    .evalgrid{grid-template-columns:1fr 1fr;gap:9px}
   }
+  @media(max-width:520px){ .evalgrid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 
-<div class="banner"><div class="wrap"><b>NEW</b><span>Read our founder's <a href="#about" data-tab="about">Letter to the Block Association</a> — on discipline, dignity, and double-parking.</span></div></div>
+<div class="banner"><div class="wrap" id="dashbar"><b>DASHBOARD VIEW</b><span>Cameras live <b id="db_live">—</b> feeding in</span><span class="db-sep">·</span><span>Car-box training <b id="db_box">—</b></span><span class="db-sep">·</span><span>Make/model training <b id="db_mm">—</b></span></div></div>
 
 <header><div class="wrap">
   <a class="brand" href="#" data-tab="live"><img src="assets/bilbo-pup.png" alt="Bilbo"><span class="bn">Bilbo</span><span class="dt">Data</span></a>
@@ -383,6 +417,19 @@
     <h1 style="font-size:clamp(34px,5vw,58px)">Watch it learn.</h1>
     <p class="sub">Every reading on this site comes from a vision model — and this is where that model goes to school. A perpetual loop trains it on thousands of archived NYC camera frames, grades each generation on a camera it has never seen, and drills its worst mistakes. Telemetry published live from the training rig.</p>
     <div class="statesent" id="acadState">Contacting the academy…</div>
+  </section>
+
+  <!-- ===== THE EVALUATION ROOM — live make/colour reads ===== -->
+  <section class="blk" id="evalRoom">
+    <div class="eyebrow"><span class="livedot"></span>The evaluation room · live</div>
+    <h2>What it's reading, right now</h2>
+    <div class="statesent" id="evalState" style="margin-bottom:6px">Waking the evaluation room…</div>
+    <div class="note">the freshest vehicles the collector just banked, each run through the <b>current</b> street student this second — its make guess, how sure it is, and the colour it sees. Not a saved gallery; it moves with the traffic.</div>
+    <div id="evalLive" class="evalgrid"></div>
+
+    <h3 style="margin:30px 0 4px;font-weight:400">Pop test — graded against the teacher</h3>
+    <div class="note">the same student on close-ups the <b>teacher already named</b> off the badge · <span id="evalScore" style="color:var(--ink)"></span></div>
+    <div id="evalGraded" class="evalgrid graded"></div>
   </section>
 
   <section class="blk">
@@ -758,6 +805,60 @@ function loadAcademy(){
          <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">teacher read: <b style="color:var(--ink)">${sm.make}${sm.model?' '+sm.model:''}</b></figcaption></figure>`).join('');
     }
   }).catch(()=>{ $('acadState').textContent='Telemetry unreachable.'; });
+  renderEval();
+}
+
+/* ---------- the evaluation room: live make/colour reads ---------- */
+const CONFC=['var(--live)','var(--accent)','var(--warn)'];
+function agoTxt(ts){ if(!ts) return ''; const s=Math.max(0,Math.floor(Date.now()/1000-ts));
+  return s<60?s+'s ago':s<3600?Math.floor(s/60)+'m ago':Math.floor(s/3600)+'h ago'; }
+function esc(s){ return (s||'').replace(/[<&>]/g,c=>({'<':'&lt;','&':'&amp;','>':'&gt;'}[c])); }
+function confBar(top){
+  const seg=top.slice(0,3).map((t,i)=>`<i style="width:${t.pct}%;background:${CONFC[i]}"></i>`).join('');
+  const rest=Math.max(0,100-top.slice(0,3).reduce((s,t)=>s+t.pct,0));
+  return `<div class="conf">${seg}<i style="width:${rest}%;background:transparent"></i></div>`;
+}
+function legend(top){
+  return `<div class="legend">`+top.slice(0,3).map((t,i)=>
+    `<span><i style="background:${CONFC[i]}"></i><b>${esc(t.label)}</b> ${t.pct.toFixed(0)}%</span>`).join('')+`</div>`;
+}
+function renderEval(){
+  fetch(T('live_eval.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d||!d.live){ $('evalState').textContent='The evaluation room is warming up — first reads land shortly.'; return; }
+    const cls=d.classes||[], age=Math.round((Date.now()/1000-(d.ts||0))/60);
+    $('evalState').innerHTML=`<b>Student on shift</b> — reading live traffic across the collector's cameras, guessing among <b>${cls.length}</b> makes it has learned so far (${cls.join(', ')}). Last sweep ${age<1?'just now':age+' min ago'}; it re-reads a fresh batch every few minutes.`;
+    $('evalLive').innerHTML=(d.live||[]).map((x,idx)=>{
+      const t=x.top||[], best=t[0]||{label:'—',pct:0};
+      const toneLbl=x.mono?'tone':'colour';
+      return `<div class="ecard" style="animation-delay:${idx*45}ms">
+        <div class="im"><img src="${T('eval_live_'+x.i+'.jpg')}?t=${d.ts}" alt="" loading="lazy">
+          <div class="badges">
+            <span class="tag">${esc(x.cls||'car')}</span>
+            <span class="chip"><span class="sw" style="background:${x.hex}"></span>${esc(x.color)}</span>
+            <span class="ago">${agoTxt(x.ts)}</span>
+          </div>
+        </div>
+        <div class="body">
+          <div class="verd"><span class="mk">${esc(best.label)}</span><span class="su">${best.pct.toFixed(0)}% sure</span></div>
+          ${confBar(t)}${legend(t)}
+          <div class="cam">${esc((x.cam||'').slice(0,26))} · ${x.h||'?'}px · ${toneLbl} read</div>
+        </div></div>`;
+    }).join('') || '<div class="note">no fresh close-ups this sweep — the collector is between vehicles.</div>';
+
+    const g=d.graded_score||{};
+    $('evalScore').innerHTML=g.n?`this pass: <b>${g.hit} / ${g.n}</b> makes matched the teacher · a real ${cls.length}-way guess (chance ≈ ${Math.round(100/Math.max(1,cls.length))}%)`:'';
+    $('evalGraded').innerHTML=(d.graded||[]).map((x,idx)=>{
+      const s=x.student||{label:'—',pct:0};
+      const mk=x.correct?'<span class="gmark ok">✓ match</span>':(x.in_syllabus?'<span class="gmark no">✗ miss</span>':'<span class="gmark na">not taught yet</span>');
+      return `<div class="ecard" style="animation-delay:${idx*45}ms">
+        <div class="im"><img src="${T('eval_grade_'+x.i+'.jpg')}?t=${d.ts}" alt="" loading="lazy"></div>
+        <div class="body">
+          <div class="teach">teacher read<b>${esc(x.teacher_make)}${x.teacher_model?' '+esc(x.teacher_model):''}</b></div>
+          <div class="verd" style="margin-top:8px"><span class="mk" style="font-size:16px">${esc(s.label)}</span><span class="su">${s.pct.toFixed(0)}%</span>${mk}</div>
+          ${confBar(x.top||[])}${legend(x.top||[])}
+        </div></div>`;
+    }).join('');
+  }).catch(()=>{});
 }
 setInterval(()=>{ if($('tab-academy').classList.contains('on')) loadAcademy(); },60000);
 
@@ -1094,6 +1195,21 @@ fetch(D('cams.json')).then(r=>r.json()).then(c=>{
   tick(); setInterval(tick,REFRESH_MS); loadIntel(); setInterval(loadIntel,60000);
 });
 
+/* ---------- dashboard bar: training telemetry summary ---------- */
+function loadDash(){
+  fetch(T('status.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(a=>{
+    if(!a)return;
+    const gens=a.gens||[];
+    if(gens.length){const best=Math.max(...gens.map(g=>g.mAP));
+      $('db_box').textContent=best.toFixed(3)+' mAP · gen '+(a.live&&a.live.gen||gens[gens.length-1].gen);}
+    const tb=a.textbook||{}, cur=tb.curve||[], last=cur.length?cur[cur.length-1]:null, st=(a.school||{}).student||{};
+    if(last&&last.make>0) $('db_mm').textContent=Math.round(last.make*100)+'% make · '+Math.round(last.model*100)+'% model';
+    else if(st.val_acc!=null) $('db_mm').textContent=Math.round(st.val_acc*100)+'% make · '+((st.classes||[]).length)+' makes';
+    else $('db_mm').textContent='seeding corpus';
+  }).catch(()=>{});
+}
+loadDash(); setInterval(loadDash,60000);
+
 function paintSeenBadges(){
   cams.forEach(c=>{ const b=$('seen_'+c.id); if(!b)return;
     const n=(SEEN_NOW[c.id]||[]).length; if(n){b.style.display='block';b.textContent=n+' now';}else b.style.display='none'; });
@@ -1105,6 +1221,7 @@ function tick(){
     if(!d)return; LAST.counts=d;
     let live=0; cams.forEach(c=>{const cd=d.cams[c.id]; if(cd&&cd.samples>0&&!cd.frozen)live++;});
     const nl=$('now_live'); if(nl) nl.textContent=live;
+    const dl=$('db_live'); if(dl) dl.textContent=live;
     $('tbody').innerHTML=cams.map(c=>{const k=(d.cams[c.id]||{}).classes||{};
       const cell=(v)=>`<td class="${v?'':'n0'}">${v||0}</td>`;
       return `<tr><td class="name">${c.name}</td>${cell(k.car)}${cell(k.truck)}${cell(k.bus)}${cell(k.moto)}<td class="dim">${c.dist}</td></tr>`;
