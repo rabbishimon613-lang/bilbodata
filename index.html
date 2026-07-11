@@ -427,11 +427,22 @@
     <div id="acadCrops" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px"></div>
   </section>
 
+  <section class="blk">
+    <div class="eyebrow">Second classroom</div><h2>The night school — makes &amp; models</h2>
+    <div class="note" id="schoolState">a second, slower student. It learns names only from close-ups where the badge was actually readable — and abstains, on the record, everywhere else.</div>
+    <div class="grid g4" id="schTiles" style="margin-top:14px"></div>
+    <div id="schMakes" style="max-width:760px;margin-top:16px"></div>
+    <div id="schSamples" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:14px"></div>
+    <div class="card" style="padding:18px 20px;line-height:1.65;max-width:760px;margin-top:16px">
+      Why so slow? Because the cheap shortcut failed its audition: we tested an off-the-shelf auto-namer and it called a clear Mercedes an <b>"Acura" — confidently</b>. Confidently wrong is the one thing this project refuses to ship. So in this classroom every name was read off the actual badge or body, the unreadable ones are logged as abstentions, and the student's only public number is its score on labeled close-ups it was never shown. Nothing from the night school feeds the dispatches — it stays in school until it earns the street.
+    </div>
+  </section>
+
   <section class="blk" style="border-bottom:0">
     <div class="eyebrow">By design</div><h2>How this stays honest</h2>
     <div class="note">the fine print, printed large</div>
     <div class="card" style="padding:22px 20px;line-height:1.65;max-width:760px">
-      The report card is graded against a stronger <b>teacher model's</b> answers, not human ground truth. The staircase is scored on a <b>camera the student never trains on</b>, split day and night, so a step up means real generalization — not memorization. The student learns <b>counts and coarse types only</b> (car, truck, bus, motorcycle): no make, no model, no colour, no plates — at these resolutions those would be guesses, and we don't ship guesses. And this page is <b>watch-only</b>: the training rig publishes telemetry outward; nothing on the internet can reach back in.
+      The report card is graded against a stronger <b>teacher model's</b> answers, not human ground truth. The staircase is scored on a <b>camera the student never trains on</b>, split day and night, so a step up means real generalization — not memorization. The student learns <b>counts and coarse types only</b> (car, truck, bus, motorcycle): no make, no model, no colour, no plates — at these resolutions those would be guesses, and we don't ship guesses (the night school above is how a name earns its way in: verified reads only, and it hasn't graduated). And this page is <b>watch-only</b>: the training rig publishes telemetry outward; nothing on the internet can reach back in.
     </div>
   </section>
 </div>
@@ -703,6 +714,26 @@ function loadAcademy(){
     $('acadCrops').innerHTML=(a.crops||[]).map(cr=>
       `<figure style="margin:0"><img src="${T('crop_'+cr.i+'.jpg')}?t=${a.ts}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
        <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">${cr.cls} · ${cr.h}px · ${(cr.cam||'').slice(0,20)}</figcaption></figure>`).join('');
+    const sc=a.school||{};
+    if(sc.labeled!=null){
+      const st=sc.student||{}, hist=st.history||[];
+      $('schTiles').innerHTML=[
+        ['Named by the teacher', sc.labeled],
+        ['Abstained — unreadable', sc.abstained],
+        ['Makes it can tell apart', (st.classes||[]).length||'—'],
+        ['Student score — held-out', st.val_acc!=null?Math.round(st.val_acc*100)+'%':'in class']
+      ].map(t=>`<div class="cell"><div class="k">${t[0]}</div><div class="v">${t[1]}</div></div>`).join('');
+      if(st.val_acc!=null) $('schoolState').innerHTML=`a second, slower student. Trained on <b>${st.n_train}</b> badge-verified reads, scored on <b>${st.n_val}</b> it never saw — <b>${Math.round(st.val_acc*100)}%</b> right so far across <b>${(st.classes||[]).length} makes</b>. It abstains, on the record, wherever the badge can't be read.`;
+      const mk=Object.entries(sc.makes||{}).slice(0,12), mx=Math.max(1,...mk.map(x=>x[1]));
+      $('schMakes').innerHTML=mk.map(([m,n])=>
+        `<div style="display:flex;align-items:center;gap:10px;margin:5px 0">
+           <div style="width:120px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--mut)">${m}</div>
+           <div style="flex:1;background:rgba(255,255,255,.05);border-radius:2px"><div style="width:${Math.max(3,Math.round(100*n/mx))}%;background:#5b8def;height:9px;border-radius:2px"></div></div>
+           <div style="width:28px;font-family:var(--mono);font-size:11px;color:var(--dim)">${n}</div></div>`).join('');
+      $('schSamples').innerHTML=(a.school_samples||[]).map(sm=>
+        `<figure style="margin:0"><img src="${T('school_'+sm.i+'.jpg')}?t=${a.ts}" style="width:100%;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
+         <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">teacher read: <b style="color:var(--ink)">${sm.make}${sm.model?' '+sm.model:''}</b></figcaption></figure>`).join('');
+    }
   }).catch(()=>{ $('acadState').textContent='Telemetry unreachable.'; });
 }
 setInterval(()=>{ if($('tab-academy').classList.contains('on')) loadAcademy(); },60000);
