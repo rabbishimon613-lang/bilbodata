@@ -429,12 +429,20 @@
 
   <section class="blk">
     <div class="eyebrow">Second classroom</div><h2>Make &amp; model detection — in training</h2>
-    <div class="note" id="schoolState">a second, slower student. It learns names only from close-ups where the badge was actually readable — and abstains, on the record, everywhere else.</div>
+    <div class="statesent" id="schoolState">Contacting the classroom…</div>
     <div class="grid g4" id="schTiles" style="margin-top:14px"></div>
-    <div id="schMakes" style="max-width:760px;margin-top:16px"></div>
+
+    <h3 style="margin:26px 0 4px;font-weight:400">How right the student is, over time</h3>
+    <div class="note">every few minutes of study it takes the same pop quiz — 300 catalogue cars it is never taught — and this is its score</div>
+    <div class="card" style="height:260px;padding:14px"><canvas id="schCurve"></canvas></div>
+
+    <h3 style="margin:26px 0 4px;font-weight:400">What it studies</h3>
+    <div class="note" id="schStudyNote">two sources: a 161,112-car pre-catalogued textbook (375 makes &amp; models, 42 US brands) for the fundamentals — then real close-ups from our own cameras, named only where the badge was actually readable</div>
+    <div id="schMakes" style="max-width:760px;margin-top:12px"></div>
     <div id="schSamples" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:14px"></div>
+
     <div class="card" style="padding:18px 20px;line-height:1.65;max-width:760px;margin-top:16px">
-      Why so slow? Because the cheap shortcut failed its audition: we tested an off-the-shelf auto-namer and it called a clear Mercedes an <b>"Acura" — confidently</b>. Confidently wrong is the one thing this project refuses to ship. So in this classroom every name was read off the actual badge or body, the unreadable ones are logged as abstentions, and the student's only public number is its score on labeled close-ups it was never shown. Nothing from this classroom feeds the dispatches — it stays in school until it earns the street.
+      Why the careful diet? Because the cheap shortcut failed its audition: we tested an off-the-shelf auto-namer and it called a clear Mercedes an <b>"Acura" — confidently</b>. Confidently wrong is the one thing this project refuses to ship. So the street names above were read off the actual badge or body, the unreadable ones are logged as abstentions, and every score you see was earned on cars the student was never shown. Nothing from this classroom feeds the dispatches — it stays in school until it earns the street.
     </div>
   </section>
 
@@ -645,7 +653,7 @@ function buildNotices(){
 
 /* ---------- academy: live training telemetry (published by the rig) ---------- */
 const T=p=>DATA_BASE+'training/'+p;
-let acadAcc=null, acadLoss=null;
+let acadAcc=null, acadLoss=null, schChart=null;
 function etaTxt(s){ if(!s&&s!==0)return '—'; const m=Math.round(s/60);
   return m<1?'<1 min':m<60?m+' min':Math.floor(m/60)+' h '+(m%60)+' min'; }
 function acadStair(cv,gens){
@@ -678,6 +686,7 @@ function acadLine(refName,cv,labels,sets){
       scales:{x:{ticks:{color:COL.dim,maxTicksLimit:8},grid:{color:COL.grid}},
               y:{ticks:{color:COL.dim},grid:{color:COL.grid}}}}};
   if(refName==='acc'){ if(acadAcc){acadAcc.data=cfg.data;acadAcc.update('none');} else acadAcc=new Chart($('acadAcc'),cfg); }
+  else if(refName==='school'){ if(schChart){schChart.data=cfg.data;schChart.update('none');} else schChart=new Chart($('schCurve'),cfg); }
   else{ if(acadLoss){acadLoss.data=cfg.data;acadLoss.update('none');} else acadLoss=new Chart($('acadLoss'),cfg); }
 }
 function loadAcademy(){
@@ -714,16 +723,30 @@ function loadAcademy(){
     $('acadCrops').innerHTML=(a.crops||[]).map(cr=>
       `<figure style="margin:0"><img src="${T('crop_'+cr.i+'.jpg')}?t=${a.ts}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
        <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">${cr.cls} · ${cr.h}px · ${(cr.cam||'').slice(0,20)}</figcaption></figure>`).join('');
-    const sc=a.school||{};
-    if(sc.labeled!=null){
-      const st=sc.student||{}, hist=st.history||[];
+    const sc=a.school||{}, tb=a.textbook||{};
+    if(sc.labeled!=null||tb.seen!=null){
+      const st=sc.student||{};
+      const cur=tb.curve||[], last=cur.length?cur[cur.length-1]:null;
+      const pct=v=>v!=null?Math.round(v*100)+'%':'—';
       $('schTiles').innerHTML=[
-        ['Named by the teacher', sc.labeled],
-        ['Abstained — unreadable', sc.abstained],
-        ['Makes it can tell apart', (st.classes||[]).length||'—'],
-        ['Student score — held-out', st.val_acc!=null?Math.round(st.val_acc*100)+'%':'in class']
+        ['Textbook cars studied', (tb.seen||0).toLocaleString()],
+        ['Pop quiz — right make', last?pct(last.make):'first quiz pending'],
+        ['Pop quiz — exact model', last?pct(last.model):'—'],
+        ['Street reads by the teacher', (sc.labeled||0)+' · '+(sc.abstained||0)+' abstained']
       ].map(t=>`<div class="cell"><div class="k">${t[0]}</div><div class="v">${t[1]}</div></div>`).join('');
-      if(st.val_acc!=null) $('schoolState').innerHTML=`a second, slower student. Trained on <b>${st.n_train}</b> badge-verified reads, scored on <b>${st.n_val}</b> it never saw — <b>${Math.round(st.val_acc*100)}%</b> right so far across <b>${(st.classes||[]).length} makes</b>. It abstains, on the record, wherever the badge can't be read.`;
+      const tbAge=tb.ts?Math.round((Date.now()/1000-tb.ts)/60):null;
+      if(tb.phase==='pretrain'&&tbAge!=null&&tbAge<30){
+        $('schoolState').innerHTML=`<b>In class right now</b> — pass ${tb.epoch} of ${tb.of} through the 161,112-car textbook · <b>${(tb.seen||0).toLocaleString()}</b> cars studied so far${last?` · latest pop quiz: <b>${pct(last.make)}</b> right on the make, <b>${pct(last.model)}</b> on the exact model`:''} · pulse ${tbAge<1?'just now':tbAge+' min ago'}.`;
+      }else if(st.val_acc!=null){
+        $('schoolState').innerHTML=`Class is out — last street exam: <b>${Math.round(st.val_acc*100)}%</b> across ${(st.classes||[]).length} makes on badge-verified close-ups it was never shown.`;
+      }else{
+        $('schoolState').textContent='The classroom is quiet — telemetry will resume with the next study session.';
+      }
+      if(cur.length>1){
+        const lb=cur.map(p=>(p.seen/1000).toFixed(0)+'k');
+        acadLine('school',null,lb,[{l:'right make %',d:cur.map(p=>Math.round(p.make*1000)/10),c:'#4ad991'},
+                                   {l:'exact model %',d:cur.map(p=>Math.round(p.model*1000)/10),c:'#5b8def'}]);
+      }
       const mk=Object.entries(sc.makes||{}).slice(0,12), mx=Math.max(1,...mk.map(x=>x[1]));
       $('schMakes').innerHTML=mk.map(([m,n])=>
         `<div style="display:flex;align-items:center;gap:10px;margin:5px 0">
