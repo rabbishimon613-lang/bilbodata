@@ -39,7 +39,12 @@ def _compact(csv_path, archive_dir, include_today, drop_cols=None):
     if not os.path.exists(csv_path):
         return []
     c = _con()
-    c.execute("CREATE VIEW raw AS SELECT * FROM read_csv_auto('%s', header=true)" % csv_path)
+    # read_csv (not _auto) with an explicit dialect + strict_mode=false: the hot
+    # logs carry mixed CRLF/LF line endings (two writers), which makes the auto
+    # dialect sniffer bail out entirely — that once silently blocked compaction
+    # until vehicles.csv outgrew GitHub's 100 MB push limit.
+    c.execute("CREATE VIEW raw AS SELECT * FROM read_csv('%s', header=true, "
+              "delim=',', strict_mode=false)" % csv_path)
     # Only exclude drop_cols that actually exist (schema varies over time, e.g. the
     # old `emb` fingerprint column is gone in the vehicles-only rebuild).
     have = {r[0] for r in c.execute("DESCRIBE raw").fetchall()}
@@ -169,12 +174,20 @@ def vehicle_rows(since_epoch=None):
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "compact":
         inc = "--all" in sys.argv
-        for path, size in compact(include_today=inc):
-            print("archived counts   %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
-        for path, size in compact_vehicles(include_today=inc):
-            print("archived vehicles %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
-        for path, size in compact_trips(include_today=inc):
-            print("archived trips    %-28s %6.1f KB" % (os.path.basename(path), size / 1024))
+        failed = False
+        # one table's failure must never block the others (a counts.csv parse
+        # error once stopped vehicles.csv from ever being archived)
+        for label, fn in (("counts", compact), ("vehicles", compact_vehicles),
+                          ("trips", compact_trips)):
+            try:
+                for path, size in fn(include_today=inc):
+                    print("archived %-8s %-28s %6.1f KB"
+                          % (label, os.path.basename(path), size / 1024))
+            except Exception as e:
+                failed = True
+                print("COMPACT FAILED for %s: %s" % (label, e), file=sys.stderr)
+        if failed:
+            sys.exit(1)
     elif len(sys.argv) > 1:
         for row in query(sys.argv[1]):
             print(row)

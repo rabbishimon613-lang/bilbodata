@@ -52,13 +52,22 @@ jobs:
         run: |
           git config user.name  "bilbo-worker"
           git config user.email "actions@users.noreply.github.com"
-          python storage.py compact || true            # archive finished days once per generation
+          python storage.py compact || echo "::warning::compact failed — hot logs not archived"
           END=$(( $(date +%s) + ${{ inputs.run_seconds }} ))
           i=0
           while [ "$(date +%s)" -lt "$END" ]; do
             python counter.py --minute                 # ~50s: detect, track, tag one minute (vehicles only)
             python pipeline.py || true                 # merge + per-camera type/size aggregation
             i=$((i+1))
+            # hard guard: GitHub rejects any file >100MB, which silently kills every
+            # push and freezes the site. If a hot log nears the cliff, force-archive
+            # it (today included) before committing.
+            for f in vehicles.csv counts.csv; do
+              if [ -f "$f" ] && [ "$(wc -c < "$f")" -gt 80000000 ]; then
+                echo "::warning::$f >80MB — emergency compact --all"
+                python storage.py compact --all || true
+              fi
+            done
             # commit data every ~5 minutes to curb git-history bloat; frames on the 30s
             git add counts.csv vehicles.csv counts.csv.legacy vehicles.csv.legacy \
                     counts.json stats.json calibration.json fleet.json \
