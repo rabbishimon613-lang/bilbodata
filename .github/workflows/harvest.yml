@@ -1,0 +1,95 @@
+name: harvest
+
+# PERPETUAL TIER-WEIGHTED HARVEST — free, no card, off the Mac.
+# Same self-perpetuating pattern as worker.yml: each generation runs the
+# fp/ harvester for ~5.3h (< the 350-min job timeout), ships its crops to a
+# GitHub RELEASE (never to main — git bloat kills the free tier), commits only
+# the small manifest + telemetry, then relays the next generation via
+# WORKER_PAT. A 6-hourly cron restarts the chain if it ever drops.
+
+on:
+  workflow_dispatch:
+    inputs:
+      generation:
+        description: generation number
+        default: "1"
+      run_seconds:
+        description: harvest loop bound (keep < 20000)
+        default: "19000"
+  schedule:
+    - cron: "17 */6 * * *"   # chain restarter — concurrency makes it a no-op while alive
+
+concurrency:
+  group: harvest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      GEN: ${{ github.event.inputs.generation || '1' }}
+      RUN_SECONDS: ${{ github.event.inputs.run_seconds || '19000' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU vision stack
+        run: |
+          pip install --quiet ultralytics opencv-python-headless numpy \
+            --extra-index-url https://download.pytorch.org/whl/cpu
+
+      - name: Sweep the city (tier-weighted, bounded)
+        run: |
+          python fp/harvest.py --out fp_out --run-seconds "$RUN_SECONDS" --sleep 40
+
+      - name: Teacher pass on this generation's crops
+        run: |
+          python fp/teacher_label.py --out fp_out --model yolo11s.pt --limit 800 || true
+
+      - name: Ship crops to the data release (never to main)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -d fp_out/crops ]; then
+            STAMP=$(date -u +%Y%m%dT%H%M%S)
+            tar czf "crops_${STAMP}_gen${GEN}.tgz" -C fp_out crops
+            gh release view crops >/dev/null 2>&1 || \
+              gh release create crops --title "harvested crops" \
+                --notes "rolling close-up archive — assets are tarred generations; metadata lives in fp/crops_meta.cloud.jsonl on main"
+            gh release upload crops "crops_${STAMP}_gen${GEN}.tgz"
+          fi
+
+      - name: Commit manifest + telemetry only
+        run: |
+          git config user.name "bilbo-harvest"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p training
+          [ -f fp_out/crops_meta.jsonl ] && cat fp_out/crops_meta.jsonl >> fp/crops_meta.cloud.jsonl
+          [ -f fp_out/labels_auto.jsonl ] && cat fp_out/labels_auto.jsonl >> fp/labels_auto.cloud.jsonl
+          [ -f fp_out/harvest_status.json ] && cp fp_out/harvest_status.json training/harvest_cloud.json
+          git add fp/crops_meta.cloud.jsonl fp/labels_auto.cloud.jsonl training/harvest_cloud.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "harvest gen ${GEN}: manifest + telemetry"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            sleep 20
+          done
+
+      - name: Relay the next generation
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.WORKER_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "WORKER_PAT missing — the 6-hourly cron will keep the chain alive instead"
+            exit 0
+          fi
+          NEXT=$((GEN + 1))
+          gh workflow run harvest.yml -f generation="$NEXT" -f run_seconds="$RUN_SECONDS" || true

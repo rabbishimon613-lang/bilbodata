@@ -1,0 +1,114 @@
+name: train-gate
+
+# BURST GPU TRAINING GATE — models plateau, so GPU time is bursty, never
+# perpetual. Every 6h this checks how many crops have banked since the last
+# Kaggle run; past the threshold it pushes the kaggle/ kernel (free ~30 GPU-h
+# per week, headless, API-triggered — Colab can't do that). A later pass
+# collects the finished kernel's output: weights go to the `models` release,
+# the per-head reports become training/heads_status.json so the Academy's
+# faculty wall moves.
+#
+# Needs repo secrets KAGGLE_USERNAME + KAGGLE_KEY (kaggle.com -> Account ->
+# Create New Token). Without them this workflow explains itself and exits 0.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 */6 * * *"
+
+concurrency:
+  group: train-gate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  NEW_CROPS_THRESHOLD: "1500"
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for Kaggle credentials
+        id: creds
+        env:
+          KU: ${{ secrets.KAGGLE_USERNAME }}
+          KK: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          if [ -z "$KU" ] || [ -z "$KK" ]; then
+            echo "No KAGGLE_USERNAME / KAGGLE_KEY secrets yet — set them to arm burst training."
+            echo "armed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "armed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Collect any finished kernel output
+        if: steps.creds.outputs.armed == 'true'
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pip install --quiet kaggle
+          KREF="$KAGGLE_USERNAME/bilbo-heads-train"
+          STATUS=$(kaggle kernels status "$KREF" 2>/dev/null | tr -d '"' || echo none)
+          echo "kernel status: $STATUS"
+          case "$STATUS" in *complete*) ;; *) exit 0;; esac
+          mkdir -p kout && kaggle kernels output "$KREF" -p kout || exit 0
+          ls -la kout
+          if ls kout/*_report.json >/dev/null 2>&1; then
+            mkdir -p fp_models && cp kout/*_report.json fp_models/
+            python fp/publish_heads.py --models fp_models --dest training/heads_status.json
+            git config user.name "bilbo-gate"
+            git config user.email "actions@users.noreply.github.com"
+            git add training/heads_status.json
+            git diff --cached --quiet || {
+              git commit -m "train-gate: head reports -> heads_status.json"
+              for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 20; done
+            }
+          fi
+          if ls kout/*.pt >/dev/null 2>&1; then
+            gh release view models >/dev/null 2>&1 || \
+              gh release create models --title "head weights" --notes "trained head checkpoints from Kaggle bursts"
+            STAMP=$(date -u +%Y%m%dT%H%M%S)
+            for w in kout/*.pt; do
+              cp "$w" "${w%.pt}_${STAMP}.pt"
+              gh release upload models "${w%.pt}_${STAMP}.pt" || true
+            done
+          fi
+
+      - name: Count crops banked since the last burst
+        id: bank
+        if: steps.creds.outputs.armed == 'true'
+        run: |
+          TOTAL=$(wc -l < fp/crops_meta.cloud.jsonl 2>/dev/null || echo 0)
+          LAST=$(cat kaggle/last_train_count.txt 2>/dev/null || echo 0)
+          NEW=$((TOTAL - LAST))
+          echo "total=$TOTAL new=$NEW threshold=$NEW_CROPS_THRESHOLD"
+          echo "total=$TOTAL" >> "$GITHUB_OUTPUT"
+          if [ "$NEW" -ge "$NEW_CROPS_THRESHOLD" ]; then
+            echo "fire=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "fire=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fire a Kaggle burst
+        if: steps.creds.outputs.armed == 'true' && steps.bank.outputs.fire == 'true'
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          pip install --quiet kaggle
+          sed -i "s/KAGGLE_USER/$KAGGLE_USERNAME/" kaggle/kernel-metadata.json
+          kaggle kernels push -p kaggle/
+          echo "${{ steps.bank.outputs.total }}" > kaggle/last_train_count.txt
+          git config user.name "bilbo-gate"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -- kaggle/kernel-metadata.json
+          git add kaggle/last_train_count.txt
+          git commit -m "train-gate: burst fired at ${{ steps.bank.outputs.total }} crops"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 20; done

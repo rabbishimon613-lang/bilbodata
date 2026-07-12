@@ -4,6 +4,15 @@ Reference for how readings are captured, stored, and queried. Principle:
 **keep every reading forever at full 1-minute detail, but store it tiny.**
 Nothing is downsampled, averaged-away, or dropped.
 
+> **2026-07-12, fingerprint rebuild:** a second data plane now exists alongside
+> the counts. `fp/crops_meta.cloud.jsonl` (manifest, on `main`) describes
+> vehicle close-ups whose IMAGE files live in the `crops` GitHub Release —
+> never in git. Labels: `fp/labels_auto.cloud.jsonl` (teacher, class-only) and
+> `fp/labels_gold.jsonl` (Claude gold bench: make/model/color/company/
+> plate-state/bus, or abstain). Trained-head telemetry:
+> `training/heads_status.json`. The living fleet catalogue:
+> `company_catalogue.csv`. See `fp/README.md` for the loop.
+
 ---
 
 ## 1. What a "reading" is
