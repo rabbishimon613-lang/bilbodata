@@ -1,0 +1,14 @@
+company,category,base_color,livery_notes,vehicle_type,confidence,date_added
+Walgreens / Duane Reade,retail_pharmacy,white,red script "Walgreens" + "Duane Reade" on trailer,semi_trailer,high,2026-07-12
+ShopRite,supermarket,yellow,yellow trailer w/ ShopRite logo + red Mack cab,semi_trailer,high,2026-07-12
+Penske,truck_rental,yellow,orange/yellow "PENSKE Truck Rental",box_truck,high,2026-07-12
+Piece of Cake Moving,moving,pink,hot-pink box white top,box_truck,high,2026-07-12
+XTRA Lease,trailer_leasing,white,white trailer "XTRA" top-rear,semi_trailer,high,2026-07-12
+Medline,medical_supply,white,green "Medline" script on white box,box_truck,high,2026-07-12
+Mo Ice,ice_delivery,white,blue "Mo Ice" logo + 718-419-0768 (moicedelivery.com),box_truck,high,2026-07-12
+DSNY (NYC Sanitation),municipal,white_green,white cab green stripe rear-loader,garbage_truck,high,2026-07-12
+Private carter (yellow rear-loader),sanitation,yellow,yellow rear-loading garbage truck,garbage_truck,med,2026-07-12
+MTA Bus,transit,blue_white,MTA blue/white city bus,bus,high,2026-07-12
+Unknown (red circle-D service),utility_service,white,red circle "D" logo + cones on tail + liftgate,box_truck,low,2026-07-12
+Kyungil (Korean HVAC),hvac,white,Korean script 경일 on white box,box_truck,low,2026-07-12
+Enterprise (Truck Rental),truck_rental,white_green,white reefer box w/ green Enterprise swoosh,box_truck,high,2026-07-12
