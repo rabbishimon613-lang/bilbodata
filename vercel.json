@@ -2,6 +2,11 @@
   "framework": null,
   "buildCommand": null,
   "outputDirectory": ".",
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  },
   "headers": [
     {
       "source": "/(.*).html",
