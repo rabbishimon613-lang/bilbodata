@@ -2,18 +2,20 @@ name: train-gate
 
 # BURST GPU TRAINING GATE — models plateau, so GPU time is bursty, never
 # perpetual. Every 6h this checks how many crops have banked since the last
-# Kaggle run; past the threshold it pushes the kaggle/ kernel (free ~30 GPU-h
-# per week, headless, API-triggered — Colab can't do that). A later pass
-# collects the finished kernel's output: weights go to the `models` release,
-# the per-head reports become training/heads_status.json so the Academy's
-# faculty wall moves.
+# Kaggle run; past the threshold it pushes the kaggle/ kernel (free GPU-h,
+# headless, API-triggered — Colab can't do that). A later pass collects the
+# finished kernel's output: weights go to the `models` release, the per-head
+# reports become training/heads_status.json so the Academy's faculty wall moves.
 #
-# Auth (Kaggle's newer single-token scheme):
-#   - repo SECRET   KAGGLE_API_TOKEN   (the KGAT_... value; kaggle.com -> Settings
-#                                       -> API Tokens -> Generate New Token)
-#   - repo VARIABLE KAGGLE_USERNAME    (your public Kaggle handle — NOT a secret;
-#                                       used only to address the notebook)
-# Without them this workflow explains itself and exits 0.
+# Auth (Kaggle's newer single-token scheme). ONE secret, single OR multi-token:
+#   - repo SECRET KAGGLE_API_TOKEN
+#       * a single "KGAT_..." value            -> single-account mode, OR
+#       * several KGAT_... comma-separated     -> multi-account rotation (each
+#         6h tick uses the account with the oldest last_used timestamp; per-
+#         account kernel slug: bilbo-fp-a, -b, ... to reduce fingerprint).
+#   No repo variable needed — the account's public username is derived per
+#   token from `kaggle kernels init`.
+# Without the secret, the workflow explains itself and exits 0.
 
 on:
   workflow_dispatch:
@@ -37,30 +39,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check for Kaggle credentials
-        id: creds
-        env:
-          KT: ${{ secrets.KAGGLE_API_TOKEN }}
-          KU: ${{ vars.KAGGLE_USERNAME }}
-        run: |
-          if [ -z "$KT" ] || [ -z "$KU" ]; then
-            echo "Missing KAGGLE_API_TOKEN secret and/or KAGGLE_USERNAME variable — set both to arm burst training."
-            echo "armed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "armed=true" >> "$GITHUB_OUTPUT"
-          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-      - name: Collect any finished kernel output
-        if: steps.creds.outputs.armed == 'true'
+      - name: Install kaggle CLI
+        run: pip install --quiet kaggle
+
+      - name: Pick this tick's Kaggle account (rotation)
+        id: rot
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-          KUSER: ${{ vars.KAGGLE_USERNAME }}
+        run: python fp/rotate_token.py
+
+      - name: Collect any finished kernel output
+        if: steps.rot.outputs.armed == 'true'
+        env:
           GH_TOKEN: ${{ github.token }}
+          KUSER: ${{ steps.rot.outputs.kuser }}
+          KSLUG: ${{ steps.rot.outputs.kslug }}
         run: |
-          pip install --quiet kaggle
-          KREF="$KUSER/bilbo-heads-train"
+          KREF="$KUSER/$KSLUG"
           STATUS=$(kaggle kernels status "$KREF" 2>/dev/null | tr -d '"' || echo none)
-          echo "kernel status: $STATUS"
+          echo "kernel status ($KREF): $STATUS"
           case "$STATUS" in *complete*) ;; *) exit 0;; esac
           mkdir -p kout && kaggle kernels output "$KREF" -p kout || exit 0
           ls -la kout
@@ -71,7 +72,7 @@ jobs:
             git config user.email "actions@users.noreply.github.com"
             git add training/heads_status.json
             git diff --cached --quiet || {
-              git commit -m "train-gate: head reports -> heads_status.json"
+              git commit -m "train-gate: head reports -> heads_status.json ($KUSER)"
               for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 20; done
             }
           fi
@@ -87,7 +88,7 @@ jobs:
 
       - name: Count crops banked since the last burst
         id: bank
-        if: steps.creds.outputs.armed == 'true'
+        if: steps.rot.outputs.armed == 'true'
         run: |
           TOTAL=$(wc -l < fp/crops_meta.cloud.jsonl 2>/dev/null || echo 0)
           LAST=$(cat kaggle/last_train_count.txt 2>/dev/null || echo 0)
@@ -101,18 +102,35 @@ jobs:
           fi
 
       - name: Fire a Kaggle burst
-        if: steps.creds.outputs.armed == 'true' && steps.bank.outputs.fire == 'true'
+        if: steps.rot.outputs.armed == 'true' && steps.bank.outputs.fire == 'true'
         env:
-          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-          KUSER: ${{ vars.KAGGLE_USERNAME }}
+          KUSER: ${{ steps.rot.outputs.kuser }}
+          KSLUG: ${{ steps.rot.outputs.kslug }}
         run: |
-          pip install --quiet kaggle
-          sed -i "s/KAGGLE_USER/$KUSER/" kaggle/kernel-metadata.json
+          # rewrite the kernel-metadata to this tick's account + slug
+          python - <<PY
+          import json, os
+          m = json.load(open("kaggle/kernel-metadata.json"))
+          m["id"] = f"{os.environ['KUSER']}/{os.environ['KSLUG']}"
+          m["title"] = os.environ['KSLUG']
+          json.dump(m, open("kaggle/kernel-metadata.json", "w"), indent=1)
+          PY
           kaggle kernels push -p kaggle/
           echo "${{ steps.bank.outputs.total }}" > kaggle/last_train_count.txt
           git config user.name "bilbo-gate"
           git config user.email "actions@users.noreply.github.com"
           git checkout -- kaggle/kernel-metadata.json
-          git add kaggle/last_train_count.txt
-          git commit -m "train-gate: burst fired at ${{ steps.bank.outputs.total }} crops"
+          git add kaggle/last_train_count.txt kaggle/rotation.json
+          git commit -m "train-gate: burst fired via $KUSER at ${{ steps.bank.outputs.total }} crops"
           for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 20; done
+
+      - name: Persist rotation state (even if no burst fired)
+        if: steps.rot.outputs.armed == 'true' && steps.bank.outputs.fire != 'true'
+        run: |
+          git config user.name "bilbo-gate"
+          git config user.email "actions@users.noreply.github.com"
+          git add kaggle/rotation.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "train-gate: rotation tick — ${{ steps.rot.outputs.kuser }}"
+            for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 20; done
+          fi
