@@ -180,6 +180,16 @@
   .headcard .hv{font-family:var(--mono);font-size:26px;margin-top:8px;font-variant-numeric:tabular-nums}
   .headcard .hs{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:4px}
   .headcard canvas{width:100%!important;height:54px!important;margin-top:10px}
+  /* rotation cards (one per Kaggle key) */
+  .rotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  .rotcard{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:14px 16px;position:relative}
+  .rotcard .rl{font-family:var(--mono);font-size:22px;color:var(--live);letter-spacing:.12em;line-height:1;font-weight:400}
+  .rotcard .ru{font-family:var(--mono);font-size:11.5px;color:var(--ink);margin-top:8px}
+  .rotcard .rmeta{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:8px;line-height:1.65}
+  .rotcard .rmeta b{color:var(--ink);font-weight:400}
+  .rotcard.dim .rl{color:var(--mut)}
+  .rotcard.hot{border-color:var(--live)}
+  .rotcard.hot:after{content:"";position:absolute;top:12px;right:12px;width:6px;height:6px;background:var(--live);border-radius:50%;box-shadow:0 0 0 0 rgba(74,217,145,.5);animation:pulse 2.4s infinite}
 
   /* thumbs */
   .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:16px}
@@ -265,7 +275,7 @@
 </head>
 <body>
 
-<div class="banner"><div class="wrap" id="dashbar"><b>DASHBOARD VIEW</b><span>Cameras live <b id="db_live">—</b> feeding in</span><span class="db-sep">·</span><span>Car-box training <b id="db_box">—</b></span><span class="db-sep">·</span><span>Make/model training <b id="db_mm">—</b></span></div></div>
+<div class="banner"><div class="wrap" id="dashbar"><b>DASHBOARD VIEW</b><span>Cameras live <b id="db_live">—</b> feeding in</span><span class="db-sep">·</span><span>Corpus banked <b id="db_box">—</b></span><span class="db-sep">·</span><span>Faculty <b id="db_mm">—</b></span></div></div>
 
 <header><div class="wrap">
   <a class="brand" href="#" data-tab="live"><img src="assets/bilbo-pup.png" alt="Bilbo"><span class="bn">Bilbo</span><span class="dt">Data</span></a>
@@ -498,91 +508,24 @@
   </section>
 
   <section class="blk">
+    <div class="eyebrow">The corpus</div>
+    <h2>What it studies · by camera tier</h2>
+    <div class="note" id="corpNote">contacting the harvester…</div>
+    <div class="grid g4" id="corpTiles" style="margin-top:14px"></div>
+  </section>
+
+  <section class="blk">
+    <div class="eyebrow">The rotation</div>
+    <h2>Five keys · one classroom</h2>
+    <div class="note" id="rotNote">a burst fires every ~30 minutes on whichever key has banked the most fresh crops · below is the state of each key</div>
+    <div class="rotgrid" id="rotGrid" style="margin-top:14px"></div>
+  </section>
+
+  <section class="blk">
     <div class="eyebrow">The faculty</div>
     <h2>One head per skill — each on its own staircase</h2>
-    <div class="note" id="headNote">five heads, five keys, one classroom · every skill scored separately on cameras it never trained on · bursts fire ~every 30 minutes on the freshest key · a head below its bar abstains in public</div>
+    <div class="note" id="headNote">five heads, five keys, one classroom · every skill scored separately on cameras it never trained on · a head below its public bar abstains in public — "can't tell" is a passing answer</div>
     <div class="headgrid" id="headGrid"></div>
-  </section>
-
-  <!-- ===== THE EVALUATION ROOM — live make/colour reads ===== -->
-  <section class="blk" id="evalRoom">
-    <div class="eyebrow"><span class="livedot"></span>The evaluation room · live</div>
-    <h2>What it's reading, right now</h2>
-    <div class="statesent" id="evalState" style="margin-bottom:6px">Waking the evaluation room…</div>
-    <div class="note">the freshest vehicles the collector just banked, each run through the <b>current</b> street student this second — its make guess, how sure it is, and the colour it sees. Not a saved gallery; it moves with the traffic.</div>
-    <div id="evalLive" class="evalgrid"></div>
-
-    <h3 style="margin:30px 0 4px;font-weight:400">Pop test — graded against the teacher</h3>
-    <div class="note">the same student on close-ups the <b>teacher already named</b> off the badge · <span id="evalScore" style="color:var(--ink)"></span></div>
-    <div id="evalGraded" class="evalgrid graded"></div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">This generation</div><h2>The current report card</h2>
-    <div class="note" id="acadNote">graded against the teacher model on held-back frames · updated as each epoch lands</div>
-    <div class="grid g4" id="acadTiles"></div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Generations</div><h2>The staircase — is it actually getting better?</h2>
-    <div class="note">each step = one full generation, scored on a <b>frozen, never-trained</b> camera · the only honest number here</div>
-    <div class="card"><canvas id="acadGen"></canvas>
-      <div style="display:flex;gap:16px;font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:8px">
-        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#4ad991;margin-right:5px;vertical-align:-1px"></i>overall</span>
-        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#5b8def;margin-right:5px;vertical-align:-1px"></i>day</span>
-        <span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#e0a44a;margin-right:5px;vertical-align:-1px"></i>night</span>
-        <span id="acadGenHead" style="margin-left:auto;color:var(--ink)"></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Inside the epoch</div><h2>Accuracy up, loss down</h2>
-    <div class="note">left: how often it's right (higher is better) · right: how wrong it still is (lower is better)</div>
-    <div class="split2">
-      <div class="card"><canvas id="acadAcc"></canvas></div>
-      <div class="card"><canvas id="acadLoss"></canvas></div>
-    </div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Through its eyes</div><h2>What the student sees right now</h2>
-    <div class="note">a random frame from the training library, read by the <b>current</b> weights — boxes and confidence are its live guesses</div>
-    <div class="card" style="padding:10px;max-width:760px">
-      <img id="acadFrame" style="width:100%;border-radius:3px;display:block;background:#000" alt="">
-    </div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">Side quest</div><h2>The close-up library</h2>
-    <div class="note" id="acadHarvest">a second collector watches the sharper cameras for vehicles close enough to truly read — the seed corpus for future make &amp; model work</div>
-    <div id="acadCrops" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px"></div>
-  </section>
-
-  <section class="blk">
-    <div class="eyebrow">The gold bench</div><h2>Make &amp; model — earned reads only</h2>
-    <div class="statesent" id="schoolState">Contacting the classroom…</div>
-    <div class="grid g4" id="schTiles" style="margin-top:14px"></div>
-
-    <h3 style="margin:26px 0 4px;font-weight:400">The abstain gauge — the courage to say "can't tell"</h3>
-    <div class="note">of every close-up put in front of the gold judge, this is how many earned a name and how many were honestly declined · a high decline rate is the system working, not failing</div>
-    <div class="card" style="max-width:760px">
-      <div class="abbar" id="abBar"><i style="width:100%;background:rgba(255,255,255,.05)"></i></div>
-      <div id="abText" style="font-family:var(--mono);font-size:12px;color:var(--dim)">waiting for the ledger…</div>
-    </div>
-
-    <h3 style="margin:26px 0 4px;font-weight:400">How right the student is, over time</h3>
-    <div class="note">every few minutes of study it takes the same pop quiz — 300 catalogue cars it is never taught — and this is its score</div>
-    <div class="card" style="height:260px;padding:14px"><canvas id="schCurve"></canvas></div>
-
-    <h3 style="margin:26px 0 4px;font-weight:400">What it studies</h3>
-    <div class="note" id="schStudyNote">two sources: a 161,112-car pre-catalogued textbook (375 makes &amp; models, 42 US brands) for the fundamentals — then real close-ups from our own cameras, put one by one in front of a <b>gold judge</b> that names the make, model, color and company only where the pixels genuinely carry it, and logs an abstention where they don't</div>
-    <div id="schMakes" style="max-width:760px;margin-top:12px"></div>
-    <div id="schSamples" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:14px"></div>
-
-    <div class="card" style="padding:18px 20px;line-height:1.65;max-width:760px;margin-top:16px">
-      Why the careful diet? Because the cheap shortcut failed its audition: we tested an off-the-shelf auto-namer and it called a clear Mercedes an <b>"Acura" — confidently</b>. Confidently wrong is the one thing this project refuses to ship. So the street names above were read off the actual badge or body, the unreadable ones are logged as abstentions, and every score you see was earned on cars the student was never shown. Nothing from this classroom feeds the dispatches — it stays in school until it earns the street.
-    </div>
   </section>
 
   <section class="blk">
@@ -796,128 +739,11 @@ function buildNotices(){
   el.innerHTML=out.map(noticeHTML).join('');
 }
 
-/* ---------- academy: live training telemetry (published by the rig) ---------- */
+/* ---------- academy: continuous training telemetry ---------- */
 const T=p=>DATA_BASE+'training/'+p;
-let acadAcc=null, acadLoss=null, schChart=null;
-function etaTxt(s){ if(!s&&s!==0)return '—'; const m=Math.round(s/60);
-  return m<1?'<1 min':m<60?m+' min':Math.floor(m/60)+' h '+(m%60)+' min'; }
-function acadStair(cv,gens){
-  const dpr=2,c=cv.getContext('2d'),W=cv.width=cv.clientWidth*dpr,H=cv.height=240*dpr,P=44*dpr;
-  c.clearRect(0,0,W,H);
-  if(!gens||!gens.length){c.fillStyle='#585d66';c.font=(13*dpr)+'px IBM Plex Mono';c.fillText('first generation still in training…',P,H/2);return;}
-  const keys=['mAP','day','night'],cols=['#4ad991','#5b8def','#e0a44a'];
-  let all=[];gens.forEach(g=>keys.forEach(k=>all.push(g[k]||0)));
-  let mn=Math.min(...all,0),mx=Math.max(...all,0.05);const pad=(mx-mn)*.15||.02;mn=Math.max(0,mn-pad);mx+=pad;
-  const n=Math.max(gens.length,2);
-  const X=i=>P+(gens.length===1?0.5:i/(n-1))*(W-1.4*P), Y=v=>H-P-(v-mn)/(mx-mn)*(H-1.7*P);
-  c.strokeStyle='#1b1c1f';c.lineWidth=dpr;
-  for(let k=0;k<=4;k++){const y=P/2+k/4*(H-1.2*P);c.beginPath();c.moveTo(P,y);c.lineTo(W-P/3,y);c.stroke();}
-  c.fillStyle='#585d66';c.font=(10*dpr)+'px IBM Plex Mono';
-  c.fillText(mx.toFixed(2),6,P/2+5*dpr);c.fillText(mn.toFixed(2),6,H-P/2);
-  keys.forEach((k,ki)=>{c.strokeStyle=cols[ki];c.lineWidth=2.2*dpr;c.beginPath();
-    gens.forEach((g,i)=>{const x=X(i),y=Y(g[k]||0);
-      if(i===0)c.moveTo(x,y);
-      else{const mx2=(X(i-1)+x)/2;c.lineTo(mx2,Y(gens[i-1][k]||0));c.lineTo(mx2,y);c.lineTo(x,y);}});
-    c.stroke();
-    gens.forEach((g,i)=>{c.fillStyle=cols[ki];c.beginPath();c.arc(X(i),Y(g[k]||0),3*dpr,0,7);c.fill();});
-  });
-  c.fillStyle='#585d66';gens.forEach((g,i)=>c.fillText('gen '+g.gen,X(i)-12*dpr,H-P/2+13*dpr));
-}
-function acadLine(refName,cv,labels,sets){
-  const cfg={type:'line',data:{labels,datasets:sets.map(s=>({label:s.l,data:s.d,borderColor:s.c,
-      backgroundColor:'transparent',tension:.3,pointRadius:0,borderWidth:2}))},
-    options:{responsive:true,maintainAspectRatio:false,animation:false,
-      plugins:{legend:{labels:{color:COL.dim,boxWidth:12,font:{family:'IBM Plex Mono'}}}},
-      scales:{x:{ticks:{color:COL.dim,maxTicksLimit:8},grid:{color:COL.grid}},
-              y:{ticks:{color:COL.dim},grid:{color:COL.grid}}}}};
-  if(refName==='acc'){ if(acadAcc){acadAcc.data=cfg.data;acadAcc.update('none');} else acadAcc=new Chart($('acadAcc'),cfg); }
-  else if(refName==='school'){ if(schChart){schChart.data=cfg.data;schChart.update('none');} else schChart=new Chart($('schCurve'),cfg); }
-  else{ if(acadLoss){acadLoss.data=cfg.data;acadLoss.update('none');} else acadLoss=new Chart($('acadLoss'),cfg); }
-}
-function loadAcademy(){
-  fetch(T('status.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(a=>{
-    if(!a){ $('acadState').textContent='No telemetry yet — the academy has not published its first pulse.'; return; }
-    const ageMin=Math.round((Date.now()/1000-(a.ts||0))/60);
-    const v=a.live||{};
-    if(ageMin>20){
-      $('acadState').innerHTML=`The academy is <b>asleep</b> — last pulse ${ageMin} min ago. The staircase below is the record so far.`;
-    }else if(v.phase==='train'){
-      const pct=v.total?Math.round(100*v.epoch/v.total):0;
-      $('acadState').innerHTML=`<b>Generation ${v.gen}</b> in training — epoch <b>${v.epoch}/${v.total}</b> (${pct}%) · ~${etaTxt(v.eta_s)} to the next step of the staircase · pulse ${ageMin<1?'just now':ageMin+' min ago'}.`;
-    }else{
-      $('acadState').innerHTML=`Between generations — scoring and re-labeling the hardest frames · pulse ${ageMin} min ago.`;
-    }
-    const c=a.cur||{}, f=(x,d)=>x==null?'—':(+x).toFixed(d==null?3:d);
-    $('acadTiles').innerHTML=[
-      ['Strict grade — mAP50-95',f(c.mAP)],['Loose grade — mAP50',f(c.mAP50)],
-      ['Precision — when it speaks',f(c.P)],['Recall — what it finds',f(c.R)]
-    ].map(t=>`<div class="cell"><div class="k">${t[0]}</div><div class="v">${t[1]}</div></div>`).join('');
-    const gens=a.gens||[];
-    acadStair($('acadGen'),gens);
-    if(gens.length){const g=gens[gens.length-1],d=g.delta||0;
-      $('acadGenHead').innerHTML=`gen ${g.gen} · best ${(Math.max(...gens.map(x=>x.mAP))).toFixed(3)} · <span style="color:${d>=0?'#4ad991':'#e2645f'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(3)}</span>`;
-      $('loopGrade').textContent=`best ${(Math.max(...gens.map(x=>x.mAP))).toFixed(3)} on the frozen cameras`;
-      $('loopRepeat').textContent=`${gens.length} generations completed`;
-    }
-    const s=a.series||{};
-    if((s.epoch||[]).length){
-      const lb=s.epoch.map(e=>'ep '+e);
-      acadLine('acc',null,lb,[{l:'mAP50-95',d:s.mAP,c:'#4ad991'},{l:'mAP50',d:s.mAP50,c:'#5b8def'},{l:'precision',d:s.P,c:'#a371f7'},{l:'recall',d:s.R,c:'#e0a44a'}]);
-      acadLine('loss',null,lb,[{l:'box loss',d:s.box,c:'#e2645f'},{l:'class loss',d:s.cls,c:'#d29922'}]);
-    }
-    $('acadFrame').src=T('live_pred.jpg')+'?t='+Date.now();
-    const h=a.harvest||{};
-    if(h.crops_total!=null){
-      $('acadHarvest').innerHTML=`a second collector watches <b>${h.cams_watched||0}</b> sharper cameras (${h.cams_live||0} awake) for vehicles close enough to truly read — <b>${(h.crops_total||0).toLocaleString()}</b> close-ups banked so far · the seed corpus for future make &amp; model work`;
-      $('loopHarvest').textContent=`${(h.crops_total||0).toLocaleString()} close-ups banked`;
-    }
-    $('acadCrops').innerHTML=(a.crops||[]).map(cr=>
-      `<figure style="margin:0"><img src="${T('crop_'+cr.i+'.jpg')}?t=${a.ts}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
-       <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">${cr.cls} · ${cr.h}px · ${(cr.cam||'').slice(0,20)}</figcaption></figure>`).join('');
-    const sc=a.school||{}, tb=a.textbook||{};
-    if(sc.labeled!=null||tb.seen!=null){
-      const st=sc.student||{};
-      const cur=tb.curve||[], last=cur.length?cur[cur.length-1]:null;
-      const pct=v=>v!=null?Math.round(v*100)+'%':'—';
-      $('schTiles').innerHTML=[
-        ['Textbook cars studied', (tb.seen||0).toLocaleString()],
-        ['Pop quiz — right make', last?pct(last.make):'first quiz pending'],
-        ['Pop quiz — exact model', last?pct(last.model):'—'],
-        ['Street reads by the teacher', (sc.labeled||0)+' · '+(sc.abstained||0)+' abstained']
-      ].map(t=>`<div class="cell"><div class="k">${t[0]}</div><div class="v">${t[1]}</div></div>`).join('');
-      const named=sc.labeled||0, abst=sc.abstained||0, tot=named+abst;
-      if(tot){
-        const p=Math.round(100*named/tot);
-        $('abBar').innerHTML=`<i style="width:${p}%;background:var(--live)"></i><i style="width:${100-p}%;background:var(--warn)"></i>`;
-        $('abText').innerHTML=`<b style="color:var(--live)">${named}</b> earned a name · <b style="color:var(--warn)">${abst}</b> honestly declined — a <b>${100-p}%</b> abstain rate, by design`;
-        $('loopLabel').textContent=`${named} gold reads · ${abst} abstained`;
-      }
-      const tbAge=tb.ts?Math.round((Date.now()/1000-tb.ts)/60):null;
-      if(tb.phase==='pretrain'&&tbAge!=null&&tbAge<30){
-        $('schoolState').innerHTML=`<b>In class right now</b> — pass ${tb.epoch} of ${tb.of} through the 161,112-car textbook · <b>${(tb.seen||0).toLocaleString()}</b> cars studied so far${last?` · latest pop quiz: <b>${pct(last.make)}</b> right on the make, <b>${pct(last.model)}</b> on the exact model`:''} · pulse ${tbAge<1?'just now':tbAge+' min ago'}.`;
-      }else if(st.val_acc!=null){
-        $('schoolState').innerHTML=`Class is out — last street exam: <b>${Math.round(st.val_acc*100)}%</b> across ${(st.classes||[]).length} makes on badge-verified close-ups it was never shown.`;
-      }else{
-        $('schoolState').textContent='The classroom is quiet — telemetry will resume with the next study session.';
-      }
-      if(cur.length>1){
-        const lb=cur.map(p=>(p.seen/1000).toFixed(0)+'k');
-        acadLine('school',null,lb,[{l:'right make %',d:cur.map(p=>Math.round(p.make*1000)/10),c:'#4ad991'},
-                                   {l:'exact model %',d:cur.map(p=>Math.round(p.model*1000)/10),c:'#5b8def'}]);
-      }
-      const mk=Object.entries(sc.makes||{}).slice(0,12), mx=Math.max(1,...mk.map(x=>x[1]));
-      $('schMakes').innerHTML=mk.map(([m,n])=>
-        `<div style="display:flex;align-items:center;gap:10px;margin:5px 0">
-           <div style="width:120px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--mut)">${m}</div>
-           <div style="flex:1;background:rgba(255,255,255,.05);border-radius:2px"><div style="width:${Math.max(3,Math.round(100*n/mx))}%;background:#5b8def;height:9px;border-radius:2px"></div></div>
-           <div style="width:28px;font-family:var(--mono);font-size:11px;color:var(--dim)">${n}</div></div>`).join('');
-      $('schSamples').innerHTML=(a.school_samples||[]).map(sm=>
-        `<figure style="margin:0"><img src="${T('school_'+sm.i+'.jpg')}?t=${a.ts}" style="width:100%;border-radius:3px;border:1px solid var(--line);background:#000;display:block" alt="">
-         <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">teacher read: <b style="color:var(--ink)">${sm.make}${sm.model?' '+sm.model:''}</b></figcaption></figure>`).join('');
-    }
-  }).catch(()=>{ $('acadState').textContent='Telemetry unreachable.'; });
-  renderEval(); renderHeads(); loadPace();
-}
+const R=p=>DATA_BASE+p; // for non-training/ paths like kaggle/rotation.json
+
+function loadAcademy(){ loadPace(); loadCorpus(); loadRotation(); renderHeads(); }
 
 /* ---------- plateau clock: cumulative-crops-until-plateau projection ---------- */
 function loadPace(){
@@ -945,60 +771,71 @@ function loadPace(){
     note.innerHTML = rate>0
       ? `<b>${crops.toLocaleString()}</b> of ${target.toLocaleString()} crops banked · <b>${Math.round(rate).toLocaleString()}</b>/hour · <b>${pct}%</b> of the way · ${remTxt}`
       : `<b>${crops.toLocaleString()}</b> of ${target.toLocaleString()} crops banked · pace measured once ≥15 min of harvest history is on record`;
+    $('loopRepeat').textContent = rate>0 ? `${pct}% of the way to plateau` : 'pace stabilizing';
   }).catch(()=>{});
 }
 
-/* ---------- the evaluation room: live make/colour reads ---------- */
-const CONFC=['var(--live)','var(--accent)','var(--warn)'];
-function agoTxt(ts){ if(!ts) return ''; const s=Math.max(0,Math.floor(Date.now()/1000-ts));
-  return s<60?s+'s ago':s<3600?Math.floor(s/60)+'m ago':Math.floor(s/3600)+'h ago'; }
-function esc(s){ return (s||'').replace(/[<&>]/g,c=>({'<':'&lt;','&':'&amp;','>':'&gt;'}[c])); }
-function confBar(top){
-  const seg=top.slice(0,3).map((t,i)=>`<i style="width:${t.pct}%;background:${CONFC[i]}"></i>`).join('');
-  const rest=Math.max(0,100-top.slice(0,3).reduce((s,t)=>s+t.pct,0));
-  return `<div class="conf">${seg}<i style="width:${rest}%;background:transparent"></i></div>`;
-}
-function legend(top){
-  return `<div class="legend">`+top.slice(0,3).map((t,i)=>
-    `<span><i style="background:${CONFC[i]}"></i><b>${esc(t.label)}</b> ${t.pct.toFixed(0)}%</span>`).join('')+`</div>`;
-}
-function renderEval(){
-  fetch(T('live_eval.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d||!d.live){ $('evalState').textContent='The evaluation room is warming up — first reads land shortly.'; return; }
-    const cls=d.classes||[], age=Math.round((Date.now()/1000-(d.ts||0))/60);
-    $('evalState').innerHTML=`<b>Student on shift</b> — reading live traffic across the collector's cameras, guessing among <b>${cls.length}</b> makes it has learned so far (${cls.join(', ')}). Last sweep ${age<1?'just now':age+' min ago'}; it re-reads a fresh batch every few minutes.`;
-    $('evalLive').innerHTML=(d.live||[]).map((x,idx)=>{
-      const t=x.top||[], best=t[0]||{label:'—',pct:0};
-      const toneLbl=x.mono?'tone':'colour';
-      return `<div class="ecard" style="animation-delay:${idx*45}ms">
-        <div class="im"><img src="${T('eval_live_'+x.i+'.jpg')}?t=${d.ts}" alt="" loading="lazy">
-          <div class="badges">
-            <span class="tag">${esc(x.cls||'car')}</span>
-            <span class="chip"><span class="sw" style="background:${x.hex}"></span>${esc(x.color)}</span>
-            <span class="ago">${agoTxt(x.ts)}</span>
-          </div>
-        </div>
-        <div class="body">
-          <div class="verd"><span class="mk">${esc(best.label)}</span><span class="su">${best.pct.toFixed(0)}% sure</span></div>
-          ${confBar(t)}${legend(t)}
-          <div class="cam">${esc((x.cam||'').slice(0,26))} · ${x.h||'?'}px · ${toneLbl} read</div>
-        </div></div>`;
-    }).join('') || '<div class="note">no fresh close-ups this sweep — the collector is between vehicles.</div>';
-
-    const g=d.graded_score||{};
-    $('evalScore').innerHTML=g.n?`this pass: <b>${g.hit} / ${g.n}</b> makes matched the teacher · a real ${cls.length}-way guess (chance ≈ ${Math.round(100/Math.max(1,cls.length))}%)`:'';
-    $('evalGraded').innerHTML=(d.graded||[]).map((x,idx)=>{
-      const s=x.student||{label:'—',pct:0};
-      const mk=x.correct?'<span class="gmark ok">✓ match</span>':(x.in_syllabus?'<span class="gmark no">✗ miss</span>':'<span class="gmark na">not taught yet</span>');
-      return `<div class="ecard" style="animation-delay:${idx*45}ms">
-        <div class="im"><img src="${T('eval_grade_'+x.i+'.jpg')}?t=${d.ts}" alt="" loading="lazy"></div>
-        <div class="body">
-          <div class="teach">teacher read<b>${esc(x.teacher_make)}${x.teacher_model?' '+esc(x.teacher_model):''}</b></div>
-          <div class="verd" style="margin-top:8px"><span class="mk" style="font-size:16px">${esc(s.label)}</span><span class="su">${s.pct.toFixed(0)}%</span>${mk}</div>
-          ${confBar(x.top||[])}${legend(x.top||[])}
-        </div></div>`;
-    }).join('');
+/* ---------- the corpus: what the harvester is banking, split by camera tier ---------- */
+function loadCorpus(){
+  fetch(T('harvest_cloud.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(h=>{
+    if(!h){ $('corpNote').textContent='no harvest telemetry yet — the collector has not published its first pulse.'; return; }
+    const t=h.by_tier||{}, tot=h.crops_total||0;
+    const ageMin=Math.round((Date.now()/1000-(h.ts||0))/60);
+    const nightBit = h.night_boost ? ' · <b style="color:var(--warn)">night boost</b> on' : '';
+    const asleep = ageMin>90;
+    $('corpNote').innerHTML = asleep
+      ? `<b>harvester quiet</b> — last pulse ${ageMin} min ago · the state below reflects that pulse`
+      : `sweep <b>${h.sweep||0}</b> · <b>${h.cams_live||0}</b> of ${h.cams_in_scope||0} cameras awake this pass · <b>${h.crops_this_sweep||0}</b> crops this sweep${nightBit} · pulse ${ageMin<1?'just now':ageMin+' min ago'}`;
+    $('acadState').innerHTML = asleep
+      ? `The academy is <b>studying quietly</b> — no harvester pulse in ${ageMin} minutes. The rotation and faculty below reflect the last known ledger.`
+      : `Class is in session — sweep <b>${h.sweep||0}</b> live, <b>${h.cams_live||0}</b> cameras awake this pass · harvester pulse ${ageMin} min ago.`;
+    $('corpTiles').innerHTML=[
+      ['Crops this run', tot.toLocaleString()],
+      ['Blue tier — 25 HD readers', (t.blue||0).toLocaleString()],
+      ['Orange tier — spotters', (t.orange||0).toLocaleString()],
+      ['Purple tier — counters', (t.purple||0).toLocaleString()],
+    ].map(x=>`<div class="cell"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('');
+    $('loopHarvest').textContent = `${(h.cams_live||0)} cams awake · ${tot.toLocaleString()} crops this run`;
+    $('loopLabel').textContent = `yolo11s teacher · KEEP_CONF ≥ 0.75`;
   }).catch(()=>{});
+}
+
+/* ---------- the rotation: state of each Kaggle key in the training carousel ---------- */
+function fmtAgo(sec){
+  if(sec<60) return Math.max(0,Math.round(sec))+'s ago';
+  const m=Math.round(sec/60);
+  if(m<60) return m+' min ago';
+  const h=Math.floor(m/60); return h+'h '+(m%60)+'m ago';
+}
+function loadRotation(){
+  Promise.all([
+    fetch(R('kaggle/rotation.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch(T('pace.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([rot,pace])=>{
+    const grid=$('rotGrid'); if(!grid) return;
+    const total=(pace&&pace.crops)||0;
+    const n=(rot&&rot.accounts_configured)||5;
+    const byIdx={}; ((rot&&rot.accounts)||[]).forEach(a=>byIdx[a.idx]=a);
+    const now=Date.now()/1000;
+    const cards="ABCDEFGHIJ".slice(0,n).split('').map((L,i)=>{
+      const a=byIdx[i];
+      const observed = !!a && !!a.username;
+      const stamp = a&&a.last_burst_ts ? fmtAgo(now-a.last_burst_ts) : (observed ? 'never fired' : 'not yet observed');
+      const bank = a&&a.last_count!=null ? Math.max(0,total-a.last_count) : (observed?total:0);
+      const dueClass = a&&a.last_burst_ts && (now-a.last_burst_ts)<3600 ? 'hot' : (observed?'':'dim');
+      const uname = observed ? a.username : '—';
+      const slug = (a&&a.kernel_slug) || ('bilbo-fp-'+L.toLowerCase());
+      return `<div class="rotcard ${dueClass}">
+        <div class="rl">${L}</div>
+        <div class="ru">${uname}</div>
+        <div class="rmeta">${slug}<br>last burst · ${stamp}<br>bank · <b>${bank.toLocaleString()}</b> new crops</div>
+      </div>`;
+    });
+    grid.innerHTML=cards.join('');
+    const seen = Object.keys(byIdx).length;
+    $('rotNote').innerHTML = `a burst fires every ~30 minutes on whichever key has banked the most fresh crops · <b>${n}</b> keys configured, <b>${seen}</b> observed live so far`;
+    $('loopTrain').textContent = `${seen} of ${n} keys observed live`;
+  });
 }
 setInterval(()=>{ if($('tab-academy').classList.contains('on')) loadAcademy(); },60000);
 
@@ -1308,17 +1145,23 @@ function renderHeads(){
   });
 }
 
-/* ---------- dashboard bar: training telemetry summary ---------- */
+/* ---------- dashboard bar: continuous-training summary ---------- */
 function loadDash(){
-  fetch(T('status.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(a=>{
-    if(!a)return;
-    const gens=a.gens||[];
-    if(gens.length){const best=Math.max(...gens.map(g=>g.mAP));
-      $('db_box').textContent=best.toFixed(3)+' mAP · gen '+(a.live&&a.live.gen||gens[gens.length-1].gen);}
-    const tb=a.textbook||{}, cur=tb.curve||[], last=cur.length?cur[cur.length-1]:null, st=(a.school||{}).student||{};
-    if(last&&last.make>0) $('db_mm').textContent=Math.round(last.make*100)+'% make · '+Math.round(last.model*100)+'% model';
-    else if(st.val_acc!=null) $('db_mm').textContent=Math.round(st.val_acc*100)+'% make · '+((st.classes||[]).length)+' makes';
-    else $('db_mm').textContent='seeding corpus';
+  Promise.all([
+    fetch(T('pace.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch(T('heads_status.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([p,hs])=>{
+    if(p){
+      const rate=p.rate_per_hour||0, crops=p.crops||0;
+      $('db_box').textContent = rate>0
+        ? crops.toLocaleString()+' crops · '+Math.round(rate).toLocaleString()+'/h'
+        : crops.toLocaleString()+' crops · pace warming';
+    }
+    if(hs&&hs.heads){
+      $('db_mm').textContent = hs.heads.length+' of '+(typeof HEAD_PLAN!=='undefined'?HEAD_PLAN.length:5)+' heads live';
+    } else {
+      $('db_mm').textContent = 'heads await first burst';
+    }
   }).catch(()=>{});
 }
 loadDash(); setInterval(loadDash,60000);
