@@ -62,11 +62,16 @@ def save_state(state):
 
 
 def install_token(token):
-    """Write the KGAT token where the kaggle CLI expects it."""
+    """Write the KGAT token where the kaggle CLI expects it, AND clear the
+    KAGGLE_API_TOKEN env so the CLI reads the file (not the multi-token bundle
+    we were invoked with — that string isn't valid auth on its own)."""
     KAGGLE_DIR.mkdir(exist_ok=True)
     p = KAGGLE_DIR / "access_token"
     p.write_text(token)
     p.chmod(0o600)
+    os.environ.pop("KAGGLE_API_TOKEN", None)
+    os.environ.pop("KAGGLE_KEY", None)
+    os.environ.pop("KAGGLE_USERNAME", None)
 
 
 def derive_username():

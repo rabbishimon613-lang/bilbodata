@@ -49,6 +49,9 @@ jobs:
       - name: Pick this tick's Kaggle account (rotation)
         id: rot
         env:
+          # After this step the picked token lives at ~/.kaggle/access_token —
+          # LATER steps deliberately do NOT export KAGGLE_API_TOKEN so the CLI
+          # authenticates via that file, not the multi-token bundle.
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: python fp/rotate_token.py
 
