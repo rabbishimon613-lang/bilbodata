@@ -8,8 +8,12 @@ name: train-gate
 # the per-head reports become training/heads_status.json so the Academy's
 # faculty wall moves.
 #
-# Needs repo secrets KAGGLE_USERNAME + KAGGLE_KEY (kaggle.com -> Account ->
-# Create New Token). Without them this workflow explains itself and exits 0.
+# Auth (Kaggle's newer single-token scheme):
+#   - repo SECRET   KAGGLE_API_TOKEN   (the KGAT_... value; kaggle.com -> Settings
+#                                       -> API Tokens -> Generate New Token)
+#   - repo VARIABLE KAGGLE_USERNAME    (your public Kaggle handle — NOT a secret;
+#                                       used only to address the notebook)
+# Without them this workflow explains itself and exits 0.
 
 on:
   workflow_dispatch:
@@ -36,11 +40,11 @@ jobs:
       - name: Check for Kaggle credentials
         id: creds
         env:
-          KU: ${{ secrets.KAGGLE_USERNAME }}
-          KK: ${{ secrets.KAGGLE_KEY }}
+          KT: ${{ secrets.KAGGLE_API_TOKEN }}
+          KU: ${{ vars.KAGGLE_USERNAME }}
         run: |
-          if [ -z "$KU" ] || [ -z "$KK" ]; then
-            echo "No KAGGLE_USERNAME / KAGGLE_KEY secrets yet — set them to arm burst training."
+          if [ -z "$KT" ] || [ -z "$KU" ]; then
+            echo "Missing KAGGLE_API_TOKEN secret and/or KAGGLE_USERNAME variable — set both to arm burst training."
             echo "armed=false" >> "$GITHUB_OUTPUT"
           else
             echo "armed=true" >> "$GITHUB_OUTPUT"
@@ -49,12 +53,12 @@ jobs:
       - name: Collect any finished kernel output
         if: steps.creds.outputs.armed == 'true'
         env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          KUSER: ${{ vars.KAGGLE_USERNAME }}
           GH_TOKEN: ${{ github.token }}
         run: |
           pip install --quiet kaggle
-          KREF="$KAGGLE_USERNAME/bilbo-heads-train"
+          KREF="$KUSER/bilbo-heads-train"
           STATUS=$(kaggle kernels status "$KREF" 2>/dev/null | tr -d '"' || echo none)
           echo "kernel status: $STATUS"
           case "$STATUS" in *complete*) ;; *) exit 0;; esac
@@ -99,11 +103,11 @@ jobs:
       - name: Fire a Kaggle burst
         if: steps.creds.outputs.armed == 'true' && steps.bank.outputs.fire == 'true'
         env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          KUSER: ${{ vars.KAGGLE_USERNAME }}
         run: |
           pip install --quiet kaggle
-          sed -i "s/KAGGLE_USER/$KAGGLE_USERNAME/" kaggle/kernel-metadata.json
+          sed -i "s/KAGGLE_USER/$KUSER/" kaggle/kernel-metadata.json
           kaggle kernels push -p kaggle/
           echo "${{ steps.bank.outputs.total }}" > kaggle/last_train_count.txt
           git config user.name "bilbo-gate"

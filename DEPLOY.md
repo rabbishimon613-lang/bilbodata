@@ -26,7 +26,7 @@ current truth; the old pedcount/Cloudflare notes are gone.
 | secret | used by | state |
 |---|---|---|
 | `WORKER_PAT` | worker.yml + harvest.yml relay | set (Pedro's classic PAT — still worth swapping for a fine-grained Actions:write + Contents:write token) |
-| `KAGGLE_USERNAME` / `KAGGLE_KEY` | gate.yml | **not set yet** — kaggle.com → Settings → Create New Token, then `gh secret set KAGGLE_USERNAME` and `gh secret set KAGGLE_KEY`. Until then gate.yml no-ops politely. |
+| `KAGGLE_API_TOKEN` (secret) + `KAGGLE_USERNAME` (variable) | gate.yml | **not set yet.** kaggle.com → Settings → API Tokens → Generate New Token (the `KGAT_…` value). Then `gh secret set KAGGLE_API_TOKEN` (paste the token) and `gh variable set KAGGLE_USERNAME` (your public handle — not a secret). Until both exist gate.yml no-ops politely. One account only; the gate is single-account by design. |
 | `VERCEL_TOKEN` (deploy.yml) | nothing | dead — do not use; deploy locally |
 
 ## Deploying the shell (the one manual step)
