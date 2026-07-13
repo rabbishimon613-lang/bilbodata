@@ -161,6 +161,18 @@
   /* abstain gauge */
   .abbar{display:flex;height:8px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.05);margin:12px 0 8px}
   .abbar i{display:block;height:100%}
+  /* plateau clock */
+  .paceclock{margin:32px 0 0;padding:22px 26px;border:1px solid var(--line);border-left:2px solid var(--live);border-radius:0 4px 4px 0;background:var(--panel2);max-width:640px}
+  .paceclock .pcap{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut)}
+  .paceclock .pdate{font-family:var(--mono);font-size:44px;font-weight:400;letter-spacing:-.005em;color:var(--live);margin-top:12px;font-variant-numeric:tabular-nums;line-height:1}
+  .paceclock .pdate .sep{color:var(--mut);padding:0 8px}
+  .paceclock .pnote{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:12px;line-height:1.6}
+  .paceclock .pnote b{color:var(--ink)}
+  .paceclock .pbar{height:5px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;margin-top:14px}
+  .paceclock .pbar i{display:block;height:100%;background:var(--live);transition:width .8s}
+  .paceclock .keys{display:flex;gap:5px;margin-top:14px}
+  .paceclock .keys i{display:block;width:14px;height:14px;border-radius:2px;background:var(--panel);border:1px solid var(--line2);font-size:9px;color:var(--live);font-family:var(--mono);text-align:center;line-height:14px}
+  @media(max-width:640px){.paceclock .pdate{font-size:34px}}
   /* head staircases */
   .headgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
   .headcard{border:1px solid var(--line);border-radius:4px;background:var(--panel);padding:14px 16px}
@@ -459,29 +471,36 @@
 <!-- ========== ACADEMY ========== -->
 <div class="tabpane" id="tab-academy">
   <section class="hero" style="padding-bottom:36px">
-    <div class="eyebrow">Bilbo Academy · the eye, teaching itself · watch-only</div>
+    <div class="eyebrow">Bilbo Academy · the eye, teaching itself · class in session 24/7</div>
     <h1 style="font-size:clamp(34px,5vw,58px)">Watch it learn.</h1>
-    <p class="sub">Every reading on this site comes from a vision model — and this is where those models go to school. Counting graduated long ago; the academy now teaches the harder art of <b>reading</b> a vehicle — its class, its color, its company, its make — one skill at a time, each skill graded separately, each one taught to say "can't tell" below its pay grade. Telemetry published live from the rig.</p>
-    <div class="statesent" id="acadState">Contacting the academy…</div>
+    <p class="sub">Every reading on this site comes from a vision model — and this is where those models go to school. Class runs continuously: five rotating GPUs, a fresh burst every 30 minutes on whichever key has the biggest bank of new footage, over and over until the curves flatten.</p>
+    <div class="paceclock">
+      <div class="pcap">Estimated first plateau · New York time</div>
+      <div class="pdate" id="paceDate">—<span class="sep">·</span>—h</div>
+      <div class="pbar"><i id="paceBar" style="width:0%"></i></div>
+      <div class="pnote" id="paceNote">gathering pace — first samples land with the next harvest tick</div>
+      <div class="keys" id="paceKeys" title="one square per Kaggle key in rotation"></div>
+    </div>
+    <div class="statesent" id="acadState" style="margin-top:22px">Contacting the academy…</div>
   </section>
 
   <section class="blk">
     <div class="eyebrow">The loop</div>
-    <h2>How the academy runs, forever</h2>
-    <div class="note">the only perpetual thing is the harvest — models plateau, footage compounds</div>
+    <h2>How the academy runs, continuously</h2>
+    <div class="note">the harvest never stops · the training never queues · every 30 minutes a fresh key runs</div>
     <div class="loop">
       <div class="st"><div class="idx">01 · HARVEST</div><h4>Sweep the cameras</h4><p>Round the clock, weighted by tier — the 25 blue cameras every sweep, oranges often, purples lightly. Rain, dusk and night get oversampled on purpose.</p><div class="lv" id="loopHarvest">—</div></div>
       <div class="st"><div class="idx">02 · LABEL</div><h4>Name the easy, flag the hard</h4><p>A stronger model auto-names the obvious. The sharpest, hardest close-ups go to the gold bench below for a careful read — or an abstention.</p><div class="lv" id="loopLabel">—</div></div>
-      <div class="st"><div class="idx">03 · TRAIN</div><h4>One skill per head</h4><p>Each skill — class, color, company, plate state, make — is its own small model, trained in free cloud GPU bursts when enough new material banks.</p><div class="lv" id="loopTrain">—</div></div>
+      <div class="st"><div class="idx">03 · TRAIN</div><h4>Five keys, all firing</h4><p>Every 30 minutes the key with the biggest bank of new crops runs one burst — all five heads, sequentially — then hands off to the next key in the rotation. No queue, no idle GPUs, no waiting for a nightly window.</p><div class="lv" id="loopTrain">—</div></div>
       <div class="st"><div class="idx">04 · GRADE</div><h4>Exam on unseen cameras</h4><p>Every generation sits the same exam: cameras it never trained on, split day and night. A step up means real learning, not memorization.</p><div class="lv" id="loopGrade">—</div></div>
-      <div class="st"><div class="idx">05 · REPEAT</div><h4>Raise the bar, or stay quiet</h4><p>Heads that pass earn the street. Heads that don't keep abstaining in public while they study in private. Then the sweep begins again.</p><div class="lv" id="loopRepeat">—</div></div>
+      <div class="st"><div class="idx">05 · REPEAT</div><h4>Until the curves flatten</h4><p>Heads that pass earn the street. Heads that don't keep abstaining in public while they study in private. Bursts keep firing until the graph refuses to climb — that's the plateau above.</p><div class="lv" id="loopRepeat">—</div></div>
     </div>
   </section>
 
   <section class="blk">
     <div class="eyebrow">The faculty</div>
     <h2>One head per skill — each on its own staircase</h2>
-    <div class="note" id="headNote">every skill is scored separately, on footage from cameras it never trained on · a head below its bar abstains in public</div>
+    <div class="note" id="headNote">five heads, five keys, one classroom · every skill scored separately on cameras it never trained on · bursts fire ~every 30 minutes on the freshest key · a head below its bar abstains in public</div>
     <div class="headgrid" id="headGrid"></div>
   </section>
 
@@ -897,7 +916,36 @@ function loadAcademy(){
          <figcaption style="font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px">teacher read: <b style="color:var(--ink)">${sm.make}${sm.model?' '+sm.model:''}</b></figcaption></figure>`).join('');
     }
   }).catch(()=>{ $('acadState').textContent='Telemetry unreachable.'; });
-  renderEval(); renderHeads();
+  renderEval(); renderHeads(); loadPace();
+}
+
+/* ---------- plateau clock: cumulative-crops-until-plateau projection ---------- */
+function loadPace(){
+  fetch(T('pace.json')+'?t='+Date.now()).then(r=>r.ok?r.json():null).then(p=>{
+    const dt=$('paceDate'), note=$('paceNote'), bar=$('paceBar'), keys=$('paceKeys');
+    if(keys) keys.innerHTML='<i>A</i><i>B</i><i>C</i><i>D</i><i>E</i>';
+    if(!p||!dt) return;
+    const nowS=Date.now()/1000;
+    const eta = p.eta_ts && p.eta_ts>nowS ? p.eta_ts : null;
+    if(eta){
+      const parts=new Intl.DateTimeFormat('en-GB',{
+        timeZone:'America/New_York',day:'2-digit',month:'2-digit',year:'2-digit',
+        hour:'2-digit',hour12:false
+      }).formatToParts(new Date(eta*1000));
+      const g=k=>(parts.find(x=>x.type===k)||{value:'--'}).value;
+      dt.innerHTML=`${g('day')}/${g('month')}/${g('year')}<span class="sep">·</span>${g('hour')}h`;
+    }else{
+      dt.innerHTML='—<span class="sep">·</span>—h';
+    }
+    const rate=p.rate_per_hour||0, crops=p.crops||0, target=p.target||0;
+    const pct=target?Math.min(100,Math.round(100*crops/target)):0;
+    if(bar) bar.style.width=pct+'%';
+    const remH = (eta && rate>0) ? Math.round((eta-nowS)/3600) : null;
+    const remTxt = remH!=null ? (remH<48 ? `<b>${remH}</b> h to go` : `<b>${Math.round(remH/24)}</b> days to go`) : 'stabilizing…';
+    note.innerHTML = rate>0
+      ? `<b>${crops.toLocaleString()}</b> of ${target.toLocaleString()} crops banked · <b>${Math.round(rate).toLocaleString()}</b>/hour · <b>${pct}%</b> of the way · ${remTxt}`
+      : `<b>${crops.toLocaleString()}</b> of ${target.toLocaleString()} crops banked · pace measured once ≥15 min of harvest history is on record`;
+  }).catch(()=>{});
 }
 
 /* ---------- the evaluation room: live make/colour reads ---------- */

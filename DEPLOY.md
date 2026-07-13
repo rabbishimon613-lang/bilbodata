@@ -15,10 +15,18 @@ current truth; the old pedcount/Cloudflare notes are gone.
   ~5.3 h per generation. Crops ship to the **`crops` GitHub Release**; only the
   manifest (`fp/crops_meta.cloud.jsonl`) + telemetry (`training/harvest_cloud.json`)
   are committed. NEVER commit frames/crops to `main`.
-- **Burst GPU training** — `.github/workflows/gate.yml` (6-hourly) fires the
-  `kaggle/` kernel when ≥1500 new crops have banked, collects finished output:
-  weights → `models` Release, reports → `training/heads_status.json` (that file
-  drives the Academy "faculty" wall).
+- **Continuous GPU training** — `.github/workflows/gate.yml` ticks every 30
+  min. Each tick picks the account with the oldest `last_used` stamp (rotation
+  in `kaggle/rotation.json`), collects that account's finished kernel output
+  first (weights → `models` Release, reports → `training/heads_status.json`,
+  which drives the Academy faculty wall), then checks that account's own
+  per-account bank counter: ≥500 crops since its last burst fires a new one.
+  With 5 accounts × 48 ticks/day, each account cycles ~10×/day; Kaggle quotas
+  are the actual ceiling.
+- **Plateau clock** — `fp/pace.py` (invoked in every harvest tick) reads the
+  cumulative crop count against the earliest recorded sample and writes
+  `training/pace.json` with rate + projected ETA to the 250k-crop first
+  plateau. The Academy hero renders that as a big date+hour banner in NY time.
 - **Gold labels** — a Claude Code session on the Max plan (never the paid API):
   `fp/gold_judge.py sheet` → read → `fp/gold_judge.py apply`. See `fp/README.md`.
 

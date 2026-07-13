@@ -74,7 +74,8 @@ jobs:
           [ -f fp_out/crops_meta.jsonl ] && cat fp_out/crops_meta.jsonl >> fp/crops_meta.cloud.jsonl
           [ -f fp_out/labels_auto.jsonl ] && cat fp_out/labels_auto.jsonl >> fp/labels_auto.cloud.jsonl
           [ -f fp_out/harvest_status.json ] && cp fp_out/harvest_status.json training/harvest_cloud.json
-          git add fp/crops_meta.cloud.jsonl fp/labels_auto.cloud.jsonl training/harvest_cloud.json 2>/dev/null || true
+          python fp/pace.py || true
+          git add fp/crops_meta.cloud.jsonl fp/labels_auto.cloud.jsonl training/harvest_cloud.json training/pace.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "harvest gen ${GEN}: manifest + telemetry"
           for i in 1 2 3; do

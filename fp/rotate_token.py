@@ -132,13 +132,19 @@ def main():
     slug = SLUGS[idx] if idx < len(SLUGS) else f"n{idx}"
     kernel_slug = f"bilbo-fp-{slug}"
     accts = {a["idx"]: a for a in state.get("accounts", [])}
+    prev = accts.get(idx, {})
+    last_count = prev.get("last_count", 0)
     accts[idx] = {"idx": idx, "username": user, "kernel_slug": kernel_slug,
-                  "last_used": int(time.time())}
+                  "last_used": int(time.time()),
+                  "last_count": last_count,
+                  "last_burst_ts": prev.get("last_burst_ts", 0)}
     state["accounts"] = sorted(accts.values(), key=lambda a: a["idx"])
     state["accounts_configured"] = len(tokens)
     save_state(state)
-    emit(armed="true", kuser=user, kslug=kernel_slug, kidx=str(idx))
-    print(f"[rotate] token #{idx} -> {user}/{kernel_slug}", file=sys.stderr)
+    emit(armed="true", kuser=user, kslug=kernel_slug, kidx=str(idx),
+         last_count=str(last_count))
+    print(f"[rotate] token #{idx} -> {user}/{kernel_slug} "
+          f"(last_count={last_count})", file=sys.stderr)
 
 
 if __name__ == "__main__":
