@@ -1,0 +1,1358 @@
+<meta charset="utf-8">
+<title>SkyLine — Bilbo Data</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  html,body,#map{margin:0;padding:0;height:100%;background:#000;font-family:ui-monospace,Menlo,monospace;color:#d4c9a8}
+  *{box-sizing:border-box}
+  .maplibregl-canvas{background:#000!important}
+  .maplibregl-ctrl-attrib, .maplibregl-ctrl-logo{opacity:.2}
+
+  /* ---- BrainView rail ---- */
+  #rail{position:absolute;top:12px;left:12px;bottom:12px;width:312px;z-index:3;
+    display:flex;flex-direction:column;gap:10px;pointer-events:none}
+  #rail > *{pointer-events:auto}
+  .panel{background:rgba(12,10,7,.72);border:1px solid #d4c9a833;backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px)}
+  .rhead{padding:11px 14px 12px}
+  .rhead .ttl{font-size:12px;letter-spacing:.16em;color:#e8dfc4}
+  .rhead .ttl b{color:#fff}
+  .rhead .sub{font-size:10px;letter-spacing:.08em;color:#c9b98a99;margin-top:3px}
+  .vitals{display:flex;align-items:flex-end;gap:14px;padding:2px 14px 12px}
+  .bignum{font-size:34px;line-height:.9;color:#fff;font-weight:600;letter-spacing:-.01em}
+  .bignum small{font-size:10px;font-weight:400;color:#c9b98a99;letter-spacing:.08em;display:block;margin-top:5px}
+  #spark{flex:1;height:38px;opacity:.9}
+  .mix{padding:0 14px 13px}
+  .mix .bar{display:flex;height:7px;border-radius:4px;overflow:hidden;gap:2px;background:transparent}
+  .mix .bar i{display:block;height:100%;border-radius:2px}
+  .mix .key{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px;font-size:10px;color:#c9b98a}
+  .mix .key span{display:flex;align-items:center;gap:5px}
+  .mix .key i{width:8px;height:8px;border-radius:2px;display:inline-block}
+
+  .feedwrap{flex:1;overflow-y:auto;padding:2px}
+  .feedwrap::-webkit-scrollbar{width:6px}
+  .feedwrap::-webkit-scrollbar-thumb{background:#d4c9a833;border-radius:3px}
+  .feedhd{font-size:10px;letter-spacing:.14em;color:#c9b98a99;padding:10px 12px 6px}
+  .disp{display:flex;gap:9px;padding:11px 12px;border-top:1px solid #ffffff0d;cursor:pointer;
+    transition:background .15s}
+  .disp:hover{background:#ffffff0a}
+  .disp .dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex:none;
+    box-shadow:0 0 7px currentColor}
+  .disp .txt{font-size:11.5px;line-height:1.45;color:#e0d8c2}
+  .disp .src{font-size:9.5px;color:#c9b98a80;margin-top:4px;letter-spacing:.03em}
+  .disp .tag{font-size:9px;letter-spacing:.1em;padding:2px 6px;border-radius:3px;height:fit-content;
+    text-transform:uppercase;flex:none}
+  .t-surge{color:#ff9040;background:#ff904018}
+  .t-quiet{color:#5b8def;background:#5b8def18}
+  .t-truck{color:#4f7fd4;background:#4f7fd418}
+  .t-busy{color:#d9b774;background:#d9b77415}
+  .t-flow{color:#c9b98a;background:#c9b98a12}
+  .collecting{color:#c9b98a80;font-size:11px;padding:14px 12px}
+
+  #legend{position:absolute;top:12px;right:12px;z-index:3;padding:9px 12px;font-size:10.5px;
+    letter-spacing:.05em;line-height:1.75}
+  #legend .hd{color:#c9b98a99;font-size:9px;letter-spacing:.13em;margin-bottom:5px}
+  #legend .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  #legend .rr{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle;
+    border:1.5px solid #e8dfc4;box-shadow:0 0 6px #e8dfc466}
+  #legend .tk{display:inline-block;width:14px;height:2px;margin-right:5px;vertical-align:middle;border-radius:2px}
+  #legend .tk.deep{background:#5b8def;opacity:.85;box-shadow:0 0 7px #5b8def77}
+  #legend .tk.cut{background:#5b8def;opacity:.55}
+  #legend .tk.el{background:#e0913c;box-shadow:0 0 7px #e0913c88}
+  #legend .tr{display:inline-block;width:15px;height:4px;border-radius:1px;margin-right:6px;vertical-align:middle;
+    background:linear-gradient(90deg,#fff4dc 0 26%,transparent 26% 32%,#fff4dc 32% 58%,transparent 58% 64%,#fff4dc 64% 100%);
+    box-shadow:0 0 7px #fff4dc55}
+  #legend .pp{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  #legend .pp.in{background:#e6d3a4}
+  #legend .pp.out{background:#93b0d8}
+  #xrayBtn{margin-top:9px;width:100%;font-family:inherit;font-size:9.5px;letter-spacing:.14em;
+    color:#c9b98a;background:#ffffff08;border:1px solid #d4c9a833;border-radius:2px;padding:6px 0;cursor:pointer}
+  #xrayBtn:hover{color:#fff;border-color:#d4c9a877}
+  #xrayBtn.on{color:#0a0908;background:#d4c9a8;border-color:#d4c9a8}
+
+  /* ---- map beacons ---- */
+  .beacon{width:14px;height:14px;pointer-events:none}
+  .beacon .ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--bc,#ff9040);
+    animation:ping 2.4s ease-out infinite}
+  .beacon .ring:nth-child(2){animation-delay:1.2s}
+  @keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(3.4);opacity:0}}
+  .blabel{position:absolute;left:16px;top:-4px;white-space:nowrap;font-size:10px;letter-spacing:.04em;
+    color:#fff;background:rgba(12,10,7,.82);border:1px solid var(--bc,#ff9040);padding:3px 7px;border-radius:3px;
+    box-shadow:0 2px 10px #000a}
+  .blabel small{color:#c9b98a;display:block;font-size:8.5px;letter-spacing:.08em}
+  .disp.on{background:#ffffff12}
+
+  /* ---- site nav, floating over the map ---- */
+  #topnav{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:5;
+    display:flex;align-items:center;gap:2px;padding:5px 7px;border-radius:3px}
+  #topnav .brand{display:flex;align-items:center;gap:7px;text-decoration:none;padding:0 9px 0 3px;
+    margin-right:5px;border-right:1px solid #ffffff14}
+  #topnav .brand img{width:20px;height:20px;border-radius:50%}
+  #topnav .brand span{font-size:12.5px;letter-spacing:.02em;color:#e8dfc4}
+  #topnav .brand b{color:#fff;font-weight:600}
+  #topnav a.t{font-size:11.5px;letter-spacing:.06em;color:#c9b98a;text-decoration:none;
+    padding:6px 11px;border-radius:2px;border:1px solid transparent}
+  #topnav a.t:hover{color:#fff;background:#ffffff0d}
+  #topnav a.t.on{color:#fff;border-color:#d4c9a844;background:#ffffff10}
+  @media(max-width:820px){
+    #topnav{left:12px;right:12px;transform:none;justify-content:center;top:auto;bottom:12px}
+    #rail{width:auto;right:12px;bottom:64px}
+    #legend{display:none}
+  }
+</style>
+<div id="map"></div>
+
+<div class="panel" id="topnav">
+  <a class="brand" href="index.html"><img src="assets/bilbo-pup.png" alt="Bilbo"><span><b>Bilbo</b> Data</span></a>
+  <a class="t" href="index.html">Modules</a>
+  <a class="t" href="library.html">Library</a>
+  <a class="t" href="index.html#brain">BrainView</a>
+  <a class="t on">SkyLine</a>
+  <a class="t" href="index.html#about">About</a>
+</div>
+
+<div id="rail">
+  <div class="panel rhead">
+    <div class="ttl"><b>BRAINVIEW</b> · what the eye sees now</div>
+    <div class="sub" id="rsub">reading the streets…</div>
+    <div class="vitals">
+      <div class="bignum"><span id="vNow">—</span><small>CARS IN VIEW</small></div>
+      <canvas id="spark"></canvas>
+    </div>
+    <div class="mix">
+      <div class="bar" id="mixBar"></div>
+      <div class="key" id="mixKey"></div>
+    </div>
+  </div>
+  <div class="panel feedwrap">
+    <div class="feedhd">DISPATCHES · ranked by surprise</div>
+    <div id="feed"><div class="collecting">Listening to the streets…</div></div>
+  </div>
+</div>
+
+<div class="panel" id="legend">
+  <div class="hd">CAMERA QUALITY</div>
+  <div><span class="sw" style="background:#3a7dff;box-shadow:0 0 6px #3a7dff88"></span>Tier A · HD</div>
+  <div><span class="sw" style="background:#ff9040;box-shadow:0 0 6px #ff904088"></span>Tier B · mid</div>
+  <div><span class="sw" style="background:#a870ff;box-shadow:0 0 6px #a870ff88"></span>Tier C · low</div>
+  <div style="margin-top:7px;padding-top:7px;border-top:1px solid #ffffff12">
+    <span class="rr"></span>ring = live vehicles now</div>
+
+  <div class="hd" style="margin-top:11px;padding-top:9px;border-top:1px solid #ffffff12">RAIL NETWORK</div>
+  <div><span class="tk deep"></span>in tunnel</div>
+  <div><span class="tk cut"></span>open cut</div>
+  <div><span class="tk el"></span>elevated &amp; at grade</div>
+  <div><span class="tr"></span>train, mock positions</div>
+  <div><span class="pp in"></span>walking in<span class="pp out" style="margin-left:9px"></span>just off a train</div>
+  <div id="subCount" style="color:#c9b98a99;font-size:9.5px;margin-top:4px">—</div>
+  <div id="crowdCount" style="color:#c9b98a99;font-size:9.5px"></div>
+  <button id="xrayBtn" type="button">X-RAY</button>
+</div>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const TIER = { A:'#3a7dff', B:'#ff9040', C:'#a870ff' };
+const MIX = { car:'#b8842a', truck:'#4f7fd4', bus:'#2ba86d', moto:'#9d6ac9' };
+const MIXLBL = { car:'cars', truck:'trucks', bus:'buses', moto:'motos' };
+// Live data: siblings in preview, GitHub-raw once deployed.
+const DATA_BASE = (location.hostname==='localhost'||location.hostname==='127.0.0.1')
+  ? './' : 'https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/';
+
+function tierOf(w){ if(!w) return 'C'; if(w>=1280) return 'A'; if(w>=640) return 'B'; return 'C'; }
+const $=id=>document.getElementById(id);
+
+function parseCSV(text){
+  const [head, ...rows] = text.trim().split(/\r?\n/);
+  const cols = head.split(',');
+  return rows.map(r=>{
+    // handle quoted fields with commas
+    const out=[]; let cur='', q=false;
+    for (const ch of r){
+      if(ch==='"'){ q=!q; continue; }
+      if(ch===',' && !q){ out.push(cur); cur=''; continue; }
+      cur+=ch;
+    }
+    out.push(cur);
+    const o={}; cols.forEach((c,i)=>o[c]=out[i]);
+    return o;
+  });
+}
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+  center: [-73.94, 40.72],
+  zoom: 10.3,
+  pitch: 38,
+  bearing: -12,
+  maxPitch: 60,
+  minZoom: 9.5,
+  maxBounds: [[-74.5, 40.35], [-73.35, 41.05]],
+  antialias: true
+});
+
+window.__map = map;
+map.on('error', e => { console.error(e && e.error && e.error.message); });
+// Force resize on next frame — container size sometimes reads as 0 during construction
+requestAnimationFrame(()=>{ map.resize(); });
+setTimeout(()=>{ map.resize(); map.triggerRepaint(); }, 100);
+
+let __initDone = false;
+async function runInit(){
+  if (__initDone) return;
+  // Wait until the base style JSON has parsed. isStyleLoaded() also waits on
+  // tiles and never settles in some engines, so gate on style._loaded instead.
+  if (!(map.style && map.style._loaded)) { setTimeout(runInit, 150); return; }
+  __initDone = true;
+
+  // Strip the global basemap down to a black void: remove every world layer,
+  // paint the background pure black. Nothing outside NYC gets drawn.
+  map.getStyle().layers.slice().forEach(l => {
+    if (l.type === 'background') {
+      map.setPaintProperty(l.id, 'background-color', '#000000');
+    } else {
+      map.removeLayer(l.id);
+    }
+  });
+
+  // Subway tunnels go in FIRST, so everything after this draws on top of them
+  // and they read as buried. See the subway section further down.
+  await buildSubway();
+
+  // NYC land — the boroughs as a lifted plane over the void so the city reads
+  // as land islands and the rivers stay pure black. Deliberately translucent:
+  // this is the pane you look through to see the tunnels underneath.
+  try {
+    const boroughs = await fetch('nyc_land.geojson').then(r=>r.json());
+    map.addSource('boroughs', { type:'geojson', data: boroughs });
+    map.addLayer({
+      id:'land',
+      type:'fill',
+      source:'boroughs',
+      paint:{ 'fill-color':'#0b0a08', 'fill-opacity':GROUND_OPACITY.surface }
+    });
+  } catch(e){ console.warn('boroughs failed', e); }
+
+  // Streets — muted beige hairlines from the NYC vector tiles
+  map.addLayer({
+    id:'streets',
+    source:'carto',
+    'source-layer':'transportation',
+    type:'line',
+    paint:{ 'line-color':'#c9b98a', 'line-opacity':0.42, 'line-width':['interpolate',['linear'],['zoom'],10,0.5,15,1.5] }
+  });
+
+  // Skyline massing — every building over 100 ft, shipped as a local GeoJSON
+  // so MapLibre tiles it in the browser and it draws at EVERY zoom. The CARTO
+  // vector tiles carry no building layer below z13, which is why pulling back
+  // used to flatten the city. Heights are exaggerated as you zoom out — at z10
+  // a real 400 m tower is two screen pixels tall, so the skyline only reads if
+  // it is stretched. Tall towers glow beige, low mass stays dark.
+  try {
+    const massing = await fetch('skyline_massing.geojson').then(r=>r.json());
+    map.addSource('massing', { type:'geojson', data: massing });
+    map.addLayer({
+      id: 'massing-3d',
+      source: 'massing',
+      type: 'fill-extrusion',
+      maxzoom: 13.6,
+      paint: {
+        'fill-extrusion-color': ['interpolate',['linear'],['get','h'],
+          30,'#241f18', 90,'#4a3f2b', 200,'#8a7647', 450,'#d4c9a8'],
+        'fill-extrusion-height': ['interpolate',['linear'],['zoom'],
+          9.5, ['*',['get','h'], 7],
+          11,  ['*',['get','h'], 4],
+          12.5,['*',['get','h'], 1.8],
+          13.6,['get','h']],
+        'fill-extrusion-base': 0,
+        'fill-extrusion-opacity': 0.42,
+        'fill-extrusion-vertical-gradient': true
+      }
+    });
+  } catch(e){ console.warn('massing failed', e); }
+
+  // 3D buildings — the full detailed set from the vector tiles, once we are
+  // close enough for them to exist. Semi-transparent glass, same as the massing.
+  map.addLayer({
+    id: 'buildings-3d',
+    source: 'carto',
+    'source-layer': 'building',
+    type: 'fill-extrusion',
+    minzoom: 13.6,
+    paint: {
+      'fill-extrusion-color': '#2a241c',
+      'fill-extrusion-height': ['coalesce', ['get','render_height'], ['get','height'], 10],
+      'fill-extrusion-base':   ['coalesce', ['get','render_min_height'], 0],
+      'fill-extrusion-opacity': 0.45,
+      'fill-extrusion-vertical-gradient': true
+    }
+  });
+  map.addLayer({
+    id: 'buildings-edge',
+    source: 'carto',
+    'source-layer': 'building',
+    type: 'line',
+    minzoom: 13.6,
+    paint: { 'line-color': '#c9b98a', 'line-opacity': 0.18, 'line-width': 0.35 }
+  });
+
+  // Trim everything outside the five boroughs. This is a tight local cutout
+  // (bounded box minus the simplified boroughs, ~2.8k pts) — it hides the
+  // Jersey/LI streets that ride along in the shared tiles. Sits above streets
+  // & buildings, below the cams.
+  try {
+    const cover = await fetch('nyc_mask.geojson').then(r=>r.json());
+    map.addSource('cover', { type:'geojson', data: cover });
+    map.addLayer({
+      id:'cover',
+      type:'fill',
+      source:'cover',
+      paint:{ 'fill-color':'#000000', 'fill-opacity':1 }
+    });
+  } catch(e){ console.warn('cover failed', e); }
+
+  // The parts of the subway that are NOT buried — elevated structure, viaducts,
+  // open cuts at grade — belong above the buildings, not under them, along with
+  // the stations. Added here so they clear the whole surface stack.
+  addSubwaySurface();
+
+  // Cams — join with resolution census for tier
+  const [cams, censusText] = await Promise.all([
+    fetch('cams_all.json').then(r=>r.json()),
+    fetch('cam_resolution_census.csv').then(r=>r.text())
+  ]);
+  const census = parseCSV(censusText);
+  const wById = {};
+  for (const c of census) wById[c.id] = parseInt(c.width,10);
+
+  cams.forEach(c => { c.tier = tierOf(wById[c.id]); c.w = wById[c.id]||null; });
+  BV.cams = cams;
+  BV.byId = {}; cams.forEach(c => BV.byId[c.id] = c);
+
+  map.addSource('cams', { type:'geojson', data: camFC() });
+
+  // Base placement dots — colored by camera quality (tier)
+  map.addLayer({
+    id:'cams-dot',
+    type:'circle',
+    source:'cams',
+    paint:{
+      'circle-radius': ['match', ['get','tier'], 'A', 2.4, 'B', 1.9, 1.5],
+      'circle-color': ['match', ['get','tier'], 'A', TIER.A, 'B', TIER.B, TIER.C],
+      'circle-opacity': ['case', ['get','live'], 1, 0.55]
+    }
+  });
+
+  // Live-activity ring — only on cams reporting now, radius scales with the
+  // live vehicle count. This is the map breathing. Pulse animated below.
+  map.addLayer({
+    id:'cams-live',
+    type:'circle',
+    source:'cams',
+    filter:['get','live'],
+    paint:{
+      'circle-radius': ['interpolate',['linear'],['get','veh'], 0,3, 1,5, 8,15, 20,26],
+      'circle-color':'rgba(0,0,0,0)',
+      'circle-stroke-color': ['match', ['get','tier'], 'A', TIER.A, 'B', TIER.B, TIER.C],
+      'circle-stroke-width': 1.4,
+      'circle-stroke-opacity': 0.9
+    }
+  });
+
+  map.on('click', 'cams-dot', e => showCamPopup(e.features[0].properties, e.lngLat));
+  map.on('mouseenter','cams-dot',()=>map.getCanvas().style.cursor='pointer');
+  map.on('mouseleave','cams-dot',()=>map.getCanvas().style.cursor='');
+
+  // Pulse the live rings
+  (function pulse(){
+    const k = 0.5 + 0.5*Math.sin(Date.now()/620);
+    if (map.getLayer('cams-live'))
+      map.setPaintProperty('cams-live','circle-stroke-opacity', 0.35 + 0.55*k);
+    requestAnimationFrame(pulse);
+  })();
+
+  // First live pull + refresh loop
+  refreshBrainView();
+  setInterval(refreshBrainView, 45000);
+
+  // Idle auto-rotate — yields whenever the map is animating (e.g. a dispatch
+  // flyTo) or the user is interacting, so it never fights a camera move.
+  let idle=true, t;
+  window.__nudgeIdle = ()=>{ idle=false; clearTimeout(t); t=setTimeout(()=>idle=true,6000); };
+  ['mousedown','wheel','touchstart'].forEach(ev=>map.getCanvas().addEventListener(ev, window.__nudgeIdle));
+  (function spin(){ if(idle && !map.isMoving()) map.setBearing(map.getBearing()+0.02); requestAnimationFrame(spin); })();
+  // Force the first paint with a short real camera animation — MapLibre can
+  // stall on a static first frame until the camera actually moves.
+  map.resize();
+  setTimeout(()=>{
+    map.easeTo({ zoom: map.getZoom()+0.0001, duration: 500 });
+  }, 150);
+}
+map.on('load', runInit);
+map.on('styledata', () => { if (map.isStyleLoaded()) runInit(); });
+setTimeout(runInit, 4000); // fallback
+
+/* ======================= subway: tunnels, trains, crowds =================
+   The city is drawn as a translucent shell, so anything added before the land
+   plane reads as buried under it. Tunnels go under; elevated structure goes
+   over the buildings. Depth is sold two ways: the ground dims whatever is
+   below it, and every underground layer is nudged up-screen by the amount a
+   point that deep would actually be displaced at the current pitch and zoom —
+   so as you tilt the camera the tunnels sink away beneath the streets.
+
+   Trains are consists, not dots: a train is a polyline laid ALONG the track
+   for its real length, so it bends through curves, and close in it breaks into
+   its individual cars with the couplings showing. Car counts and lengths are
+   the real ones — ten 51 ft cars on the numbered lines, ten 60 ft cars on the
+   lettered ones, four on the shuttles and the Staten Island Railway.
+
+   Crowds are the Cities Skylines beat: people converge on an entrance along
+   the street grid and vanish into it, and when a train pulls in the station
+   spills a load of them back out. Crowd size per station is real ridership.
+
+   Train POSITIONS are the only mock left. Swapping in the MTA real-time feed
+   replaces those; tunnels, consists, stations and crowds all stay.
+   ---------------------------------------------------------------------- */
+const GROUND_OPACITY = { surface: 0.58, xray: 0.12 };
+const DEEP_M = 22, CUT_M = 8;      // tunnel depths, metres below street level
+const DEPTH_GAIN = 2.5;            // how much to overstate that depth on screen
+const TIME_SCALE = 6;              // mock trains run faster than life, or nothing
+                                   // appears to move at a citywide zoom
+const HEADWAY_M = 4800;            // track metres between trains — lands near the
+                                   // ~460 trains the real system runs at rush hour
+const TICK = 110;                  // ms between position pushes
+
+const CAR_ZOOM   = 13.4;           // closer than this, a consist splits into cars
+const SOLID_ZOOM = 13.4;           // closer than this, elevated track stops being a
+                                   // drawn line and becomes real structure: deck,
+                                   // piers, rails and trains riding on top of it.
+                                   // Only works going UP — MapLibre will not
+                                   // extrude below ground, which is why the
+                                   // tunnels still use the flat-line trick.
+const DECK_W     = 5.6;            // half-width of an el deck, metres
+const DECK_T     = 1.8;            // deck thickness
+const PIER_EVERY = 30;             // metres between columns
+const PIER_W     = 1.3;            // half-width of a column
+const CAR_W      = 1.55;           // half-width of a car body
+const CAR_H      = 3.6;            // car height above the rails
+const CROWD_ZOOM = 13.0;           // closer than this, the crowds appear
+const CROWD_CAP  = 520;            // walkers on screen at once, spread across the
+                                   // stations in view by their share of ridership
+const WALK_MS    = 1.35;           // metres a second, on foot
+const REACH_M    = 230;            // how far out people are drawn walking in
+
+const SUB = { paths:[], trains:[], stations:[], walkers:[], streetPool:[],
+              poolAt:0, outCount:0, xray:false, ready:false };
+
+function metresPerPixel(){
+  return 156543.03392 * Math.cos(map.getCenter().lat * Math.PI/180) / Math.pow(2, map.getZoom());
+}
+
+// real rolling stock: IRT (numbered) runs 51 ft cars, BMT/IND (lettered) 60 ft,
+// the shuttles and the Staten Island Railway run short consists
+function consistOf(route){
+  if (route === 'GS' || route === 'FS' || route === 'H') return { cars:4, carLen:15.5 };
+  if (route === 'SI') return { cars:4, carLen:22.5 };
+  return /^[0-9]/.test(route) ? { cars:10, carLen:15.5 } : { cars:10, carLen:18.3 };
+}
+
+/* ---- the named water crossings ------------------------------------------
+   Four places where the subway crosses open water on structure. Deck heights
+   and tower heights are the real published figures, not the 14 m the generic
+   bridge rule assumes — the Manhattan and Williamsburg bridges carry trains
+   about 41 m over the river with towers around a hundred metres tall, and that
+   difference is the whole reason they look like bridges.
+   Tower positions are not hard-coded: they are derived from where each
+   crossing's track actually leaves and rejoins the shore.
+   -------------------------------------------------------------------- */
+const CROSSINGS = [
+  { id:'manhattan',    name:'Manhattan Bridge',   type:'suspension',
+    lat:[40.6985,40.7135], lon:[-73.9975,-73.9825], deck:41, tower:102 },
+  { id:'williamsburg', name:'Williamsburg Bridge',type:'suspension',
+    lat:[40.7055,40.7195], lon:[-73.9835,-73.9605], deck:41, tower:94 },
+  { id:'broadway',     name:'Broadway Bridge',    type:'lift',
+    lat:[40.8665,40.8805], lon:[-73.9225,-73.9045], deck:8,  tower:31 },
+  { id:'jamaica',      name:'Jamaica Bay trestles',type:'trestle',
+    lat:[40.5750,40.6650], lon:[-73.8700,-73.7700], deck:9,  tower:0, pile:14 },
+];
+function crossingAt(x, y){
+  for (const c of CROSSINGS)
+    if (y >= c.lat[0] && y <= c.lat[1] && x >= c.lon[0] && x <= c.lon[1]) return c;
+  return null;
+}
+
+// towers, main cables and suspender ropes for the crossings that have them
+function buildLandmarks(paths){
+  const tower={type:'FeatureCollection',features:[]},
+        cable={type:'FeatureCollection',features:[]};
+
+  // every over-water vertex, grouped by crossing
+  const wet = {};
+  paths.forEach(p => p.pts.forEach(q => {
+    if (q.length > 4){
+      const c = crossingAt(q[0], q[1]);
+      if (c) (wet[c.id] = wet[c.id] || []).push(q);
+    }
+  }));
+
+  CROSSINGS.forEach(c => {
+    const pts = wet[c.id];
+    if (!pts || pts.length < 2 || c.type === 'trestle') return;
+
+    // the two ends of the water span — the widest-separated pair
+    let a = pts[0], b = pts[0], best = -1;
+    for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++){
+      const d = Math.hypot((pts[j][0]-pts[i][0])*84600, (pts[j][1]-pts[i][1])*111200);
+      if (d > best){ best = d; a = pts[i]; b = pts[j]; }
+    }
+    const span = best;
+    if (span < 80) return;
+
+    // towers stand at the shoreline ends, footprint scaled to the real thing
+    const foot = c.type === 'lift' ? 4.5 : 8;
+    [a,b].forEach(t => tower.features.push({ type:'Feature',
+      properties:{ top: c.tower, name: c.name },
+      geometry:{ type:'Polygon', coordinates: square(t[0], t[1], foot) } }));
+
+    if (c.type === 'lift'){
+      // a lift bridge is two towers and a beam across the top of them
+      const mid = [(a[0]+b[0])/2, (a[1]+b[1])/2];
+      cable.features.push({ type:'Feature',
+        properties:{ base: c.tower - 3, top: c.tower },
+        geometry:{ type:'Polygon', coordinates: ribbon([a, mid, b], 1.1) } });
+      return;
+    }
+
+    // main cable: a parabola from tower top down to just above the deck at
+    // mid-span, chopped into short boxes because a line cannot be lifted
+    const N = 46, sagTop = c.tower, sagLow = c.deck + 4;
+    const at = u => [a[0] + (b[0]-a[0])*u, a[1] + (b[1]-a[1])*u];
+    const hAt = u => sagLow + (sagTop - sagLow) * Math.pow(2*u - 1, 2);
+    for (let i=0;i<N;i++){
+      const u0 = i/N, u1 = (i+1)/N, h = (hAt(u0) + hAt(u1)) / 2;
+      cable.features.push({ type:'Feature',
+        properties:{ base: h - 0.9, top: h + 0.9 },
+        geometry:{ type:'Polygon', coordinates: ribbon([at(u0), at(u1)], 1.0) } });
+    }
+    // suspenders every 20 m, deck up to the cable
+    const steps = Math.max(4, Math.round(span / 20));
+    for (let i=1;i<steps;i++){
+      const u = i/steps, h = hAt(u);
+      if (h - c.deck < 3) continue;
+      const q = at(u);
+      cable.features.push({ type:'Feature',
+        properties:{ base: c.deck, top: h },
+        geometry:{ type:'Polygon', coordinates: square(q[0], q[1], 0.45) } });
+    }
+  });
+  return { tower, cable };
+}
+
+async function buildSubway(){
+  let doc;
+  try { doc = await fetch('subway.json').then(r=>r.json()); }
+  catch(e){ console.warn('subway failed', e); return; }
+  SUB.stations = (doc.stations || []).map((s,i)=>({ ...s, i, wait:0 }));
+
+  // Split every path into runs that share a level, so a line can dive under
+  // and climb back out mid-route instead of being all one thing.
+  const under = { type:'FeatureCollection', features:[] };
+  const over  = { type:'FeatureCollection', features:[] };
+
+  doc.paths.forEach(p => {
+    let run = [p.pts[0]], cls = p.pts[0][2];
+    const flush = () => {
+      if (run.length < 2) return;
+      // a 5th value on a vertex means: on structure, over open water — a bridge
+      const water = run.some(q => q.length > 4);
+      const h = run.reduce((a,q)=>a+q[3],0) / run.length;   // mean height of the run
+      const f = { type:'Feature',
+        properties:{ route:p.route, color:p.color, cls, deep: cls===0, water, h },
+        geometry:{ type:'LineString', coordinates: run.map(q=>[q[0],q[1]]) } };
+      (cls <= 1 ? under : over).features.push(f);
+    };
+    for (let i=1; i<p.pts.length; i++){
+      run.push(p.pts[i]);
+      if (p.pts[i][2] !== cls){ flush(); run = [p.pts[i]]; cls = p.pts[i][2]; }
+    }
+    flush();
+    SUB.paths.push(measurePath(p));
+  });
+
+  map.addSource('sub-under', { type:'geojson', data: under });
+  map.addSource('sub-over',  { type:'geojson', data: over  });
+  const solid = buildStructure(doc.paths);
+  const marks = buildLandmarks(doc.paths);
+  map.addSource('sub-deck3d', { type:'geojson', data: solid.deck });
+  map.addSource('sub-pier',   { type:'geojson', data: solid.pier });
+  map.addSource('sub-rail3d', { type:'geojson', data: solid.rail });
+  map.addSource('sub-tower',  { type:'geojson', data: marks.tower });
+  map.addSource('sub-cable',  { type:'geojson', data: marks.cable });
+  SUB.piers = solid.pier.features.length;
+  SUB.marks = marks.tower.features.length + marks.cable.features.length;
+  const empty = { type:'FeatureCollection', features:[] };
+  map.addSource('sub-trains',{ type:'geojson', data: empty });
+  map.addSource('sub-train3d',{ type:'geojson', data: empty });
+  map.addSource('sub-crowd', { type:'geojson', data: empty });
+  map.addSource('sub-stops', { type:'geojson', data:{ type:'FeatureCollection',
+    features: SUB.stations.map(s=>({ type:'Feature',
+      properties:{ name:s.n, routes:s.r, structure:s.s, riders:s.d,
+                   buried: s.s==='Subway'||s.s==='Open Cut' },
+      geometry:{ type:'Point', coordinates:s.ll } })) } });
+
+  SUB.ready = true;
+  seedTrains();
+  setInterval(tick, TICK);
+  (function depthFrame(){ applyTunnelDepth(); requestAnimationFrame(depthFrame); })();
+}
+
+// elevated structure, at-grade track, stations, the trains riding up there and
+// the crowds on the pavement — all added after the buildings so they sit on top
+// of the city rather than inside it
+function addSubwaySurface(){
+  if (!SUB.ready) return;
+  const W = z => ['interpolate',['linear'],['zoom'], 10,z[0], 13,z[1], 16,z[2]];
+  // EVERYTHING rail goes ABOVE the borough cutout. That cutout is opaque black
+  // over every river and bay in the city — it was painting out the bridges and
+  // the under-river tubes entirely, which is why the water looked empty. The
+  // mask only exists to hide the New Jersey and Long Island streets that ride
+  // along in the shared basemap tiles; our own data never needed masking.
+  const cover = undefined;
+
+  // Water, drawn back in on top of the cutout so a river reads as a river and
+  // not a hole. Barely lighter than the void, with a shoreline to catch the eye.
+  if (!map.getLayer('river')){
+    map.addLayer({ id:'river', type:'fill', source:'carto', 'source-layer':'water',
+      paint:{ 'fill-color':'#06080c', 'fill-opacity':1 } });
+    map.addLayer({ id:'river-edge', type:'line', source:'carto', 'source-layer':'water',
+      paint:{ 'line-color':'#2b3444', 'line-opacity':0.55, 'line-width': W([0.4, 0.8, 1.6]) } });
+  }
+
+  // Tunnels now draw over the water rather than under an opaque mask, so the
+  // "buried" look can no longer come from the land plane dimming them. Their own
+  // opacity carries it instead, and the per-frame depth offset does the rest.
+    // deep tunnels — a wide soft bore plus a bright rail down the middle
+  // under a river there is no city over the tunnel to imply it is buried, so the
+  // tube gets a visible casing and reads as a bore beneath the water
+  map.addLayer({ id:'sub-tube', type:'line', source:'sub-under',
+    filter:['get','water'],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':'#111520', 'line-opacity':0.8,
+            'line-width': W([3.4, 9, 24]) } });
+  // hairline bore wall — with line-gap-width MapLibre draws the width on BOTH
+  // sides of the gap, so what looks like a modest number becomes a band twice
+  // that wide. Keep it thin.
+  map.addLayer({ id:'sub-tube-edge', type:'line', source:'sub-under',
+    filter:['get','water'],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':'#2d3446', 'line-opacity':0.5,
+            'line-width': W([0.4, 0.7, 1.3]), 'line-gap-width': W([3.6, 9, 24]) } });
+
+  map.addLayer({ id:'sub-deep-bore', type:'line', source:'sub-under',
+    filter:['==',['get','cls'],0],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.17,
+            'line-width': W([3.5, 9, 26]), 'line-blur': W([3, 7, 18]) } });
+  map.addLayer({ id:'sub-deep', type:'line', source:'sub-under',
+    filter:['==',['get','cls'],0],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.44, 'line-width': W([0.9, 1.9, 4.5]) } });
+
+  // open cut — shallower, so it gets its own smaller parallax offset
+  map.addLayer({ id:'sub-cut', type:'line', source:'sub-under',
+    filter:['==',['get','cls'],1],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.46, 'line-width': W([1.1, 2.2, 5]) } });
+
+  // trains still in the tunnel: a coloured wash the size of the whole consist,
+  // then the lit cars themselves on top
+  map.addLayer({ id:'sub-train-glow', type:'line', source:'sub-trains',
+    filter:['get','under'],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.30,
+            'line-width': W([4, 9, 20]), 'line-blur': W([3, 6, 13]) } });
+  map.addLayer({ id:'sub-train-under', type:'line', source:'sub-trains',
+    filter:['get','under'],
+    layout:{ 'line-cap':'butt','line-join':'round' },
+    paint:{ 'line-color':'#fff4dc', 'line-opacity':0.58, 'line-width': W([1.4, 3.2, 8]) } });
+
+  // bridge decks — over open water there is no city underneath to carry the
+  // line, so the crossing gets a deck drawn under it and reads as structure
+  // spanning the black instead of a line floating on it
+  // Flat stand-in for the deck, below the zoom where real structure appears.
+  // Applies to ALL elevated track, not just the water crossings: when it was
+  // water-only, the Brooklyn river bridges got a deck and the uptown ones did
+  // not — the Harlem River ship canal is swallowed by the simplified borough
+  // outline, so the Broadway Bridge never registered as being over water. Dark
+  // and narrow on purpose; the bright wide casing this replaced read as a big
+  // white smear around every Brooklyn crossing.
+  map.addLayer({ id:'sub-deck', type:'line', source:'sub-over',
+    maxzoom: SOLID_ZOOM,
+    layout:{ 'line-cap':'butt','line-join':'round' },
+    paint:{ 'line-color':'#1b1813',
+            'line-opacity':['interpolate',['linear'],['zoom'], 10,0.5, 13,0.85],
+            'line-width': W([2.2, 4.6, 9]) } }, cover);
+  map.addLayer({ id:'sub-el-glow', type:'line', source:'sub-over',
+    maxzoom: SOLID_ZOOM,
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.34,
+            'line-width': W([3, 8, 22]), 'line-blur': W([2.5, 6, 14]) } }, cover);
+  map.addLayer({ id:'sub-el', type:'line', source:'sub-over',
+    maxzoom: SOLID_ZOOM,
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':1, 'line-width': W([1.1, 2.4, 5.5]) } }, cover);
+
+  /* ---- the same elevated track, as real structure, once we are close ----
+     Piers first so the deck lands on them, then the deck, then a rail strip in
+     the route colour sitting on the deck. Trains get boxes further down. */
+  // suspension towers and their cables — the only parts of this map taller than
+  // the buildings around them, which is true of the real bridges too
+  map.addLayer({ id:'sub-tower-3d', type:'fill-extrusion', source:'sub-tower',
+    minzoom: 11.5,
+    paint:{ 'fill-extrusion-color':'#3a332a',
+            'fill-extrusion-base':0, 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.97,
+            'fill-extrusion-vertical-gradient':true } }, cover);
+  map.addLayer({ id:'sub-cable-3d', type:'fill-extrusion', source:'sub-cable',
+    minzoom: 12.5,
+    paint:{ 'fill-extrusion-color':'#8e8574',
+            'fill-extrusion-base':['get','base'], 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.85 } }, cover);
+
+  map.addLayer({ id:'sub-pier-3d', type:'fill-extrusion', source:'sub-pier',
+    minzoom: SOLID_ZOOM,
+    paint:{ 'fill-extrusion-color':'#1a1712',
+            'fill-extrusion-base':0, 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.92,
+            'fill-extrusion-vertical-gradient':true } }, cover);
+  map.addLayer({ id:'sub-deck-3d', type:'fill-extrusion', source:'sub-deck3d',
+    minzoom: SOLID_ZOOM,
+    paint:{ 'fill-extrusion-color':['case',['get','water'],'#302a22','#272219'],
+            'fill-extrusion-base':['get','base'], 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.95,
+            'fill-extrusion-vertical-gradient':true } }, cover);
+  map.addLayer({ id:'sub-rail-3d', type:'fill-extrusion', source:'sub-rail3d',
+    minzoom: SOLID_ZOOM,
+    paint:{ 'fill-extrusion-color':['get','color'],
+            'fill-extrusion-base':['get','base'], 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.95 } }, cover);
+
+  map.addLayer({ id:'sub-stop', type:'circle', source:'sub-stops',
+    minzoom: 11,
+    paint:{ 'circle-radius': W([1, 2.2, 4.4]),
+            'circle-color':'#0a0908',
+            'circle-stroke-color': ['case',['get','buried'],'#8f8ba8','#e8dfc4'],
+            'circle-stroke-width': W([0.7, 1.1, 1.8]),
+            'circle-opacity':0.9 } }, cover);
+
+  // the crowd: inbound walkers warm, people just off a train cooler
+  map.addLayer({ id:'sub-crowd', type:'circle', source:'sub-crowd',
+    minzoom: CROWD_ZOOM,
+    paint:{ 'circle-radius':['interpolate',['linear'],['zoom'], 13,0.7, 15,1.5, 17,3],
+            'circle-color':['case',['get','out'],'#93b0d8','#e6d3a4'],
+            'circle-opacity':['interpolate',['linear'],['zoom'], 13,0.45, 15,0.85] } }, cover);
+
+  map.addLayer({ id:'sub-train-el-glow', type:'line', source:'sub-trains',
+    maxzoom: SOLID_ZOOM,
+    filter:['!',['get','under']],
+    layout:{ 'line-cap':'round','line-join':'round' },
+    paint:{ 'line-color':['get','color'], 'line-opacity':0.6,
+            'line-width': W([4, 9, 20]), 'line-blur': W([2.5, 5, 11]) } }, cover);
+  map.addLayer({ id:'sub-train-el', type:'line', source:'sub-trains',
+    maxzoom: SOLID_ZOOM,
+    filter:['!',['get','under']],
+    layout:{ 'line-cap':'butt','line-join':'round' },
+    paint:{ 'line-color':'#fffbf0', 'line-opacity':1, 'line-width': W([1.6, 3.6, 9]) } }, cover);
+
+  map.addLayer({ id:'sub-train-3d', type:'fill-extrusion', source:'sub-train3d',
+    minzoom: SOLID_ZOOM,
+    paint:{ 'fill-extrusion-color':'#fff6e2',
+            'fill-extrusion-base':['get','base'], 'fill-extrusion-height':['get','top'],
+            'fill-extrusion-opacity':0.97,
+            'fill-extrusion-vertical-gradient':true } }, cover);
+
+  map.on('click','sub-stop', e => {
+    const p = e.features[0].properties;
+    const r = p.riders ? `<br><span style="color:#e8dfc4">${(+p.riders).toLocaleString()} riders a day</span>` : '';
+    new maplibregl.Popup({closeButton:false}).setLngLat(e.lngLat)
+      .setHTML(`<div style="font:11px ui-monospace;color:#e8dfc4;background:#0a0908;padding:7px 9px;border:1px solid #d4c9a866">${p.name}<br><span style="color:#c9b98a99">${p.routes} · ${p.structure}</span>${r}</div>`)
+      .addTo(map);
+  });
+}
+
+// A point buried D metres shows up displaced up-screen by D*sin(pitch) worth of
+// pixels. Recomputing that every frame is what makes the tunnels feel dug out
+// rather than painted on.
+function applyTunnelDepth(){
+  if (!map.getLayer('sub-deep')) return;
+  const mpp = metresPerPixel();
+  const s = Math.sin(map.getPitch() * Math.PI/180);
+  // exaggerated by the same logic as the building heights: true depth is only a
+  // pixel or two on screen, which reads as a drawing error rather than depth
+  const deep = Math.min(110, DEPTH_GAIN * DEEP_M * s / mpp);
+  const cut  = Math.min(45,  DEPTH_GAIN * CUT_M  * s / mpp);
+  [['sub-tube',deep],['sub-tube-edge',deep],
+   ['sub-deep-bore',deep],['sub-deep',deep],['sub-cut',cut],
+   ['sub-train-glow',deep],['sub-train-under',deep]].forEach(([id,px])=>{
+    if(!map.getLayer(id)) return;
+    map.setPaintProperty(id, 'line-translate', [0, -px]);
+    map.setPaintProperty(id, 'line-translate-anchor', 'viewport');
+  });
+}
+
+/* ---- turning centrelines into solid shapes ------------------------------
+   Everything above street level can be a real extruded body. A run of track
+   becomes a deck ribbon, a column every thirty metres, and a thin rail strip
+   sitting on the deck; a train car becomes a box riding on top of that.
+   -------------------------------------------------------------------- */
+function ribbon(coords, halfW){
+  const L=[], R=[];
+  for (let i=0;i<coords.length;i++){
+    const p = coords[i];
+    const a = coords[Math.max(0,i-1)], b = coords[Math.min(coords.length-1,i+1)];
+    let dx=(b[0]-a[0])*84600, dy=(b[1]-a[1])*111200;
+    const n = Math.hypot(dx,dy) || 1; dx/=n; dy/=n;
+    const nx=-dy, ny=dx;                                  // unit normal
+    L.push([ p[0]+nx*halfW/84600, p[1]+ny*halfW/111200 ]);
+    R.push([ p[0]-nx*halfW/84600, p[1]-ny*halfW/111200 ]);
+  }
+  R.reverse();
+  return [[...L, ...R, L[0]]];
+}
+
+function square(x, y, half){
+  const dx = half/84600, dy = half/111200;
+  return [[[x-dx,y-dy],[x+dx,y-dy],[x+dx,y+dy],[x-dx,y+dy],[x-dx,y-dy]]];
+}
+
+// deck + columns + rails for every above-ground stretch, built once at load.
+// Built from the raw vertices rather than the merged runs, because one run can
+// climb from street level to a twelve-metre el and a single extrusion can only
+// have one height — so a stretch is broken up wherever the height moves, and the
+// deck steps up the ramp instead of floating over it.
+function buildStructure(paths){
+  const deck={type:'FeatureCollection',features:[]},
+        pier={type:'FeatureCollection',features:[]},
+        rail={type:'FeatureCollection',features:[]};
+  const STEP = 2.0, MAXLEN = 400;
+
+  const emit = (chunk, color) => {
+    if (chunk.length < 2) return;
+    const hs = chunk.map(q=>q[3]);
+    const water = chunk.some(q=>q.length > 4);
+    const cross = water ? crossingAt(chunk[0][0], chunk[0][1]) : null;
+    const top = cross ? cross.deck
+                      : Math.max(4.5, hs.reduce((a,b)=>a+b,0)/hs.length);
+    const base = Math.max(0.6, top - (cross ? DECK_T * 1.6 : DECK_T));
+    const wide = water ? DECK_W * 1.25 : DECK_W;
+    const pileEvery = (cross && cross.pile) ? cross.pile : PIER_EVERY;
+    const c = chunk.map(q=>[q[0],q[1]]);
+
+    deck.features.push({ type:'Feature', properties:{ base, top, water },
+      geometry:{ type:'Polygon', coordinates: ribbon(c, wide) } });
+    rail.features.push({ type:'Feature', properties:{ base: top, top: top + 0.45, color },
+      geometry:{ type:'Polygon', coordinates: ribbon(c, wide*0.42) } });
+
+    let carry = pileEvery * 0.5;
+    for (let i=1;i<c.length;i++){
+      const seg = Math.hypot((c[i][0]-c[i-1][0])*84600, (c[i][1]-c[i-1][1])*111200);
+      let at = carry;
+      while (at <= seg){
+        const t = at/seg;
+        pier.features.push({ type:'Feature', properties:{ top: base },
+          geometry:{ type:'Polygon', coordinates: square(
+            c[i-1][0] + (c[i][0]-c[i-1][0])*t,
+            c[i-1][1] + (c[i][1]-c[i-1][1])*t, PIER_W) } });
+        at += pileEvery;
+      }
+      carry = at - seg;
+    }
+  };
+
+  paths.forEach(p => {
+    let chunk = [], run = 0;
+    const flush = () => { emit(chunk, p.color); chunk = []; run = 0; };
+    for (let i=0;i<p.pts.length;i++){
+      const q = p.pts[i];
+      if (q[2] !== 3){ flush(); continue; }
+      if (chunk.length){
+        const mean = chunk.reduce((a,c)=>a+c[3],0)/chunk.length;
+        const step = Math.hypot((q[0]-chunk[chunk.length-1][0])*84600,
+                                (q[1]-chunk[chunk.length-1][1])*111200);
+        if (Math.abs(q[3]-mean) > STEP || run + step > MAXLEN){
+          chunk.push(q); flush();        // overlap one vertex so decks butt up
+          chunk = [q]; run = 0;
+          continue;
+        }
+        run += step;
+      }
+      chunk.push(q);
+    }
+    flush();
+  });
+  return { deck, pier, rail };
+}
+
+/* ---- track measured out in metres, with the station stops along it ---- */
+function measurePath(p){
+  const xs=[], ys=[], cls=[], dep=[], cum=[0];
+  p.pts.forEach(q => { xs.push(q[0]); ys.push(q[1]); cls.push(q[2]); dep.push(q[3]); });
+  for (let i=1;i<xs.length;i++){
+    const dx=(xs[i]-xs[i-1])*84600, dy=(ys[i]-ys[i-1])*111200;
+    cum.push(cum[i-1] + Math.hypot(dx,dy));
+  }
+  const len = cum[cum.length-1];
+
+  // which stations this track actually passes through, and which station each
+  // stop belongs to — the crowds need to know where a train just pulled in
+  const hits = [];
+  SUB.stations.forEach(st => {
+    let bi=-1, bd=Infinity;
+    for (let i=0;i<xs.length;i++){
+      const dx=(xs[i]-st.ll[0])*84600, dy=(ys[i]-st.ll[1])*111200;
+      const d=dx*dx+dy*dy;
+      if (d<bd){ bd=d; bi=i; }
+    }
+    if (bd < 170*170) hits.push([cum[bi], st.i]);
+  });
+  hits.sort((a,b)=>a[0]-b[0]);
+  const stops=[], stopStn=[];
+  hits.forEach(([d,si],k)=>{
+    if (k===0 || d - stops[stops.length-1] > 120){ stops.push(d); stopStn.push(si); }
+  });
+
+  return { route:p.route, color:p.color, name:p.name, xs, ys, cls, dep, cum, len,
+           stops, stopStn, spec: consistOf(p.route) };
+}
+
+function idxAt(P, s){
+  const c=P.cum; let lo=0, hi=c.length-1;
+  while (lo < hi-1){ const m=(lo+hi)>>1; if (c[m] <= s) lo=m; else hi=m; }
+  return lo;
+}
+function ptAt(P, s){
+  const i=idxAt(P,s), j=i+1;
+  const span=P.cum[j]-P.cum[i] || 1, t=Math.max(0,Math.min(1,(s-P.cum[i])/span));
+  return [ P.xs[i]+(P.xs[j]-P.xs[i])*t, P.ys[i]+(P.ys[j]-P.ys[i])*t ];
+}
+function classAt(P, s){ return P.cls[idxAt(P,s)]; }
+function depthAt(P, s){ return P.dep[idxAt(P,s)]; }
+
+// the stretch of track between two distances, following every curve in between
+function sliceTrack(P, s0, s1){
+  s0 = Math.max(0, s0); s1 = Math.min(P.len, s1);
+  if (s1 - s0 < 2) return null;
+  const i0 = idxAt(P,s0), i1 = idxAt(P,s1);
+  const out = [ptAt(P,s0)];
+  for (let i=i0+1; i<=i1; i++) out.push([P.xs[i], P.ys[i]]);
+  out.push(ptAt(P,s1));
+  return out;
+}
+
+function nextStop(P, s, dir){
+  if (dir > 0){ for (let i=0;i<P.stops.length;i++) if (P.stops[i] > s + 6) return i; return -1; }
+  for (let i=P.stops.length-1;i>=0;i--) if (P.stops[i] < s - 6) return i;
+  return -1;
+}
+
+function seedTrains(){
+  SUB.paths.forEach((P, pi) => {
+    if (P.len < 1200) return;
+    for (const dir of [1,-1]){
+      for (let s = 400 + Math.random()*600; s < P.len - 300; s += HEADWAY_M){
+        SUB.trains.push({ p:pi, s, dir, v:0, dwell:Math.random()*20,
+                          vmax: 14 + Math.random()*7 });
+      }
+    }
+  });
+}
+
+/* ================================ the tick ============================== */
+let __tPrev = 0;
+function tick(){
+  if (!SUB.ready || !map.getSource('sub-trains')) return;
+  const now = performance.now();
+  const dt = Math.min(0.5, (now - (__tPrev || now))/1000) * TIME_SCALE;
+  __tPrev = now;
+
+  const zoom = map.getZoom();
+  const bounds = map.getBounds();
+  const inView = (x,y) => x > bounds.getWest()-0.01 && x < bounds.getEast()+0.01 &&
+                          y > bounds.getSouth()-0.01 && y < bounds.getNorth()+0.01;
+
+  moveTrains(dt, zoom, inView);
+  moveCrowd(dt, zoom, bounds, inView);
+}
+
+function moveTrains(dt, zoom, inView){
+  const perCar = zoom >= CAR_ZOOM;
+  const solid  = zoom >= SOLID_ZOOM;   // close in, trains above ground get bodies
+  const feats = [], boxes = [];
+  let buried = 0;
+
+  SUB.trains.forEach(tr => {
+    const P = SUB.paths[tr.p];
+
+    if (tr.dwell > 0){ tr.dwell -= dt; tr.v = 0; }
+    else {
+      const k = nextStop(P, tr.s, tr.dir);
+      const nxt = k < 0 ? null : P.stops[k];
+      const gap = nxt===null ? Infinity : Math.abs(nxt - tr.s);
+      const brakeIn = (tr.v*tr.v)/(2*1.1) + 18;
+      const want = gap < brakeIn ? 0 : tr.vmax;
+      tr.v += Math.max(-1.5, Math.min(0.9, want - tr.v)) * dt;
+      tr.v = Math.max(0, tr.v);
+      tr.s += tr.v * dt * tr.dir;
+      if (gap < 20 && tr.v < 4){                       // pulled in — hold the platform
+        tr.s = nxt + tr.dir * 22;
+        tr.dwell = 16 + Math.random()*14;
+        arrive(P.stopStn[k]);                          // and let the crowd out
+      }
+      if (tr.s >= P.len){ tr.s = P.len; tr.dir = -1; tr.dwell = 70 + Math.random()*80; }
+      if (tr.s <= 0)    { tr.s = 0;     tr.dir =  1; tr.dwell = 70 + Math.random()*80; }
+    }
+
+    const head = ptAt(P, tr.s);
+    if (!inView(head[0], head[1])) { if (classAt(P, tr.s) <= 1) buried++; return; }
+
+    const cl = classAt(P, tr.s);
+    const under = cl <= 1;
+    if (under) buried++;
+    const props = { color:P.color, route:P.route, under, moving: tr.v > 1 };
+    const { cars, carLen } = P.spec;
+    const total = cars * carLen;
+    // trains run head-first, so the consist trails back the way it came
+    const back = tr.dir > 0 ? -1 : 1;
+    // a train above ground close in becomes a row of boxes standing on the deck;
+    // a train below ground stays a flat line, because nothing extrudes downward
+    const asBox = solid && !under;
+    const deck = asBox ? Math.max(4, depthAt(P, tr.s)) : 0;
+
+    if (!perCar){
+      const a = tr.s, b = tr.s + back*total;
+      const g = sliceTrack(P, Math.min(a,b), Math.max(a,b));
+      if (g) feats.push({ type:'Feature', properties:props, geometry:{ type:'LineString', coordinates:g } });
+    } else {
+      for (let c=0; c<cars; c++){
+        const a = tr.s + back*(c*carLen + carLen*0.06);
+        const b = tr.s + back*((c+1)*carLen - carLen*0.06);
+        const g = sliceTrack(P, Math.min(a,b), Math.max(a,b));
+        if (!g) continue;
+        if (asBox){
+          boxes.push({ type:'Feature',
+            properties:{ base: deck + 0.45, top: deck + 0.45 + CAR_H, color:P.color },
+            geometry:{ type:'Polygon', coordinates: ribbon(g, CAR_W) } });
+        } else {
+          feats.push({ type:'Feature', properties:props, geometry:{ type:'LineString', coordinates:g } });
+        }
+      }
+    }
+  });
+
+  map.getSource('sub-trains').setData({ type:'FeatureCollection', features: feats });
+  if (map.getSource('sub-train3d'))
+    map.getSource('sub-train3d').setData({ type:'FeatureCollection', features: boxes });
+  const el = $('subCount');
+  if (el) el.textContent = `${SUB.trains.length} trains running · ${buried} below ground`;
+}
+
+/* ---- crowds -------------------------------------------------------------
+   People walk in from the street grid: spawn points are real street vertices
+   pulled out of the vector tiles near each entrance, so the crowd arrives
+   along the roads instead of out of thin air. Head count per station is its
+   share of real daily ridership, inside a fixed on-screen budget.
+   -------------------------------------------------------------------- */
+function rebuildStreetPool(){
+  const pool = [];
+  try {
+    const feats = map.querySourceFeatures('carto', { sourceLayer:'transportation' });
+    for (const f of feats){
+      const g = f.geometry;
+      if (!g) continue;
+      const parts = g.type === 'MultiLineString' ? g.coordinates : [g.coordinates];
+      for (const line of parts){
+        if (!Array.isArray(line)) continue;
+        for (let i=0; i<line.length; i+=3){
+          pool.push(line[i]);
+          if (pool.length > 4000) break;
+        }
+        if (pool.length > 4000) break;
+      }
+      if (pool.length > 4000) break;
+    }
+  } catch(e){ /* tiles not up yet — fall back to open ground */ }
+  SUB.streetPool = pool;
+}
+
+function spawnPoint(st){
+  const pool = SUB.streetPool;
+  if (pool.length){
+    // a few random darts beat scanning the whole pool every spawn
+    for (let n=0; n<14; n++){
+      const p = pool[(Math.random()*pool.length)|0];
+      const dx=(p[0]-st.ll[0])*84600, dy=(p[1]-st.ll[1])*111200;
+      const d = Math.hypot(dx,dy);
+      if (d > 45 && d < REACH_M) return [p[0], p[1]];
+    }
+  }
+  const a = Math.random()*Math.PI*2, r = 70 + Math.random()*(REACH_M-70);
+  return [ st.ll[0] + Math.cos(a)*r/84600, st.ll[1] + Math.sin(a)*r/111200 ];
+}
+
+// a train just berthed — spill its load onto the pavement. Kept inside its own
+// budget: at 6x time the arrivals come thick and fast, and without a ceiling the
+// pavement fills up faster than people can walk off it.
+function arrive(si){
+  if (si == null || map.getZoom() < CROWD_ZOOM) return;
+  const st = SUB.stations[si];
+  if (!st) return;
+  if (SUB.outCount >= CROWD_CAP * 0.5) return;
+  const n = Math.max(2, Math.min(12, Math.round(st.d / 5000)));
+  for (let i=0;i<n;i++){
+    const a = Math.random()*Math.PI*2, r = 55 + Math.random()*80;
+    SUB.walkers.push({ st:si, out:true, t:0, life: 110 + Math.random()*40,
+      x: st.ll[0], y: st.ll[1],
+      gx: st.ll[0] + Math.cos(a)*r/84600, gy: st.ll[1] + Math.sin(a)*r/111200 });
+  }
+}
+
+function moveCrowd(dt, zoom, bounds, inView){
+  if (!map.getSource('sub-crowd')) return;
+
+  if (zoom < CROWD_ZOOM){
+    if (SUB.walkers.length){ SUB.walkers = []; map.getSource('sub-crowd').setData({ type:'FeatureCollection', features:[] }); }
+    return;
+  }
+
+  const now = performance.now();
+  if (now - SUB.poolAt > 3000){ SUB.poolAt = now; rebuildStreetPool(); }
+
+  // stations on screen, and each one's slice of the walker budget
+  const vis = SUB.stations.filter(s => inView(s.ll[0], s.ll[1]));
+  const totalRiders = vis.reduce((a,s)=>a + Math.max(400, s.d), 0) || 1;
+  const target = {};
+  vis.forEach(s => { target[s.i] = Math.round(CROWD_CAP * Math.max(400, s.d) / totalRiders); });
+
+  const have = {};
+  SUB.outCount = 0;
+  SUB.walkers.forEach(w => { if (w.out) SUB.outCount++; else have[w.st] = (have[w.st]||0) + 1; });
+
+  vis.forEach(s => {
+    let need = (target[s.i]||0) - (have[s.i]||0);
+    if (need > 6) need = 6;                     // ease them in, no popping crowds
+    for (let i=0;i<need;i++){
+      const p = spawnPoint(s);
+      // long enough to actually walk the block in — at 1.35 m/s a 200 m
+      // approach is ~150 seconds of their time, and they leave on arrival anyway
+      SUB.walkers.push({ st:s.i, out:false, t:0, life: 260 + Math.random()*90,
+        x:p[0], y:p[1], gx:s.ll[0], gy:s.ll[1] });
+    }
+  });
+
+  const step = WALK_MS * dt;
+  const feats = [];
+  const keep = [];
+  for (const w of SUB.walkers){
+    const dx=(w.gx-w.x)*84600, dy=(w.gy-w.y)*111200;
+    const d = Math.hypot(dx,dy);
+    w.t += dt;
+    if (w.t > w.life) continue;                       // gone home
+    if (!w.out && d < 14) continue;                   // swallowed by the entrance
+    if (w.out && d < 12) continue;                    // reached the street, done
+    w.x += (dx/d) * step / 84600;
+    w.y += (dy/d) * step / 111200;
+    keep.push(w);
+    feats.push({ type:'Feature', properties:{ out:w.out },
+      geometry:{ type:'Point', coordinates:[w.x, w.y] } });
+  }
+  SUB.walkers = keep;
+  map.getSource('sub-crowd').setData({ type:'FeatureCollection', features: feats });
+
+  const el = $('crowdCount');
+  if (el) el.textContent = feats.length ? `${feats.length} on foot near ${vis.length} entrances` : '';
+}
+
+/* ---- x-ray: pull the city down to a ghost so the network is the subject ---- */
+function setXray(on){
+  SUB.xray = on;
+  const g = on ? GROUND_OPACITY.xray : GROUND_OPACITY.surface;
+  if (map.getLayer('land'))         map.setPaintProperty('land','fill-opacity', g);
+  if (map.getLayer('streets'))      map.setPaintProperty('streets','line-opacity', on ? 0.13 : 0.42);
+  if (map.getLayer('massing-3d'))   map.setPaintProperty('massing-3d','fill-extrusion-opacity', on ? 0.10 : 0.42);
+  if (map.getLayer('buildings-3d')) map.setPaintProperty('buildings-3d','fill-extrusion-opacity', on ? 0.10 : 0.45);
+  if (map.getLayer('buildings-edge')) map.setPaintProperty('buildings-edge','line-opacity', on ? 0.05 : 0.18);
+  // the tunnels now carry their own dimming, so x-ray turns them UP
+  const lift = [['sub-deep-bore',0.40,0.17],['sub-deep',1,0.44],['sub-cut',1,0.46],
+                ['sub-train-glow',0.6,0.30],['sub-train-under',1,0.58],
+                ['sub-tube',1,0.9],['sub-tube-edge',0.9,0.6]];
+  lift.forEach(([id,hot,cool])=>{
+    if (map.getLayer(id)) map.setPaintProperty(id,'line-opacity', on ? hot : cool);
+  });
+  if (map.getLayer('river')) map.setPaintProperty('river','fill-opacity', on ? 0.5 : 1);
+  const b = $('xrayBtn');
+  if (b){ b.classList.toggle('on', on); b.textContent = on ? 'X-RAY ON' : 'X-RAY'; }
+}
+if ($('xrayBtn')) $('xrayBtn').addEventListener('click', ()=> setXray(!SUB.xray));
+
+/* ============================ BrainView ============================ */
+const BV = { cams:[], byId:{}, counts:null, stats:null, beacons:[] };
+
+// Build the cam FeatureCollection, folding in whatever live counts we have
+function camFC(){
+  const live = (BV.counts && BV.counts.cams) || {};
+  return { type:'FeatureCollection', features: BV.cams.map(c => {
+    const lc = live[c.id];
+    const veh = lc ? (lc.veh||0) : 0;
+    const truck = lc ? ((lc.classes||{}).truck||0) : 0;
+    return {
+      type:'Feature',
+      properties:{ name:c.name, area:c.area, id:c.id, tier:c.tier, w:c.w,
+                   live: !!lc, veh, truck },
+      geometry:{ type:'Point', coordinates:[c.lon, c.lat] }
+    };
+  })};
+}
+
+function showCamPopup(p, lngLat){
+  const live = p.live ? `<br><span style="color:#e8dfc4">${p.veh} vehicle${p.veh==1?'':'s'} in view now${p.truck>0?` · ${p.truck} heavy`:''}</span>` : '';
+  new maplibregl.Popup({closeButton:false})
+    .setLngLat(lngLat)
+    .setHTML(`<div style="font:11px ui-monospace;color:#e8dfc4;background:#0a0908;padding:7px 9px;border:1px solid ${TIER[p.tier]}88">${p.name}<br><span style="color:#c9b98a99">${p.area} · Tier ${p.tier}${p.w?` · ${p.w}px`:''}</span>${live}</div>`)
+    .addTo(map);
+}
+
+async function refreshBrainView(){
+  try{
+    const [counts, stats] = await Promise.all([
+      fetch(DATA_BASE+'counts.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null),
+      fetch(DATA_BASE+'stats.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null)
+    ]);
+    BV.counts = counts; BV.stats = stats;
+    if (map.getSource('cams')) map.getSource('cams').setData(camFC());
+    renderVitals();
+    renderDispatches();
+    placeBeacons();
+    const n = BV.counts ? Object.values(BV.counts.cams||{}).filter(v=>v&&v.veh>0).length : 0;
+    $('rsub').textContent = n ? `${n} corners live · updated ${clock(BV.counts.ts)}` : 'waiting on the next camera sweep…';
+  }catch(e){ console.warn('brainview refresh', e); }
+}
+
+function clock(t){
+  const d = t ? new Date(t) : new Date();
+  return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+
+/* ---- vitals: cars-now, sparkline, vehicle mix ---- */
+function renderVitals(){
+  const s = BV.stats; if(!s) return;
+  if (s.now) $('vNow').textContent = s.now.cars;
+  drawSpark((s.series||[]).map(p=>p.cars));
+  const mix = s.vehicle_mix || {};
+  const tot = Object.values(mix).reduce((a,b)=>a+b,0) || 1;
+  const order = ['car','truck','bus','moto'].filter(k=>mix[k]>0);
+  $('mixBar').innerHTML = order.map(k=>
+    `<i style="width:${(mix[k]/tot*100).toFixed(1)}%;background:${MIX[k]}"></i>`).join('');
+  $('mixKey').innerHTML = order.map(k=>
+    `<span><i style="background:${MIX[k]}"></i>${MIXLBL[k]} ${Math.round(mix[k]/tot*100)}%</span>`).join('');
+}
+
+function drawSpark(vals){
+  const cv=$('spark'); if(!cv||!vals.length) return;
+  const dpr=2, W=cv.width=cv.clientWidth*dpr, H=cv.height=cv.clientHeight*dpr, c=cv.getContext('2d');
+  c.clearRect(0,0,W,H);
+  const mn=Math.min(...vals), mx=Math.max(...vals), rng=(mx-mn)||1, P=3*dpr;
+  const X=i=>i/(vals.length-1)*(W-2*P)+P, Y=v=>H-P-(v-mn)/rng*(H-2*P);
+  // area
+  c.beginPath(); c.moveTo(X(0),H);
+  vals.forEach((v,i)=>c.lineTo(X(i),Y(v))); c.lineTo(X(vals.length-1),H); c.closePath();
+  const g=c.createLinearGradient(0,0,0,H); g.addColorStop(0,'#d9b77455'); g.addColorStop(1,'#d9b77400');
+  c.fillStyle=g; c.fill();
+  // line
+  c.beginPath(); vals.forEach((v,i)=> i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v)));
+  c.strokeStyle='#e8dfc4'; c.lineWidth=1.6*dpr; c.stroke();
+  // last point
+  c.beginPath(); c.arc(X(vals.length-1),Y(vals[vals.length-1]),2.4*dpr,0,7);
+  c.fillStyle='#fff'; c.fill();
+}
+
+/* ---- dispatches: plain-English, ranked, each anchored to a place ---- */
+function dispatches(){
+  const out=[], s=BV.stats, c=BV.counts;
+  const find=name=>BV.cams.find(cm=>cm.name===name);
+  if(s){
+    const busy=(s.busiest||[])[0];
+    if(busy) out.push({tag:'surge',cls:'t-surge',col:'#ff9040',
+      txt:`<b>${busy.name}</b> is the busiest corner on record — ${busy.veh.toLocaleString()} vehicles across ${busy.samples} passes.`,
+      src:'all-time leaderboard', at:find(busy.name)});
+    if(s.now && s.hour_of_day){
+      const hh=new Date().getHours();
+      const hod=(s.hour_of_day||[]).filter(h=>h.samples>0);
+      const cur=hod.find(h=>h.h===hh), peak=[...hod].sort((a,b)=>b.cars-a.cars)[0];
+      if(cur&&peak){
+        if(cur.h===peak.h) out.push({tag:'surge',cls:'t-surge',col:'#ff9040',
+          txt:`This is historically the <b>peak hour</b> — the heaviest sixty minutes of the day.`,src:'rush curve'});
+        else out.push({tag:'flow',cls:'t-flow',col:'#c9b98a',
+          txt:`Typical for now: about <b>${Math.round(cur.cars)}</b> cars in view. The city peaks around ${String(peak.h).padStart(2,'0')}:00.`,src:'rush curve'});
+      }
+    }
+  }
+  if(c&&c.cams){
+    let topTruck=null, topCar=null, quietN=0, quietOne=null;
+    BV.cams.forEach(cm=>{
+      const k=(c.cams[cm.id]||{}).classes||{};
+      const has=c.cams[cm.id];
+      if((k.truck||0)>=1 && (!topTruck||k.truck>topTruck.n)) topTruck={cm,n:k.truck};
+      if((k.car||0)>=1 && (!topCar||k.car>topCar.n)) topCar={cm,n:k.car};
+      if(has && ((k.car||0)+(k.truck||0)+(k.bus||0))===0){ quietN++; if(!quietOne)quietOne=cm; }
+    });
+    if(topTruck&&topTruck.n>=1) out.push({tag:'trucks',cls:'t-truck',col:'#4f7fd4',
+      txt:`Heavy vehicles clustering at <b>${topTruck.cm.name}</b> — ${topTruck.n} truck${topTruck.n==1?'':'s'} in frame.`,src:'this pass',at:topTruck.cm});
+    if(topCar) out.push({tag:'busy',cls:'t-busy',col:'#d9b774',
+      txt:`<b>${topCar.cm.name}</b> is carrying the most traffic this minute — ${topCar.n} cars in view.`,src:'this pass',at:topCar.cm});
+    if(quietN>=3) out.push({tag:'quiet',cls:'t-quiet',col:'#5b8def',
+      txt:`${quietN} live corners are completely still — nothing moving through them this pass.`,src:'this pass',at:quietOne});
+    else if(quietOne) out.push({tag:'quiet',cls:'t-quiet',col:'#5b8def',
+      txt:`<b>${quietOne.name}</b> is quiet — nothing moving through it this pass.`,src:'this pass',at:quietOne});
+  }
+  return out;
+}
+
+let DISP=[];
+function renderDispatches(){
+  DISP = dispatches();
+  const el=$('feed');
+  if(!DISP.length){ el.innerHTML='<div class="collecting">Listening… dispatches appear as the cameras report.</div>'; return; }
+  el.innerHTML = DISP.map((d,i)=>`
+    <div class="disp" data-i="${i}">
+      <div class="dot" style="color:${d.col}"></div>
+      <div><div class="txt">${d.txt}</div><div class="src">source · ${d.src}</div></div>
+      <div class="tag ${d.cls}">${d.tag}</div>
+    </div>`).join('');
+  [...el.querySelectorAll('.disp')].forEach(node=>{
+    node.onclick=()=>{
+      const d=DISP[+node.dataset.i];
+      [...el.querySelectorAll('.disp')].forEach(n=>n.classList.remove('on'));
+      node.classList.add('on');
+      if(d.at){
+        if(window.__nudgeIdle) window.__nudgeIdle();
+        map.flyTo({center:[d.at.lon,d.at.lat], zoom:14.5, pitch:55, duration:1600, essential:true});
+        setTimeout(()=>showCamPopup({name:d.at.name,area:d.at.area,tier:d.at.tier,w:d.at.w,
+          live:!!(BV.counts&&BV.counts.cams[d.at.id]),
+          veh:(BV.counts&&BV.counts.cams[d.at.id]?BV.counts.cams[d.at.id].veh:0),
+          truck:(BV.counts&&BV.counts.cams[d.at.id]?(BV.counts.cams[d.at.id].classes||{}).truck||0:0)},
+          [d.at.lon,d.at.lat]), 1650);
+      }
+    };
+  });
+}
+
+/* ---- map beacons on the headline dispatches ---- */
+function placeBeacons(){
+  BV.beacons.forEach(m=>m.remove()); BV.beacons=[];
+  DISP.filter(d=>d.at && (d.tag==='surge'||d.tag==='trucks')).slice(0,2).forEach(d=>{
+    const el=document.createElement('div'); el.className='beacon'; el.style.setProperty('--bc',d.col);
+    el.innerHTML=`<div class="ring"></div><div class="ring"></div>
+      <div class="blabel">${d.tag==='trucks'?'heavy cluster':'busiest'}<small>${d.at.name}</small></div>`;
+    const mk=new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([d.at.lon,d.at.lat]).addTo(map);
+    BV.beacons.push(mk);
+  });
+}
+</script>

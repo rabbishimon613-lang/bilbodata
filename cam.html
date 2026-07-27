@@ -1,0 +1,303 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Camera — Bilbo Data</title>
+<link rel="icon" href="assets/bilbo-pup.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090b;--panel:#0c0d10;--panel2:#0e0f11;--line:#191b1f;--line2:#24272d;
+    --ink:#e8eaee;--dim:#9aa1ad;--mut:#5f6672;
+    --live:#4ad991;--accent:#5b8def;--warn:#e0a44a;--red:#e2645f;
+    --sans:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;gap:24px;height:66px}
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
+  .brand img{height:38px;display:block}
+  .brand .bn{font-size:22px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+  .brand .dt{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--dim);
+    text-transform:uppercase;padding:5px 0 0 1px}
+  nav.tabs{display:flex;gap:2px;margin-left:8px}
+  nav.tabs a{font-size:13.5px;color:var(--dim);border:1px solid transparent;padding:7px 14px;
+    border-radius:2px;cursor:pointer;text-decoration:none}
+  nav.tabs a:hover{color:var(--ink)}
+  .whois{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:#04070d;background:var(--accent);border:1px solid var(--accent);
+    border-radius:2px;padding:13px 24px;cursor:pointer;white-space:nowrap;
+    transition:filter .15s,box-shadow .15s}
+  .whois:hover{filter:brightness(1.14);box-shadow:0 0 20px -3px rgba(91,141,239,.6)}
+
+  main{padding:0 0 90px}
+  .crumb{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--mut);padding:26px 0 0}
+  .crumb a{color:var(--dim);text-decoration:none}
+  .crumb a:hover{color:var(--ink)}
+  h1{font-size:44px;font-weight:200;letter-spacing:-.02em;line-height:1.08;margin:14px 0 0}
+  .sub{color:var(--dim);font-size:15px;margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;
+    align-items:center;font-family:var(--mono)}
+  .tierpill{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid;border-radius:2px;padding:4px 8px}
+  .tierpill.blue{color:var(--accent);border-color:#23324d}
+  .tierpill.orange{color:var(--warn);border-color:#4a3a1f}
+  .tierpill.purple{color:#a98fd0;border-color:#3a2f4d}
+
+  .split{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;margin-top:32px;align-items:start}
+  .card{border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden}
+  .card .h{padding:13px 17px;border-bottom:1px solid var(--line);font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .card .b{padding:18px 19px}
+  .liveshot{width:100%;display:block;background:#000;min-height:180px}
+  .shotcap{padding:10px 15px;font-family:var(--mono);font-size:10.5px;color:var(--mut);
+    border-top:1px solid var(--line);display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .shotcap b{color:var(--dim);font-weight:400}
+
+  .can{font-size:15px;color:var(--ink);line-height:1.6;padding-left:12px;
+    border-left:2px solid var(--accent)}
+  .nts{list-style:none;margin:0;padding:0}
+  .nts li{position:relative;padding-left:17px;margin-bottom:12px;font-size:15px;
+    color:var(--ink);line-height:1.55}
+  .nts li:last-child{margin-bottom:0}
+  .nts li:before{content:"";position:absolute;left:0;top:11px;width:9px;height:1px;background:var(--accent)}
+
+  .mixbar{display:flex;height:9px;border-radius:3px;overflow:hidden;gap:2px;margin-bottom:12px}
+  .mixbar i{display:block;height:100%;border-radius:2px}
+  .mixkey{display:flex;flex-wrap:wrap;gap:13px;font-family:var(--mono);font-size:11px;color:var(--dim);
+    font-variant-numeric:tabular-nums}
+  .mixkey span{display:flex;align-items:center;gap:6px}
+  .mixkey i{width:8px;height:8px;border-radius:2px;display:block}
+
+  .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .kv .c{background:var(--panel);padding:13px 14px}
+  .kv .c .k{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .kv .c .v{font-family:var(--mono);font-size:22px;margin-top:7px;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .kv .c .v small{font-size:11px;color:var(--mut);font-family:var(--sans)}
+
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tags .t{font-family:var(--mono);font-size:11px;color:var(--dim);border:1px solid var(--line2);
+    border-radius:2px;padding:5px 10px;background:var(--panel2)}
+  .tags .t b{color:var(--ink);font-weight:400}
+
+  .seen{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+  .seen figure{margin:0;border:1px solid var(--line);border-radius:3px;background:var(--panel);overflow:hidden}
+  .seen img{width:100%;height:112px;object-fit:cover;display:block;background:#000}
+  .seen figcaption{padding:9px 11px;font-size:12.5px;color:var(--dim);line-height:1.4}
+  .seen figcaption b{color:var(--ink);font-weight:400;display:block;font-size:13px}
+  .seen figcaption .tm{font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:4px}
+
+  .blk{margin-top:44px}
+  .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+  h2{font-size:27px;font-weight:200;letter-spacing:-.015em;margin:8px 0 4px}
+  .note{color:var(--mut);font-size:13px;font-family:var(--mono);margin-bottom:16px}
+  .empty{color:var(--mut);font-style:italic;font-size:14px}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:26px 0;color:var(--mut);font-size:12px;
+    font-family:var(--mono)}
+  @media(max-width:900px){ .split{grid-template-columns:1fr} h1{font-size:32px} .whois{padding:10px 14px;font-size:11px} }
+</style>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/bilbo-pup.png" alt="Bilbo"><span class="bn">Bilbo</span><span class="dt">Data</span></a>
+  <nav class="tabs">
+    <a href="index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="index.html#brain">BrainView</a>
+    <a href="skyline.html">SkyLine</a>
+    <a href="index.html#about">About</a>
+  </nav>
+  <button class="whois" type="button">Who's You?</button>
+</div></header>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html">Home</a> · <a href="index.html">The instrument</a> · <span id="cr">Camera</span></div>
+  <h1 id="nm">Loading…</h1>
+  <div class="sub" id="sub"></div>
+
+  <div class="split">
+    <div>
+      <div class="card">
+        <div class="h">What it sees right now</div>
+        <img class="liveshot" id="shot" alt="">
+        <div class="shotcap" id="shotcap"></div>
+      </div>
+
+      <div class="blk">
+        <div class="eyebrow">The standing signal</div>
+        <h2>What happens here, constantly</h2>
+        <div class="note">read off this camera's own record · not a description someone wrote</div>
+        <div class="card"><div class="b">
+          <ul class="nts" id="notes"></ul>
+        </div></div>
+      </div>
+
+      <div class="blk">
+        <div class="eyebrow">Traffic</div>
+        <h2>What rolls past</h2>
+        <div class="note" id="mixnote"></div>
+        <div class="card"><div class="b">
+          <div class="mixbar" id="mixbar"></div>
+          <div class="mixkey" id="mixkey"></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="h">The instrument</div>
+        <div class="b">
+          <div class="can" id="can"></div>
+          <div class="kv" id="kv" style="margin-top:16px"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <div class="h">Recognised here</div>
+        <div class="b" id="recog"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <div class="eyebrow">Evidence</div>
+    <h2>Vehicles read at this camera</h2>
+    <div class="note" id="seennote">the actual crops, as banked · nothing enhanced</div>
+    <div class="seen" id="seen"></div>
+  </div>
+
+  <footer class="wrap" style="padding-left:0;padding-right:0">
+    Bilbo Data · public NYC DOT cameras · aggregate and vehicle-level only · no faces, no full plates, no tracking
+  </footer>
+</main>
+
+<script>
+const MIXC={car:'#5b8def',truck:'#e0a44a',bus:'#4ad991',moto:'#e2645f'};
+const MIXW={car:'Cars',truck:'Trucks',bus:'Buses',moto:'Motorcycles'};
+const TIERW={blue:'Blue — the readers',orange:'Orange — the describers',purple:'Purple — the counters'};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* the same road-name tidy the dashboard uses */
+const HWY={BQE:'Brooklyn–Queens Expwy',SIE:'Staten Island Expwy',CBE:'Cross Bronx Expwy',
+  BRE:'Bruckner Expwy',MDE:'Major Deegan Expwy',VWE:'Van Wyck Expwy',SHE:'Sheridan Expwy',
+  GCP:'Grand Central Pkwy',HRD:'Harlem River Dr',FDR:'FDR Dr',LIE:'Long Island Expwy',
+  PPW:'Prospect Expwy',CIE:'Clearview Expwy',WSH:'West Side Hwy'};
+const DIRW={NB:'northbound',SB:'southbound',EB:'eastbound',WB:'westbound'};
+function pretty(n){
+  if(!n) return n;
+  const m=n.match(/^C\d+-([A-Z]{2,4})-\d+[A-Z]?[-_](.*)$/);
+  if(m&&HWY[m[1]]){
+    let rest=m[2],dir='';
+    const dm=rest.match(/^(NB|SB|EB|WB|N|S|E|W)(?=[_-])/i);
+    if(dm) dir=DIRW[dm[1].toUpperCase().slice(0,1)+'B']||'';
+    let cross=rest.replace(/^(NB|SB|EB|WB|N|S|E|W|Ctr|Cntr|Center|Med|Btwn)(?=[_-])[_-]*/i,'');
+    const am=cross.match(/at[_ ](.+)$/i); if(am) cross=am[1];
+    let exit=''; const em=cross.match(/[-_]?Ex[_.]?(\w+)$/i);
+    if(em){exit=em[1];cross=cross.replace(/[-_]?Ex[_.]?\w+$/i,'');}
+    cross=cross.replace(/_/g,' ').replace(/[- ]+$/,'').trim()
+      .replace(/\bHamltn\b/gi,'Hamilton').replace(/\bBrx\.?\s?Rvr\b/gi,'Bronx River')
+      .replace(/\bStewrt\b/gi,'Stewart').replace(/\bKosc\b/gi,'Kosciuszko')
+      .replace(/\bFurmn\b/gi,'Furman').replace(/\bTwn\b/gi,'Town');
+    let s=HWY[m[1]];
+    if(cross) s+=' at '+cross;
+    if(exit) s+=' (Exit '+exit+')';
+    if(dir) s+=' · '+dir;
+    return s;
+  }
+  return n.replace(/_/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function pct(n,t){ return t?Math.round(100*n/t):0; }
+
+async function main(){
+  const id=new URLSearchParams(location.search).get('id');
+  const d=await fetch('library/cam_profiles.json').then(r=>r.json());
+  const c=(d.cams||[]).find(x=>x.id===id);
+  if(!c){ $('nm').textContent='Camera not found'; $('sub').textContent=''; return; }
+
+  const name=pretty(c.name)||c.name||'Camera';
+  document.title=name+' — Bilbo Data';
+  $('cr').textContent=name;
+  $('nm').textContent=name;
+  $('sub').innerHTML='<span class="tierpill '+c.tier+'">'+esc((TIERW[c.tier]||c.tier).split(' — ')[0])+'</span>'
+    +'<span>'+esc(c.area||'')+'</span><span>·</span><span>'+(c.w?c.w+'×'+c.h:'resolution unknown')+'</span>';
+
+  // live frame from the DOT camera
+  const shot=$('shot');
+  if(c.img){
+    const bust=()=>{ shot.src=c.img+'?t='+Date.now(); };
+    bust(); setInterval(bust,20000);
+    shot.onerror=()=>{ shot.style.display='none'; $('shotcap').innerHTML='<b>The camera is not returning a frame right now.</b>'; };
+  } else { shot.style.display='none'; }
+  $('shotcap').innerHTML='<b>Live DOT frame</b> · refreshes every 20s · '
+    +esc(c.lat!=null?c.lat.toFixed(5)+', '+c.lon.toFixed(5):'');
+
+  $('can').textContent=c.can||'';
+  $('kv').innerHTML=
+     kvc('Resolution', c.w?c.w+'×'+c.h:'—')
+    +kvc('Identified', c.ids||0, 'vehicles')
+    +(c.typical!=null?kvc('Typical', c.typical, 'in frame'):'')
+    +(c.peak?kvc('Busiest', c.peak):'')
+    +(c.night!=null?kvc('After dark', c.night+'%'):'');
+
+  $('notes').innerHTML=(c.notes||[]).map(n=>'<li>'+esc(n)+'</li>').join('');
+
+  // mix
+  const mix=c.mix||{}, tot=Object.values(mix).reduce((a,b)=>a+b,0);
+  if(tot){
+    const ks=Object.keys(mix).filter(k=>mix[k]>0).sort((a,b)=>mix[b]-mix[a]);
+    $('mixbar').innerHTML=ks.map(k=>'<i style="width:'+pct(mix[k],tot)+'%;background:'+(MIXC[k]||'#666')+'"></i>').join('');
+    $('mixkey').innerHTML=ks.map(k=>'<span><i style="background:'+(MIXC[k]||'#666')+'"></i>'
+      +(MIXW[k]||k)+' '+pct(mix[k],tot)+'%</span>').join('');
+    $('mixnote').textContent = c.mix_src==='counts'
+      ? 'from this camera’s own minute-by-minute machine counts'
+      : 'from the vehicles identified here — counts have not run on this camera yet';
+  } else {
+    $('mixbar').style.display='none';
+    $('mixkey').innerHTML='<span class="empty">No traffic mix banked for this camera yet.</span>';
+    $('mixnote').textContent='';
+  }
+
+  // recognised
+  const secs=[
+    ['Manufacturers', c.makes], ['Fleets & companies', c.companies],
+    ['Colours', c.colors], ['Markings & fittings', c.features],
+  ].filter(s=>s[1]&&s[1].length);
+  $('recog').innerHTML = secs.length ? secs.map(([t,rows])=>
+      '<div style="margin-bottom:15px"><div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;'
+      +'text-transform:uppercase;color:var(--mut);margin-bottom:8px">'+t+'</div>'
+      +'<div class="tags">'+rows.map(r=>'<span class="t"><b>'+esc(r[0])+'</b> '+r[1]+'</span>').join('')+'</div></div>'
+    ).join('')
+    : '<div class="empty">Nothing has been recognised at this camera yet — either it has not been swept, '
+      +'or its pixels cannot carry a claim.</div>';
+
+  // evidence
+  const s=c.samples||[];
+  $('seen').innerHTML = s.length ? s.map(v=>{
+      const nm=[v.manufacturer,v.model].filter(Boolean).join(' ');
+      return '<figure><img src="'+esc(v.crop)+'" alt="" loading="lazy"><figcaption>'
+        +'<b>'+(nm?esc(nm):'<span style="color:var(--mut);font-style:italic">can’t tell</span>')+'</b>'
+        +esc([v.color,v.cls].filter(Boolean).join(' · '))
+        +'<div class="tm">'+esc(v.date||'')+' · '+esc(v.time||'')+'</div></figcaption></figure>';
+    }).join('') : '';
+  if(!s.length){
+    $('seen').innerHTML='';
+    $('seennote').innerHTML='<span class="empty">No vehicle has been individually identified at this camera yet.</span>';
+  }
+}
+function kvc(k,v,u){
+  return '<div class="c"><div class="k">'+k+'</div><div class="v">'+esc(v)
+    +(u?' <small>'+esc(u)+'</small>':'')+'</div></div>';
+}
+main().catch(e=>{ console.error(e); $('nm').textContent='Could not load this camera'; });
+</script>
+</body>
+</html>

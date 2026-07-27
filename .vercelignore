@@ -1,6 +1,17 @@
 *
 !index.html
 !about.html
+!library.html
+!cam.html
+!skyline.html
 !vercel.json
 !assets
 !assets/**
+!library
+!library/**
+!nyc_land.geojson
+!nyc_mask.geojson
+!skyline_massing.geojson
+!subway.json
+!cams_all.json
+!cam_resolution_census.csv

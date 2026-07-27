@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <style>
   :root{
     --bg:#000;--panel:#0c0d0f;--panel2:#090a0b;--line:#1b1c1f;--line2:#2a2c31;
@@ -45,7 +47,10 @@
   nav.tabs button{font-family:var(--sans);font-weight:400;font-size:13.5px;color:var(--dim);background:none;border:1px solid transparent;padding:7px 15px;border-radius:2px;cursor:pointer;letter-spacing:.01em}
   nav.tabs button:hover{color:var(--ink)}
   nav.tabs button.on{color:var(--ink);border-color:var(--line2);background:#0e0f11}
-  .mark{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:2px;padding:6px 11px}
+  .whois{margin-left:14px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#04070d;background:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:13px 24px;cursor:pointer;white-space:nowrap;transition:filter .15s,box-shadow .15s}
+  .whois:hover{filter:brightness(1.14);box-shadow:0 0 20px -3px rgba(91,141,239,.6)}
+  .whois:active{transform:translateY(1px)}
+  .mark{margin-left:auto;display:flex;align-items:center;gap:8px;white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:2px;padding:6px 11px}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(74,217,145,.5);animation:pulse 2.4s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,217,145,.45)}70%{box-shadow:0 0 0 7px rgba(74,217,145,0)}100%{box-shadow:0 0 0 0 rgba(74,217,145,0)}}
 
@@ -83,7 +88,9 @@
   .collecting{color:var(--warn);font-family:var(--mono);font-size:11px}
 
   .card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
-  canvas{width:100%!important;height:240px!important}
+  /* chart canvases only — a bare `canvas` rule also catches MapLibre's own
+     canvas and squashes the map to 240px while it still renders full height */
+  .card>canvas{width:100%!important;height:240px!important}
   .split2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 
   table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
@@ -261,11 +268,182 @@
   .gmark.no{color:var(--ink);border:1px solid var(--red)}
   .gmark.na{color:var(--mut);border:1px solid var(--line2)}
 
+  /* ===== showcase — the library, reading itself out loud ===== */
+  .showcase{margin:34px 0 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden}
+  .sc-top{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .sc-top .lbl{color:var(--live)}
+  .sc-top .folder{color:var(--dim);text-transform:none;letter-spacing:.04em;border:1px solid var(--line2);border-radius:2px;padding:4px 8px;background:var(--panel2)}
+  .sc-top .folder.blue{color:var(--accent);border-color:#23324d}
+  .sc-top .folder.orange{color:var(--warn);border-color:#4a3a1f}
+  .sc-top .folder.purple{color:#a98fd0;border-color:#3a2f4d}
+  .sc-top .pos{font-variant-numeric:tabular-nums;letter-spacing:.08em}
+  .sc-top .pos .g{color:var(--live)}
+  .sc-top .pos .f{color:var(--warn)}
+  .sc-top .cnt{margin-left:auto;color:var(--mut);letter-spacing:.1em}
+  .sc-body{display:grid;grid-template-columns:230px 1fr;gap:0;min-height:290px}
+  .sc-raw{padding:24px 22px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:12px;background:var(--panel2)}
+  .sc-raw .rawcap{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .sc-raw .rawimg{position:relative;background:#000;border:1px solid var(--line2);border-radius:3px;display:flex;align-items:center;justify-content:center;height:150px;overflow:hidden}
+  /* reticle corners — the crop is a sighting, framed like one */
+  .sc-raw .rawimg:before,.sc-raw .rawimg:after{content:"";position:absolute;width:13px;height:13px;pointer-events:none;border:1px solid var(--accent);opacity:.65}
+  .sc-raw .rawimg:before{top:5px;left:5px;border-right:none;border-bottom:none}
+  .sc-raw .rawimg:after{bottom:5px;right:5px;border-left:none;border-top:none}
+  .sc-raw .rawimg img{max-width:100%;max-height:100%;display:block}
+  .whencard{border:1px solid var(--line2);border-left:2px solid var(--warn);border-radius:0 3px 3px 0;background:#0e0f11;padding:13px 14px}
+  .whencard .wd{font-family:var(--mono);font-size:21px;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .whencard .wt{font-family:var(--mono);font-size:15px;color:var(--dim);margin-top:3px;font-variant-numeric:tabular-nums}
+  .whencard .wp{font-size:13px;color:var(--ink);margin-top:10px;line-height:1.4;border-top:1px solid var(--line);padding-top:9px}
+  .sc-raw .rawmeta{font-family:var(--mono);font-size:10.5px;color:var(--dim);line-height:1.85;font-variant-numeric:tabular-nums}
+  .sc-raw .rawmeta b{color:var(--ink);font-weight:400}
+  .sc-read{padding:20px 26px 22px;display:flex;flex-direction:column;position:relative}
+  /* faint plotting grid — the surface reads as an instrument, not a web page */
+  .sc-read:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(91,141,239,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(91,141,239,.045) 1px,transparent 1px);
+    background-size:34px 34px}
+  .sc-read>*{position:relative}
+  .sc-rec{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:12px;display:flex;align-items:center;gap:9px}
+  .sc-rec:after{content:"";flex:1;height:1px;background:var(--line)}
+  .sc-read .who{font-size:34px;font-weight:300;letter-spacing:-.015em;line-height:1.1;color:var(--ink)}
+  .sc-read .who .cant{color:var(--mut);font-style:italic}
+  .sc-read .whosub{color:var(--dim);font-size:14px;margin-top:7px}
+  .conf{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;border:1px solid;border-radius:2px;padding:4px 8px;margin-left:14px;vertical-align:middle;white-space:nowrap}
+  .conf.high{color:var(--live);border-color:#1f4a3b}
+  .conf.med{color:var(--warn);border-color:#4a3a1f}
+  .conf.low{color:var(--mut);border-color:var(--line2)}
+  /* four real fields, one row, no orphan cell */
+  .sc-facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sc-facts .f{padding:13px 0 14px 18px;border-left:1px solid var(--line);min-width:0}
+  .sc-facts .f:nth-child(4n+1){border-left:none;padding-left:0}
+  .sc-facts .f:nth-child(n+5){border-top:1px solid var(--line)}
+  .sc-facts .f .fk{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .sc-facts .f .fv{font-size:15px;color:var(--ink);margin-top:6px;line-height:1.3}
+  .sc-facts .f .fv.none{color:var(--mut);font-style:italic}
+  .sc-feat{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
+  .sc-feat .ft{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim);border:1px solid var(--line2);border-radius:2px;padding:5px 9px;background:var(--panel2)}
+  .sc-feat .ft.k{color:var(--warn);border-color:#4a3a1f}
+  .sc-class{margin-top:auto;padding-top:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--mut)}
+  .sc-where{padding-top:12px;margin-top:12px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .sc-where a{color:var(--accent);text-decoration:none;border-bottom:1px solid #23324d}
+  .sc-where a:hover{border-color:var(--accent)}
+  .sc-bar{height:2px;background:var(--line)}
+  .sc-bar i{display:block;height:100%;width:0;background:var(--live);transition:width .18s linear}
+  .tierpill{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid;border-radius:2px;padding:3px 7px}
+  .tierpill.blue{color:var(--accent);border-color:#23324d}
+  .tierpill.orange{color:var(--warn);border-color:#4a3a1f}
+  .tierpill.purple{color:#a98fd0;border-color:#3a2f4d}
+  .sc-nav{display:flex;gap:5px;margin-left:auto}
+  .sc-nav button{font-family:var(--mono);font-size:11px;color:var(--dim);background:none;border:1px solid var(--line2);border-radius:2px;padding:4px 10px;cursor:pointer}
+  .sc-nav button:hover{color:var(--ink);border-color:var(--dim)}
+
+  /* ===== module rail — the home page is a stack of instruments ===== */
+  .modhead{display:flex;align-items:baseline;gap:14px;margin:38px 0 0;padding-bottom:11px;border-bottom:1px solid var(--line)}
+  .modhead .no{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);
+    border:1px solid var(--line2);border-radius:2px;padding:5px 9px;flex:none}
+  .modhead h2{font-size:20px;font-weight:400;letter-spacing:-.01em;color:var(--ink);margin:0;flex:none}
+  .modhead .say{font-size:13px;color:var(--dim);min-width:0}
+  .modhead .rate{margin-left:auto;flex:none;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .modhead .rate b{color:var(--live);font-weight:400}
+  .modhead + .showcase{margin-top:14px}
+  @media(max-width:760px){ .modhead{flex-wrap:wrap} .modhead .say{flex-basis:100%} .modhead .rate{margin-left:0} }
+
+  /* ===== module 02 — oddities: same instrument, curated by hand ===== */
+  .showcase.odd .sc-top .lbl{color:var(--warn)}
+  .showcase.odd .sc-bar i{background:var(--warn)}
+  .showcase.odd .whencard{border-left-color:var(--accent)}
+  .odtag{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;border:1px solid;border-radius:2px;padding:4px 8px;white-space:nowrap}
+  .odtag.wtf{color:#c9a227;border-color:#4a3f1c}
+  .odtag.funny{color:var(--accent);border-color:#23324d}
+  .odtag.grim{color:#c0563f;border-color:#4d2a20}
+  .odtag.craft{color:var(--live);border-color:#1f4a3b}
+  .showcase.odd .sc-read .who{font-size:29px;font-weight:300;line-height:1.14}
+  .showcase.odd .sc-read .whosub{font-size:14.5px;color:var(--dim);margin-top:11px;line-height:1.55;max-width:62ch}
+  /* ===== module 03 — footlook: people on foot, and which way ===== */
+  .showcase.foot .sc-top .lbl{color:#a98fd0}
+  .showcase.foot .sc-bar i{background:#a98fd0}
+  .showcase.foot .sc-read .who{font-size:44px;font-weight:300;letter-spacing:-.02em}
+  .showcase.foot .sc-read .who b{font-weight:400;color:#fff}
+  .showcase.foot .sc-raw .rawimg{height:200px}
+  .showcase.foot .sc-body{grid-template-columns:300px 1fr}
+  .compass{display:flex;align-items:center;gap:16px;margin-top:20px;padding:14px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .rose{width:62px;height:62px;flex:none;position:relative;border:1px solid var(--line2);border-radius:50%;background:var(--panel2)}
+  .rose i{position:absolute;left:50%;top:50%;width:2px;height:24px;background:#a98fd0;
+    transform-origin:50% 100%;margin-left:-1px;margin-top:-24px;border-radius:1px}
+  .rose:after{content:"N";position:absolute;top:2px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:8px;color:var(--mut)}
+  .cwrap{min-width:0}
+  .cwrap .cbig{font-family:var(--mono);font-size:19px;color:var(--ink);letter-spacing:.04em}
+  .cwrap .csub{font-size:12.5px;color:var(--dim);margin-top:5px}
+  .footwarn{margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--warn);border:1px solid #4a3a1f;border-radius:2px;
+    padding:8px 10px;line-height:1.7}
+  @media(max-width:900px){ .showcase.foot .sc-body{grid-template-columns:1fr}
+    .showcase.foot .sc-raw{border-right:none;border-bottom:1px solid var(--line)} }
+
+  .odspec{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em;line-height:1.9}
+  .odspec b{color:var(--ink);font-weight:400}
+  /* here the crop is the argument, not the read — so give it the room */
+  .showcase.odd .sc-body{grid-template-columns:330px 1fr}
+  .showcase.odd .sc-raw .rawimg{height:250px}
+  @media(max-width:900px){ .showcase.odd .sc-body{grid-template-columns:1fr} .showcase.odd .sc-raw{border-right:none;border-bottom:1px solid var(--line)} }
+
+  /* ===== foucault ===== */
+  .quoteblk{margin:56px 0 10px;padding:30px 34px;border-left:2px solid var(--accent);background:var(--panel2);border-radius:0 4px 4px 0;max-width:74ch}
+  .quoteblk p{font-size:19px;font-weight:300;line-height:1.62;color:var(--ink)}
+  .quoteblk p b{font-weight:400;color:#fff}
+  .quoteblk cite{display:block;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--dim);font-style:normal}
+  .quoteblk cite a{color:var(--dim)}
+
+  /* ===== the map ===== */
+  .mapwrap{position:relative;margin-top:18px;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#000}
+  #nycmap{height:580px}
+  .maplibregl-ctrl-attrib,.maplibregl-ctrl-logo{opacity:.22}
+  .campanel{position:absolute;top:14px;right:14px;bottom:14px;width:330px;z-index:4;background:rgba(8,9,11,.9);backdrop-filter:blur(9px);border:1px solid var(--line2);border-radius:4px;display:none;flex-direction:column;overflow:hidden}
+  .campanel.on{display:flex}
+  .campanel .ph{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:10px}
+  .campanel .ph .nm{font-size:16px;line-height:1.25;color:var(--ink)}
+  .campanel .ph .ar{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:5px}
+  .campanel .x{margin-left:auto;background:none;border:none;color:var(--mut);font-size:19px;line-height:1;cursor:pointer;padding:0 2px}
+  .campanel .x:hover{color:var(--ink)}
+  .campanel .pb{overflow-y:auto;padding:14px 16px;flex:1}
+  .campanel .shot{width:100%;border:1px solid var(--line);border-radius:3px;background:#000;display:block;margin-bottom:13px;min-height:80px}
+  .campanel .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px;align-items:center}
+  .campanel .res{font-family:var(--mono);font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:2px;padding:3px 8px}
+  .campanel .can{font-size:13px;color:var(--dim);line-height:1.55;margin-bottom:14px;padding-left:10px;border-left:1px solid var(--line2)}
+  .campanel .nts{list-style:none;margin:0 0 15px;padding:0}
+  .campanel .nts li{position:relative;padding:0 0 0 15px;margin-bottom:9px;font-size:13.5px;color:var(--ink);line-height:1.5}
+  .campanel .nts li:before{content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--accent)}
+  .campanel .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:14px}
+  .campanel .thumbs img{width:100%;height:46px;object-fit:cover;border:1px solid var(--line);border-radius:2px;background:#000}
+  .campanel .full{display:block;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#04070d;background:var(--accent);border-radius:2px;padding:11px;text-decoration:none}
+  .campanel .full:hover{filter:brightness(1.12)}
+  .maplegend{position:absolute;left:14px;bottom:14px;z-index:4;background:rgba(8,9,11,.86);backdrop-filter:blur(8px);border:1px solid var(--line2);border-radius:4px;padding:11px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--dim)}
+  .maplegend .lg{display:flex;align-items:center;gap:7px;margin-top:6px}
+  .maplegend .lg:first-of-type{margin-top:8px}
+  .maplegend i{width:8px;height:8px;border-radius:50%;display:block}
+  .maphint{position:absolute;left:14px;top:14px;z-index:4;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);background:rgba(8,9,11,.8);border:1px solid var(--line);border-radius:3px;padding:7px 11px}
+  .maphint button{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);background:none;border:1px solid var(--line2);border-radius:2px;padding:4px 9px;cursor:pointer}
+  .maphint button:hover{color:var(--ink);border-color:var(--dim)}
+
+  @media(max-width:1100px){ .mark{display:none} .whois{margin-left:auto} }
+  @media(max-width:860px){
+    .sc-body{grid-template-columns:1fr}
+    .sc-raw{border-right:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-start}
+    .sc-raw .rawimg{width:130px;height:96px;flex:none}
+    .sc-read .who{font-size:26px}
+    .sc-facts{grid-template-columns:repeat(2,1fr)}
+    .sc-facts .f:nth-child(odd){border-left:none;padding-left:0}
+    .sc-facts .f:nth-child(n+3){border-top:1px solid var(--line)}
+    .campanel{position:static;width:auto;display:none;border-radius:0;border-left:none;border-right:none;border-bottom:none}
+    .campanel.on{display:flex;max-height:520px}
+    #nycmap{height:420px}
+  }
   @media(max-width:820px){
     .g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr}
     .split2{grid-template-columns:1fr}
     .prod{grid-template-columns:1fr}.mark{display:none}
     header .wrap{gap:10px;height:60px}nav.tabs button{padding:7px 10px;font-size:12.5px}
+    .whois{margin-left:auto;padding:10px 14px;font-size:11px;letter-spacing:.1em}
     .brand .dt{display:none}
     .evalgrid{grid-template-columns:1fr 1fr;gap:9px}
   }
@@ -280,23 +458,185 @@
 <header><div class="wrap">
   <a class="brand" href="#" data-tab="live"><img src="assets/bilbo-pup.png" alt="Bilbo"><span class="bn">Bilbo</span><span class="dt">Data</span></a>
   <nav class="tabs">
-    <button data-tab="live" class="on">Live Dashboard</button>
+    <button data-tab="live" class="on">Modules</button>
+    <button onclick="location.href='library.html'">Library</button>
     <button data-tab="brain">BrainView</button>
-    <button data-tab="academy">Academy</button>
+    <button onclick="location.href='skyline.html'">SkyLine</button>
     <button data-tab="about">About</button>
   </nav>
   <div class="mark"><span class="dot"></span> Open Data · No Faces · No Full Plates · No Tracking</div>
+  <button class="whois" type="button">Who's You?</button>
 </div></header>
 
 <main class="wrap">
 
 <!-- ========== LIVE ========== -->
 <div class="tabpane on" id="tab-live">
-  <section class="hero" style="padding:52px 0 30px">
+  <!-- ---------- module 01 — the library, reading itself out loud ---------- -->
+  <div class="modhead">
+    <span class="no">Module 01</span>
+    <h2>Library</h2>
+    <span class="say">Everything Bilbo has banked, in the order the cameras gave it. No editing.</span>
+    <span class="rate">Advances every <b>5s</b></span>
+  </div>
+  <section class="showcase" id="showcase">
+    <div class="sc-top">
+      <span class="lbl">● From the library</span>
+      <span class="folder" id="sc_folder">—</span>
+      <span class="pos" id="sc_pos"></span>
+      <span class="cnt" id="sc_count">—</span>
+    </div>
+    <div class="sc-body">
+      <div class="sc-raw">
+        <div class="rawcap">The raw pixels</div>
+        <div class="rawimg"><img id="sc_img" alt=""></div>
+        <div class="whencard">
+          <div class="wd" id="sc_date">—</div>
+          <div class="wt" id="sc_time">—</div>
+          <div class="wp" id="sc_place">—</div>
+        </div>
+        <div class="rawmeta" id="sc_rawmeta"></div>
+      </div>
+      <div class="sc-read">
+        <div class="sc-rec"><span id="sc_rec">—</span></div>
+        <div class="who" id="sc_who">Reading the library…</div>
+        <div class="whosub" id="sc_whosub"></div>
+        <div class="sc-facts" id="sc_facts"></div>
+        <div class="sc-feat" id="sc_feat"></div>
+        <div class="sc-class">Unclassified // Open source · derived from public NYC DOT frames · no faces · no full plates</div>
+        <div class="sc-where" id="sc_where"></div>
+      </div>
+    </div>
+    <div class="sc-bar"><i id="sc_bar"></i></div>
+  </section>
+
+  <!-- ---------- module 02 — oddities: the same shelf, picked over by hand ---------- -->
+  <div class="modhead">
+    <span class="no">Module 02</span>
+    <h2>Oddities</h2>
+    <span class="say">The ones that made us stop scrolling. Pulled out by eye, not by a rule.</span>
+    <span class="rate">Advances every <b>10s</b></span>
+  </div>
+  <section class="showcase odd" id="oddities">
+    <div class="sc-top">
+      <span class="lbl">● Hand-picked</span>
+      <span class="odtag" id="od_tag">—</span>
+      <span class="pos" id="od_pos"></span>
+      <span class="cnt" id="od_count">—</span>
+    </div>
+    <div class="sc-body">
+      <div class="sc-raw">
+        <div class="rawcap">The raw pixels</div>
+        <div class="rawimg"><img id="od_img" alt=""></div>
+        <div class="whencard">
+          <div class="wd" id="od_date">—</div>
+          <div class="wt" id="od_time">—</div>
+          <div class="wp" id="od_place">—</div>
+        </div>
+        <div class="rawmeta" id="od_rawmeta"></div>
+      </div>
+      <div class="sc-read">
+        <div class="sc-rec"><span id="od_rec">—</span></div>
+        <div class="who" id="od_who">Going through the shelf…</div>
+        <div class="whosub" id="od_why"></div>
+        <div class="odspec" id="od_spec"></div>
+        <div class="sc-feat" id="od_feat"></div>
+        <div class="sc-class">Unclassified // Open source · derived from public NYC DOT frames · no faces · no full plates</div>
+        <div class="sc-where" id="od_where"></div>
+      </div>
+    </div>
+    <div class="sc-bar"><i id="od_bar"></i></div>
+  </section>
+
+  <!-- ---------- module 03 — footlook: people on foot ---------- -->
+  <div class="modhead">
+    <span class="no">Module 03</span>
+    <h2>FootLook</h2>
+    <span class="say">People on foot, and which way they're walking. A floor, never a total.</span>
+    <span class="rate">Advances every <b>12s</b></span>
+  </div>
+  <section class="showcase foot" id="footlook">
+    <div class="sc-top">
+      <span class="lbl">● On foot</span>
+      <span class="folder" id="ft_area">—</span>
+      <span class="pos" id="ft_pos"></span>
+      <span class="cnt" id="ft_count">—</span>
+    </div>
+    <div class="sc-body">
+      <div class="sc-raw">
+        <div class="rawcap">What it sees right now</div>
+        <div class="rawimg"><img id="ft_img" alt=""></div>
+        <div class="whencard">
+          <div class="wd" id="ft_date">—</div>
+          <div class="wt" id="ft_time">—</div>
+          <div class="wp" id="ft_place">—</div>
+        </div>
+        <div class="rawmeta" id="ft_rawmeta"></div>
+      </div>
+      <div class="sc-read">
+        <div class="sc-rec"><span id="ft_rec">—</span></div>
+        <div class="who" id="ft_who">Counting the pavement…</div>
+        <div class="whosub" id="ft_sub"></div>
+        <div class="compass">
+          <div class="rose"><i id="ft_needle" style="transform:rotate(0deg);opacity:.15"></i></div>
+          <div class="cwrap">
+            <div class="cbig" id="ft_cbig">—</div>
+            <div class="csub" id="ft_csub"></div>
+          </div>
+        </div>
+        <div class="footwarn" id="ft_warn"></div>
+        <div class="sc-class">Unclassified // Counts only · no faces · no descriptions · nothing followed between cameras</div>
+        <div class="sc-where" id="ft_where"></div>
+      </div>
+    </div>
+    <div class="sc-bar"><i id="ft_bar"></i></div>
+  </section>
+
+  <section class="hero" style="padding:38px 0 26px">
     <div class="eyebrow">Vehicle fingerprinting platform · Unclassified // Open Data</div>
     <h1>Count every street.<br>Read the highways.</h1>
     <p class="sub">We read New York's own traffic cameras in real time. Every camera gives an honest count — how many vehicles, what kind, how big. On the sharpest cameras, Bilbo reads further: the make, the color, the company on the side of the truck. And where the pixels can't back a claim, it says <b>"can't tell"</b> — never a guess. The traffic, never the people.</p>
     <div class="statesent" id="stateSent">Reading the streets…</div>
+  </section>
+
+  <!-- ---------- whose truth ---------- -->
+  <section class="quoteblk">
+    <p>"Truth is a thing of this world… Each society has its régime of truth… the techniques and procedures accorded value in the acquisition of truth; <b>the status of those who are charged with saying what counts as true.</b>"</p>
+    <cite>— <a href="https://en.wikipedia.org/wiki/Michel_Foucault" target="_blank" rel="noopener">Michel Foucault</a>, Truth and Power</cite>
+  </section>
+
+  <!-- ---------- the map ---------- -->
+  <section class="blk" style="margin-top:34px">
+    <div class="eyebrow">The instrument</div>
+    <h2>917 cameras, on the ground</h2>
+    <div class="note">every public traffic camera in the five boroughs · colour is what its pixels can carry · click one to see what it watches</div>
+    <div class="mapwrap">
+      <div id="nycmap"></div>
+      <div class="maphint">Click a camera to drop into it<button id="map_reset">Whole city</button></div>
+      <div class="maplegend">
+        <div>What it can read</div>
+        <div class="lg"><i style="background:#5b8def"></i> Blue — make, model, company</div>
+        <div class="lg"><i style="background:#e0a44a"></i> Orange — type, size, colour</div>
+        <div class="lg"><i style="background:#a98fd0"></i> Purple — counting only</div>
+      </div>
+      <aside class="campanel" id="campanel">
+        <div class="ph">
+          <div>
+            <div class="nm" id="cp_name">—</div>
+            <div class="ar" id="cp_area"></div>
+          </div>
+          <button class="x" id="cp_close" aria-label="Close">×</button>
+        </div>
+        <div class="pb">
+          <img class="shot" id="cp_shot" alt="">
+          <div class="row" id="cp_row"></div>
+          <div class="can" id="cp_can"></div>
+          <ul class="nts" id="cp_notes"></ul>
+          <div class="thumbs" id="cp_thumbs"></div>
+          <a class="full" id="cp_full" href="#">Full camera profile</a>
+        </div>
+      </aside>
+    </div>
   </section>
 
   <section class="blk">
@@ -675,7 +1015,8 @@ function showTab(name){
   document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('on', p.id==='tab-'+name));
   document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===name));
   window.scrollTo({top:0});
-  if(name==='live'){[chart,hodChart,mixChart,colorChart,bodyChart].forEach(c=>{try{c&&c.resize()}catch(e){}});}
+  if(name==='live'){[chart,hodChart,mixChart,colorChart,bodyChart].forEach(c=>{try{c&&c.resize()}catch(e){}});
+    try{ if(MAP) requestAnimationFrame(()=>MAP.resize()); }catch(e){}}
   if(name==='brain'){ buildNotices(); if(!REC_items.length) recFetch(); }
   if(name==='academy'){ loadAcademy(); }
 }
@@ -683,6 +1024,464 @@ document.addEventListener('click',e=>{
   const t=e.target.closest('[data-tab]'); if(!t)return;
   e.preventDefault(); showTab(t.dataset.tab);
 });
+/* allow other pages to deep-link a tab: index.html#brain */
+(function(){ const h=location.hash.slice(1); if(h&&document.getElementById('tab-'+h)) showTab(h); })();
+
+/* ================= showcase — the library on rotation ================= */
+const SC={items:[],i:0,t:null,tick:null,paused:false,MS:5000};
+const TIERW={blue:'Blue',orange:'Orange',purple:'Purple'};
+const CLSW={car:'Car',truck:'Truck',bus:'Bus',moto:'Motorcycle'};
+
+function scFact(k,v){
+  const none=!v;
+  return '<div class="f"><div class="fk">'+k+'</div><div class="fv'+(none?' none':'')+'">'
+    +(none?"can't tell":esc(v))+'</div></div>';
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function scRender(){
+  const v=SC.items[SC.i]; if(!v) return;
+  document.getElementById('sc_img').src=v.crop;
+
+  // where this crop actually lives: which camera folder, and its place in it
+  const fol=document.getElementById('sc_folder');
+  fol.textContent='crops/'+(v.folder||'—');
+  fol.className='folder '+(v.tier||'purple');
+  document.getElementById('sc_pos').innerHTML=
+    '<span class="g">('+(SC.i+1)+'/'+SC.items.length+')</span> '+
+    '<span class="f">['+(v.folder_i||'?')+'/'+(v.folder_n||'?')+']</span>';
+
+  // confidence qualifies the whole read, so it rides with the name
+  const name=[v.manufacturer,v.model].filter(Boolean).join(' ');
+  const cf=v.confidence
+    ? '<span class="conf '+esc(v.confidence)+'">'+esc(v.confidence)+' confidence</span>' : '';
+  document.getElementById('sc_who').innerHTML = (name
+    ? esc(name)
+    : '<span class="cant">Not legible enough to name</span>') + cf;
+  document.getElementById('sc_whosub').textContent =
+    [v.color,v.body||CLSW[v.cls]||v.cls].filter(Boolean).join(' · ');
+
+  const TIERCAN={blue:'Make · model · company',orange:'Type · size · colour',purple:'Count only'};
+  document.getElementById('sc_facts').innerHTML =
+    scFact('Company', v.company) +
+    scFact('Body / size', v.body || CLSW[v.cls]) +
+    scFact('Colour', v.color) +
+    scFact('Plate state', v.plate_state) +
+    scFact('Subject height', v.h ? v.h+' px' : null) +
+    scFact('Source feed', v.cam_w ? v.cam_w+'×'+v.cam_h : null) +
+    scFact('Sensor grade', TIERCAN[v.tier||'purple']) +
+    scFact('Borough', v.area);
+
+  document.getElementById('sc_rec').textContent =
+    'Record '+String(SC.i+1).padStart(4,'0')+' / '+SC.items.length
+    +'  ·  Sensor '+(v.folder||'—').toUpperCase()
+    +'  ·  Frame '+(v.date||'').replace(/-/g,'')+'-'+(v.time||'').replace(/:/g,'');
+
+  const feat=(v.features||[]);
+  document.getElementById('sc_feat').innerHTML = feat.length
+    ? '<span class="ft k">On the body</span>' + feat.map(f=>'<span class="ft">'+esc(f)+'</span>').join('')
+    : '';
+
+  // spell out when and where, loudly — this is the archive, not a live feed
+  const D=v.date?new Date(v.date+'T00:00:00'):null;
+  document.getElementById('sc_date').textContent = D
+    ? D.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})
+    : (v.date||'—');
+  document.getElementById('sc_time').textContent = v.time
+    ? v.time+(D?' · '+D.toLocaleDateString(undefined,{weekday:'long'}):'')
+    : '—';
+  document.getElementById('sc_place').textContent =
+    (pretty(v.location)||'')+(v.area?' · '+v.area:'');
+
+  const tier=v.tier||'purple';
+  document.getElementById('sc_rawmeta').innerHTML =
+    '<b>'+(v.h||'?')+' px</b> tall in frame<br>'+
+    'source <b>'+(v.cam_w||'?')+'×'+(v.cam_h||'?')+'</b><br>'+
+    'crop as banked · not enhanced';
+  document.getElementById('sc_where').innerHTML =
+    '<span class="tierpill '+tier+'">'+(TIERW[tier]||tier)+' camera</span>'+
+    '<a href="cam.html?id='+encodeURIComponent(v.cam_id)+'">What this camera watches →</a>'+
+    '<span class="sc-nav"><button id="sc_prev">‹</button><button id="sc_next">›</button></span>';
+  document.getElementById('sc_prev').onclick=()=>scGo(-1);
+  document.getElementById('sc_next').onclick=()=>scGo(1);
+}
+function scGo(d){
+  SC.i=(SC.i+d+SC.items.length)%SC.items.length;
+  scRender(); scArm();
+}
+function scArm(){
+  clearTimeout(SC.t); clearInterval(SC.tick);
+  const bar=document.getElementById('sc_bar'); let el=0;
+  bar.style.width='0%';
+  SC.tick=setInterval(()=>{
+    if(SC.paused) return;
+    el+=100; bar.style.width=Math.min(100,el/SC.MS*100)+'%';
+    if(el>=SC.MS){ clearInterval(SC.tick); scGo(1); }
+  },100);
+}
+async function scInit(){
+  try{
+    const d=await fetch('library/showcase.json').then(r=>r.json());
+    SC.items=d.items||[];
+    if(!SC.items.length) return;
+    document.getElementById('sc_count').textContent=
+      SC.items.length+' on rotation · '+(d.total||SC.items.length).toLocaleString()+' banked';
+    const box=document.getElementById('showcase');
+    box.addEventListener('mouseenter',()=>SC.paused=true);
+    box.addEventListener('mouseleave',()=>SC.paused=false);
+    scRender(); scArm();
+  }catch(e){ console.warn('showcase failed',e); }
+}
+
+/* ========== module 02 — oddities, the shelf picked over by hand ==========
+   Same instrument as the library card, but the headline is a human sentence
+   rather than a machine read, so the odd thing gets to say what it is. */
+const OD={items:[],i:0,tick:null,paused:false,MS:10000};
+
+function odRender(){
+  const v=OD.items[OD.i]; if(!v) return;
+  document.getElementById('od_img').src=v.crop;
+
+  const tag=document.getElementById('od_tag');
+  tag.textContent=v.tag_label||'—';
+  tag.className='odtag '+(v.tag||'craft');
+
+  document.getElementById('od_pos').innerHTML=
+    '<span class="g">('+(OD.i+1)+'/'+OD.items.length+')</span>';
+
+  document.getElementById('od_who').textContent=v.title||'—';
+  document.getElementById('od_why').textContent=v.why||'';
+
+  // what the machine actually read, kept small — the picture is the argument here
+  const spec=[v.body||CLSW[v.cls]||v.cls, v.color, v.company,
+              [v.manufacturer,v.model].filter(Boolean).join(' ')||null]
+    .filter(Boolean).map(s=>'<b>'+esc(s)+'</b>').join(' · ');
+  document.getElementById('od_spec').innerHTML=
+    'Bilbo read: '+(spec||'<b>can\'t tell</b>')+(v.confidence?' · '+esc(v.confidence)+' confidence':'');
+
+  document.getElementById('od_rec').textContent=
+    'Pick '+String(OD.i+1).padStart(2,'0')+' / '+OD.items.length
+    +'  ·  Sensor '+(v.folder||'—').toUpperCase()
+    +'  ·  Frame '+(v.date||'').replace(/-/g,'')+'-'+(v.time||'').replace(/:/g,'');
+
+  const feat=(v.features||[]);
+  document.getElementById('od_feat').innerHTML = feat.length
+    ? '<span class="ft k">On the body</span>'+feat.map(f=>'<span class="ft">'+esc(f)+'</span>').join('')
+    : '';
+
+  const D=v.date?new Date(v.date+'T00:00:00'):null;
+  document.getElementById('od_date').textContent = D
+    ? D.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})
+    : (v.date||'—');
+  document.getElementById('od_time').textContent = v.time
+    ? v.time+(D?' · '+D.toLocaleDateString(undefined,{weekday:'long'}):'')
+    : '—';
+  document.getElementById('od_place').textContent=
+    (pretty(v.location)||'')+(v.area?' · '+v.area:'');
+
+  document.getElementById('od_rawmeta').innerHTML=
+    '<b>'+(v.h||'?')+' px</b> tall in frame<br>'+
+    'source <b>'+(v.cam_w||'?')+'×'+(v.cam_h||'?')+'</b><br>'+
+    'crop as banked · not enhanced';
+
+  const tier=v.tier||'purple';
+  document.getElementById('od_where').innerHTML=
+    '<span class="tierpill '+tier+'">'+(TIERW[tier]||tier)+' camera</span>'+
+    '<a href="cam.html?id='+encodeURIComponent(v.cam_id)+'">What this camera watches →</a>'+
+    '<span class="sc-nav"><button id="od_prev">‹</button><button id="od_next">›</button></span>';
+  document.getElementById('od_prev').onclick=()=>odGo(-1);
+  document.getElementById('od_next').onclick=()=>odGo(1);
+}
+function odGo(d){
+  OD.i=(OD.i+d+OD.items.length)%OD.items.length;
+  odRender(); odArm();
+}
+function odArm(){
+  clearInterval(OD.tick);
+  const bar=document.getElementById('od_bar'); let el=0;
+  bar.style.width='0%';
+  OD.tick=setInterval(()=>{
+    if(OD.paused) return;
+    el+=100; bar.style.width=Math.min(100,el/OD.MS*100)+'%';
+    if(el>=OD.MS){ clearInterval(OD.tick); odGo(1); }
+  },100);
+}
+async function odInit(){
+  try{
+    const d=await fetch('library/oddities.json').then(r=>r.json());
+    OD.items=d.items||[];
+    if(!OD.items.length) return;
+    document.getElementById('od_count').textContent=
+      OD.items.length+' picked · out of '+(d.banked||0).toLocaleString()+' banked';
+    const box=document.getElementById('oddities');
+    box.addEventListener('mouseenter',()=>OD.paused=true);
+    box.addEventListener('mouseleave',()=>OD.paused=false);
+    odRender(); odArm();
+  }catch(e){ console.warn('oddities failed',e); }
+}
+
+/* ========== module 03 — footlook ==========
+   The number is deliberately never a city total: it is what one camera could
+   resolve, and the warning line says so on every single card. */
+const FT={items:[],i:0,tick:null,paused:false,MS:12000,meta:null};
+
+function ftRender(){
+  const v=FT.items[FT.i]; if(!v) return;
+  // cache-bust so the card shows a live frame, not the browser's copy
+  document.getElementById('ft_img').src=v.img+(v.img.includes('?')?'&':'?')+'t='+Date.now();
+  document.getElementById('ft_area').textContent=v.area||'—';
+  document.getElementById('ft_pos').innerHTML='<span class="g">('+(FT.i+1)+'/'+FT.items.length+')</span>';
+
+  document.getElementById('ft_who').innerHTML='<b>'+v.peds+'</b> on foot';
+  document.getElementById('ft_sub').textContent=pretty(v.name);
+
+  // the needle only turns when the camera told us which way it looks
+  const nd=document.getElementById('ft_needle');
+  if(v.compass){
+    nd.style.transform='rotate('+v.bearing+'deg)'; nd.style.opacity='1';
+    document.getElementById('ft_cbig').textContent=v.compass+' · '+v.bearing+'°';
+    document.getElementById('ft_csub').textContent=
+      'walking '+v.compass+' · camera faces '+v.facing+' · '+v.moving+' of '+v.tracked+' walkers moving';
+  }else{
+    nd.style.transform='rotate(0deg)'; nd.style.opacity='.15';
+    document.getElementById('ft_cbig').textContent=v.heading?(v.heading+' — in frame'):'not moving';
+    document.getElementById('ft_csub').textContent=
+      'this camera does not publish which way it points, so we can only say what the frame shows';
+  }
+
+  // coherence is the honesty dial: low means they scattered, not marched
+  const coh=v.coherence;
+  let cw;
+  if(!v.moving) cw='Nobody was moving enough to give a direction.';
+  else if(coh>=.6) cw='Count is a floor — only people the pixels can carry. Direction is consistent across walkers.';
+  else if(coh>=.3) cw='Count is a floor — only people the pixels can carry. Direction is a weak trend, not a flow.';
+  else cw='Count is a floor — only people the pixels can carry. Walkers scattered: treat the direction as noise.';
+  document.getElementById('ft_warn').textContent=cw;
+
+  document.getElementById('ft_rec').textContent=
+    'Reading '+String(FT.i+1).padStart(2,'0')+' / '+FT.items.length
+    +'  ·  Person height '+v.p50_px+'px  ·  Coherence '+(coh===''||coh==null?'n/a':coh);
+
+  const D=FT.meta&&FT.meta.taken_at?new Date(FT.meta.taken_at):null;
+  document.getElementById('ft_date').textContent = D
+    ? D.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}) : '—';
+  document.getElementById('ft_time').textContent = D
+    ? D.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})+' · '+
+      D.toLocaleDateString(undefined,{weekday:'long'}) : '—';
+  document.getElementById('ft_place').textContent=pretty(v.name)+(v.area?' · '+v.area:'');
+  document.getElementById('ft_rawmeta').innerHTML=
+    'people <b>'+v.p50_px+' px</b> tall<br>source <b>'+v.w+'×'+v.h+'</b><br>live frame · counted once';
+
+  document.getElementById('ft_where').innerHTML=
+    '<span class="tierpill '+(v.tier||'purple')+'">'+(TIERW[v.tier]||v.tier)+' camera</span>'+
+    '<a href="cam.html?id='+encodeURIComponent(v.cam_id)+'">What this camera watches →</a>'+
+    '<span class="sc-nav"><button id="ft_prev">‹</button><button id="ft_next">›</button></span>';
+  document.getElementById('ft_prev').onclick=()=>ftGo(-1);
+  document.getElementById('ft_next').onclick=()=>ftGo(1);
+}
+function ftGo(d){ FT.i=(FT.i+d+FT.items.length)%FT.items.length; ftRender(); ftArm(); }
+function ftArm(){
+  clearInterval(FT.tick);
+  const bar=document.getElementById('ft_bar'); let el=0; bar.style.width='0%';
+  FT.tick=setInterval(()=>{
+    if(FT.paused) return;
+    el+=100; bar.style.width=Math.min(100,el/FT.MS*100)+'%';
+    if(el>=FT.MS){ clearInterval(FT.tick); ftGo(1); }
+  },100);
+}
+async function ftInit(){
+  try{
+    const d=await fetch('library/footlook.json').then(r=>r.json());
+    FT.items=d.items||[]; FT.meta=d;
+    if(!FT.items.length) return;
+    document.getElementById('ft_count').textContent=
+      d.people_seen_total+' seen on '+d.cameras_with_people+' of '+d.cameras_live+' cameras';
+    const box=document.getElementById('footlook');
+    box.addEventListener('mouseenter',()=>FT.paused=true);
+    box.addEventListener('mouseleave',()=>FT.paused=false);
+    ftRender(); ftArm();
+  }catch(e){ console.warn('footlook failed',e); }
+}
+
+/* ================= the map ================= */
+const TIERC={blue:'#5b8def',orange:'#e0a44a',purple:'#a98fd0'};
+let MAP=null, PROFILES=null, MAPREADY=false;
+
+async function profiles(){
+  if(!PROFILES) PROFILES=fetch('library/cam_profiles.json').then(r=>r.json())
+    .then(d=>{const m={};(d.cams||[]).forEach(c=>m[c.id]=c);return m;});
+  return PROFILES;
+}
+
+async function mapInit(){
+  if(MAP||typeof maplibregl==='undefined') return;
+  MAP=new maplibregl.Map({
+    container:'nycmap',
+    style:'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+    center:[-73.94,40.71], zoom:10.1, pitch:0, bearing:0,
+    // maxBounds has to stay well clear of the city or it clamps the zoom that
+    // fitBounds wants and the map parks itself high in the frame
+    // minZoom must sit well under the citywide fit or fitBounds gets clamped
+    // and the city renders small and off-centre in the frame
+    maxPitch:68, minZoom:7.5, maxBounds:[[-75.2,39.9],[-72.7,41.6]],
+    antialias:true
+  });
+  window.MAP=MAP;
+  MAP.addControl(new maplibregl.NavigationControl({showCompass:true}),'bottom-right');
+  MAP.on('error',e=>console.warn('map',e&&e.error&&e.error.message));
+
+  (function ready(){
+    if(!(MAP.style&&MAP.style._loaded)){ setTimeout(ready,150); return; }
+    if(MAPREADY) return; MAPREADY=true; buildMap();
+  })();
+}
+
+async function buildMap(){
+  // strip the world back to black — only New York gets drawn
+  MAP.getStyle().layers.slice().forEach(l=>{
+    if(l.type==='background') MAP.setPaintProperty(l.id,'background-color','#000000');
+    else MAP.removeLayer(l.id);
+  });
+  try{
+    const land=await fetch('nyc_land.geojson').then(r=>r.json());
+    MAP.addSource('boroughs',{type:'geojson',data:land});
+    MAP.addLayer({id:'land',type:'fill',source:'boroughs',
+      paint:{'fill-color':'#0a0b0d','fill-opacity':1}});
+  }catch(e){ console.warn('land',e); }
+
+  MAP.addLayer({id:'streets',source:'carto','source-layer':'transportation',type:'line',
+    paint:{'line-color':'#3a4354','line-opacity':.5,
+      'line-width':['interpolate',['linear'],['zoom'],10,.4,15,1.4]}});
+  MAP.addLayer({id:'buildings-3d',source:'carto','source-layer':'building',
+    type:'fill-extrusion',minzoom:12,
+    paint:{'fill-extrusion-color':'#111318',
+      'fill-extrusion-height':['coalesce',['get','render_height'],['get','height'],10],
+      'fill-extrusion-base':['coalesce',['get','render_min_height'],0],
+      'fill-extrusion-opacity':.95}});
+  MAP.addLayer({id:'buildings-edge',source:'carto','source-layer':'building',type:'line',
+    minzoom:13,paint:{'line-color':'#5b8def','line-opacity':.12,'line-width':.35}});
+
+  try{
+    const mask=await fetch('nyc_mask.geojson').then(r=>r.json());
+    MAP.addSource('cover',{type:'geojson',data:mask});
+    MAP.addLayer({id:'cover',type:'fill',source:'cover',
+      paint:{'fill-color':'#000000','fill-opacity':1}});
+  }catch(e){ console.warn('mask',e); }
+
+  const idx=await fetch('library/cam_index.json').then(r=>r.json());
+  const fc={type:'FeatureCollection',features:(idx.cams||[]).map(c=>({
+    type:'Feature',
+    geometry:{type:'Point',coordinates:[c.lon,c.lat]},
+    properties:{id:c.id,name:c.name,area:c.area,tier:c.tier,ids:c.ids||0}
+  }))};
+  MAP.addSource('cams',{type:'geojson',data:fc});
+
+  // a camera we have actually read from glows brighter than one we haven't
+  MAP.addLayer({id:'cams-dot',type:'circle',source:'cams',
+    paint:{
+      'circle-radius':['interpolate',['linear'],['get','ids'],0,2.6,1,3.6,50,5.4,300,7.5],
+      'circle-color':['match',['get','tier'],'blue',TIERC.blue,'orange',TIERC.orange,TIERC.purple],
+      'circle-opacity':['case',['>',['get','ids'],0],.95,.42],
+      'circle-stroke-color':'#000','circle-stroke-width':.6
+    }});
+  MAP.addLayer({id:'cams-halo',type:'circle',source:'cams',
+    filter:['>',['get','ids'],0],
+    paint:{
+      'circle-radius':['interpolate',['linear'],['get','ids'],1,7,50,13,300,22],
+      'circle-color':'rgba(0,0,0,0)',
+      'circle-stroke-color':['match',['get','tier'],'blue',TIERC.blue,'orange',TIERC.orange,TIERC.purple],
+      'circle-stroke-width':1,'circle-stroke-opacity':.5
+    }});
+  (function pulse(){
+    if(MAP.getLayer('cams-halo')){
+      const k=.5+.5*Math.sin(Date.now()/700);
+      MAP.setPaintProperty('cams-halo','circle-stroke-opacity',.2+.45*k);
+    }
+    requestAnimationFrame(pulse);
+  })();
+
+  // Overview is flat and fills the box — a tilt at citywide zoom only squashes
+  // the city into a band, and the 3D buildings don't draw until zoom 12 anyway.
+  //
+  // The zoom is computed here rather than left to fitBounds: fitBounds gets
+  // silently clamped by minZoom/maxBounds and inherits whatever camera padding
+  // the last flyTo left behind, which is what kept parking the city high in the
+  // frame with dead space under it. This is the same Web-Mercator fit, done
+  // where nothing else can override it.
+  const NYC={w:-74.27,e:-73.69,s:40.49,n:40.92}, PAD=26, TILE=512;
+  const merc=lat=>Math.log(Math.tan(Math.PI/4+lat*Math.PI/360));
+  function frame(ms){
+    const el=document.getElementById('nycmap');
+    const bw=Math.max(80,el.clientWidth-PAD*2), bh=Math.max(80,el.clientHeight-PAD*2);
+    const fx=(NYC.e-NYC.w)/360;                            // width as world fraction
+    const fy=(merc(NYC.n)-merc(NYC.s))/(2*Math.PI);        // height as world fraction
+    const z=Math.min(Math.log2(bw/(TILE*fx)), Math.log2(bh/(TILE*fy)));
+    const cy=(merc(NYC.n)+merc(NYC.s))/2;
+    const clat=(2*Math.atan(Math.exp(cy))-Math.PI/2)*180/Math.PI;
+    MAP.setPadding({top:0,right:0,bottom:0,left:0});       // clear any fly-in offset
+    const cam={center:[(NYC.w+NYC.e)/2,clat],zoom:z,pitch:0,bearing:0};
+    if(ms) MAP.easeTo(Object.assign({duration:ms},cam)); else MAP.jumpTo(cam);
+  }
+  // The canvas is sized from the container, and the container isn't at its
+  // final height until layout + webfonts settle — so re-measure on every beat
+  // that can move it, or the city renders into a band and gets clipped.
+  let framed=true;
+  const box=document.getElementById('nycmap');
+  const settle=()=>{ MAP.resize(); if(framed) frame(); };
+
+  // Don't trust resize events or ResizeObserver to arrive — when they don't,
+  // the canvas keeps an old size and the city renders clipped and off-centre.
+  // Poll the one thing that matters instead: does the map's own idea of its
+  // size still match the box it lives in?
+  const check=()=>{
+    if(Math.abs(MAP.transform.width-box.clientWidth)>1 ||
+       Math.abs(MAP.transform.height-box.clientHeight)>1) settle();
+  };
+  settle();
+  setInterval(check, 400);
+  window.addEventListener('resize', settle);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(settle);
+  try{ new ResizeObserver(settle).observe(box); }catch(e){}
+  // only a real gesture unpins the framing — fitBounds fires these too
+  MAP.on('dragstart',e=>{ if(e.originalEvent) framed=false; });
+  MAP.on('zoomstart',e=>{ if(e.originalEvent) framed=false; });
+  document.getElementById('map_reset').onclick=()=>{ framed=true; frame(700); };
+
+  // Clicking a camera is where the 3D actually pays off — drop to street level
+  // and tilt into the buildings around it.
+  MAP.on('click','cams-dot',e=>{
+    const f=e.features[0];
+    framed=false;
+    MAP.flyTo({center:f.geometry.coordinates.slice(), zoom:15.4, pitch:58,
+      bearing:-22, speed:1.1, curve:1.5, padding:{right:350}});
+    camPanel(f.properties.id);
+  });
+  MAP.on('mouseenter','cams-dot',()=>MAP.getCanvas().style.cursor='pointer');
+  MAP.on('mouseleave','cams-dot',()=>MAP.getCanvas().style.cursor='');
+  document.getElementById('cp_close').onclick=()=>
+    document.getElementById('campanel').classList.remove('on');
+}
+
+async function camPanel(id){
+  const P=await profiles(), c=P[id]; if(!c) return;
+  document.getElementById('cp_name').textContent=pretty(c.name)||c.name||'Camera';
+  document.getElementById('cp_area').textContent=c.area||'';
+  const shot=document.getElementById('cp_shot');
+  shot.src=(c.img||'')+(c.img?('?t='+Date.now()):'');
+  shot.onerror=()=>{shot.style.display='none';};
+  shot.style.display='';
+  document.getElementById('cp_row').innerHTML=
+    '<span class="tierpill '+c.tier+'">'+(TIERW[c.tier]||c.tier)+'</span>'+
+    '<span class="res">'+(c.w?c.w+'×'+c.h:'resolution unknown')+'</span>'+
+    (c.ids?'<span class="res">'+c.ids+' identified</span>':'');
+  document.getElementById('cp_can').textContent=c.can||'';
+  document.getElementById('cp_notes').innerHTML=
+    (c.notes||[]).map(n=>'<li>'+esc(n)+'</li>').join('');
+  document.getElementById('cp_thumbs').innerHTML=
+    (c.samples||[]).slice(0,8).map(s=>'<img src="'+s.crop+'" alt="" loading="lazy">').join('');
+  document.getElementById('cp_full').href='cam.html?id='+encodeURIComponent(id);
+  document.getElementById('campanel').classList.add('on');
+}
 
 /* ---------- brainview notices (generated from any pass, live or archived) ---------- */
 function noticesFrom(src, now){
@@ -985,6 +1784,12 @@ fetch(D('cams.json')).then(r=>r.json()).then(c=>{
   renderThumbs();
   tick(); setInterval(tick,REFRESH_MS); loadIntel(); setInterval(loadIntel,60000);
 });
+
+/* ---------- modules: library, oddities, then the map ---------- */
+scInit();
+odInit();
+ftInit();
+mapInit();
 
 /* ---------- camera tiers (from the public resolution census) ---------- */
 function tierOf(w){ return w>=1920?'blue':w>=640?'orange':'purple'; }
