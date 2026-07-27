@@ -63,9 +63,59 @@ Real, in order of trust:
   ten 51 ft cars on the numbered lines, ten 60 ft on the lettered, four on the
   shuttles and the SIR.
 
-**Mock:** train positions, and nothing else. Swapping in the MTA real-time
-GTFS-rt feed replaces positions only — tunnels, consists, structure, stations
-and crowds all stay as they are.
+- **Train positions — LIVE.** The eight MTA GTFS-realtime feeds at
+  `api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2F<feed>`: `gtfs`,
+  `gtfs-ace`, `gtfs-bdfm`, `gtfs-g`, `gtfs-jz`, `gtfs-nqrw`, `gtfs-l`,
+  `gtfs-si`. **No API key, and they send `Access-Control-Allow-Origin: *`** — so
+  the page talks to the MTA directly. No proxy, no serverless function, no worker.
+
+**Nothing is mock any more.** The simulation is kept only as a fallback when the
+feeds are unreachable, and the HUD says which is running.
+
+---
+
+## 3a. How a live position is derived
+
+**The feeds publish no coordinates.** NYCT sends stop predictions, not geometry:
+0 of the vehicle entries carry a `position`. What arrives per trip is the stop it
+is heading for, whether it is standing there, and predicted arrival times.
+
+So a position has to be built:
+
+1. Every stop in `subway.json` carries its **distance along the track**
+   (`gstops`, from GTFS `stop_times` projected onto our polyline). This is the
+   bridge between "arriving at 232 in 40 s" and a point on a drawn line.
+2. Stops are keyed by **parent id** — the trailing `N`/`S` is a direction marker,
+   and a northbound train must match the same table as a southbound one.
+   Direction comes from whether the stop distances rise or fall.
+3. Pick the path for that route whose stop table best covers the trip, weighted
+   heavily toward one containing the target stop.
+4. Interpolate between the previous stop's departure and the target's arrival.
+
+**Gotchas, all of them paid for:**
+
+- In the real proto, `TripUpdate.stop_time_update` is **field 2** and `.vehicle`
+  is field 3 — the reverse of the order they are usually listed in. Reading them
+  the wrong way round yields zero stops and silently places nothing.
+- The stop a train is standing at gets **pruned** from the prediction list once
+  reached, so the vehicle's own `stop_id` often has no arrival time left against
+  it. Use it to say "standing here", steer by the first stop that still has a
+  prediction.
+- The feed assigns **several future runs to the same physical train**, so a
+  berthed train appears once per run it is booked for. Without an "has it
+  started?" test the system reports ~670 trains when it owns about 460, and
+  terminals pile up with phantoms. Test: some stop already behind it, or the next
+  one within 120 s.
+- NYCT reports `STOPPED_AT` for about **four trains in five** at any instant.
+  Taking that literally freezes the map. Anchor the train to the reported
+  platform, then run it out on its own next prediction; each poll re-anchors.
+- A stale prediction can imply **900 km/h**. Speeds are capped at 24 m/s.
+
+Verified against the feed: every moving train sits between the two stops it is
+running between (0 out of bracket), speeds land at p10 24 / median 42 / p90 86
+km/h, and about 400 trains across 27 routes at mid-morning — inside the real
+fleet size. Crowd bursts fire on a real arrival: a change of target station
+between polls means the previous target has just been served.
 
 ---
 
@@ -125,11 +175,12 @@ draws at any zoom, with heights exaggerated ~7× at z9.5 easing to 1× by z13.6
 where the CARTO set takes over. All buildings semi-transparent (0.42 / 0.45).
 
 ### Trains
-A consist is a polyline laid **along** the track for its real length, so it bends
+Positions are live (see 3a). A consist is a polyline laid **along** the track for its real length, so it bends
 through curves. Past `CAR_ZOOM` (13.4) it splits into individual cars with ~1.9 m
 couplers showing. 470 trains — near the real rush-hour fleet. Brake into
 stations, hold the platform 16–30 s, turn at terminals. `TIME_SCALE` 6, because
-real speed is under a pixel a second at citywide zoom.
+real speed is under a pixel a second at citywide zoom. `TIME_SCALE` applies to
+the fallback simulation only — live trains run on the real clock.
 
 ### Crowds
 Appear past `CROWD_ZOOM` (13.0). Head count per station is its share of real

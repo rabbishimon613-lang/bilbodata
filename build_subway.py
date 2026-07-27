@@ -177,6 +177,57 @@ def densify(pts, step_m):
     return out
 
 
+def gtfs_stop_order(gdir, shape_ids, trips):
+    """For each of our chosen shapes, the ordered list of GTFS stop_ids that a
+    trip on that shape actually calls at. These ids (e.g. "L28S") are exactly the
+    ones the real-time feed reports, which is what lets a live train be placed on
+    our track: the feed says which stop it is heading for, never where it is."""
+    want = {}
+    for t in trips:
+        sid = t.get("shape_id")
+        if sid in shape_ids and sid not in want:
+            want[sid] = t["trip_id"]
+    by_trip = {v: k for k, v in want.items()}
+
+    order = {}
+    with open(os.path.join(gdir, "stop_times.txt"), newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            sid = by_trip.get(row["trip_id"])
+            if sid is None:
+                continue
+            order.setdefault(sid, []).append((int(row["stop_sequence"]), row["stop_id"]))
+    for sid in order:
+        order[sid] = [q for _, q in sorted(order[sid])]
+    return order
+
+
+def load_stop_points(gdir):
+    pts = {}
+    with open(os.path.join(gdir, "stops.txt"), newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            try:
+                pts[row["stop_id"]] = (float(row["stop_lon"]), float(row["stop_lat"]))
+            except (KeyError, TypeError, ValueError):
+                continue
+    return pts
+
+
+def project_along(pts, cum, x, y):
+    """Distance along a polyline of the closest point to (x, y), plus how far off
+    the line that closest point is."""
+    best_d, best_at = 1e18, 0.0
+    for i in range(len(pts) - 1):
+        ax, ay = (pts[i][0] - x) * 84600, (pts[i][1] - y) * 111200
+        bx, by = (pts[i+1][0] - x) * 84600, (pts[i+1][1] - y) * 111200
+        dx, dy = bx - ax, by - ay
+        den = dx * dx + dy * dy
+        t = 0.0 if den == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / den))
+        d = math.hypot(ax + t * dx, ay + t * dy)
+        if d < best_d:
+            best_d, best_at = d, cum[i] + t * math.hypot(dx, dy)
+    return best_at, best_d
+
+
 def dedupe(pts):
     """Coincident vertices survive simplify+densify+rounding and each one becomes
     a zero-length class run — 171 of them showed up as speckle across the map."""
@@ -355,6 +406,10 @@ def main():
     for sid in shapes:
         shapes[sid] = [(x, y) for _, x, y in sorted(shapes[sid])]
 
+    chosen = pick_shapes(trips, shapes)
+    stop_order = gtfs_stop_order(gdir, {sid for _, sid, _ in chosen}, trips)
+    stop_pts = load_stop_points(gdir)
+
     stations = fetch_stations()
     stn = [(s["ll"][0], s["ll"][1], *STRUCT.get(s["s"], STRUCT["Subway"])) for s in stations]
     grid, osm_counts = osm_index(osm_ways())
@@ -364,7 +419,7 @@ def main():
 
     paths = []
     snapped = missed = 0
-    for route, sid, pts in pick_shapes(trips, shapes):
+    for route, sid, pts in chosen:
         pts = rdp(pts, SIMPLIFY)
         if len(pts) < 4:
             continue
@@ -443,10 +498,25 @@ def main():
 
         out_pts = deflicker(out_pts, cum, MIN_RUN_M)
 
+        # GTFS stop_id -> metres along THIS path, in calling order. This is the
+        # bridge between the real-time feed and the drawn track.
+        # Keyed by PARENT stop id — the trailing N/S is a direction marker, and a
+        # northbound train must match the same table as a southbound one. Which
+        # way it is going comes from whether its distances rise or fall.
+        gstops = []
+        for stop_id in stop_order.get(sid, []):
+            q = stop_pts.get(stop_id)
+            if not q:
+                continue
+            at, off = project_along(pts, cum, q[0], q[1])
+            if off <= 250:
+                gstops.append([stop_id.rstrip("NS"), round(at, 1)])
+
         r = routes.get(route, {})
         paths.append({
             "route": route,
             "id": sid,
+            "gstops": gstops,
             "color": "#" + (r.get("route_color") or "888888"),
             "name": r.get("route_long_name", ""),
             "pts": out_pts,
@@ -472,6 +542,10 @@ def main():
     print(f"  track mix: {mix}")
     print(f"  osm snap: {snapped} vertices matched, {missed} fell back to the station list")
     print(f"  {water} vertices on structure over open water (the bridges)")
+    gs = sum(len(p["gstops"]) for p in paths)
+    nogs = [p["route"] for p in paths if len(p["gstops"]) < 3]
+    print(f"  realtime hooks: {gs} GTFS stops pinned to track"
+          + (f"; THIN on {nogs}" if nogs else ""))
 
 
 if __name__ == "__main__":

@@ -439,8 +439,9 @@ const CROWD_CAP  = 520;            // walkers on screen at once, spread across t
 const WALK_MS    = 1.35;           // metres a second, on foot
 const REACH_M    = 230;            // how far out people are drawn walking in
 
-const SUB = { paths:[], trains:[], stations:[], walkers:[], streetPool:[],
-              poolAt:0, outCount:0, xray:false, ready:false };
+const SUB = { paths:[], trains:[], stations:[], walkers:[], streetPool:[], byRoute:{},
+              poolAt:0, outCount:0, xray:false, ready:false,
+              liveState:'starting', liveAt:0, feedsOk:0 };
 
 function metresPerPixel(){
   return 156543.03392 * Math.cos(map.getCenter().lat * Math.PI/180) / Math.pow(2, map.getZoom());
@@ -575,6 +576,7 @@ async function buildSubway(){
     }
     flush();
     SUB.paths.push(measurePath(p));
+    (SUB.byRoute[p.route] = SUB.byRoute[p.route] || []).push(SUB.paths.length - 1);
   });
 
   map.addSource('sub-under', { type:'geojson', data: under });
@@ -599,7 +601,11 @@ async function buildSubway(){
       geometry:{ type:'Point', coordinates:s.ll } })) } });
 
   SUB.ready = true;
-  seedTrains();
+  pollMTA();
+  setInterval(pollMTA, MTA_POLL);
+  // if the feed has not produced anything within a few seconds, run the
+  // simulation instead rather than showing an empty system
+  setTimeout(()=>{ if (SUB.liveState !== 'live'){ seedTrains(); SUB.liveState = 'mock'; } }, 6000);
   setInterval(tick, TICK);
   (function depthFrame(){ applyTunnelDepth(); requestAnimationFrame(depthFrame); })();
 }
@@ -919,8 +925,13 @@ function measurePath(p){
     if (k===0 || d - stops[stops.length-1] > 120){ stops.push(d); stopStn.push(si); }
   });
 
+  // GTFS stop id -> metres along this path, and the same ids in calling order.
+  // This is what lets a real-time prediction become a point on the line.
+  const sMap = {}, sOrder = [];
+  (p.gstops || []).forEach(([id, d]) => { sMap[id] = d; sOrder.push(id); });
+
   return { route:p.route, color:p.color, name:p.name, xs, ys, cls, dep, cum, len,
-           stops, stopStn, spec: consistOf(p.route) };
+           stops, stopStn, sMap, sOrder, spec: consistOf(p.route) };
 }
 
 function idxAt(P, s){
@@ -965,6 +976,266 @@ function seedTrains(){
   });
 }
 
+/* ======================= live MTA positions ==============================
+   The MTA's real-time feeds publish NO coordinates. What they publish is, per
+   trip: which stop the train is heading for, whether it is standing at it, and
+   the predicted arrival time. So a position has to be derived — target stop,
+   previous stop, and how far through that gap the clock says we are.
+
+   That is why every stop in subway.json carries its distance along the track:
+   it is the bridge between "arriving at 232 in 40 seconds" and a point on a
+   drawn line. Stops are keyed by parent id (the trailing N/S is a direction
+   marker) and direction comes from whether the distances rise or fall.
+
+   Eight feeds, no API key, and they send Access-Control-Allow-Origin: *, so the
+   page talks to the MTA directly — no proxy and no worker in between.
+   Positions refresh on the poll and interpolate smoothly in between, so motion
+   is continuous and self-corrects every cycle.
+   ---------------------------------------------------------------------- */
+const MTA_BASE = 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2F';
+const MTA_FEEDS = ['gtfs','gtfs-ace','gtfs-bdfm','gtfs-g','gtfs-jz','gtfs-nqrw','gtfs-l','gtfs-si'];
+const MTA_POLL = 30000;            // the feeds themselves move about this often
+const PLATFORM_DWELL = 14;         // seconds a train holds before we run it on
+const MAX_MS = 24;                 // 86 km/h — a real train's ceiling; stale
+                                   // predictions otherwise imply absurd speeds
+const RUN_SPEED = 11;              // m/s, for backing a train off a stop when the
+                                   // feed gives us no previous departure time
+
+/* ---- just enough protobuf to read a GTFS-realtime feed ---- */
+function pbWalk(buf, start, end, cb){
+  let i = start;
+  while (i < end){
+    let key = 0, sh = 0, b;
+    do { b = buf[i++]; key += (b & 0x7f) * Math.pow(2, sh); sh += 7; } while (b & 0x80);
+    const f = key >>> 3, w = key & 7;
+    if (w === 0){
+      let v = 0, s2 = 0, c;
+      do { c = buf[i++]; v += (c & 0x7f) * Math.pow(2, s2); s2 += 7; } while (c & 0x80);
+      cb(f, v, 0, 0);
+    } else if (w === 2){
+      let ln = 0, s3 = 0, c2;
+      do { c2 = buf[i++]; ln += (c2 & 0x7f) * Math.pow(2, s3); s3 += 7; } while (c2 & 0x80);
+      cb(f, 0, i, i + ln); i += ln;
+    } else if (w === 5){ cb(f, 0, i, i + 4); i += 4; }
+    else if (w === 1){ cb(f, 0, i, i + 8); i += 8; }
+    else return;
+  }
+}
+const PB_TXT = new TextDecoder();
+function pbStr(buf, a, b){ return PB_TXT.decode(buf.subarray(a, b)); }
+function pbFirst(buf, a, b, num){
+  let out = null;
+  pbWalk(buf, a, b, (f, v, s, e) => { if (f === num && out === null) out = (e ? [s,e] : v); });
+  return out;
+}
+
+// FeedMessage.entity(2) -> TripUpdate(3) / VehiclePosition(4).
+// NOTE: in the real proto TripUpdate.stop_time_update is field 2 and .vehicle is
+// field 3 — the opposite of the order they are usually listed in.
+function parseFeed(buf, out){
+  pbWalk(buf, 0, buf.length, (f, v, s, e) => {
+    if (f !== 2 || !e) return;
+    pbWalk(buf, s, e, (f2, v2, s2, e2) => {
+      if (!e2) return;
+      if (f2 === 3){                                    // trip_update
+        const td = pbFirst(buf, s2, e2, 1);
+        if (!Array.isArray(td)) return;
+        const tid = pbFirst(buf, td[0], td[1], 1);
+        const rt  = pbFirst(buf, td[0], td[1], 5);
+        if (!Array.isArray(tid)) return;
+        const id = pbStr(buf, tid[0], tid[1]);
+        const rec = out[id] || (out[id] = { id, stops:[] });
+        if (Array.isArray(rt)) rec.route = pbStr(buf, rt[0], rt[1]);
+        pbWalk(buf, s2, e2, (f3, v3, s3, e3) => {
+          if (f3 !== 2 || !e3) return;                  // stop_time_update
+          const sid = pbFirst(buf, s3, e3, 4);
+          if (!Array.isArray(sid)) return;
+          let arr = null, dep = null;
+          pbWalk(buf, s3, e3, (f4, v4, s4, e4) => {
+            if (!e4) return;
+            if (f4 === 2) arr = pbFirst(buf, s4, e4, 2);
+            if (f4 === 3) dep = pbFirst(buf, s4, e4, 2);
+          });
+          rec.stops.push([ pbStr(buf, sid[0], sid[1]).replace(/[NS]$/, ''), arr, dep ]);
+        });
+      } else if (f2 === 4){                             // vehicle position
+        const td = pbFirst(buf, s2, e2, 1);
+        if (!Array.isArray(td)) return;
+        const tid = pbFirst(buf, td[0], td[1], 1);
+        if (!Array.isArray(tid)) return;
+        const id = pbStr(buf, tid[0], tid[1]);
+        const rec = out[id] || (out[id] = { id, stops:[] });
+        const st = pbFirst(buf, s2, e2, 7);
+        if (Array.isArray(st)) rec.at = pbStr(buf, st[0], st[1]).replace(/[NS]$/, '');
+        rec.status = pbFirst(buf, s2, e2, 4);            // absent means IN_TRANSIT_TO
+        rec.inService = true;
+      }
+    });
+  });
+}
+
+/* ---- turn one reported trip into a train standing on our track ---- */
+function placeLive(t, now){
+  const cands = SUB.byRoute[t.route] || SUB.byRoute[(t.route||'').replace(/X$/,'')];
+  if (!cands || !cands.length) return null;
+
+  // Has this train actually STARTED? The feed assigns several future runs to the
+  // same physical train, so a berthed train shows up once per run it is booked
+  // for. A trip counts as in service if some stop is already behind it, or if
+  // its next stop is imminent. Without this the system reports ~670 trains when
+  // it only owns about 460, and terminals pile up with phantom duplicates.
+  const started = t.stops.some(q => q[1] && q[1] < now - 20);
+  const ahead = t.stops.find(q => q[1] && q[1] >= now - 20);
+  if (!started && !(ahead && ahead[1] - now < 120)) return null;
+
+  const standing = t.status === 1 && t.at;
+  const target = standing ? t.at : (ahead ? ahead[0] : t.at);
+  if (!target) return null;
+  // the path that best covers this trip, strongly preferring one that has the
+  // stop the train is actually heading for
+  let bi = -1, best = -1;
+  for (const i of cands){
+    const S = SUB.paths[i].sMap;
+    let hit = (S[target] !== undefined) ? 50 : 0;
+    for (const q of t.stops) if (S[q[0]] !== undefined) hit++;
+    if (hit > best){ best = hit; bi = i; }
+  }
+  if (bi < 0) return null;
+  const P = SUB.paths[bi], S = P.sMap;
+  if (S[target] === undefined) return null;
+  const dT = S[target];
+
+  // which way along our line is this trip running
+  const onPath = t.stops.map(q=>q[0]).filter(s => S[s] !== undefined);
+  let fwd = 0;
+  for (let k=1;k<onPath.length;k++){
+    if (S[onPath[k]] !== S[onPath[k-1]]){ fwd = S[onPath[k]] > S[onPath[k-1]] ? 1 : -1; break; }
+  }
+  if (!fwd) fwd = /N$|\.\.N/.test(t.id) ? -1 : 1;
+
+  if (standing){
+    // The feed says this train is AT a platform — but it also predicts when it
+    // reaches the next one, and it will spend most of that window moving. So
+    // anchor it to the reported platform and run it out on the prediction,
+    // rather than freezing it: NYCT reports STOPPED_AT for about four trains in
+    // five at any instant, and taking that literally makes a dead map. Every
+    // poll re-anchors to wherever the feed now says it is.
+    let nxt = null;
+    for (const q of t.stops){
+      if (!q[1] || q[1] < now - 20 || q[0] === target) continue;
+      if (S[q[0]] !== undefined){ nxt = q; break; }
+    }
+    if (!nxt)
+      return { p: bi, live:true, stopped:true, holding:true, s: dT, dT, d0: dT, dir: fwd,
+               v:0, route:P.route, tArr: now, t0: now, stn: nearestStopStation(P, dT) };
+    const dNext = S[nxt[0]];
+    const t0 = Math.min(now + PLATFORM_DWELL, nxt[1] - 8);
+    return sealSpeed({ p: bi, live:true, stopped:false, fromPlatform:true,
+             s: dT, d0: dT, dT: dNext, t0, tArr: Math.max(nxt[1], t0 + 6),
+             dir: dNext >= dT ? 1 : -1, v:0, route:P.route,
+             stn: nearestStopStation(P, dNext) });
+  }
+
+  // previous stop: from the trip's own list if it is there, else the neighbour
+  // on our own table in the direction of travel
+  let prev = null;
+  const k = t.stops.findIndex(q => q[0] === target);
+  if (k > 0 && S[t.stops[k-1][0]] !== undefined) prev = t.stops[k-1][0];
+  if (prev === null){
+    const oi = P.sOrder.indexOf(target) - fwd;
+    if (oi >= 0 && oi < P.sOrder.length) prev = P.sOrder[oi];
+  }
+  const arr = (t.stops[k] && t.stops[k][1]) || null;
+  if (prev === null || S[prev] === undefined || !arr)
+    // nothing behind it to interpolate from: it is standing at a terminal
+    return { p: bi, live:true, stopped:true, holding:true, s: dT, dT, d0: dT, dir: fwd,
+             v:0, route:P.route, tArr: now, t0: now, stn: nearestStopStation(P, dT) };
+
+  const dP = S[prev], gap = dT - dP;
+  // if the feed gave a departure from the previous stop, use the real clock;
+  // otherwise back off by how long it still has to run, capped by the real gap
+  let d0, t0;
+  const depPrev = (k > 0 && t.stops[k-1][2]) || null;
+  if (depPrev && arr > depPrev){ d0 = dP; t0 = depPrev; }
+  else {
+    const back = Math.min(Math.abs(gap) * 0.92, Math.max(0, arr - now) * RUN_SPEED);
+    d0 = dT - Math.sign(gap) * back; t0 = now;
+  }
+  return sealSpeed({ p: bi, live:true, stopped:false, s: d0, d0, dT, t0,
+           tArr: Math.max(arr, t0 + 5),
+           dir: gap >= 0 ? 1 : -1, v:0, route:P.route, stn: nearestStopStation(P, dT) });
+}
+
+// A prediction can be stale enough to imply a train doing 900 km/h. Stretch the
+// window so the implied speed stays physical; the next poll re-anchors it anyway.
+function sealSpeed(tr){
+  const dist = Math.abs(tr.dT - tr.d0);
+  const need = dist / MAX_MS;
+  if (tr.tArr - tr.t0 < need) tr.tArr = tr.t0 + need;
+  return tr;
+}
+
+function nearestStopStation(P, d){
+  let bi = -1, bd = Infinity;
+  for (let i=0;i<P.stops.length;i++){
+    const g = Math.abs(P.stops[i] - d);
+    if (g < bd){ bd = g; bi = i; }
+  }
+  return bd < 400 ? P.stopStn[bi] : null;
+}
+
+/* ---- advance a live train between polls ---- */
+function liveStep(tr){
+  const P = SUB.paths[tr.p];
+  if (tr.stopped){ tr.s = tr.dT; tr.v = 0; return; }
+  const now = Date.now()/1000;
+  const span = tr.tArr - tr.t0;
+  // allowed slightly past 1 so a late train coasts instead of freezing short
+  const f = span > 0 ? Math.min(1.12, Math.max(0, (now - tr.t0) / span)) : 1;
+  tr.s = Math.max(0, Math.min(P.len, tr.d0 + (tr.dT - tr.d0) * f));
+  tr.v = span > 0 ? Math.abs(tr.dT - tr.d0) / span : 0;
+}
+
+/* ---- the poll ---- */
+async function pollMTA(){
+  const trips = {};
+  let ok = 0;
+  await Promise.all(MTA_FEEDS.map(async f => {
+    try {
+      const r = await fetch(MTA_BASE + f, { cache:'no-store' });
+      if (!r.ok) return;
+      parseFeed(new Uint8Array(await r.arrayBuffer()), trips);
+      ok++;
+    } catch(e){ /* one feed down must not take the map with it */ }
+  }));
+  if (!ok){ SUB.liveState = 'unreachable'; return; }
+
+  const now = Date.now()/1000;
+  const fresh = [];
+  for (const id in trips){
+    const t = trips[id];
+    if (!t.route || !t.inService) continue;      // no vehicle entry = not running yet
+    const tr = placeLive(t, now);
+    if (tr){ tr.id = id; fresh.push(tr); }
+  }
+  if (fresh.length < 20){ SUB.liveState = 'thin'; return; }
+
+  // Crowd trigger. A live train is almost never reported as "stopped", so the
+  // arrival event is a change of TARGET station: the stop it was heading for
+  // last poll is the stop it has now served.
+  const prevTarget = {};
+  SUB.trains.forEach(t => { if (t.live && t.stn != null) prevTarget[t.id] = t.stn; });
+  fresh.forEach(t => {
+    const was = prevTarget[t.id];
+    if (was != null && was !== t.stn) arrive(was);
+  });
+
+  SUB.trains = fresh;
+  SUB.liveState = 'live';
+  SUB.liveAt = Date.now();
+  SUB.feedsOk = ok;
+}
+
 /* ================================ the tick ============================== */
 let __tPrev = 0;
 function tick(){
@@ -991,7 +1262,8 @@ function moveTrains(dt, zoom, inView){
   SUB.trains.forEach(tr => {
     const P = SUB.paths[tr.p];
 
-    if (tr.dwell > 0){ tr.dwell -= dt; tr.v = 0; }
+    if (tr.live){ liveStep(tr); }
+    else if (tr.dwell > 0){ tr.dwell -= dt; tr.v = 0; }
     else {
       const k = nextStop(P, tr.s, tr.dir);
       const nxt = k < 0 ? null : P.stops[k];
@@ -1051,7 +1323,15 @@ function moveTrains(dt, zoom, inView){
   if (map.getSource('sub-train3d'))
     map.getSource('sub-train3d').setData({ type:'FeatureCollection', features: boxes });
   const el = $('subCount');
-  if (el) el.textContent = `${SUB.trains.length} trains running · ${buried} below ground`;
+  if (el){
+    const live = SUB.liveState === 'live';
+    const age = live ? Math.round((Date.now() - SUB.liveAt)/1000) : 0;
+    el.innerHTML = live
+      ? `<b style="color:#7fd48f">● LIVE</b> MTA real-time · ${SUB.trains.length} trains`
+        + ` · ${buried} below ground <span style="color:#c9b98a66">· ${age}s ago</span>`
+      : `<span style="color:#d9b774">○ SIMULATED</span> · ${SUB.trains.length} trains`
+        + ` · ${buried} below ground`;
+  }
 }
 
 /* ---- crowds -------------------------------------------------------------
