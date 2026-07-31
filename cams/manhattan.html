@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Manhattan Traffic Cameras — All 350 Live NYC DOT Feeds | Bilbo Data</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every one of the 350 public NYC DOT traffic cameras in Manhattan, mapped and listed with live views. 0 are currently counted by Bilbo Data&#x27;s computer vision.">
+<link rel="canonical" href="https://bilbodata.vercel.app/cams/manhattan.html">
+<link rel="icon" href="/assets/bilbo-pup.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bilbo Data">
+<meta property="og:title" content="Manhattan Traffic Cameras — All 350 Live NYC DOT Feeds | Bilbo Data">
+<meta property="og:description" content="Every one of the 350 public NYC DOT traffic cameras in Manhattan, mapped and listed with live views. 0 are currently counted by Bilbo Data&#x27;s computer vision.">
+<meta property="og:url" content="https://bilbodata.vercel.app/cams/manhattan.html">
+<meta property="og:image" content="https://bilbodata.vercel.app/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Manhattan Traffic Cameras — All 350 Live NYC DOT Feeds | Bilbo Data">
+<meta name="twitter:description" content="Every one of the 350 public NYC DOT traffic cameras in Manhattan, mapped and listed with live views. 0 are currently counted by Bilbo Data&#x27;s computer vision.">
+<meta name="twitter:image" content="https://bilbodata.vercel.app/assets/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--panel:#0c0d0f;--line:#1b1c1f;--line2:#2a2c31;--ink:#f3f4f5;
+--dim:#8b909a;--mut:#585d66;--live:#4ad991;--accent:#5b8def;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+--sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);background:#050505}
+header .wrap{display:flex;align-items:center;gap:12px;height:60px}
+header img{height:32px}
+header .bn{font-size:19px;font-weight:500}
+header nav{margin-left:auto;display:flex;gap:18px;font-size:13px}
+h1{font-size:27px;font-weight:400;letter-spacing:-.01em;margin:26px 0 6px}
+h2{font-size:17px;font-weight:400;margin:34px 0 10px;
+border-bottom:1px solid var(--line);padding-bottom:7px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;
+text-transform:uppercase;color:var(--mut)}
+.lede{color:var(--dim);max-width:62ch}
+.shot{width:100%;max-width:640px;border:1px solid var(--line2);border-radius:2px;
+display:block;margin:18px 0;background:var(--panel);
+aspect-ratio:22/15;object-fit:contain}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:7px 16px;
+font-size:14px;margin:14px 0}
+.kv dt{color:var(--mut);font-family:var(--mono);font-size:11px;
+letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
+.kv dd{margin:0;color:var(--ink)}
+ul.cols{list-style:none;padding:0;margin:10px 0;columns:3;column-gap:26px;font-size:14px}
+ul.cols li{break-inside:avoid;padding:3px 0;color:var(--dim)}
+@media(max-width:760px){ul.cols{columns:1}.kv{grid-template-columns:1fr}}
+.cta{display:inline-block;margin:16px 0;font-family:var(--mono);font-size:12px;
+letter-spacing:.16em;text-transform:uppercase;color:#04070d;background:var(--accent);
+border-radius:2px;padding:12px 22px}
+.cta:hover{text-decoration:none;filter:brightness(1.12)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 60px;
+color:var(--mut);font-size:12.5px}
+.crumb{font-size:12.5px;color:var(--mut);margin-top:18px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Manhattan Traffic Cameras \u2014 All 350 Live NYC DOT Feeds | Bilbo Data","description":"Every one of the 350 public NYC DOT traffic cameras in Manhattan, mapped and listed with live views. 0 are currently counted by Bilbo Data's computer vision.","url":"https://bilbodata.vercel.app/cams/manhattan.html","mainEntity":{"@type":"ItemList","numberOfItems":350,"itemListElement":[{"@type":"ListItem","position":1,"name":"1 Ave @ 110 St","url":"https://bilbodata.vercel.app/cams/1-ave-110-st.html"},{"@type":"ListItem","position":2,"name":"1 Ave @ 124 St","url":"https://bilbodata.vercel.app/cams/1-ave-124-st.html"},{"@type":"ListItem","position":3,"name":"1 Ave @ 14 St","url":"https://bilbodata.vercel.app/cams/1-ave-14-st.html"},{"@type":"ListItem","position":4,"name":"1 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/1-ave-23-st.html"},{"@type":"ListItem","position":5,"name":"1 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/1-ave-42-st.html"},{"@type":"ListItem","position":6,"name":"1 Ave @ 57 st","url":"https://bilbodata.vercel.app/cams/1-ave-57-st.html"},{"@type":"ListItem","position":7,"name":"1 Ave @ 59 St","url":"https://bilbodata.vercel.app/cams/1-ave-59-st.html"},{"@type":"ListItem","position":8,"name":"1 Ave @ 62 St","url":"https://bilbodata.vercel.app/cams/1-ave-62-st.html"},{"@type":"ListItem","position":9,"name":"1 Ave @ 84 St","url":"https://bilbodata.vercel.app/cams/1-ave-84-st.html"},{"@type":"ListItem","position":10,"name":"1 Ave @ 86 St","url":"https://bilbodata.vercel.app/cams/1-ave-86-st.html"},{"@type":"ListItem","position":11,"name":"1 Ave @ 96 St","url":"https://bilbodata.vercel.app/cams/1-ave-96-st.html"},{"@type":"ListItem","position":12,"name":"1 Ave @ E 120 Street ","url":"https://bilbodata.vercel.app/cams/1-ave-e-120-street.html"},{"@type":"ListItem","position":13,"name":"1 Ave @ E 14 St","url":"https://bilbodata.vercel.app/cams/1-ave-e-14-st.html"},{"@type":"ListItem","position":14,"name":"1 Ave @ E. Houston St","url":"https://bilbodata.vercel.app/cams/1-ave-e-houston-st.html"},{"@type":"ListItem","position":15,"name":"1 ave @ 40 st","url":"https://bilbodata.vercel.app/cams/1-ave-40-st.html"},{"@type":"ListItem","position":16,"name":"1 st Camera South Bound BPU-148.55","url":"https://bilbodata.vercel.app/cams/1-st-camera-south-bound-bpu-148-55.html"},{"@type":"ListItem","position":17,"name":"10 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/10-ave-23-st.html"},{"@type":"ListItem","position":18,"name":"10 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/10-ave-49-st.html"},{"@type":"ListItem","position":19,"name":"10 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/10-ave-57-st.html"},{"@type":"ListItem","position":20,"name":"10 Ave @ W 34 St","url":"https://bilbodata.vercel.app/cams/10-ave-w-34-st.html"},{"@type":"ListItem","position":21,"name":"11 Ave @ 34 ST","url":"https://bilbodata.vercel.app/cams/11-ave-34-st.html"},{"@type":"ListItem","position":22,"name":"11 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/11-ave-42-st.html"},{"@type":"ListItem","position":23,"name":"11 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/11-ave-49-st.html"},{"@type":"ListItem","position":24,"name":"11 Ave @ W 40 St","url":"https://bilbodata.vercel.app/cams/11-ave-w-40-st.html"},{"@type":"ListItem","position":25,"name":"11 Ave/Rt 9A @ 14 St","url":"https://bilbodata.vercel.app/cams/11-ave-rt-9a-14-st.html"},{"@type":"ListItem","position":26,"name":"12 Ave @ 22 St","url":"https://bilbodata.vercel.app/cams/12-ave-22-st.html"},{"@type":"ListItem","position":27,"name":"12 Ave @ 34 St","url":"https://bilbodata.vercel.app/cams/12-ave-34-st.html"},{"@type":"ListItem","position":28,"name":"12 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/12-ave-42-st.html"},{"@type":"ListItem","position":29,"name":"12 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/12-ave-57-st.html"},{"@type":"ListItem","position":30,"name":"12 Ave @ W 49 St","url":"https://bilbodata.vercel.app/cams/12-ave-w-49-st.html"},{"@type":"ListItem","position":31,"name":"1st camera North Bound BPU -148.51","url":"https://bilbodata.vercel.app/cams/1st-camera-north-bound-bpu-148-51.html"},{"@type":"ListItem","position":32,"name":"2 AVE @ 86 St","url":"https://bilbodata.vercel.app/cams/2-ave-86-st.html"},{"@type":"ListItem","position":33,"name":"2 Ave @ 125 St","url":"https://bilbodata.vercel.app/cams/2-ave-125-st.html"},{"@type":"ListItem","position":34,"name":"2 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/2-ave-23-st.html"},{"@type":"ListItem","position":35,"name":"2 Ave @ 36 St-Midtown Tunnel","url":"https://bilbodata.vercel.app/cams/2-ave-36-st-midtown-tunnel.html"},{"@type":"ListItem","position":36,"name":"2 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/2-ave-42-st.html"},{"@type":"ListItem","position":37,"name":"2 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/2-ave-49-st.html"},{"@type":"ListItem","position":38,"name":"2 Ave @ 58 St","url":"https://bilbodata.vercel.app/cams/2-ave-58-st.html"},{"@type":"ListItem","position":39,"name":"2 Ave @ 59 St (QBB)","url":"https://bilbodata.vercel.app/cams/2-ave-59-st-qbb.html"},{"@type":"ListItem","position":40,"name":"2 Ave @ 72 St","url":"https://bilbodata.vercel.app/cams/2-ave-72-st.html"},{"@type":"ListItem","position":41,"name":"2 Ave @ 74 St","url":"https://bilbodata.vercel.app/cams/2-ave-74-st.html"},{"@type":"ListItem","position":42,"name":"2 Ave @ 79 St","url":"https://bilbodata.vercel.app/cams/2-ave-79-st.html"},{"@type":"ListItem","position":43,"name":"2 Ave @ E 102 St","url":"https://bilbodata.vercel.app/cams/2-ave-e-102-st.html"},{"@type":"ListItem","position":44,"name":"2 Ave @ E 110 Street","url":"https://bilbodata.vercel.app/cams/2-ave-e-110-street.html"},{"@type":"ListItem","position":45,"name":"2 Ave @ E 116 St","url":"https://bilbodata.vercel.app/cams/2-ave-e-116-st.html"},{"@type":"ListItem","position":46,"name":"2 Ave @ E 128 Street","url":"https://bilbodata.vercel.app/cams/2-ave-e-128-street.html"},{"@type":"ListItem","position":47,"name":"2 Ave @ E 14 St","url":"https://bilbodata.vercel.app/cams/2-ave-e-14-st.html"},{"@type":"ListItem","position":48,"name":"207 ST @ 9 Ave","url":"https://bilbodata.vercel.app/cams/207-st-9-ave.html"},{"@type":"ListItem","position":49,"name":"2nd Camera North Bound BPU -148.52","url":"https://bilbodata.vercel.app/cams/2nd-camera-north-bound-bpu-148-52.html"},{"@type":"ListItem","position":50,"name":"2nd Camera South Bound BPU-148.57","url":"https://bilbodata.vercel.app/cams/2nd-camera-south-bound-bpu-148-57.html"},{"@type":"ListItem","position":51,"name":"3 AVE @ 34 ST","url":"https://bilbodata.vercel.app/cams/3-ave-34-st.html"},{"@type":"ListItem","position":52,"name":"3 Ave @ 114 St","url":"https://bilbodata.vercel.app/cams/3-ave-114-st.html"},{"@type":"ListItem","position":53,"name":"3 Ave @ 14 St","url":"https://bilbodata.vercel.app/cams/3-ave-14-st.html"},{"@type":"ListItem","position":54,"name":"3 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/3-ave-23-st.html"},{"@type":"ListItem","position":55,"name":"3 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/3-ave-42-st.html"},{"@type":"ListItem","position":56,"name":"3 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/3-ave-49-st.html"},{"@type":"ListItem","position":57,"name":"3 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/3-ave-57-st.html"},{"@type":"ListItem","position":58,"name":"3 Ave @ E 120 Street","url":"https://bilbodata.vercel.app/cams/3-ave-e-120-street.html"},{"@type":"ListItem","position":59,"name":"3 Ave @ E 125 St","url":"https://bilbodata.vercel.app/cams/3-ave-e-125-st.html"},{"@type":"ListItem","position":60,"name":"3 Ave @ E 14 St","url":"https://bilbodata.vercel.app/cams/3-ave-e-14-st.html"},{"@type":"ListItem","position":61,"name":"3 Ave @ E 86 St","url":"https://bilbodata.vercel.app/cams/3-ave-e-86-st.html"},{"@type":"ListItem","position":62,"name":"3 Ave @ E 88 St","url":"https://bilbodata.vercel.app/cams/3-ave-e-88-st.html"},{"@type":"ListItem","position":63,"name":"3rd Camera North Bound BPU","url":"https://bilbodata.vercel.app/cams/3rd-camera-north-bound-bpu.html"},{"@type":"ListItem","position":64,"name":"46 St Bet. 5 Ave & Madison Ave","url":"https://bilbodata.vercel.app/cams/46-st-bet-5-ave-madison-ave.html"},{"@type":"ListItem","position":65,"name":"47 St Bet. 5 Ave @ Madison Ave- Manhattan","url":"https://bilbodata.vercel.app/cams/47-st-bet-5-ave-madison-ave-manhattan.html"},{"@type":"ListItem","position":66,"name":"5 AVE @ 50 St","url":"https://bilbodata.vercel.app/cams/5-ave-50-st.html"},{"@type":"ListItem","position":67,"name":"5 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/5-ave-23-st.html"},{"@type":"ListItem","position":68,"name":"5 Ave @ 34 St","url":"https://bilbodata.vercel.app/cams/5-ave-34-st.html"},{"@type":"ListItem","position":69,"name":"5 Ave @ 35 St ","url":"https://bilbodata.vercel.app/cams/5-ave-35-st.html"},{"@type":"ListItem","position":70,"name":"5 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/5-ave-42-st.html"},{"@type":"ListItem","position":71,"name":"5 Ave @ 46 St","url":"https://bilbodata.vercel.app/cams/5-ave-46-st.html"},{"@type":"ListItem","position":72,"name":"5 Ave @ 47 St","url":"https://bilbodata.vercel.app/cams/5-ave-47-st.html"},{"@type":"ListItem","position":73,"name":"5 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/5-ave-49-st.html"},{"@type":"ListItem","position":74,"name":"5 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/5-ave-57-st.html"},{"@type":"ListItem","position":75,"name":"5 Ave @ 59 St","url":"https://bilbodata.vercel.app/cams/5-ave-59-st.html"},{"@type":"ListItem","position":76,"name":"5 Ave @ 66 St","url":"https://bilbodata.vercel.app/cams/5-ave-66-st.html"},{"@type":"ListItem","position":77,"name":"5 Ave @ 84 St","url":"https://bilbodata.vercel.app/cams/5-ave-84-st.html"},{"@type":"ListItem","position":78,"name":"5 Ave @ 86 St","url":"https://bilbodata.vercel.app/cams/5-ave-86-st.html"},{"@type":"ListItem","position":79,"name":"5 Ave @ 96 St","url":"https://bilbodata.vercel.app/cams/5-ave-96-st.html"},{"@type":"ListItem","position":80,"name":"5 Ave @ E 58 St","url":"https://bilbodata.vercel.app/cams/5-ave-e-58-st.html"},{"@type":"ListItem","position":81,"name":"5 Ave @ E 60 St","url":"https://bilbodata.vercel.app/cams/5-ave-e-60-st.html"},{"@type":"ListItem","position":82,"name":"50 St Btwn\u00a08 Ave & Broadway","url":"https://bilbodata.vercel.app/cams/50-st-btwn-8-ave-broadway.html"},{"@type":"ListItem","position":83,"name":"58 St @ QBB UL Approach","url":"https://bilbodata.vercel.app/cams/58-st-qbb-ul-approach.html"},{"@type":"ListItem","position":84,"name":"6 AVE @ 50 St","url":"https://bilbodata.vercel.app/cams/6-ave-50-st.html"},{"@type":"ListItem","position":85,"name":"6 Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/6-ave-23-st.html"},{"@type":"ListItem","position":86,"name":"6 Ave @ 30 St","url":"https://bilbodata.vercel.app/cams/6-ave-30-st.html"},{"@type":"ListItem","position":87,"name":"6 Ave @ 34 St","url":"https://bilbodata.vercel.app/cams/6-ave-34-st.html"},{"@type":"ListItem","position":88,"name":"6 Ave @ 39 St","url":"https://bilbodata.vercel.app/cams/6-ave-39-st.html"},{"@type":"ListItem","position":89,"name":"6 Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/6-ave-42-st.html"},{"@type":"ListItem","position":90,"name":"6 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/6-ave-49-st.html"},{"@type":"ListItem","position":91,"name":"6 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/6-ave-57-st.html"},{"@type":"ListItem","position":92,"name":"6 Ave @ 58 St","url":"https://bilbodata.vercel.app/cams/6-ave-58-st.html"},{"@type":"ListItem","position":93,"name":"6 Ave @ West Houston St","url":"https://bilbodata.vercel.app/cams/6-ave-west-houston-st.html"},{"@type":"ListItem","position":94,"name":"62 St @ QBB Upper Level exit ramp","url":"https://bilbodata.vercel.app/cams/62-st-qbb-upper-level-exit-ramp.html"},{"@type":"ListItem","position":95,"name":"7 AVE / ADAM CLAYTON POWELL BLVD@ 125 St","url":"https://bilbodata.vercel.app/cams/7-ave-adam-clayton-powell-blvd-125-st.html"},{"@type":"ListItem","position":96,"name":"7 AVE @ 42 St","url":"https://bilbodata.vercel.app/cams/7-ave-42-st.html"},{"@type":"ListItem","position":97,"name":"7 AVE @ 44 St","url":"https://bilbodata.vercel.app/cams/7-ave-44-st.html"},{"@type":"ListItem","position":98,"name":"7 Ave @ 145 St","url":"https://bilbodata.vercel.app/cams/7-ave-145-st.html"},{"@type":"ListItem","position":99,"name":"7 Ave @ 23St","url":"https://bilbodata.vercel.app/cams/7-ave-23st.html"},{"@type":"ListItem","position":100,"name":"7 Ave @ 32 St","url":"https://bilbodata.vercel.app/cams/7-ave-32-st.html"},{"@type":"ListItem","position":101,"name":"7 Ave @ 36 St","url":"https://bilbodata.vercel.app/cams/7-ave-36-st.html"},{"@type":"ListItem","position":102,"name":"7 Ave @ 43 St","url":"https://bilbodata.vercel.app/cams/7-ave-43-st.html"},{"@type":"ListItem","position":103,"name":"7 Ave @ 43 St - 64.186 - PTZ","url":"https://bilbodata.vercel.app/cams/7-ave-43-st-64-186-ptz.html"},{"@type":"ListItem","position":104,"name":"7 Ave @ 54 St","url":"https://bilbodata.vercel.app/cams/7-ave-54-st.html"},{"@type":"ListItem","position":105,"name":"7 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/7-ave-57-st.html"},{"@type":"ListItem","position":106,"name":"8 AVE @ 44 St","url":"https://bilbodata.vercel.app/cams/8-ave-44-st.html"},{"@type":"ListItem","position":107,"name":"8 Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/8-ave-49-st.html"},{"@type":"ListItem","position":108,"name":"8 Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/8-ave-57-st.html"},{"@type":"ListItem","position":109,"name":"8 Ave @ Columbus Cr South","url":"https://bilbodata.vercel.app/cams/8-ave-columbus-cr-south.html"},{"@type":"ListItem","position":110,"name":"8th Ave @ 31st St","url":"https://bilbodata.vercel.app/cams/8th-ave-31st-st.html"},{"@type":"ListItem","position":111,"name":"8th Ave @ 33rd St","url":"https://bilbodata.vercel.app/cams/8th-ave-33rd-st.html"},{"@type":"ListItem","position":112,"name":"9 AVE @ 14 St","url":"https://bilbodata.vercel.app/cams/9-ave-14-st.html"},{"@type":"ListItem","position":113,"name":"9 Ave @ 45 St","url":"https://bilbodata.vercel.app/cams/9-ave-45-st.html"},{"@type":"ListItem","position":114,"name":"AVE C @ 18 St","url":"https://bilbodata.vercel.app/cams/ave-c-18-st.html"},{"@type":"ListItem","position":115,"name":"AVE C @ 23 St","url":"https://bilbodata.vercel.app/cams/ave-c-23-st.html"},{"@type":"ListItem","position":116,"name":"Allan St (1 Ave) @ Houston St (B)","url":"https://bilbodata.vercel.app/cams/allan-st-1-ave-houston-st-b.html"},{"@type":"ListItem","position":117,"name":"Allen St @ Delancey St (B)","url":"https://bilbodata.vercel.app/cams/allen-st-delancey-st-b.html"},{"@type":"ListItem","position":118,"name":"Amsterdam @ 178 St","url":"https://bilbodata.vercel.app/cams/amsterdam-178-st.html"},{"@type":"ListItem","position":119,"name":"Amsterdam @ 72 St","url":"https://bilbodata.vercel.app/cams/amsterdam-72-st.html"},{"@type":"ListItem","position":120,"name":"Amsterdam @ 86 St","url":"https://bilbodata.vercel.app/cams/amsterdam-86-st.html"},{"@type":"ListItem","position":121,"name":"Amsterdam Ave @ 181 St","url":"https://bilbodata.vercel.app/cams/amsterdam-ave-181-st.html"},{"@type":"ListItem","position":122,"name":"Amsterdam Ave @ 60 St","url":"https://bilbodata.vercel.app/cams/amsterdam-ave-60-st.html"},{"@type":"ListItem","position":123,"name":"Amsterdam Ave @ 79 St","url":"https://bilbodata.vercel.app/cams/amsterdam-ave-79-st.html"},{"@type":"ListItem","position":124,"name":"Amsterdam Ave @ W 180 st ","url":"https://bilbodata.vercel.app/cams/amsterdam-ave-w-180-st.html"},{"@type":"ListItem","position":125,"name":"Audobon Ave @ W 181 ST","url":"https://bilbodata.vercel.app/cams/audobon-ave-w-181-st.html"},{"@type":"ListItem","position":126,"name":"Ave of Americas @ Central Park South","url":"https://bilbodata.vercel.app/cams/ave-of-americas-central-park-south.html"},{"@type":"ListItem","position":127,"name":"BB - Manhattan hub - 156.103","url":"https://bilbodata.vercel.app/cams/bb-manhattan-hub-156-103.html"},{"@type":"ListItem","position":128,"name":"BB - Ramp from Pearl St - 156.104","url":"https://bilbodata.vercel.app/cams/bb-ramp-from-pearl-st-156-104.html"},{"@type":"ListItem","position":129,"name":"BB- 42 South Rdwy @ Bridge Midspan","url":"https://bilbodata.vercel.app/cams/bb-42-south-rdwy-bridge-midspan.html"},{"@type":"ListItem","position":130,"name":"BB-21 North Rdwy @ Above South St","url":"https://bilbodata.vercel.app/cams/bb-21-north-rdwy-above-south-st.html"},{"@type":"ListItem","position":131,"name":"BB-24 South Rdwy @ Above South St","url":"https://bilbodata.vercel.app/cams/bb-24-south-rdwy-above-south-st.html"},{"@type":"ListItem","position":132,"name":"BB-27 South-West Manhattan Tower","url":"https://bilbodata.vercel.app/cams/bb-27-south-west-manhattan-tower.html"},{"@type":"ListItem","position":133,"name":"BB-27A Manhattan Tower South","url":"https://bilbodata.vercel.app/cams/bb-27a-manhattan-tower-south.html"},{"@type":"ListItem","position":134,"name":"BB-28A Manhattan Tower North","url":"https://bilbodata.vercel.app/cams/bb-28a-manhattan-tower-north.html"},{"@type":"ListItem","position":135,"name":"BB-39 North Rdwy @ Bridge Midspan","url":"https://bilbodata.vercel.app/cams/bb-39-north-rdwy-bridge-midspan.html"},{"@type":"ListItem","position":136,"name":"BB-43 North Rdwy @ Center Expansion Jt","url":"https://bilbodata.vercel.app/cams/bb-43-north-rdwy-center-expansion-jt.html"},{"@type":"ListItem","position":137,"name":"Baxter St @ Canal Street","url":"https://bilbodata.vercel.app/cams/baxter-st-canal-street.html"},{"@type":"ListItem","position":138,"name":"Bowery @ Cooper Sq & 4 St","url":"https://bilbodata.vercel.app/cams/bowery-cooper-sq-4-st.html"},{"@type":"ListItem","position":139,"name":"Br Br-19 N Rdwy @ FDR Dr","url":"https://bilbodata.vercel.app/cams/br-br-19-n-rdwy-fdr-dr.html"},{"@type":"ListItem","position":140,"name":"Br Br-20 S Rdwy FDR Dr","url":"https://bilbodata.vercel.app/cams/br-br-20-s-rdwy-fdr-dr.html"},{"@type":"ListItem","position":141,"name":"Broadway @ 125 St","url":"https://bilbodata.vercel.app/cams/broadway-125-st.html"},{"@type":"ListItem","position":142,"name":"Broadway @ 145 St","url":"https://bilbodata.vercel.app/cams/broadway-145-st.html"},{"@type":"ListItem","position":143,"name":"Broadway @ 169 Street","url":"https://bilbodata.vercel.app/cams/broadway-169-street.html"},{"@type":"ListItem","position":144,"name":"Broadway @ 38 St","url":"https://bilbodata.vercel.app/cams/broadway-38-st.html"},{"@type":"ListItem","position":145,"name":"Broadway @ 42 St","url":"https://bilbodata.vercel.app/cams/broadway-42-st.html"},{"@type":"ListItem","position":146,"name":"Broadway @ 43 St","url":"https://bilbodata.vercel.app/cams/broadway-43-st.html"},{"@type":"ListItem","position":147,"name":"Broadway @ 45 St","url":"https://bilbodata.vercel.app/cams/broadway-45-st.html"},{"@type":"ListItem","position":148,"name":"Broadway @ 46 St","url":"https://bilbodata.vercel.app/cams/broadway-46-st.html"},{"@type":"ListItem","position":149,"name":"Broadway @ 46 St- Quad East","url":"https://bilbodata.vercel.app/cams/broadway-46-st-quad-east.html"},{"@type":"ListItem","position":150,"name":"Broadway @ 46 St- Quad North","url":"https://bilbodata.vercel.app/cams/broadway-46-st-quad-north.html"},{"@type":"ListItem","position":151,"name":"Broadway @ 46 St- Quad South","url":"https://bilbodata.vercel.app/cams/broadway-46-st-quad-south.html"},{"@type":"ListItem","position":152,"name":"Broadway @ 46 St- Quad West","url":"https://bilbodata.vercel.app/cams/broadway-46-st-quad-west.html"},{"@type":"ListItem","position":153,"name":"Broadway @ 46 Street","url":"https://bilbodata.vercel.app/cams/broadway-46-street.html"},{"@type":"ListItem","position":154,"name":"Broadway @ 6 Ave / 33 St","url":"https://bilbodata.vercel.app/cams/broadway-6-ave-33-st.html"},{"@type":"ListItem","position":155,"name":"Broadway @ 96 St","url":"https://bilbodata.vercel.app/cams/broadway-96-st.html"},{"@type":"ListItem","position":156,"name":"Broadway @ Battery pl","url":"https://bilbodata.vercel.app/cams/broadway-battery-pl.html"},{"@type":"ListItem","position":157,"name":"Broadway @ Chambers St","url":"https://bilbodata.vercel.app/cams/broadway-chambers-st.html"},{"@type":"ListItem","position":158,"name":"Broadway @ Columbus Circle","url":"https://bilbodata.vercel.app/cams/broadway-columbus-circle.html"},{"@type":"ListItem","position":159,"name":"Broadway @ Morris St","url":"https://bilbodata.vercel.app/cams/broadway-morris-st.html"},{"@type":"ListItem","position":160,"name":"Broadway @ Vesey St","url":"https://bilbodata.vercel.app/cams/broadway-vesey-st.html"},{"@type":"ListItem","position":161,"name":"Brooklyn Bridge - Ped Walk Way","url":"https://bilbodata.vercel.app/cams/brooklyn-bridge-ped-walk-way.html"},{"@type":"ListItem","position":162,"name":"Brooklyn Bridge @ Centre Street","url":"https://bilbodata.vercel.app/cams/brooklyn-bridge-centre-street.html"},{"@type":"ListItem","position":163,"name":"Broome St and Lafayette St","url":"https://bilbodata.vercel.app/cams/broome-st-and-lafayette-st.html"},{"@type":"ListItem","position":164,"name":"C4-WST-02-NB_at_Vestry_St","url":"https://bilbodata.vercel.app/cams/c4-wst-02-nb-at-vestry-st.html"},{"@type":"ListItem","position":165,"name":"C4-WST-03-Med_at_Vestry_St","url":"https://bilbodata.vercel.app/cams/c4-wst-03-med-at-vestry-st.html"},{"@type":"ListItem","position":166,"name":"C4-WST-07-Med_at_W.23rd_St","url":"https://bilbodata.vercel.app/cams/c4-wst-07-med-at-w-23rd-st.html"},{"@type":"ListItem","position":167,"name":"CPW @ 110 St","url":"https://bilbodata.vercel.app/cams/cpw-110-st.html"},{"@type":"ListItem","position":168,"name":"Canal St @ 6 Ave ","url":"https://bilbodata.vercel.app/cams/canal-st-6-ave.html"},{"@type":"ListItem","position":169,"name":"Canal St @ Broadway","url":"https://bilbodata.vercel.app/cams/canal-st-broadway.html"},{"@type":"ListItem","position":170,"name":"Canal St @ Greenwich St ( Holland Tunnel )","url":"https://bilbodata.vercel.app/cams/canal-st-greenwich-st-holland-tunnel.html"},{"@type":"ListItem","position":171,"name":"Canal St @ Hudson St","url":"https://bilbodata.vercel.app/cams/canal-st-hudson-st.html"},{"@type":"ListItem","position":172,"name":"Canal Street @ Allen Street","url":"https://bilbodata.vercel.app/cams/canal-street-allen-street.html"},{"@type":"ListItem","position":173,"name":"Canal Street @ Chrystie Street","url":"https://bilbodata.vercel.app/cams/canal-street-chrystie-street.html"},{"@type":"ListItem","position":174,"name":"Central Park @ 72nd St Post 37","url":"https://bilbodata.vercel.app/cams/central-park-72nd-st-post-37.html"},{"@type":"ListItem","position":175,"name":"Central Park S @ Columbus Cr","url":"https://bilbodata.vercel.app/cams/central-park-s-columbus-cr.html"},{"@type":"ListItem","position":176,"name":"Central Park West @ 100 St","url":"https://bilbodata.vercel.app/cams/central-park-west-100-st.html"},{"@type":"ListItem","position":177,"name":"Central Park West @ 65 St","url":"https://bilbodata.vercel.app/cams/central-park-west-65-st.html"},{"@type":"ListItem","position":178,"name":"Central Park West @ 66 St","url":"https://bilbodata.vercel.app/cams/central-park-west-66-st.html"},{"@type":"ListItem","position":179,"name":"Central Park West @ 72 St","url":"https://bilbodata.vercel.app/cams/central-park-west-72-st.html"},{"@type":"ListItem","position":180,"name":"Central Park West @ 77 St","url":"https://bilbodata.vercel.app/cams/central-park-west-77-st.html"},{"@type":"ListItem","position":181,"name":"Central Park West @ W 61 St","url":"https://bilbodata.vercel.app/cams/central-park-west-w-61-st.html"},{"@type":"ListItem","position":182,"name":"Church Street @ Vesey","url":"https://bilbodata.vercel.app/cams/church-street-vesey.html"},{"@type":"ListItem","position":183,"name":"Delancey St @ Bowery St ","url":"https://bilbodata.vercel.app/cams/delancey-st-bowery-st.html"},{"@type":"ListItem","position":184,"name":"Delancy St @ Essex St","url":"https://bilbodata.vercel.app/cams/delancy-st-essex-st.html"},{"@type":"ListItem","position":185,"name":"Dyer Ave @ W 34 St","url":"https://bilbodata.vercel.app/cams/dyer-ave-w-34-st.html"},{"@type":"ListItem","position":186,"name":"Dyer Ave @ W 36 St","url":"https://bilbodata.vercel.app/cams/dyer-ave-w-36-st.html"},{"@type":"ListItem","position":187,"name":"Dyer Ave @ W 40 St","url":"https://bilbodata.vercel.app/cams/dyer-ave-w-40-st.html"},{"@type":"ListItem","position":188,"name":"Dyer Ave @ W 41 St","url":"https://bilbodata.vercel.app/cams/dyer-ave-w-41-st.html"},{"@type":"ListItem","position":189,"name":"E 14 St @ Irving Pl/Lexington Av","url":"https://bilbodata.vercel.app/cams/e-14-st-irving-pl-lexington-av.html"},{"@type":"ListItem","position":190,"name":"E 57 St @ QBB","url":"https://bilbodata.vercel.app/cams/e-57-st-qbb.html"},{"@type":"ListItem","position":191,"name":"E 63 St @ QBB","url":"https://bilbodata.vercel.app/cams/e-63-st-qbb.html"},{"@type":"ListItem","position":192,"name":"E 8 St @ Lafayette St","url":"https://bilbodata.vercel.app/cams/e-8-st-lafayette-st.html"},{"@type":"ListItem","position":193,"name":"East Houston St @ Ave B","url":"https://bilbodata.vercel.app/cams/east-houston-st-ave-b.html"},{"@type":"ListItem","position":194,"name":"FDR @ 145 St","url":"https://bilbodata.vercel.app/cams/fdr-145-st.html"},{"@type":"ListItem","position":195,"name":"FDR @ 38 St","url":"https://bilbodata.vercel.app/cams/fdr-38-st.html"},{"@type":"ListItem","position":196,"name":"FDR @ 48 St","url":"https://bilbodata.vercel.app/cams/fdr-48-st.html"},{"@type":"ListItem","position":197,"name":"FDR @ E 127 St","url":"https://bilbodata.vercel.app/cams/fdr-e-127-st.html"},{"@type":"ListItem","position":198,"name":"FDR @ E 53 St","url":"https://bilbodata.vercel.app/cams/fdr-e-53-st.html"},{"@type":"ListItem","position":199,"name":"FDR @ E 6 St","url":"https://bilbodata.vercel.app/cams/fdr-e-6-st.html"},{"@type":"ListItem","position":200,"name":"FDR @ Grand St","url":"https://bilbodata.vercel.app/cams/fdr-grand-st.html"},{"@type":"ListItem","position":201,"name":"FDR Dr @ 101 St ","url":"https://bilbodata.vercel.app/cams/fdr-dr-101-st.html"},{"@type":"ListItem","position":202,"name":"FDR Dr @ 111 ST","url":"https://bilbodata.vercel.app/cams/fdr-dr-111-st.html"},{"@type":"ListItem","position":203,"name":"FDR Dr @ 131 ST (3 Ave Br)","url":"https://bilbodata.vercel.app/cams/fdr-dr-131-st-3-ave-br.html"},{"@type":"ListItem","position":204,"name":"FDR Dr @ 135 Street","url":"https://bilbodata.vercel.app/cams/fdr-dr-135-street.html"},{"@type":"ListItem","position":205,"name":"FDR Dr @ 155 Street","url":"https://bilbodata.vercel.app/cams/fdr-dr-155-street.html"},{"@type":"ListItem","position":206,"name":"FDR Dr @ 23 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-23-st.html"},{"@type":"ListItem","position":207,"name":"FDR Dr @ 36 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-36-st.html"},{"@type":"ListItem","position":208,"name":"FDR Dr @ 64 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-64-st.html"},{"@type":"ListItem","position":209,"name":"FDR Dr @ 73 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-73-st.html"},{"@type":"ListItem","position":210,"name":"FDR Dr @ 79 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-79-st.html"},{"@type":"ListItem","position":211,"name":"FDR Dr @ 90 St","url":"https://bilbodata.vercel.app/cams/fdr-dr-90-st.html"},{"@type":"ListItem","position":212,"name":"FDR Dr @ 96 Street","url":"https://bilbodata.vercel.app/cams/fdr-dr-96-street.html"},{"@type":"ListItem","position":213,"name":"FDR Dr @ BPU Entrance","url":"https://bilbodata.vercel.app/cams/fdr-dr-bpu-entrance.html"},{"@type":"ListItem","position":214,"name":"FDR Dr @ Brooklyn Bridge ","url":"https://bilbodata.vercel.app/cams/fdr-dr-brooklyn-bridge.html"},{"@type":"ListItem","position":215,"name":"FDR Dr @ Brooklyn Bridge Exit NB","url":"https://bilbodata.vercel.app/cams/fdr-dr-brooklyn-bridge-exit-nb.html"},{"@type":"ListItem","position":216,"name":"FDR Dr @ Catherine Street","url":"https://bilbodata.vercel.app/cams/fdr-dr-catherine-street.html"},{"@type":"ListItem","position":217,"name":"FDR Dr @ Old Slip","url":"https://bilbodata.vercel.app/cams/fdr-dr-old-slip.html"},{"@type":"ListItem","position":218,"name":"FDR Drive @ 124 St","url":"https://bilbodata.vercel.app/cams/fdr-drive-124-st.html"},{"@type":"ListItem","position":219,"name":"Ft Washington @ 178 St","url":"https://bilbodata.vercel.app/cams/ft-washington-178-st.html"},{"@type":"ListItem","position":220,"name":"Galvin Ave @ W 40 St","url":"https://bilbodata.vercel.app/cams/galvin-ave-w-40-st.html"},{"@type":"ListItem","position":221,"name":"Grand St @ Allen St","url":"https://bilbodata.vercel.app/cams/grand-st-allen-st.html"},{"@type":"ListItem","position":222,"name":"Grand St @ Bowery","url":"https://bilbodata.vercel.app/cams/grand-st-bowery.html"},{"@type":"ListItem","position":223,"name":"Grand St @ Broadway","url":"https://bilbodata.vercel.app/cams/grand-st-broadway.html"},{"@type":"ListItem","position":224,"name":"Grand St @ Essex St","url":"https://bilbodata.vercel.app/cams/grand-st-essex-st.html"},{"@type":"ListItem","position":225,"name":"Harlem River Dr @ 150 St","url":"https://bilbodata.vercel.app/cams/harlem-river-dr-150-st.html"},{"@type":"ListItem","position":226,"name":"Harlem River Dr @ Dyckman St /10 Av","url":"https://bilbodata.vercel.app/cams/harlem-river-dr-dyckman-st-10-av.html"},{"@type":"ListItem","position":227,"name":"Harlem River Dr Ramp @ Before GWB & Amst_179St Exit","url":"https://bilbodata.vercel.app/cams/harlem-river-dr-ramp-before-gwb-amst-179st-exit.html"},{"@type":"ListItem","position":228,"name":"Harlem Rvr Dr (FDR) @ 166 St","url":"https://bilbodata.vercel.app/cams/harlem-rvr-dr-fdr-166-st.html"},{"@type":"ListItem","position":229,"name":"Henry Hudson @ 158 St","url":"https://bilbodata.vercel.app/cams/henry-hudson-158-st.html"},{"@type":"ListItem","position":230,"name":"Henry Hudson Pkwy @ 125 St","url":"https://bilbodata.vercel.app/cams/henry-hudson-pkwy-125-st.html"},{"@type":"ListItem","position":231,"name":"Henry Hudson Pkwy @ 70 St","url":"https://bilbodata.vercel.app/cams/henry-hudson-pkwy-70-st.html"},{"@type":"ListItem","position":232,"name":"Henry Hudson Pkwy @ 96 St","url":"https://bilbodata.vercel.app/cams/henry-hudson-pkwy-96-st.html"},{"@type":"ListItem","position":233,"name":"Houston St @ Bowery St","url":"https://bilbodata.vercel.app/cams/houston-st-bowery-st.html"},{"@type":"ListItem","position":234,"name":"Houston St @ Broadway","url":"https://bilbodata.vercel.app/cams/houston-st-broadway.html"},{"@type":"ListItem","position":235,"name":"Houston St @ Christies St","url":"https://bilbodata.vercel.app/cams/houston-st-christies-st.html"},{"@type":"ListItem","position":236,"name":"Houston St @ Lafeyette St","url":"https://bilbodata.vercel.app/cams/houston-st-lafeyette-st.html"},{"@type":"ListItem","position":237,"name":"Hudson St @ Erickson Pl/Beach","url":"https://bilbodata.vercel.app/cams/hudson-st-erickson-pl-beach.html"},{"@type":"ListItem","position":238,"name":"Hudson St @ Laight St","url":"https://bilbodata.vercel.app/cams/hudson-st-laight-st.html"},{"@type":"ListItem","position":239,"name":"Irving Pl @ 14 St","url":"https://bilbodata.vercel.app/cams/irving-pl-14-st.html"},{"@type":"ListItem","position":240,"name":"Kenmare St @ Cleveland pl","url":"https://bilbodata.vercel.app/cams/kenmare-st-cleveland-pl.html"},{"@type":"ListItem","position":241,"name":"Lenox Ave @ 125 St","url":"https://bilbodata.vercel.app/cams/lenox-ave-125-st.html"},{"@type":"ListItem","position":242,"name":"Lexington Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-23-st.html"},{"@type":"ListItem","position":243,"name":"Lexington Ave @ 34 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-34-st.html"},{"@type":"ListItem","position":244,"name":"Lexington Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-42-st.html"},{"@type":"ListItem","position":245,"name":"Lexington Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-49-st.html"},{"@type":"ListItem","position":246,"name":"Lexington Ave @ 53 St ","url":"https://bilbodata.vercel.app/cams/lexington-ave-53-st.html"},{"@type":"ListItem","position":247,"name":"Lexington Ave @ 57 ST","url":"https://bilbodata.vercel.app/cams/lexington-ave-57-st.html"},{"@type":"ListItem","position":248,"name":"Lexington Ave @ 72 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-72-st.html"},{"@type":"ListItem","position":249,"name":"Lexington Ave @ 96 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-96-st.html"},{"@type":"ListItem","position":250,"name":"Lexington Ave @ E 110 Street","url":"https://bilbodata.vercel.app/cams/lexington-ave-e-110-street.html"},{"@type":"ListItem","position":251,"name":"Lexington Ave @ E 120 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-e-120-st.html"},{"@type":"ListItem","position":252,"name":"Lexington Ave @ E 125 St","url":"https://bilbodata.vercel.app/cams/lexington-ave-e-125-st.html"},{"@type":"ListItem","position":253,"name":"Lexington Ave @ E 128 Street","url":"https://bilbodata.vercel.app/cams/lexington-ave-e-128-street.html"},{"@type":"ListItem","position":254,"name":"Lincoln Tun Approach(Bet 9Ave & 10Ave) @ W31 ST ","url":"https://bilbodata.vercel.app/cams/lincoln-tun-approach-bet-9ave-10ave-w31-st.html"},{"@type":"ListItem","position":255,"name":"Lincoln Tun Approach(Bet. 9Av & 10Av) @ W 33 St - 3.50","url":"https://bilbodata.vercel.app/cams/lincoln-tun-approach-bet-9av-10av-w-33-st-3-50.html"},{"@type":"ListItem","position":256,"name":"MADISON @ 34 ST","url":"https://bilbodata.vercel.app/cams/madison-34-st.html"},{"@type":"ListItem","position":257,"name":"MADISON @ 57 ST","url":"https://bilbodata.vercel.app/cams/madison-57-st.html"},{"@type":"ListItem","position":258,"name":"MHB-16 Manhattan Colonade Entr","url":"https://bilbodata.vercel.app/cams/mhb-16-manhattan-colonade-entr.html"},{"@type":"ListItem","position":259,"name":"MHB-16A Manh East of Colonnade Entr","url":"https://bilbodata.vercel.app/cams/mhb-16a-manh-east-of-colonnade-entr.html"},{"@type":"ListItem","position":260,"name":"MHB-17 Manh LRW @ X OVER","url":"https://bilbodata.vercel.app/cams/mhb-17-manh-lrw-x-over.html"},{"@type":"ListItem","position":261,"name":"MHB-19 Manh N URDW @ Anch","url":"https://bilbodata.vercel.app/cams/mhb-19-manh-n-urdw-anch.html"},{"@type":"ListItem","position":262,"name":"MHB-20 Mahn S URW @ Anch","url":"https://bilbodata.vercel.app/cams/mhb-20-mahn-s-urw-anch.html"},{"@type":"ListItem","position":263,"name":"MHB-21 Manh N URDWY @ Arch","url":"https://bilbodata.vercel.app/cams/mhb-21-manh-n-urdwy-arch.html"},{"@type":"ListItem","position":264,"name":"MHB-23 Manh LRDWY @ Twr","url":"https://bilbodata.vercel.app/cams/mhb-23-manh-lrdwy-twr.html"},{"@type":"ListItem","position":265,"name":"MHB-24 Manh S URDWY @ Twr","url":"https://bilbodata.vercel.app/cams/mhb-24-manh-s-urdwy-twr.html"},{"@type":"ListItem","position":266,"name":"Madison Ave @ 42 St","url":"https://bilbodata.vercel.app/cams/madison-ave-42-st.html"},{"@type":"ListItem","position":267,"name":"Madison Ave @ 46 St - Manhattan","url":"https://bilbodata.vercel.app/cams/madison-ave-46-st-manhattan.html"},{"@type":"ListItem","position":268,"name":"Madison Ave @ 49 St","url":"https://bilbodata.vercel.app/cams/madison-ave-49-st.html"},{"@type":"ListItem","position":269,"name":"Madison Ave @ 79 St","url":"https://bilbodata.vercel.app/cams/madison-ave-79-st.html"},{"@type":"ListItem","position":270,"name":"Madison Ave @ E 43 St","url":"https://bilbodata.vercel.app/cams/madison-ave-e-43-st.html"},{"@type":"ListItem","position":271,"name":"Madison Ave @ E 44 St","url":"https://bilbodata.vercel.app/cams/madison-ave-e-44-st.html"},{"@type":"ListItem","position":272,"name":"Malcolm X Blvd/Lenox Ave @ 110 St/CPN","url":"https://bilbodata.vercel.app/cams/malcolm-x-blvd-lenox-ave-110-st-cpn.html"},{"@type":"ListItem","position":273,"name":"Malcom X Blvd @ 145 St","url":"https://bilbodata.vercel.app/cams/malcom-x-blvd-145-st.html"},{"@type":"ListItem","position":274,"name":"Park Ave @ 106 St","url":"https://bilbodata.vercel.app/cams/park-ave-106-st.html"},{"@type":"ListItem","position":275,"name":"Park Ave @ 23 St","url":"https://bilbodata.vercel.app/cams/park-ave-23-st.html"},{"@type":"ListItem","position":276,"name":"Park Ave @ 34 St","url":"https://bilbodata.vercel.app/cams/park-ave-34-st.html"},{"@type":"ListItem","position":277,"name":"Park Ave @ 37 St","url":"https://bilbodata.vercel.app/cams/park-ave-37-st.html"},{"@type":"ListItem","position":278,"name":"Park Ave @ 53 St","url":"https://bilbodata.vercel.app/cams/park-ave-53-st.html"},{"@type":"ListItem","position":279,"name":"Park Ave @ 57 St","url":"https://bilbodata.vercel.app/cams/park-ave-57-st.html"},{"@type":"ListItem","position":280,"name":"Park Ave @ 72 St","url":"https://bilbodata.vercel.app/cams/park-ave-72-st.html"},{"@type":"ListItem","position":281,"name":"Park Ave @ 79 St","url":"https://bilbodata.vercel.app/cams/park-ave-79-st.html"},{"@type":"ListItem","position":282,"name":"Park Ave @ 86 St","url":"https://bilbodata.vercel.app/cams/park-ave-86-st.html"},{"@type":"ListItem","position":283,"name":"Park Ave @ 96 St","url":"https://bilbodata.vercel.app/cams/park-ave-96-st.html"},{"@type":"ListItem","position":284,"name":"Park Ave @ E 116 Street","url":"https://bilbodata.vercel.app/cams/park-ave-e-116-street.html"},{"@type":"ListItem","position":285,"name":"Park Ave @ E 125 St","url":"https://bilbodata.vercel.app/cams/park-ave-e-125-st.html"},{"@type":"ListItem","position":286,"name":"Pearl St @ Dover","url":"https://bilbodata.vercel.app/cams/pearl-st-dover.html"},{"@type":"ListItem","position":287,"name":"Pearl Street @ St. James Pl","url":"https://bilbodata.vercel.app/cams/pearl-street-st-james-pl.html"},{"@type":"ListItem","position":288,"name":"QBB LL CM @ York Ave","url":"https://bilbodata.vercel.app/cams/qbb-ll-cm-york-ave.html"},{"@type":"ListItem","position":289,"name":"QBB NOR @ 1 Ave","url":"https://bilbodata.vercel.app/cams/qbb-nor-1-ave.html"},{"@type":"ListItem","position":290,"name":"QBB NOR @ York Ave","url":"https://bilbodata.vercel.app/cams/qbb-nor-york-ave.html"},{"@type":"ListItem","position":291,"name":"QBB SOR @ 1 Ave","url":"https://bilbodata.vercel.app/cams/qbb-sor-1-ave.html"},{"@type":"ListItem","position":292,"name":"QBB SOR @ Sutton Pl","url":"https://bilbodata.vercel.app/cams/qbb-sor-sutton-pl.html"},{"@type":"ListItem","position":293,"name":"QBB SOR @ W Channel","url":"https://bilbodata.vercel.app/cams/qbb-sor-w-channel.html"},{"@type":"ListItem","position":294,"name":"QBB UL CM @ Roosevelt","url":"https://bilbodata.vercel.app/cams/qbb-ul-cm-roosevelt.html"},{"@type":"ListItem","position":295,"name":"QBB UL CM @ York Ave","url":"https://bilbodata.vercel.app/cams/qbb-ul-cm-york-ave.html"},{"@type":"ListItem","position":296,"name":"QBB UL Entrance @ Thomson Ave","url":"https://bilbodata.vercel.app/cams/qbb-ul-entrance-thomson-ave.html"},{"@type":"ListItem","position":297,"name":"Queens Midtown Tunnel @ 35 St exit","url":"https://bilbodata.vercel.app/cams/queens-midtown-tunnel-35-st-exit.html"},{"@type":"ListItem","position":298,"name":"Queens Midtown Tunnel Exit @ 37 St","url":"https://bilbodata.vercel.app/cams/queens-midtown-tunnel-exit-37-st.html"},{"@type":"ListItem","position":299,"name":"RT. 9A @ N. Moore St","url":"https://bilbodata.vercel.app/cams/rt-9a-n-moore-st.html"},{"@type":"ListItem","position":300,"name":"Riverside DR. @ Pedestrian Crossing NOF 181 St","url":"https://bilbodata.vercel.app/cams/riverside-dr-pedestrian-crossing-nof-181-st.html"},{"@type":"ListItem","position":301,"name":"Riverside Dr @ 79 St","url":"https://bilbodata.vercel.app/cams/riverside-dr-79-st.html"},{"@type":"ListItem","position":302,"name":"Riverside Dr @ Washington Br ENT ramp","url":"https://bilbodata.vercel.app/cams/riverside-dr-washington-br-ent-ramp.html"},{"@type":"ListItem","position":303,"name":"Rockefeller Plaza @ W 49 St","url":"https://bilbodata.vercel.app/cams/rockefeller-plaza-w-49-st.html"},{"@type":"ListItem","position":304,"name":"Rockefeller Plaza @ W 50 St","url":"https://bilbodata.vercel.app/cams/rockefeller-plaza-w-50-st.html"},{"@type":"ListItem","position":305,"name":"Rockefeller Plaza @ W 51 St","url":"https://bilbodata.vercel.app/cams/rockefeller-plaza-w-51-st.html"},{"@type":"ListItem","position":306,"name":"Rockefeller Plz @ 48 St (between 5 Ave and 6 Ave)","url":"https://bilbodata.vercel.app/cams/rockefeller-plz-48-st-between-5-ave-and-6-ave.html"},{"@type":"ListItem","position":307,"name":"South St @ Broad St","url":"https://bilbodata.vercel.app/cams/south-st-broad-st.html"},{"@type":"ListItem","position":308,"name":"South Street @ Pike Street","url":"https://bilbodata.vercel.app/cams/south-street-pike-street.html"},{"@type":"ListItem","position":309,"name":"St Nicholas Ave @ 125 St","url":"https://bilbodata.vercel.app/cams/st-nicholas-ave-125-st.html"},{"@type":"ListItem","position":310,"name":"St Nicholas Ave @ 145 St","url":"https://bilbodata.vercel.app/cams/st-nicholas-ave-145-st.html"},{"@type":"ListItem","position":311,"name":"St Nicholas Ave @ 181 St","url":"https://bilbodata.vercel.app/cams/st-nicholas-ave-181-st.html"},{"@type":"ListItem","position":312,"name":"Sutton Pl @ 58 St","url":"https://bilbodata.vercel.app/cams/sutton-pl-58-st.html"},{"@type":"ListItem","position":313,"name":"Third Ave Bridge","url":"https://bilbodata.vercel.app/cams/third-ave-bridge.html"},{"@type":"ListItem","position":314,"name":"Union Sq @ 14 St","url":"https://bilbodata.vercel.app/cams/union-sq-14-st.html"},{"@type":"ListItem","position":315,"name":"Vanderbilt Ave @ E 45 St","url":"https://bilbodata.vercel.app/cams/vanderbilt-ave-e-45-st.html"},{"@type":"ListItem","position":316,"name":"Varick St @ Beach St ","url":"https://bilbodata.vercel.app/cams/varick-st-beach-st.html"},{"@type":"ListItem","position":317,"name":"Varick St @ Laight St","url":"https://bilbodata.vercel.app/cams/varick-st-laight-st.html"},{"@type":"ListItem","position":318,"name":"Varick St @ Watt St","url":"https://bilbodata.vercel.app/cams/varick-st-watt-st.html"},{"@type":"ListItem","position":319,"name":"Varick st @ Broome st","url":"https://bilbodata.vercel.app/cams/varick-st-broome-st.html"},{"@type":"ListItem","position":320,"name":"WBB - 11  NIR-5 @ East of Manhattan Tower","url":"https://bilbodata.vercel.app/cams/wbb-11-nir-5-east-of-manhattan-tower.html"},{"@type":"ListItem","position":321,"name":"WBB - 16 SOR-4 @ Kent Ave South","url":"https://bilbodata.vercel.app/cams/wbb-16-sor-4-kent-ave-south.html"},{"@type":"ListItem","position":322,"name":"WBB - 5 NOR-5 @ Delancey St North/FDR","url":"https://bilbodata.vercel.app/cams/wbb-5-nor-5-delancey-st-north-fdr.html"},{"@type":"ListItem","position":323,"name":"WBB - NOR - 3 @  Kent Ave North","url":"https://bilbodata.vercel.app/cams/wbb-nor-3-kent-ave-north.html"},{"@type":"ListItem","position":324,"name":"WBB -12 NIR-12 Manhattan Mid Span","url":"https://bilbodata.vercel.app/cams/wbb-12-nir-12-manhattan-mid-span.html"},{"@type":"ListItem","position":325,"name":"WBB -17  SOR - 2  @ Delancey St/FDR","url":"https://bilbodata.vercel.app/cams/wbb-17-sor-2-delancey-st-fdr.html"},{"@type":"ListItem","position":326,"name":"WBB SIR - 1 @ Manhattan Anchorage","url":"https://bilbodata.vercel.app/cams/wbb-sir-1-manhattan-anchorage.html"},{"@type":"ListItem","position":327,"name":"WBB-10 NIR-4 @ FDR RD","url":"https://bilbodata.vercel.app/cams/wbb-10-nir-4-fdr-rd.html"},{"@type":"ListItem","position":328,"name":"WBB-20 @ Above Bedford Ave ( Berry St )","url":"https://bilbodata.vercel.app/cams/wbb-20-above-bedford-ave-berry-st.html"},{"@type":"ListItem","position":329,"name":"WBB-6 North Rdwy @ Delancey St & Clinton St","url":"https://bilbodata.vercel.app/cams/wbb-6-north-rdwy-delancey-st-clinton-st.html"},{"@type":"ListItem","position":330,"name":"WBB-6 South Rdwy @ Delancy St and Clinton St","url":"https://bilbodata.vercel.app/cams/wbb-6-south-rdwy-delancy-st-and-clinton-st.html"},{"@type":"ListItem","position":331,"name":"Water St @ John St","url":"https://bilbodata.vercel.app/cams/water-st-john-st.html"},{"@type":"ListItem","position":332,"name":"Water St @ Whitehall","url":"https://bilbodata.vercel.app/cams/water-st-whitehall.html"},{"@type":"ListItem","position":333,"name":"West Broadway @ West Houston St","url":"https://bilbodata.vercel.app/cams/west-broadway-west-houston-st.html"},{"@type":"ListItem","position":334,"name":"West Houston @ Hudson St","url":"https://bilbodata.vercel.app/cams/west-houston-hudson-st.html"},{"@type":"ListItem","position":335,"name":"West Houston @ Varick St","url":"https://bilbodata.vercel.app/cams/west-houston-varick-st.html"},{"@type":"ListItem","position":336,"name":"West Side HWY BPU Entrance -148.54","url":"https://bilbodata.vercel.app/cams/west-side-hwy-bpu-entrance-148-54.html"},{"@type":"ListItem","position":337,"name":"West St @ Canal St","url":"https://bilbodata.vercel.app/cams/west-st-canal-st.html"},{"@type":"ListItem","position":338,"name":"West St @ Clarkson","url":"https://bilbodata.vercel.app/cams/west-st-clarkson.html"},{"@type":"ListItem","position":339,"name":"West St @ Murray","url":"https://bilbodata.vercel.app/cams/west-st-murray.html"},{"@type":"ListItem","position":340,"name":"West St @ West Houston St","url":"https://bilbodata.vercel.app/cams/west-st-west-houston-st.html"},{"@type":"ListItem","position":341,"name":"West Street @ Intrepid","url":"https://bilbodata.vercel.app/cams/west-street-intrepid.html"},{"@type":"ListItem","position":342,"name":"West st and Battery place","url":"https://bilbodata.vercel.app/cams/west-st-and-battery-place.html"},{"@type":"ListItem","position":343,"name":"West st and Chambers","url":"https://bilbodata.vercel.app/cams/west-st-and-chambers.html"},{"@type":"ListItem","position":344,"name":"West st and Fulton","url":"https://bilbodata.vercel.app/cams/west-st-and-fulton.html"},{"@type":"ListItem","position":345,"name":"West st and West Thames (Battery tunnel)","url":"https://bilbodata.vercel.app/cams/west-st-and-west-thames-battery-tunnel.html"},{"@type":"ListItem","position":346,"name":"West street underpass entrance","url":"https://bilbodata.vercel.app/cams/west-street-underpass-entrance.html"},{"@type":"ListItem","position":347,"name":"Worth St @ Centre St","url":"https://bilbodata.vercel.app/cams/worth-st-centre-st.html"},{"@type":"ListItem","position":348,"name":"Worth Street @ Lafayette Street","url":"https://bilbodata.vercel.app/cams/worth-street-lafayette-street.html"},{"@type":"ListItem","position":349,"name":"York Ave @ 63 St","url":"https://bilbodata.vercel.app/cams/york-ave-63-st.html"},{"@type":"ListItem","position":350,"name":"York Ave @ 72 St","url":"https://bilbodata.vercel.app/cams/york-ave-72-st.html"}]}}</script>
+</head>
+<body>
+<header><div class="wrap">
+<img src="/assets/bilbo-pup.png" alt="Bilbo Data">
+<a class="bn" href="/" style="color:var(--ink)">Bilbo Data</a>
+<nav>
+<a href="/cams/">Cameras</a>
+<a href="/data.html">Dataset</a>
+<a href="/skyline.html">SkyLine</a>
+<a href="/about.html">About</a>
+</nav>
+</div></header>
+<main class="wrap">
+
+<div class="crumb"><a href="/">Bilbo Data</a> › <a href="/cams/">Cameras</a> › Manhattan</div>
+<p class="eyebrow">Borough index</p>
+<h1>Manhattan traffic cameras</h1>
+<p class="lede">All 350 public traffic cameras the New York City Department
+of Transportation operates in Manhattan, each with a live view, coordinates and its
+nearest neighbours. 0 of them are currently being counted frame-by-frame by
+Bilbo Data. Pick an intersection.</p>
+<a class="cta" href="/">Open the live map →</a>
+<h2>All cameras in Manhattan</h2>
+<ul class="cols">
+<li><a href="/cams/1-ave-110-st.html">1 Ave @ 110 St</a></li>
+<li><a href="/cams/1-ave-124-st.html">1 Ave @ 124 St</a></li>
+<li><a href="/cams/1-ave-14-st.html">1 Ave @ 14 St</a></li>
+<li><a href="/cams/1-ave-23-st.html">1 Ave @ 23 St</a></li>
+<li><a href="/cams/1-ave-42-st.html">1 Ave @ 42 St</a></li>
+<li><a href="/cams/1-ave-57-st.html">1 Ave @ 57 st</a></li>
+<li><a href="/cams/1-ave-59-st.html">1 Ave @ 59 St</a></li>
+<li><a href="/cams/1-ave-62-st.html">1 Ave @ 62 St</a></li>
+<li><a href="/cams/1-ave-84-st.html">1 Ave @ 84 St</a></li>
+<li><a href="/cams/1-ave-86-st.html">1 Ave @ 86 St</a></li>
+<li><a href="/cams/1-ave-96-st.html">1 Ave @ 96 St</a></li>
+<li><a href="/cams/1-ave-e-120-street.html">1 Ave @ E 120 Street </a></li>
+<li><a href="/cams/1-ave-e-14-st.html">1 Ave @ E 14 St</a></li>
+<li><a href="/cams/1-ave-e-houston-st.html">1 Ave @ E. Houston St</a></li>
+<li><a href="/cams/1-ave-40-st.html">1 ave @ 40 st</a></li>
+<li><a href="/cams/1-st-camera-south-bound-bpu-148-55.html">1 st Camera South Bound BPU-148.55</a></li>
+<li><a href="/cams/10-ave-23-st.html">10 Ave @ 23 St</a></li>
+<li><a href="/cams/10-ave-49-st.html">10 Ave @ 49 St</a></li>
+<li><a href="/cams/10-ave-57-st.html">10 Ave @ 57 St</a></li>
+<li><a href="/cams/10-ave-w-34-st.html">10 Ave @ W 34 St</a></li>
+<li><a href="/cams/11-ave-34-st.html">11 Ave @ 34 ST</a></li>
+<li><a href="/cams/11-ave-42-st.html">11 Ave @ 42 St</a></li>
+<li><a href="/cams/11-ave-49-st.html">11 Ave @ 49 St</a></li>
+<li><a href="/cams/11-ave-w-40-st.html">11 Ave @ W 40 St</a></li>
+<li><a href="/cams/11-ave-rt-9a-14-st.html">11 Ave/Rt 9A @ 14 St</a></li>
+<li><a href="/cams/12-ave-22-st.html">12 Ave @ 22 St</a></li>
+<li><a href="/cams/12-ave-34-st.html">12 Ave @ 34 St</a></li>
+<li><a href="/cams/12-ave-42-st.html">12 Ave @ 42 St</a></li>
+<li><a href="/cams/12-ave-57-st.html">12 Ave @ 57 St</a></li>
+<li><a href="/cams/12-ave-w-49-st.html">12 Ave @ W 49 St</a></li>
+<li><a href="/cams/1st-camera-north-bound-bpu-148-51.html">1st camera North Bound BPU -148.51</a></li>
+<li><a href="/cams/2-ave-86-st.html">2 AVE @ 86 St</a></li>
+<li><a href="/cams/2-ave-125-st.html">2 Ave @ 125 St</a></li>
+<li><a href="/cams/2-ave-23-st.html">2 Ave @ 23 St</a></li>
+<li><a href="/cams/2-ave-36-st-midtown-tunnel.html">2 Ave @ 36 St-Midtown Tunnel</a></li>
+<li><a href="/cams/2-ave-42-st.html">2 Ave @ 42 St</a></li>
+<li><a href="/cams/2-ave-49-st.html">2 Ave @ 49 St</a></li>
+<li><a href="/cams/2-ave-58-st.html">2 Ave @ 58 St</a></li>
+<li><a href="/cams/2-ave-59-st-qbb.html">2 Ave @ 59 St (QBB)</a></li>
+<li><a href="/cams/2-ave-72-st.html">2 Ave @ 72 St</a></li>
+<li><a href="/cams/2-ave-74-st.html">2 Ave @ 74 St</a></li>
+<li><a href="/cams/2-ave-79-st.html">2 Ave @ 79 St</a></li>
+<li><a href="/cams/2-ave-e-102-st.html">2 Ave @ E 102 St</a></li>
+<li><a href="/cams/2-ave-e-110-street.html">2 Ave @ E 110 Street</a></li>
+<li><a href="/cams/2-ave-e-116-st.html">2 Ave @ E 116 St</a></li>
+<li><a href="/cams/2-ave-e-128-street.html">2 Ave @ E 128 Street</a></li>
+<li><a href="/cams/2-ave-e-14-st.html">2 Ave @ E 14 St</a></li>
+<li><a href="/cams/207-st-9-ave.html">207 ST @ 9 Ave</a></li>
+<li><a href="/cams/2nd-camera-north-bound-bpu-148-52.html">2nd Camera North Bound BPU -148.52</a></li>
+<li><a href="/cams/2nd-camera-south-bound-bpu-148-57.html">2nd Camera South Bound BPU-148.57</a></li>
+<li><a href="/cams/3-ave-34-st.html">3 AVE @ 34 ST</a></li>
+<li><a href="/cams/3-ave-114-st.html">3 Ave @ 114 St</a></li>
+<li><a href="/cams/3-ave-14-st.html">3 Ave @ 14 St</a></li>
+<li><a href="/cams/3-ave-23-st.html">3 Ave @ 23 St</a></li>
+<li><a href="/cams/3-ave-42-st.html">3 Ave @ 42 St</a></li>
+<li><a href="/cams/3-ave-49-st.html">3 Ave @ 49 St</a></li>
+<li><a href="/cams/3-ave-57-st.html">3 Ave @ 57 St</a></li>
+<li><a href="/cams/3-ave-e-120-street.html">3 Ave @ E 120 Street</a></li>
+<li><a href="/cams/3-ave-e-125-st.html">3 Ave @ E 125 St</a></li>
+<li><a href="/cams/3-ave-e-14-st.html">3 Ave @ E 14 St</a></li>
+<li><a href="/cams/3-ave-e-86-st.html">3 Ave @ E 86 St</a></li>
+<li><a href="/cams/3-ave-e-88-st.html">3 Ave @ E 88 St</a></li>
+<li><a href="/cams/3rd-camera-north-bound-bpu.html">3rd Camera North Bound BPU</a></li>
+<li><a href="/cams/46-st-bet-5-ave-madison-ave.html">46 St Bet. 5 Ave &amp; Madison Ave</a></li>
+<li><a href="/cams/47-st-bet-5-ave-madison-ave-manhattan.html">47 St Bet. 5 Ave @ Madison Ave- Manhattan</a></li>
+<li><a href="/cams/5-ave-50-st.html">5 AVE @ 50 St</a></li>
+<li><a href="/cams/5-ave-23-st.html">5 Ave @ 23 St</a></li>
+<li><a href="/cams/5-ave-34-st.html">5 Ave @ 34 St</a></li>
+<li><a href="/cams/5-ave-35-st.html">5 Ave @ 35 St </a></li>
+<li><a href="/cams/5-ave-42-st.html">5 Ave @ 42 St</a></li>
+<li><a href="/cams/5-ave-46-st.html">5 Ave @ 46 St</a></li>
+<li><a href="/cams/5-ave-47-st.html">5 Ave @ 47 St</a></li>
+<li><a href="/cams/5-ave-49-st.html">5 Ave @ 49 St</a></li>
+<li><a href="/cams/5-ave-57-st.html">5 Ave @ 57 St</a></li>
+<li><a href="/cams/5-ave-59-st.html">5 Ave @ 59 St</a></li>
+<li><a href="/cams/5-ave-66-st.html">5 Ave @ 66 St</a></li>
+<li><a href="/cams/5-ave-84-st.html">5 Ave @ 84 St</a></li>
+<li><a href="/cams/5-ave-86-st.html">5 Ave @ 86 St</a></li>
+<li><a href="/cams/5-ave-96-st.html">5 Ave @ 96 St</a></li>
+<li><a href="/cams/5-ave-e-58-st.html">5 Ave @ E 58 St</a></li>
+<li><a href="/cams/5-ave-e-60-st.html">5 Ave @ E 60 St</a></li>
+<li><a href="/cams/50-st-btwn-8-ave-broadway.html">50 St Btwn 8 Ave &amp; Broadway</a></li>
+<li><a href="/cams/58-st-qbb-ul-approach.html">58 St @ QBB UL Approach</a></li>
+<li><a href="/cams/6-ave-50-st.html">6 AVE @ 50 St</a></li>
+<li><a href="/cams/6-ave-23-st.html">6 Ave @ 23 St</a></li>
+<li><a href="/cams/6-ave-30-st.html">6 Ave @ 30 St</a></li>
+<li><a href="/cams/6-ave-34-st.html">6 Ave @ 34 St</a></li>
+<li><a href="/cams/6-ave-39-st.html">6 Ave @ 39 St</a></li>
+<li><a href="/cams/6-ave-42-st.html">6 Ave @ 42 St</a></li>
+<li><a href="/cams/6-ave-49-st.html">6 Ave @ 49 St</a></li>
+<li><a href="/cams/6-ave-57-st.html">6 Ave @ 57 St</a></li>
+<li><a href="/cams/6-ave-58-st.html">6 Ave @ 58 St</a></li>
+<li><a href="/cams/6-ave-west-houston-st.html">6 Ave @ West Houston St</a></li>
+<li><a href="/cams/62-st-qbb-upper-level-exit-ramp.html">62 St @ QBB Upper Level exit ramp</a></li>
+<li><a href="/cams/7-ave-adam-clayton-powell-blvd-125-st.html">7 AVE / ADAM CLAYTON POWELL BLVD@ 125 St</a></li>
+<li><a href="/cams/7-ave-42-st.html">7 AVE @ 42 St</a></li>
+<li><a href="/cams/7-ave-44-st.html">7 AVE @ 44 St</a></li>
+<li><a href="/cams/7-ave-145-st.html">7 Ave @ 145 St</a></li>
+<li><a href="/cams/7-ave-23st.html">7 Ave @ 23St</a></li>
+<li><a href="/cams/7-ave-32-st.html">7 Ave @ 32 St</a></li>
+<li><a href="/cams/7-ave-36-st.html">7 Ave @ 36 St</a></li>
+<li><a href="/cams/7-ave-43-st.html">7 Ave @ 43 St</a></li>
+<li><a href="/cams/7-ave-43-st-64-186-ptz.html">7 Ave @ 43 St - 64.186 - PTZ</a></li>
+<li><a href="/cams/7-ave-54-st.html">7 Ave @ 54 St</a></li>
+<li><a href="/cams/7-ave-57-st.html">7 Ave @ 57 St</a></li>
+<li><a href="/cams/8-ave-44-st.html">8 AVE @ 44 St</a></li>
+<li><a href="/cams/8-ave-49-st.html">8 Ave @ 49 St</a></li>
+<li><a href="/cams/8-ave-57-st.html">8 Ave @ 57 St</a></li>
+<li><a href="/cams/8-ave-columbus-cr-south.html">8 Ave @ Columbus Cr South</a></li>
+<li><a href="/cams/8th-ave-31st-st.html">8th Ave @ 31st St</a></li>
+<li><a href="/cams/8th-ave-33rd-st.html">8th Ave @ 33rd St</a></li>
+<li><a href="/cams/9-ave-14-st.html">9 AVE @ 14 St</a></li>
+<li><a href="/cams/9-ave-45-st.html">9 Ave @ 45 St</a></li>
+<li><a href="/cams/ave-c-18-st.html">AVE C @ 18 St</a></li>
+<li><a href="/cams/ave-c-23-st.html">AVE C @ 23 St</a></li>
+<li><a href="/cams/allan-st-1-ave-houston-st-b.html">Allan St (1 Ave) @ Houston St (B)</a></li>
+<li><a href="/cams/allen-st-delancey-st-b.html">Allen St @ Delancey St (B)</a></li>
+<li><a href="/cams/amsterdam-178-st.html">Amsterdam @ 178 St</a></li>
+<li><a href="/cams/amsterdam-72-st.html">Amsterdam @ 72 St</a></li>
+<li><a href="/cams/amsterdam-86-st.html">Amsterdam @ 86 St</a></li>
+<li><a href="/cams/amsterdam-ave-181-st.html">Amsterdam Ave @ 181 St</a></li>
+<li><a href="/cams/amsterdam-ave-60-st.html">Amsterdam Ave @ 60 St</a></li>
+<li><a href="/cams/amsterdam-ave-79-st.html">Amsterdam Ave @ 79 St</a></li>
+<li><a href="/cams/amsterdam-ave-w-180-st.html">Amsterdam Ave @ W 180 st </a></li>
+<li><a href="/cams/audobon-ave-w-181-st.html">Audobon Ave @ W 181 ST</a></li>
+<li><a href="/cams/ave-of-americas-central-park-south.html">Ave of Americas @ Central Park South</a></li>
+<li><a href="/cams/bb-manhattan-hub-156-103.html">BB - Manhattan hub - 156.103</a></li>
+<li><a href="/cams/bb-ramp-from-pearl-st-156-104.html">BB - Ramp from Pearl St - 156.104</a></li>
+<li><a href="/cams/bb-42-south-rdwy-bridge-midspan.html">BB- 42 South Rdwy @ Bridge Midspan</a></li>
+<li><a href="/cams/bb-21-north-rdwy-above-south-st.html">BB-21 North Rdwy @ Above South St</a></li>
+<li><a href="/cams/bb-24-south-rdwy-above-south-st.html">BB-24 South Rdwy @ Above South St</a></li>
+<li><a href="/cams/bb-27-south-west-manhattan-tower.html">BB-27 South-West Manhattan Tower</a></li>
+<li><a href="/cams/bb-27a-manhattan-tower-south.html">BB-27A Manhattan Tower South</a></li>
+<li><a href="/cams/bb-28a-manhattan-tower-north.html">BB-28A Manhattan Tower North</a></li>
+<li><a href="/cams/bb-39-north-rdwy-bridge-midspan.html">BB-39 North Rdwy @ Bridge Midspan</a></li>
+<li><a href="/cams/bb-43-north-rdwy-center-expansion-jt.html">BB-43 North Rdwy @ Center Expansion Jt</a></li>
+<li><a href="/cams/baxter-st-canal-street.html">Baxter St @ Canal Street</a></li>
+<li><a href="/cams/bowery-cooper-sq-4-st.html">Bowery @ Cooper Sq &amp; 4 St</a></li>
+<li><a href="/cams/br-br-19-n-rdwy-fdr-dr.html">Br Br-19 N Rdwy @ FDR Dr</a></li>
+<li><a href="/cams/br-br-20-s-rdwy-fdr-dr.html">Br Br-20 S Rdwy FDR Dr</a></li>
+<li><a href="/cams/broadway-125-st.html">Broadway @ 125 St</a></li>
+<li><a href="/cams/broadway-145-st.html">Broadway @ 145 St</a></li>
+<li><a href="/cams/broadway-169-street.html">Broadway @ 169 Street</a></li>
+<li><a href="/cams/broadway-38-st.html">Broadway @ 38 St</a></li>
+<li><a href="/cams/broadway-42-st.html">Broadway @ 42 St</a></li>
+<li><a href="/cams/broadway-43-st.html">Broadway @ 43 St</a></li>
+<li><a href="/cams/broadway-45-st.html">Broadway @ 45 St</a></li>
+<li><a href="/cams/broadway-46-st.html">Broadway @ 46 St</a></li>
+<li><a href="/cams/broadway-46-st-quad-east.html">Broadway @ 46 St- Quad East</a></li>
+<li><a href="/cams/broadway-46-st-quad-north.html">Broadway @ 46 St- Quad North</a></li>
+<li><a href="/cams/broadway-46-st-quad-south.html">Broadway @ 46 St- Quad South</a></li>
+<li><a href="/cams/broadway-46-st-quad-west.html">Broadway @ 46 St- Quad West</a></li>
+<li><a href="/cams/broadway-46-street.html">Broadway @ 46 Street</a></li>
+<li><a href="/cams/broadway-6-ave-33-st.html">Broadway @ 6 Ave / 33 St</a></li>
+<li><a href="/cams/broadway-96-st.html">Broadway @ 96 St</a></li>
+<li><a href="/cams/broadway-battery-pl.html">Broadway @ Battery pl</a></li>
+<li><a href="/cams/broadway-chambers-st.html">Broadway @ Chambers St</a></li>
+<li><a href="/cams/broadway-columbus-circle.html">Broadway @ Columbus Circle</a></li>
+<li><a href="/cams/broadway-morris-st.html">Broadway @ Morris St</a></li>
+<li><a href="/cams/broadway-vesey-st.html">Broadway @ Vesey St</a></li>
+<li><a href="/cams/brooklyn-bridge-ped-walk-way.html">Brooklyn Bridge - Ped Walk Way</a></li>
+<li><a href="/cams/brooklyn-bridge-centre-street.html">Brooklyn Bridge @ Centre Street</a></li>
+<li><a href="/cams/broome-st-and-lafayette-st.html">Broome St and Lafayette St</a></li>
+<li><a href="/cams/c4-wst-02-nb-at-vestry-st.html">C4-WST-02-NB_at_Vestry_St</a></li>
+<li><a href="/cams/c4-wst-03-med-at-vestry-st.html">C4-WST-03-Med_at_Vestry_St</a></li>
+<li><a href="/cams/c4-wst-07-med-at-w-23rd-st.html">C4-WST-07-Med_at_W.23rd_St</a></li>
+<li><a href="/cams/cpw-110-st.html">CPW @ 110 St</a></li>
+<li><a href="/cams/canal-st-6-ave.html">Canal St @ 6 Ave </a></li>
+<li><a href="/cams/canal-st-broadway.html">Canal St @ Broadway</a></li>
+<li><a href="/cams/canal-st-greenwich-st-holland-tunnel.html">Canal St @ Greenwich St ( Holland Tunnel )</a></li>
+<li><a href="/cams/canal-st-hudson-st.html">Canal St @ Hudson St</a></li>
+<li><a href="/cams/canal-street-allen-street.html">Canal Street @ Allen Street</a></li>
+<li><a href="/cams/canal-street-chrystie-street.html">Canal Street @ Chrystie Street</a></li>
+<li><a href="/cams/central-park-72nd-st-post-37.html">Central Park @ 72nd St Post 37</a></li>
+<li><a href="/cams/central-park-s-columbus-cr.html">Central Park S @ Columbus Cr</a></li>
+<li><a href="/cams/central-park-west-100-st.html">Central Park West @ 100 St</a></li>
+<li><a href="/cams/central-park-west-65-st.html">Central Park West @ 65 St</a></li>
+<li><a href="/cams/central-park-west-66-st.html">Central Park West @ 66 St</a></li>
+<li><a href="/cams/central-park-west-72-st.html">Central Park West @ 72 St</a></li>
+<li><a href="/cams/central-park-west-77-st.html">Central Park West @ 77 St</a></li>
+<li><a href="/cams/central-park-west-w-61-st.html">Central Park West @ W 61 St</a></li>
+<li><a href="/cams/church-street-vesey.html">Church Street @ Vesey</a></li>
+<li><a href="/cams/delancey-st-bowery-st.html">Delancey St @ Bowery St </a></li>
+<li><a href="/cams/delancy-st-essex-st.html">Delancy St @ Essex St</a></li>
+<li><a href="/cams/dyer-ave-w-34-st.html">Dyer Ave @ W 34 St</a></li>
+<li><a href="/cams/dyer-ave-w-36-st.html">Dyer Ave @ W 36 St</a></li>
+<li><a href="/cams/dyer-ave-w-40-st.html">Dyer Ave @ W 40 St</a></li>
+<li><a href="/cams/dyer-ave-w-41-st.html">Dyer Ave @ W 41 St</a></li>
+<li><a href="/cams/e-14-st-irving-pl-lexington-av.html">E 14 St @ Irving Pl/Lexington Av</a></li>
+<li><a href="/cams/e-57-st-qbb.html">E 57 St @ QBB</a></li>
+<li><a href="/cams/e-63-st-qbb.html">E 63 St @ QBB</a></li>
+<li><a href="/cams/e-8-st-lafayette-st.html">E 8 St @ Lafayette St</a></li>
+<li><a href="/cams/east-houston-st-ave-b.html">East Houston St @ Ave B</a></li>
+<li><a href="/cams/fdr-145-st.html">FDR @ 145 St</a></li>
+<li><a href="/cams/fdr-38-st.html">FDR @ 38 St</a></li>
+<li><a href="/cams/fdr-48-st.html">FDR @ 48 St</a></li>
+<li><a href="/cams/fdr-e-127-st.html">FDR @ E 127 St</a></li>
+<li><a href="/cams/fdr-e-53-st.html">FDR @ E 53 St</a></li>
+<li><a href="/cams/fdr-e-6-st.html">FDR @ E 6 St</a></li>
+<li><a href="/cams/fdr-grand-st.html">FDR @ Grand St</a></li>
+<li><a href="/cams/fdr-dr-101-st.html">FDR Dr @ 101 St </a></li>
+<li><a href="/cams/fdr-dr-111-st.html">FDR Dr @ 111 ST</a></li>
+<li><a href="/cams/fdr-dr-131-st-3-ave-br.html">FDR Dr @ 131 ST (3 Ave Br)</a></li>
+<li><a href="/cams/fdr-dr-135-street.html">FDR Dr @ 135 Street</a></li>
+<li><a href="/cams/fdr-dr-155-street.html">FDR Dr @ 155 Street</a></li>
+<li><a href="/cams/fdr-dr-23-st.html">FDR Dr @ 23 St</a></li>
+<li><a href="/cams/fdr-dr-36-st.html">FDR Dr @ 36 St</a></li>
+<li><a href="/cams/fdr-dr-64-st.html">FDR Dr @ 64 St</a></li>
+<li><a href="/cams/fdr-dr-73-st.html">FDR Dr @ 73 St</a></li>
+<li><a href="/cams/fdr-dr-79-st.html">FDR Dr @ 79 St</a></li>
+<li><a href="/cams/fdr-dr-90-st.html">FDR Dr @ 90 St</a></li>
+<li><a href="/cams/fdr-dr-96-street.html">FDR Dr @ 96 Street</a></li>
+<li><a href="/cams/fdr-dr-bpu-entrance.html">FDR Dr @ BPU Entrance</a></li>
+<li><a href="/cams/fdr-dr-brooklyn-bridge.html">FDR Dr @ Brooklyn Bridge </a></li>
+<li><a href="/cams/fdr-dr-brooklyn-bridge-exit-nb.html">FDR Dr @ Brooklyn Bridge Exit NB</a></li>
+<li><a href="/cams/fdr-dr-catherine-street.html">FDR Dr @ Catherine Street</a></li>
+<li><a href="/cams/fdr-dr-old-slip.html">FDR Dr @ Old Slip</a></li>
+<li><a href="/cams/fdr-drive-124-st.html">FDR Drive @ 124 St</a></li>
+<li><a href="/cams/ft-washington-178-st.html">Ft Washington @ 178 St</a></li>
+<li><a href="/cams/galvin-ave-w-40-st.html">Galvin Ave @ W 40 St</a></li>
+<li><a href="/cams/grand-st-allen-st.html">Grand St @ Allen St</a></li>
+<li><a href="/cams/grand-st-bowery.html">Grand St @ Bowery</a></li>
+<li><a href="/cams/grand-st-broadway.html">Grand St @ Broadway</a></li>
+<li><a href="/cams/grand-st-essex-st.html">Grand St @ Essex St</a></li>
+<li><a href="/cams/harlem-river-dr-150-st.html">Harlem River Dr @ 150 St</a></li>
+<li><a href="/cams/harlem-river-dr-dyckman-st-10-av.html">Harlem River Dr @ Dyckman St /10 Av</a></li>
+<li><a href="/cams/harlem-river-dr-ramp-before-gwb-amst-179st-exit.html">Harlem River Dr Ramp @ Before GWB &amp; Amst_179St Exit</a></li>
+<li><a href="/cams/harlem-rvr-dr-fdr-166-st.html">Harlem Rvr Dr (FDR) @ 166 St</a></li>
+<li><a href="/cams/henry-hudson-158-st.html">Henry Hudson @ 158 St</a></li>
+<li><a href="/cams/henry-hudson-pkwy-125-st.html">Henry Hudson Pkwy @ 125 St</a></li>
+<li><a href="/cams/henry-hudson-pkwy-70-st.html">Henry Hudson Pkwy @ 70 St</a></li>
+<li><a href="/cams/henry-hudson-pkwy-96-st.html">Henry Hudson Pkwy @ 96 St</a></li>
+<li><a href="/cams/houston-st-bowery-st.html">Houston St @ Bowery St</a></li>
+<li><a href="/cams/houston-st-broadway.html">Houston St @ Broadway</a></li>
+<li><a href="/cams/houston-st-christies-st.html">Houston St @ Christies St</a></li>
+<li><a href="/cams/houston-st-lafeyette-st.html">Houston St @ Lafeyette St</a></li>
+<li><a href="/cams/hudson-st-erickson-pl-beach.html">Hudson St @ Erickson Pl/Beach</a></li>
+<li><a href="/cams/hudson-st-laight-st.html">Hudson St @ Laight St</a></li>
+<li><a href="/cams/irving-pl-14-st.html">Irving Pl @ 14 St</a></li>
+<li><a href="/cams/kenmare-st-cleveland-pl.html">Kenmare St @ Cleveland pl</a></li>
+<li><a href="/cams/lenox-ave-125-st.html">Lenox Ave @ 125 St</a></li>
+<li><a href="/cams/lexington-ave-23-st.html">Lexington Ave @ 23 St</a></li>
+<li><a href="/cams/lexington-ave-34-st.html">Lexington Ave @ 34 St</a></li>
+<li><a href="/cams/lexington-ave-42-st.html">Lexington Ave @ 42 St</a></li>
+<li><a href="/cams/lexington-ave-49-st.html">Lexington Ave @ 49 St</a></li>
+<li><a href="/cams/lexington-ave-53-st.html">Lexington Ave @ 53 St </a></li>
+<li><a href="/cams/lexington-ave-57-st.html">Lexington Ave @ 57 ST</a></li>
+<li><a href="/cams/lexington-ave-72-st.html">Lexington Ave @ 72 St</a></li>
+<li><a href="/cams/lexington-ave-96-st.html">Lexington Ave @ 96 St</a></li>
+<li><a href="/cams/lexington-ave-e-110-street.html">Lexington Ave @ E 110 Street</a></li>
+<li><a href="/cams/lexington-ave-e-120-st.html">Lexington Ave @ E 120 St</a></li>
+<li><a href="/cams/lexington-ave-e-125-st.html">Lexington Ave @ E 125 St</a></li>
+<li><a href="/cams/lexington-ave-e-128-street.html">Lexington Ave @ E 128 Street</a></li>
+<li><a href="/cams/lincoln-tun-approach-bet-9ave-10ave-w31-st.html">Lincoln Tun Approach(Bet 9Ave &amp; 10Ave) @ W31 ST </a></li>
+<li><a href="/cams/lincoln-tun-approach-bet-9av-10av-w-33-st-3-50.html">Lincoln Tun Approach(Bet. 9Av &amp; 10Av) @ W 33 St - 3.50</a></li>
+<li><a href="/cams/madison-34-st.html">MADISON @ 34 ST</a></li>
+<li><a href="/cams/madison-57-st.html">MADISON @ 57 ST</a></li>
+<li><a href="/cams/mhb-16-manhattan-colonade-entr.html">MHB-16 Manhattan Colonade Entr</a></li>
+<li><a href="/cams/mhb-16a-manh-east-of-colonnade-entr.html">MHB-16A Manh East of Colonnade Entr</a></li>
+<li><a href="/cams/mhb-17-manh-lrw-x-over.html">MHB-17 Manh LRW @ X OVER</a></li>
+<li><a href="/cams/mhb-19-manh-n-urdw-anch.html">MHB-19 Manh N URDW @ Anch</a></li>
+<li><a href="/cams/mhb-20-mahn-s-urw-anch.html">MHB-20 Mahn S URW @ Anch</a></li>
+<li><a href="/cams/mhb-21-manh-n-urdwy-arch.html">MHB-21 Manh N URDWY @ Arch</a></li>
+<li><a href="/cams/mhb-23-manh-lrdwy-twr.html">MHB-23 Manh LRDWY @ Twr</a></li>
+<li><a href="/cams/mhb-24-manh-s-urdwy-twr.html">MHB-24 Manh S URDWY @ Twr</a></li>
+<li><a href="/cams/madison-ave-42-st.html">Madison Ave @ 42 St</a></li>
+<li><a href="/cams/madison-ave-46-st-manhattan.html">Madison Ave @ 46 St - Manhattan</a></li>
+<li><a href="/cams/madison-ave-49-st.html">Madison Ave @ 49 St</a></li>
+<li><a href="/cams/madison-ave-79-st.html">Madison Ave @ 79 St</a></li>
+<li><a href="/cams/madison-ave-e-43-st.html">Madison Ave @ E 43 St</a></li>
+<li><a href="/cams/madison-ave-e-44-st.html">Madison Ave @ E 44 St</a></li>
+<li><a href="/cams/malcolm-x-blvd-lenox-ave-110-st-cpn.html">Malcolm X Blvd/Lenox Ave @ 110 St/CPN</a></li>
+<li><a href="/cams/malcom-x-blvd-145-st.html">Malcom X Blvd @ 145 St</a></li>
+<li><a href="/cams/park-ave-106-st.html">Park Ave @ 106 St</a></li>
+<li><a href="/cams/park-ave-23-st.html">Park Ave @ 23 St</a></li>
+<li><a href="/cams/park-ave-34-st.html">Park Ave @ 34 St</a></li>
+<li><a href="/cams/park-ave-37-st.html">Park Ave @ 37 St</a></li>
+<li><a href="/cams/park-ave-53-st.html">Park Ave @ 53 St</a></li>
+<li><a href="/cams/park-ave-57-st.html">Park Ave @ 57 St</a></li>
+<li><a href="/cams/park-ave-72-st.html">Park Ave @ 72 St</a></li>
+<li><a href="/cams/park-ave-79-st.html">Park Ave @ 79 St</a></li>
+<li><a href="/cams/park-ave-86-st.html">Park Ave @ 86 St</a></li>
+<li><a href="/cams/park-ave-96-st.html">Park Ave @ 96 St</a></li>
+<li><a href="/cams/park-ave-e-116-street.html">Park Ave @ E 116 Street</a></li>
+<li><a href="/cams/park-ave-e-125-st.html">Park Ave @ E 125 St</a></li>
+<li><a href="/cams/pearl-st-dover.html">Pearl St @ Dover</a></li>
+<li><a href="/cams/pearl-street-st-james-pl.html">Pearl Street @ St. James Pl</a></li>
+<li><a href="/cams/qbb-ll-cm-york-ave.html">QBB LL CM @ York Ave</a></li>
+<li><a href="/cams/qbb-nor-1-ave.html">QBB NOR @ 1 Ave</a></li>
+<li><a href="/cams/qbb-nor-york-ave.html">QBB NOR @ York Ave</a></li>
+<li><a href="/cams/qbb-sor-1-ave.html">QBB SOR @ 1 Ave</a></li>
+<li><a href="/cams/qbb-sor-sutton-pl.html">QBB SOR @ Sutton Pl</a></li>
+<li><a href="/cams/qbb-sor-w-channel.html">QBB SOR @ W Channel</a></li>
+<li><a href="/cams/qbb-ul-cm-roosevelt.html">QBB UL CM @ Roosevelt</a></li>
+<li><a href="/cams/qbb-ul-cm-york-ave.html">QBB UL CM @ York Ave</a></li>
+<li><a href="/cams/qbb-ul-entrance-thomson-ave.html">QBB UL Entrance @ Thomson Ave</a></li>
+<li><a href="/cams/queens-midtown-tunnel-35-st-exit.html">Queens Midtown Tunnel @ 35 St exit</a></li>
+<li><a href="/cams/queens-midtown-tunnel-exit-37-st.html">Queens Midtown Tunnel Exit @ 37 St</a></li>
+<li><a href="/cams/rt-9a-n-moore-st.html">RT. 9A @ N. Moore St</a></li>
+<li><a href="/cams/riverside-dr-pedestrian-crossing-nof-181-st.html">Riverside DR. @ Pedestrian Crossing NOF 181 St</a></li>
+<li><a href="/cams/riverside-dr-79-st.html">Riverside Dr @ 79 St</a></li>
+<li><a href="/cams/riverside-dr-washington-br-ent-ramp.html">Riverside Dr @ Washington Br ENT ramp</a></li>
+<li><a href="/cams/rockefeller-plaza-w-49-st.html">Rockefeller Plaza @ W 49 St</a></li>
+<li><a href="/cams/rockefeller-plaza-w-50-st.html">Rockefeller Plaza @ W 50 St</a></li>
+<li><a href="/cams/rockefeller-plaza-w-51-st.html">Rockefeller Plaza @ W 51 St</a></li>
+<li><a href="/cams/rockefeller-plz-48-st-between-5-ave-and-6-ave.html">Rockefeller Plz @ 48 St (between 5 Ave and 6 Ave)</a></li>
+<li><a href="/cams/south-st-broad-st.html">South St @ Broad St</a></li>
+<li><a href="/cams/south-street-pike-street.html">South Street @ Pike Street</a></li>
+<li><a href="/cams/st-nicholas-ave-125-st.html">St Nicholas Ave @ 125 St</a></li>
+<li><a href="/cams/st-nicholas-ave-145-st.html">St Nicholas Ave @ 145 St</a></li>
+<li><a href="/cams/st-nicholas-ave-181-st.html">St Nicholas Ave @ 181 St</a></li>
+<li><a href="/cams/sutton-pl-58-st.html">Sutton Pl @ 58 St</a></li>
+<li><a href="/cams/third-ave-bridge.html">Third Ave Bridge</a></li>
+<li><a href="/cams/union-sq-14-st.html">Union Sq @ 14 St</a></li>
+<li><a href="/cams/vanderbilt-ave-e-45-st.html">Vanderbilt Ave @ E 45 St</a></li>
+<li><a href="/cams/varick-st-beach-st.html">Varick St @ Beach St </a></li>
+<li><a href="/cams/varick-st-laight-st.html">Varick St @ Laight St</a></li>
+<li><a href="/cams/varick-st-watt-st.html">Varick St @ Watt St</a></li>
+<li><a href="/cams/varick-st-broome-st.html">Varick st @ Broome st</a></li>
+<li><a href="/cams/wbb-11-nir-5-east-of-manhattan-tower.html">WBB - 11  NIR-5 @ East of Manhattan Tower</a></li>
+<li><a href="/cams/wbb-16-sor-4-kent-ave-south.html">WBB - 16 SOR-4 @ Kent Ave South</a></li>
+<li><a href="/cams/wbb-5-nor-5-delancey-st-north-fdr.html">WBB - 5 NOR-5 @ Delancey St North/FDR</a></li>
+<li><a href="/cams/wbb-nor-3-kent-ave-north.html">WBB - NOR - 3 @  Kent Ave North</a></li>
+<li><a href="/cams/wbb-12-nir-12-manhattan-mid-span.html">WBB -12 NIR-12 Manhattan Mid Span</a></li>
+<li><a href="/cams/wbb-17-sor-2-delancey-st-fdr.html">WBB -17  SOR - 2  @ Delancey St/FDR</a></li>
+<li><a href="/cams/wbb-sir-1-manhattan-anchorage.html">WBB SIR - 1 @ Manhattan Anchorage</a></li>
+<li><a href="/cams/wbb-10-nir-4-fdr-rd.html">WBB-10 NIR-4 @ FDR RD</a></li>
+<li><a href="/cams/wbb-20-above-bedford-ave-berry-st.html">WBB-20 @ Above Bedford Ave ( Berry St )</a></li>
+<li><a href="/cams/wbb-6-north-rdwy-delancey-st-clinton-st.html">WBB-6 North Rdwy @ Delancey St &amp; Clinton St</a></li>
+<li><a href="/cams/wbb-6-south-rdwy-delancy-st-and-clinton-st.html">WBB-6 South Rdwy @ Delancy St and Clinton St</a></li>
+<li><a href="/cams/water-st-john-st.html">Water St @ John St</a></li>
+<li><a href="/cams/water-st-whitehall.html">Water St @ Whitehall</a></li>
+<li><a href="/cams/west-broadway-west-houston-st.html">West Broadway @ West Houston St</a></li>
+<li><a href="/cams/west-houston-hudson-st.html">West Houston @ Hudson St</a></li>
+<li><a href="/cams/west-houston-varick-st.html">West Houston @ Varick St</a></li>
+<li><a href="/cams/west-side-hwy-bpu-entrance-148-54.html">West Side HWY BPU Entrance -148.54</a></li>
+<li><a href="/cams/west-st-canal-st.html">West St @ Canal St</a></li>
+<li><a href="/cams/west-st-clarkson.html">West St @ Clarkson</a></li>
+<li><a href="/cams/west-st-murray.html">West St @ Murray</a></li>
+<li><a href="/cams/west-st-west-houston-st.html">West St @ West Houston St</a></li>
+<li><a href="/cams/west-street-intrepid.html">West Street @ Intrepid</a></li>
+<li><a href="/cams/west-st-and-battery-place.html">West st and Battery place</a></li>
+<li><a href="/cams/west-st-and-chambers.html">West st and Chambers</a></li>
+<li><a href="/cams/west-st-and-fulton.html">West st and Fulton</a></li>
+<li><a href="/cams/west-st-and-west-thames-battery-tunnel.html">West st and West Thames (Battery tunnel)</a></li>
+<li><a href="/cams/west-street-underpass-entrance.html">West street underpass entrance</a></li>
+<li><a href="/cams/worth-st-centre-st.html">Worth St @ Centre St</a></li>
+<li><a href="/cams/worth-street-lafayette-street.html">Worth Street @ Lafayette Street</a></li>
+<li><a href="/cams/york-ave-63-st.html">York Ave @ 63 St</a></li>
+<li><a href="/cams/york-ave-72-st.html">York Ave @ 72 St</a></li>
+</ul>
+<h2>Other boroughs</h2>
+<ul class="cols">
+<li><a href="/cams/bronx.html">Bronx (74)</a></li>
+<li><a href="/cams/brooklyn.html">Brooklyn (200)</a></li>
+<li><a href="/cams/queens.html">Queens (194)</a></li>
+<li><a href="/cams/staten-island.html">Staten Island (99)</a></li>
+</ul>
+
+</main>
+<footer><div class="wrap">
+Bilbo Data reads the public NYC DOT traffic-camera network and turns it into
+counts. Imagery belongs to NYC DOT; the counts are ours. Updated 2026-07-31.
+</div></footer>
+</body>
+</html>

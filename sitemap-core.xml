@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://bilbodata.vercel.app/</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://bilbodata.vercel.app/about.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bilbodata.vercel.app/library.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bilbodata.vercel.app/skyline.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/bronx.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/brooklyn.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/manhattan.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/queens.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/staten-island.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bilbodata.vercel.app/cams/</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://bilbodata.vercel.app/data.html</loc><lastmod>2026-07-31</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+</urlset>

@@ -1,0 +1,43 @@
+# Bilbo Data
+
+> Independent computer vision on New York City's 917 public Department of
+> Transportation traffic cameras. We count what passes — cars, trucks, buses,
+> motorcycles — per camera, per timestamp, and publish it as open data.
+> We do not identify people: no faces, no plate numbers, no tracking of
+> individuals. "Can't tell" is an allowed answer.
+
+## What is here
+
+- [Live dashboard](https://bilbodata.vercel.app/): real-time counts across the counted camera set.
+- [All 917 cameras](https://bilbodata.vercel.app/cams/): every public NYC DOT camera, with a live
+  view, coordinates, observed counts and its nearest neighbours.
+- [Open dataset](https://bilbodata.vercel.app/data.html): the vehicle-count CSV and Parquet files,
+  free, no login, with the caveats stated in full.
+- [Vehicle library](https://bilbodata.vercel.app/library.html): what the system can and cannot tell
+  apart at NYC DOT camera resolution.
+- [SkyLine](https://bilbodata.vercel.app/skyline.html): a 3D cutaway of the city's subway tunnels
+  with live MTA train positions.
+- [About](https://bilbodata.vercel.app/about.html): the privacy line, the method, and the ceiling.
+
+## Boroughs
+
+- [Manhattan](https://bilbodata.vercel.app/cams/manhattan.html) — 350 cameras
+- [Brooklyn](https://bilbodata.vercel.app/cams/brooklyn.html) — 200 cameras
+- [Queens](https://bilbodata.vercel.app/cams/queens.html) — 194 cameras
+- [Staten Island](https://bilbodata.vercel.app/cams/staten-island.html) — 99 cameras
+- [Bronx](https://bilbodata.vercel.app/cams/bronx.html) — 74 cameras
+
+## Data
+
+- CSV: https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/counts.csv
+- Fields: timestamp, camera id, name, car, moto, bus, truck, total,
+  brightness, lit, samples, stale.
+- Licence: free to use with attribution to Bilbo Data. Camera imagery
+  belongs to NYC DOT; the counts are ours.
+
+## Honest limits
+
+The cameras are low resolution and many are unusable at night. Counts are of
+objects in a frame, not a traffic census. The `brightness`, `lit` and `stale`
+columns exist so you can filter on exactly that. We publish the flaws next to
+the numbers rather than smoothing them away.
