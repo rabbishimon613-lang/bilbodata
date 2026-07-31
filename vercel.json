@@ -10,14 +10,819 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.bilbodata.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bilbodata.com"
+        }
+      ],
       "destination": "https://bilbodata.com/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "bilbodata.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "bilbodata.vercel.app"
+        }
+      ],
       "destination": "https://bilbodata.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/cams/bb-manhattan-hub-156-103.html",
+      "destination": "/cams/bb-manhattan-hub.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-bre-06-w-wb-at-cbx-hutch-int-ex6a.html",
+      "destination": "/cams/bruckner-expwy-cbx-hutchinson-int-exit-6a.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-22-wb-at-lee-ave-ex31.html",
+      "destination": "/cams/brooklyn-queens-expwy-lee-ave-exit-31-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-15-wb-at-queens-blvd-ex19.html",
+      "destination": "/cams/long-island-expwy-queens-blvd-exit-19-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-02-eb-at-wse-int-ex3.html",
+      "destination": "/cams/staten-island-expwy-wse-int-exit-3-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c4-wst-03-med-at-vestry-st.html",
+      "destination": "/cams/west-side-hwy-vestry-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-pe-05-ctr-at-7th-ave-ex4.html",
+      "destination": "/cams/prospect-expwy-7th-ave-exit-4.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-02-wb-at-union-st-ex26.html",
+      "destination": "/cams/brooklyn-queens-expwy-union-st-exit-26-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-42-wb-at-30th-ave-ex43.html",
+      "destination": "/cams/brooklyn-queens-expwy-30th-ave-exit-43-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-06-nb-at-macombs-dam-br-ex5.html",
+      "destination": "/cams/major-deegan-expwy-macombs-dam-bridge-exit-5-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-kwv-02-nb-at-bloomngdale-rd-ex2.html",
+      "destination": "/cams/korean-war-veterans-pkwy-bloomngdale-rd-exit-2-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/prospect-st-old-fulton-st-156-63.html",
+      "destination": "/cams/prospect-st-old-fulton-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-mlk-01-sb-at-watchogue-rd-ex10.html",
+      "destination": "/cams/martin-luther-king-jr-expwy-watchogue-rd-exit-10-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/flatbush-ave-and-4-ave.html",
+      "destination": "/cams/flatbush-ave-4-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-bre-11-sb-at-buhre-ave-ex8a.html",
+      "destination": "/cams/bruckner-expwy-buhre-ave-exit-8a-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-tne-01-sb-at-otis-ave.html",
+      "destination": "/cams/throgs-neck-expwy-otis-ave-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-28-wb-at-manhattan-ave-ex33.html",
+      "destination": "/cams/brooklyn-queens-expwy-manhattan-ave-exit-33-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-01-cntr-at-e-135th-st-ex1.html",
+      "destination": "/cams/major-deegan-expwy-e-135th-st-exit-1.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/grand-central-pkwy-midland-pkwy-62-138.html",
+      "destination": "/cams/grand-central-pkwy-midland-pkwy.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-07-nb-at-frsh-kills-crk-ex5.html",
+      "destination": "/cams/west-shore-expwy-frsh-kills-crk-exit-5-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-44-med-at-31st-ave-ex41.html",
+      "destination": "/cams/brooklyn-queens-expwy-31st-ave-exit-41.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-10-sb-at-brx-rvr-pkwy-ex4a.html",
+      "destination": "/cams/cross-bronx-expwy-bronx-river-pkwy-exit-4a-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-15-nb-at-jerome-ave-ex13.html",
+      "destination": "/cams/major-deegan-expwy-jerome-ave-exit-13-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-03-n-nb-at-nelson-ave-ex02a.html",
+      "destination": "/cams/cross-bronx-expwy-nelson-ave-exit-02a-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-12-nb-at-bloomfield-ave-ex9.html",
+      "destination": "/cams/west-shore-expwy-bloomfield-ave-exit-9-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-31-eb-at-54th-ave.html",
+      "destination": "/cams/brooklyn-queens-expwy-54th-ave-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-06-wb-at-63rd-st.html",
+      "destination": "/cams/gowanus-expwy-63rd-st-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/drumgoole-rd-e-bloomingdale-rd-quad-ptz-143-26.html",
+      "destination": "/cams/drumgoole-rd-e-bloomingdale-rd-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/2nd-camera-south-bound-bpu-148-57.html",
+      "destination": "/cams/2nd-camera-south-bound-bpu.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/2nd-camera-north-bound-bpu-148-52.html",
+      "destination": "/cams/2nd-camera-north-bound-bpu.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/victory-blvd-christopher-lamberts-la-quad-ptz-131-3.html",
+      "destination": "/cams/victory-blvd-christopher-lamberts-la-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-30b-w-at-stewart-ave.html",
+      "destination": "/cams/brooklyn-queens-expwy-stewart-ave-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-29-wb-at-morgan-street.html",
+      "destination": "/cams/brooklyn-queens-expwy-morgan-st-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-mlk-03-nb-at-walkr-st-bayonne-br.html",
+      "destination": "/cams/martin-luther-king-jr-expwy-walkr-st-bayonne-bridge-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/myrtle-ave-79-lane-73-74.html",
+      "destination": "/cams/myrtle-ave-79-lane.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-vwe-25-nb-at-gcp-intr-ex14.html",
+      "destination": "/cams/van-wyck-expwy-gcp-intr-exit-14-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/west-st-and-fulton.html",
+      "destination": "/cams/west-st-fulton.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/victory-blvd-richmond-ave-quad-ptz-130-146.html",
+      "destination": "/cams/victory-blvd-richmond-ave-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/west-st-and-west-thames-battery-tunnel.html",
+      "destination": "/cams/west-st-west-thames-battery-tunnel.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-mlk-02-nb-at-forest-ave-ex11.html",
+      "destination": "/cams/martin-luther-king-jr-expwy-forest-ave-exit-11-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-vwe-28-sb-at-67th-rd-ex11.html",
+      "destination": "/cams/van-wyck-expwy-67th-rd-exit-11-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-kwv-01-nb-at-tyrllan-ave-outrbr.html",
+      "destination": "/cams/korean-war-veterans-pkwy-tyrllan-ave-outrbr-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-04-wb-at-lambert-st-ex6.html",
+      "destination": "/cams/staten-island-expwy-lambert-st-exit-6-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-09-sb-at-depot-pl-ex7-cbx.html",
+      "destination": "/cams/major-deegan-expwy-depot-pl-ex7-cbx-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-04-sb-at-rossville-ave-ex4.html",
+      "destination": "/cams/west-shore-expwy-rossville-ave-exit-4-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-05-wb-at-mlk-int-ex9.html",
+      "destination": "/cams/staten-island-expwy-mlk-int-exit-9-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-04-wb-at-sackett-st-ex26.html",
+      "destination": "/cams/brooklyn-queens-expwy-sackett-st-exit-26-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-37-eb-at-41st-ave.html",
+      "destination": "/cams/brooklyn-queens-expwy-41st-ave-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/queens-blvd-48-st-52-130.html",
+      "destination": "/cams/queens-blvd-48-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-13-wb-at-middagh-st-ex28a.html",
+      "destination": "/cams/brooklyn-queens-expwy-middagh-st-exit-28a-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-15-eb-at-fingerboard-rd-ex15.html",
+      "destination": "/cams/staten-island-expwy-fingerboard-rd-exit-15-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-02-eb-at-27th-st-ex15.html",
+      "destination": "/cams/long-island-expwy-27th-st-exit-15-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-gcp-12-wb-at-69th-rd-ex11.html",
+      "destination": "/cams/grand-central-pkwy-69th-rd-exit-11-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-bre-09-sb-at-lasalle-ave-ex7c.html",
+      "destination": "/cams/bruckner-expwy-lasalle-ave-exit-7c-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/columbia-st-bqe-ent-and-exit.html",
+      "destination": "/cams/columbia-st-bqe-ent-exit.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-09-sb-at-meredith-blvd-ex8.html",
+      "destination": "/cams/west-shore-expwy-meredith-blvd-exit-8-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-20-wb-at-wythe-ave-ex31.html",
+      "destination": "/cams/brooklyn-queens-expwy-wythe-ave-exit-31-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-06-n-nb-at-weeks-ave-ext02b.html",
+      "destination": "/cams/cross-bronx-expwy-weeks-ave-exit-t02b-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-06a-e-at-crafton-ave-ex10.html",
+      "destination": "/cams/staten-island-expwy-crafton-ave-exit-10-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/1st-camera-north-bound-bpu-148-51.html",
+      "destination": "/cams/1st-camera-north-bound-bpu.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-08-eb-48th-st-ll-ex16.html",
+      "destination": "/cams/long-island-expwy-48th-st-ll-exit-16-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/grand-central-pkwy-parson-blvd-102-50.html",
+      "destination": "/cams/grand-central-pkwy-parson-blvd.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c4-wst-07-med-at-w-23rd-st.html",
+      "destination": "/cams/west-side-hwy-w-23rd-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-08-eb-at-bradley-ave-ex11.html",
+      "destination": "/cams/staten-island-expwy-bradley-ave-exit-11-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-08-sb-at-victory-blvd-ex7.html",
+      "destination": "/cams/west-shore-expwy-victory-blvd-exit-7-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/4-ave-38-st-179-90.html",
+      "destination": "/cams/4-ave-38-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-22-wb-at-163rd-st-ex25.html",
+      "destination": "/cams/long-island-expwy-163rd-st-exit-25-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/west-side-hwy-bpu-entrance-148-54.html",
+      "destination": "/cams/west-side-hwy-bpu-entrance.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-26-cntr-at-grand-ave-ex32.html",
+      "destination": "/cams/brooklyn-queens-expwy-grand-ave-exit-32.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-01-wb-at-92nd-st-vrrazano-br.html",
+      "destination": "/cams/gowanus-expwy-92nd-st-vrrazano-bridge-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-01-nb-at-englewood-ave-ex2.html",
+      "destination": "/cams/west-shore-expwy-englewood-ave-exit-2-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/atlantic-ave-hicks-ave-quad-ptz-165-202.html",
+      "destination": "/cams/atlantic-ave-hicks-ave-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-14a-wb-at-cole-st.html",
+      "destination": "/cams/gowanus-expwy-cole-st-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/gatling-pl-86-st-186-2.html",
+      "destination": "/cams/gatling-pl-86-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-39-wb-at-broadway-ex40.html",
+      "destination": "/cams/brooklyn-queens-expwy-broadway-exit-40-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-bre-10-nb-at-middle-twn-rd-ex7c.html",
+      "destination": "/cams/bruckner-expwy-middle-town-rd-exit-7c-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-10-sb-at-south-ave-ex8.html",
+      "destination": "/cams/west-shore-expwy-south-ave-exit-8-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-30-eb-at-stewrt-ave-kosc-br.html",
+      "destination": "/cams/brooklyn-queens-expwy-stewart-ave-kosciuszko-bridge-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/wbb-6-south-rdwy-delancy-st-and-clinton-st.html",
+      "destination": "/cams/wbb-6-south-rdwy-delancy-st-clinton-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-11-wb-at-furmn-st-up-ex28a.html",
+      "destination": "/cams/brooklyn-queens-expwy-furmn-st-up-exit-28a-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/smith-st-9-st-170-106.html",
+      "destination": "/cams/smith-st-9-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-06-eb-at-victory-blvd-ex10.html",
+      "destination": "/cams/staten-island-expwy-victory-blvd-exit-10-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-03-sb-at-bloomngdale-rd-ex3.html",
+      "destination": "/cams/west-shore-expwy-bloomngdale-rd-exit-3-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/west-st-and-battery-place.html",
+      "destination": "/cams/west-st-battery-place.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-16-wb-at-sands-st-ex29a.html",
+      "destination": "/cams/brooklyn-queens-expwy-sands-st-exit-29a-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-27-eb-at-mtrpolitan-av-ex32.html",
+      "destination": "/cams/brooklyn-queens-expwy-mtrpolitan-av-exit-32-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-12-sb-at-heath-ave-ex9.html",
+      "destination": "/cams/major-deegan-expwy-heath-ave-exit-9-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-gcp-11-eb-at-64th-ave-ex10.html",
+      "destination": "/cams/grand-central-pkwy-64th-ave-exit-10-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/columbia-st-carroll-st-168-202.html",
+      "destination": "/cams/columbia-st-carroll-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-30a-w-at-stewrt-ave-kosc-br.html",
+      "destination": "/cams/brooklyn-queens-expwy-stewart-ave-kosciuszko-bridge-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-29-wb-at-220th-st-ex29.html",
+      "destination": "/cams/long-island-expwy-220th-st-exit-29-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-11-sb-at-edwrd-crry-ave-ex9.html",
+      "destination": "/cams/west-shore-expwy-edwrd-crry-ave-exit-9-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-02-sb-at-woodrow-rd-ex3.html",
+      "destination": "/cams/west-shore-expwy-woodrow-rd-exit-3-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/drumgoole-rd-west-arthur-kill-rd-ptz-141-58.html",
+      "destination": "/cams/drumgoole-rd-west-arthur-kill-rd-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-gcp-07-eb-at-ditmars-blvd-ex9.html",
+      "destination": "/cams/grand-central-pkwy-ditmars-blvd-exit-9-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/broome-st-and-lafayette-st.html",
+      "destination": "/cams/broome-st-lafayette-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-05-s-sb-at-walton-ave-ex2a.html",
+      "destination": "/cams/cross-bronx-expwy-walton-ave-exit-2a-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-gcp-13-eb-at-72nd-rd-ex11.html",
+      "destination": "/cams/grand-central-pkwy-72nd-rd-exit-11-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-28-eb-at-213th-st-ex28.html",
+      "destination": "/cams/long-island-expwy-213th-st-exit-28-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/1-st-camera-south-bound-bpu-148-55.html",
+      "destination": "/cams/1-st-camera-south-bound-bpu.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-12-wb-at-furmn-st-ll-ex28a.html",
+      "destination": "/cams/brooklyn-queens-expwy-furmn-st-ll-exit-28a-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/drumgoole-rd-w-arden-ave-quad-ptz-141-10.html",
+      "destination": "/cams/drumgoole-rd-w-arden-ave-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-pe-01-cntr-at-caton-ave-ex6.html",
+      "destination": "/cams/prospect-expwy-caton-ave-exit-6.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-09-eb-at-manor-rd.html",
+      "destination": "/cams/staten-island-expwy-manor-rd-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-17-eb-at-gcp-ex22a-gcp.html",
+      "destination": "/cams/long-island-expwy-gcp-exit-22a-gcp-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-02-wb-at-ft-hmiltn-pkwy-ex19.html",
+      "destination": "/cams/gowanus-expwy-ft-hmiltn-pkwy-exit-19-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-vwe-20-nb-at-main-street-ex8.html",
+      "destination": "/cams/van-wyck-expwy-main-st-exit-8-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/sands-st-jay-st-quad-149-27.html",
+      "destination": "/cams/sands-st-jay-st-quad.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbx-18-med-at-pennyfield-av-tnb.html",
+      "destination": "/cams/cross-bronx-expwy-pennyfield-av-tnb.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-brp-01-sb-at-e-174th-st-ex3.html",
+      "destination": "/cams/bronx-river-pkwy-e-174th-st-exit-3-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-08-e-eb-at-54th-st.html",
+      "destination": "/cams/gowanus-expwy-54th-st-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-04a-wb-at-richmond-ave.html",
+      "destination": "/cams/staten-island-expwy-richmond-ave-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-13-eb-at-mosel-avenue.html",
+      "destination": "/cams/staten-island-expwy-mosel-ave-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/bb-ramp-from-pearl-st-156-104.html",
+      "destination": "/cams/bb-ramp-from-pearl-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/west-st-and-chambers.html",
+      "destination": "/cams/west-st-chambers.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-08-eb-at-atlantic-ave-ex27.html",
+      "destination": "/cams/brooklyn-queens-expwy-atlantic-ave-exit-27-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/4-ave-prospect-ave-66-138.html",
+      "destination": "/cams/4-ave-prospect-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-06-nb-at-muldoon-ave-ex5.html",
+      "destination": "/cams/west-shore-expwy-muldoon-ave-exit-5-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-03-wb-at-south-ave-ex5.html",
+      "destination": "/cams/staten-island-expwy-south-ave-exit-5-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-01-n-nb-at-amsterdam-ave-ex-hrd.html",
+      "destination": "/cams/cross-bronx-expwy-amsterdam-ave-ex-hrd-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/sands-st-jay-st-quad-ptz-149-26.html",
+      "destination": "/cams/sands-st-jay-st-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-11-eb-at-60th-st-ex18.html",
+      "destination": "/cams/long-island-expwy-60th-st-exit-18-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c4-wst-02-nb-at-vestry-st.html",
+      "destination": "/cams/west-side-hwy-vestry-st-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/atlantic-ave-hicks-ave-quad-165-203.html",
+      "destination": "/cams/atlantic-ave-hicks-ave-quad.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/richmond-ave-arthur-kill-rd-quad-ptz-141-131.html",
+      "destination": "/cams/richmond-ave-arthur-kill-rd-quad-ptz.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-03-sb-at-e-138th-st-ex3.html",
+      "destination": "/cams/major-deegan-expwy-e-138th-st-exit-3-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-45-eb-at-gcp-astoria-blvd.html",
+      "destination": "/cams/brooklyn-queens-expwy-gcp-astoria-blvd-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/rockefeller-plz-48-st-between-5-ave-and-6-ave.html",
+      "destination": "/cams/rockefeller-plz-48-st-between-5-ave-6-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-10-wb-at-state-st-up-ex27.html",
+      "destination": "/cams/brooklyn-queens-expwy-state-st-up-exit-27-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-lie-27-wb-at-clearview-exwy-ex27.html",
+      "destination": "/cams/long-island-expwy-clearview-exwy-exit-27-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-pe-06-wb-at-6th-ave-ex2.html",
+      "destination": "/cams/prospect-expwy-6th-ave-exit-2-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-13-eb-at-prospect-expy-ex24.html",
+      "destination": "/cams/gowanus-expwy-prospect-expy-exit-24-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-12-wb-btwn-clove-road-and-richmond-road.html",
+      "destination": "/cams/staten-island-expwy-btwn-clove-road-and-richmond-road-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-14-wb-at-midgh-st-ex28a.html",
+      "destination": "/cams/brooklyn-queens-expwy-midgh-st-exit-28a-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-19-wb-at-kent-ave-ex31.html",
+      "destination": "/cams/brooklyn-queens-expwy-kent-ave-exit-31-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbx-17-med-at-e-tremont-ave-ex10.html",
+      "destination": "/cams/cross-bronx-expwy-e-tremont-ave-exit-10.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-07-eb-at-woolley-ave-ex10.html",
+      "destination": "/cams/staten-island-expwy-woolley-ave-exit-10-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-02-nb-at-willis-ave-ex2.html",
+      "destination": "/cams/major-deegan-expwy-willis-ave-exit-2-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-12-w-wb-at-26th-st-ex23.html",
+      "destination": "/cams/gowanus-expwy-26th-st-exit-23-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-01-wb-at-forest-ave.html",
+      "destination": "/cams/staten-island-expwy-forest-ave-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-pe-02-ctr-at-ft-hamltn-pkwy-ex5.html",
+      "destination": "/cams/prospect-expwy-ft-hamilton-pkwy-exit-5.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-wse-05-nb-at-arden-ave-ex4.html",
+      "destination": "/cams/west-shore-expwy-arden-ave-exit-4-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-04-sb-at-grand-concrse-ex3.html",
+      "destination": "/cams/major-deegan-expwy-grand-concrse-exit-3-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-11-eb-at-renwick-ave.html",
+      "destination": "/cams/staten-island-expwy-renwick-ave-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-11-nb-at-w-179th-st-ex8.html",
+      "destination": "/cams/major-deegan-expwy-w-179th-st-exit-8-northbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-ge-11-e-eb-at-37th-st-ex23.html",
+      "destination": "/cams/gowanus-expwy-37th-st-exit-23-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/victory-blvd-gannon-ave-131-34.html",
+      "destination": "/cams/victory-blvd-gannon-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-25-wb-at-s-5th-st-ex32.html",
+      "destination": "/cams/brooklyn-queens-expwy-s-5th-st-exit-32-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-she-02-sb-at-cross-brx-expwy.html",
+      "destination": "/cams/sheridan-expwy-cross-brx-exit-pwy-southbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-41-eb-at-31st-ave-ex43.html",
+      "destination": "/cams/brooklyn-queens-expwy-31st-ave-exit-43-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-cbe-04-n-nb-at-macombs-rd-ex2a.html",
+      "destination": "/cams/cross-bronx-expwy-macombs-rd-exit-2a.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c5-bqe-38-e-at-broadway.html",
+      "destination": "/cams/brooklyn-queens-expwy-broadway-eastbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/victory-blvd-morani-st-131-26.html",
+      "destination": "/cams/victory-blvd-morani-st.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/old-fulton-st-vine-st-hicks-st-quad-156-24.html",
+      "destination": "/cams/old-fulton-st-vine-st-hicks-st-quad.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c2-bqe-06-wb-at-congress-st-ex27.html",
+      "destination": "/cams/brooklyn-queens-expwy-congress-st-exit-27-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-tne-02-med-at-randall-ave.html",
+      "destination": "/cams/throgs-neck-expwy-randall-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/flatbush-ave-and-atlantic-ave.html",
+      "destination": "/cams/flatbush-ave-atlantic-ave.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c3-sie-14-wb-at-hyland-blvd-ex14.html",
+      "destination": "/cams/staten-island-expwy-hyland-blvd-exit-14-westbound.html",
+      "permanent": true
+    },
+    {
+      "source": "/cams/c1-mde-14-nb-at-mosholu-pkwy-ex12.html",
+      "destination": "/cams/major-deegan-expwy-mosholu-pkwy-exit-12-northbound.html",
       "permanent": true
     }
   ],
@@ -25,25 +830,37 @@
     {
       "source": "/(.*).html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate, s-maxage=0" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=0"
+        }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate, s-maxage=0" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=0"
+        }
       ]
     },
     {
       "source": "/cams/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate, s-maxage=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/(sitemap.*\\.xml|robots\\.txt|llms\\.txt)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate, s-maxage=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=3600"
+        }
       ]
     }
   ]

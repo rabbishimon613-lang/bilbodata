@@ -29,13 +29,131 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 
+# ------------------------------------------------------------- camera names
+# 146 of the 917 DOT names are machine strings ("C2-BQE-22-WB_at_Lee_Ave-Ex31").
+# index.html already decodes them client-side; this is that same pretty()
+# ported to Python so the static pages, their titles and their URLs read the
+# way a person would actually search for them.
+HWY = {
+    "PE": "Prospect Expwy", "BQE": "Brooklyn-Queens Expwy", "GOW": "Gowanus Expwy",
+    "LIE": "Long Island Expwy", "GCP": "Grand Central Pkwy", "VWE": "Van Wyck Expwy",
+    "CVE": "Clearview Expwy", "WSE": "West Shore Expwy", "SIE": "Staten Island Expwy",
+    "MDE": "Major Deegan Expwy", "BRE": "Bruckner Expwy", "CBX": "Cross Bronx Expwy",
+    "CBE": "Cross Bronx Expwy", "SHE": "Sheridan Expwy", "HRP": "Hutchinson River Pkwy",
+    "BRP": "Bronx River Pkwy", "HHP": "Henry Hudson Pkwy", "FDR": "FDR Drive",
+    "NSP": "Northern State Pkwy", "KVP": "Korean War Veterans Pkwy",
+    # codes index.html's map never covered, read off the cameras' own boroughs
+    "GE": "Gowanus Expwy", "WST": "West Side Hwy",
+    "MLK": "Martin Luther King Jr Expwy", "KWV": "Korean War Veterans Pkwy",
+    "TNE": "Throgs Neck Expwy",
+}
+DIRW = {"NB": "northbound", "SB": "southbound", "EB": "eastbound", "WB": "westbound"}
+ABBR = [(r"\bHamltn\b", "Hamilton"), (r"\bBrx\.?\s?Rvr\b", "Bronx River"),
+        (r"\bStewrt\b", "Stewart"), (r"\bKosc\b", "Kosciuszko"), (r"\bTwn\b", "Town"),
+        (r"\bHutch\b", "Hutchinson"), (r"[-_\s]Br\.?$", " Bridge"),
+        (r"\bAvenue\b", "Ave"), (r"\bStreet\b", "St")]
+
+
+def pretty(n):
+    """Decode a DOT camera name into something readable. Returns (name, hwy_code)."""
+    if not n:
+        return n, None
+    m = re.match(r"^C\d+-([A-Z]{2,4})-\d+[A-Z]?[-_](.*)$", n)
+    if m and m.group(1) in HWY:
+        rest, direction = m.group(2), ""
+        dm = re.match(r"^(NB|SB|EB|WB|N|S|E|W)(?=[_-])", rest, re.I)
+        if dm:
+            direction = DIRW.get(dm.group(1).upper()[0] + "B", "")
+        cross = re.sub(r"^(NB|SB|EB|WB|N|S|E|W|Ctr|Cntr|Center|Med|Btwn)(?=[_-])[_-]*",
+                       "", rest, flags=re.I)
+        am = re.search(r"at[_ ](.+)$", cross, re.I)
+        if am:
+            cross = am.group(1)
+        exit_no = ""
+        em = re.search(r"[-_]?Ex[_.]?(\w+)$", cross, re.I)
+        if em:
+            exit_no = em.group(1)
+            cross = re.sub(r"[-_]?Ex[_.]?\w+$", "", cross, flags=re.I)
+        cross = re.sub(r"[- ]+$", "", cross.replace("_", " ")).strip()
+        for pat, rep in ABBR:
+            cross = re.sub(pat, rep, cross, flags=re.I)
+        out = HWY[m.group(1)] + (f" @ {cross}" if cross else "")
+        if exit_no:
+            out += f" · Exit {exit_no}"
+        if direction:
+            out += f" ({direction})"
+        return out, m.group(1)
+    # non-highway names: strip the trailing DOT asset number and tidy separators
+    out = re.sub(r"\s*-?\s*\d{2,3}\.\d+\s*$", "", n)
+    out = re.sub(r"\s+and\s+", " @ ", out).replace("_", " ")
+    out = re.sub(r"\bFt\.\s?", "Ft ", out)
+    return re.sub(r"\s{2,}", " ", out).strip(" -·"), None
+
+
 # ---------------------------------------------------------------- data load
 cams = json.load(open(os.path.join(ROOT, "cams_all.json")))
+seen_slugs = {}
 for c in cams:
-    c["slug"] = slug(c["name"])
+    c["raw_name"] = c["name"]
+    c["name"], c["hwy"] = pretty(c["name"])
     c["area"] = c.get("area") or "New York City"
+    s = slug(c["name"]) or slug(c["raw_name"])
+    # prettifying collapses a handful of names onto the same slug; keep them unique
+    if s in seen_slugs:
+        seen_slugs[s] += 1
+        s = f"{s}-{seen_slugs[s]}"
+    else:
+        seen_slugs[s] = 1
+    c["slug"] = s
 
 by_id = {c["id"]: c for c in cams}
+
+# --- picture quality: 775 of the 917 cameras are 352x240, so the handful of
+# --- HD ones are genuinely worth telling people about.
+GRADE = {}
+census = os.path.join(ROOT, "cam_resolution_census.csv")
+if os.path.exists(census):
+    with open(census) as fh:
+        for r in csv.DictReader(fh):
+            try:
+                w, h = int(r["width"]), int(r["height"])
+            except (ValueError, KeyError):
+                continue
+            if w >= 1280:
+                label = f"HD · {w}×{h}"
+            elif w >= 640:
+                label = f"Enhanced · {w}×{h}"
+            else:
+                label = f"Standard · {w}×{h}"
+            GRADE[r["id"]] = (label, w, h)
+
+# --- which way the lens points, where the DOT banner gave it away
+FACING = {}
+try:
+    for cid, v in json.load(open(os.path.join(ROOT, "headings.json")))["headings"].items():
+        if v.get("facing"):
+            FACING[cid] = v["facing"]
+except Exception:
+    pass
+
+# --- nearest subway station, from the SkyLine data already in the repo
+STATIONS = []
+try:
+    STATIONS = [(s["n"], s["ll"][1], s["ll"][0], s.get("r", ""))
+                for s in json.load(open(os.path.join(ROOT, "subway.json")))["stations"]]
+except Exception:
+    pass
+
+
+def nearest_station(cam):
+    if not STATIONS:
+        return None
+    scale = math.cos(math.radians(cam["lat"]))
+    best = min(STATIONS, key=lambda s: (s[1] - cam["lat"]) ** 2
+               + ((s[2] - cam["lon"]) * scale) ** 2)
+    dy = (best[1] - cam["lat"]) * 69.0
+    dx = (best[2] - cam["lon"]) * 69.0 * scale
+    return best[0], best[3], math.hypot(dx, dy)
 
 # per-camera observed traffic, where the counter has covered it
 stats = collections.defaultdict(lambda: {"n": 0, "veh": 0, "car": 0, "bus": 0,
@@ -217,6 +335,20 @@ for cam in cams:
                 f"Current street view, exact location, and the nearest cameras on "
                 f"the Bilbo Data network.")
 
+    # enrichment rows — these are what stop 917 pages reading as one template
+    grade_label = GRADE.get(cam["id"], ("Not yet measured", 0, 0))[0]
+    corridor_row = ""
+    if cam["hwy"]:
+        corridor_row = (f'<dt>Corridor</dt><dd><a href="/cams/road/'
+                        f'{slug(HWY[cam["hwy"]])}.html">{esc(HWY[cam["hwy"]])}</a></dd>')
+    facing_row = (f'<dt>Camera faces</dt><dd>{esc(FACING[cam["id"]])}</dd>'
+                  if cam["id"] in FACING else "")
+    st = nearest_station(cam)
+    subway_row = ""
+    if st and st[2] < 1.2:
+        subway_row = (f'<dt>Nearest subway</dt><dd>{esc(st[0])}'
+                      f'{f" ({esc(st[1])})" if st[1] else ""} · {st[2]:.2f} mi</dd>')
+
     nb = neighbours(cam)
     nb_html = "\n".join(
         f'<li><a href="/cams/{o["slug"]}.html">{esc(o["name"])}</a> '
@@ -273,6 +405,10 @@ this network with computer vision and turns the pictures into vehicle counts.</p
 <dt>Intersection</dt><dd>{esc(name)}</dd>
 <dt>Borough</dt><dd><a href="/cams/{BOROUGH_SLUG.get(area, slug(area))}.html">{esc(area)}</a></dd>
 <dt>Coordinates</dt><dd>{cam['lat']:.6f}, {cam['lon']:.6f}</dd>
+{corridor_row}
+{facing_row}
+{subway_row}
+<dt>Picture quality</dt><dd>{esc(grade_label)}</dd>
 <dt>Camera ID</dt><dd style="font-family:var(--mono);font-size:12px">{esc(cam['id'])}</dd>
 <dt>Source</dt><dd>NYC DOT traffic camera network</dd>
 </dl>
@@ -324,6 +460,63 @@ counts of what passes, not who passes. No faces, no plates, no identities. Read
     }
     urls.append((page(f"cams/{cam['slug']}.html", title, desc, body, ld), 0.6, "cam"))
 
+# ---------------------------------------------------------- corridor pages
+# "BQE traffic" and "Cross Bronx traffic cameras" are searched constantly and
+# the borough hubs answer neither — a road is not a borough.
+roads = collections.defaultdict(list)
+for c in cams:
+    if c["hwy"]:
+        roads[HWY[c["hwy"]]].append(c)
+
+for road, group in sorted(roads.items()):
+    group.sort(key=lambda c: c["name"])
+    rslug = slug(road)
+    boroughs = sorted({c["area"] for c in group})
+    counted = sum(1 for c in group if stats.get(c["id"], {}).get("n"))
+    counted_line = (f" {counted} of them are counted frame by frame by Bilbo Data."
+                    if counted else "")
+    title = f"{road} Traffic Cameras — {len(group)} Live Views | Bilbo Data"
+    desc = (f"Every NYC DOT traffic camera on the {road}: {len(group)} live views "
+            f"across {', '.join(boroughs)}, with exit numbers, direction of travel "
+            f"and measured vehicle counts where we have them.")
+    items = "\n".join(
+        f'<li><a href="/cams/{c["slug"]}.html">{esc(c["name"])}</a></li>' for c in group)
+    body = f"""
+<div class="crumb"><a href="/">Bilbo Data</a> › <a href="/cams/">Cameras</a> › {esc(road)}</div>
+<p class="eyebrow">Corridor · {esc(", ".join(boroughs))}</p>
+<h1>{esc(road)} traffic cameras</h1>
+<p class="lede">The {esc(road)} is watched by {len(group)} public NYC DOT cameras.
+This is all of them in one place, in order, with the exit and direction of travel
+each one covers — so you can see the whole run of the road rather than guessing at
+one intersection.{counted_line}</p>
+<a class="cta" href="/">Open the live map →</a>
+<h2>Every camera on the {esc(road)}</h2>
+<ul class="cols">
+{items}
+</ul>
+<h2>Other corridors</h2>
+<ul class="cols">
+{chr(10).join(f'<li><a href="/cams/road/{slug(r)}.html">{esc(r)} ({len(g)})</a></li>' for r, g in sorted(roads.items()) if r != road)}
+</ul>
+"""
+    ld = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": title,
+        "description": desc,
+        "url": f"{SITE}/cams/road/{rslug}.html",
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": len(group),
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": c["name"],
+                 "url": f"{SITE}/cams/{c['slug']}.html"}
+                for i, c in enumerate(group)
+            ],
+        },
+    }
+    urls.append((page(f"cams/road/{rslug}.html", title, desc, body, ld), 0.85, "hub"))
+
 # ------------------------------------------------------------ borough hubs
 areas = collections.defaultdict(list)
 for c in cams:
@@ -333,6 +526,8 @@ for area, group in sorted(areas.items()):
     group.sort(key=lambda c: c["name"])
     aslug = BOROUGH_SLUG.get(area, slug(area))
     counted = sum(1 for c in group if stats.get(c["id"], {}).get("n"))
+    counted_line = (f" {counted} of them are currently being counted frame-by-frame "
+                    f"by Bilbo Data." if counted else "")
     title = f"{area} Traffic Cameras — All {len(group)} Live NYC DOT Feeds | Bilbo Data"
     desc = (f"Every one of the {len(group)} public NYC DOT traffic cameras in {area}, "
             f"mapped and listed with live views. {counted} are currently counted by "
@@ -345,8 +540,7 @@ for area, group in sorted(areas.items()):
 <h1>{esc(area)} traffic cameras</h1>
 <p class="lede">All {len(group)} public traffic cameras the New York City Department
 of Transportation operates in {esc(area)}, each with a live view, coordinates and its
-nearest neighbours. {counted} of them are currently being counted frame-by-frame by
-Bilbo Data. Pick an intersection.</p>
+nearest neighbours.{counted_line} Pick an intersection.</p>
 <a class="cta" href="/">Open the live map →</a>
 <h2>All cameras in {esc(area)}</h2>
 <ul class="cols">
@@ -397,6 +591,12 @@ No faces, no plates.</p>
 <dt>Counted now</dt><dd>{total_counted}</dd>
 <dt>Total</dt><dd>{len(cams)}</dd>
 </dl>
+<h2>By road</h2>
+<p class="lede">The expressways and parkways are watched end to end, so it is often
+more useful to follow a corridor than a borough.</p>
+<ul class="cols">
+{chr(10).join(f'<li><a href="/cams/road/{slug(r)}.html">{esc(r)} ({len(g)})</a></li>' for r, g in sorted(roads.items(), key=lambda t: -len(t[1])))}
+</ul>
 <h2>What Bilbo Data does with them</h2>
 <p class="lede">Every camera in this network is already public — the pictures are
 there whether anyone looks or not. What has never existed is the aggregate: how many
@@ -556,6 +756,30 @@ ld = {
     ],
 }
 urls.append((page("busiest.html", title, desc, body, ld), 0.9, "hub"))
+
+# ------------------------------------------------------------------- 404
+# Vercel serves this for any unmatched path. A dead end here is a lost visitor;
+# every borough and corridor is one click away instead.
+body404 = f"""
+<p class="eyebrow">404</p>
+<h1>That page is not here</h1>
+<p class="lede">The camera you were after may have been renamed by the DOT, or the
+link is old. Nothing is lost — all {len(cams)} cameras are indexed below.</p>
+<a class="cta" href="/cams/">Browse all {len(cams)} cameras →</a>
+<h2>By borough</h2>
+<ul class="cols">
+{chr(10).join(f'<li><a href="/cams/{BOROUGH_SLUG.get(a, slug(a))}.html">{esc(a)} ({len(g)})</a></li>' for a, g in sorted(areas.items(), key=lambda t: -len(t[1])))}
+</ul>
+<h2>By road</h2>
+<ul class="cols">
+{chr(10).join(f'<li><a href="/cams/road/{slug(r)}.html">{esc(r)}</a></li>' for r in sorted(roads))}
+</ul>
+"""
+page("404.html", "Page not found | Bilbo Data",
+     "That page is not here. Every NYC DOT traffic camera Bilbo Data tracks is "
+     "indexed by borough and by road.", body404,
+     {"@context": "https://schema.org", "@type": "WebPage", "name": "Page not found"})
+print("404.html    written")
 
 # ------------------------------------------------------------------ sitemaps
 core = [(f"{SITE}/", 1.0), (f"{SITE}/about.html", 0.7),
