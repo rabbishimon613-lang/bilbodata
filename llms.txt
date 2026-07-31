@@ -8,24 +8,24 @@
 
 ## What is here
 
-- [Live dashboard](https://bilbodata.vercel.app/): real-time counts across the counted camera set.
-- [All 917 cameras](https://bilbodata.vercel.app/cams/): every public NYC DOT camera, with a live
+- [Live dashboard](https://bilbodata.com/): real-time counts across the counted camera set.
+- [All 917 cameras](https://bilbodata.com/cams/): every public NYC DOT camera, with a live
   view, coordinates, observed counts and its nearest neighbours.
-- [Open dataset](https://bilbodata.vercel.app/data.html): the vehicle-count CSV and Parquet files,
+- [Open dataset](https://bilbodata.com/data.html): the vehicle-count CSV and Parquet files,
   free, no login, with the caveats stated in full.
-- [Vehicle library](https://bilbodata.vercel.app/library.html): what the system can and cannot tell
+- [Vehicle library](https://bilbodata.com/library.html): what the system can and cannot tell
   apart at NYC DOT camera resolution.
-- [SkyLine](https://bilbodata.vercel.app/skyline.html): a 3D cutaway of the city's subway tunnels
+- [SkyLine](https://bilbodata.com/skyline.html): a 3D cutaway of the city's subway tunnels
   with live MTA train positions.
-- [About](https://bilbodata.vercel.app/about.html): the privacy line, the method, and the ceiling.
+- [About](https://bilbodata.com/about.html): the privacy line, the method, and the ceiling.
 
 ## Boroughs
 
-- [Manhattan](https://bilbodata.vercel.app/cams/manhattan.html) — 350 cameras
-- [Brooklyn](https://bilbodata.vercel.app/cams/brooklyn.html) — 200 cameras
-- [Queens](https://bilbodata.vercel.app/cams/queens.html) — 194 cameras
-- [Staten Island](https://bilbodata.vercel.app/cams/staten-island.html) — 99 cameras
-- [Bronx](https://bilbodata.vercel.app/cams/bronx.html) — 74 cameras
+- [Manhattan](https://bilbodata.com/cams/manhattan.html) — 350 cameras
+- [Brooklyn](https://bilbodata.com/cams/brooklyn.html) — 200 cameras
+- [Queens](https://bilbodata.com/cams/queens.html) — 194 cameras
+- [Staten Island](https://bilbodata.com/cams/staten-island.html) — 99 cameras
+- [Bronx](https://bilbodata.com/cams/bronx.html) — 74 cameras
 
 ## Data
 

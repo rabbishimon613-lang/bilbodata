@@ -7,6 +7,20 @@
       "main": false
     }
   },
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.bilbodata.com" }],
+      "destination": "https://bilbodata.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "bilbodata.vercel.app" }],
+      "destination": "https://bilbodata.com/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*).html",

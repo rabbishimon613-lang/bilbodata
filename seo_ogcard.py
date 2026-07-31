@@ -58,8 +58,8 @@ d.ellipse([88, y + 30, 100, y + 42], fill=LIVE)
 d.text((112, y + 26), "OPEN DATA", font=f_mono, fill=DIM)
 d.text((260, y + 26), "NO FACES", font=f_mono, fill=DIM)
 d.text((400, y + 26), "NO PLATE NUMBERS", font=f_mono, fill=DIM)
-d.text((W - 86 - d.textlength("bilbodata.vercel.app", font=f_mono), y + 26),
-       "bilbodata.vercel.app", font=f_mono, fill=ACCENT)
+d.text((W - 86 - d.textlength("bilbodata.com", font=f_mono), y + 26),
+       "bilbodata.com", font=f_mono, fill=ACCENT)
 
 out = os.path.join(ROOT, "assets", "og-card.png")
 img.save(out, optimize=True)

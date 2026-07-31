@@ -10,11 +10,18 @@ instead of whenever a crawler wanders past.
     python3 seo_submit.py            # writes files, submits
     python3 seo_submit.py --dry-run  # writes files only
 """
-import json, os, sys, urllib.request, xml.etree.ElementTree as ET
+import json, os, ssl, sys, urllib.request, xml.etree.ElementTree as ET
+
+# this Mac's system Python ships without a usable CA bundle
+try:
+    import certifi
+    SSLCTX = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    SSLCTX = ssl.create_default_context()
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://bilbodata.vercel.app"
-HOST = "bilbodata.vercel.app"
+SITE = "https://bilbodata.com"
+HOST = "bilbodata.com"
 KEY = "371ad4d7ca1c478080ed2b8bf85b9a5c"
 DRY = "--dry-run" in sys.argv
 
@@ -98,7 +105,7 @@ for i in range(0, len(urls), 5000):
         "https://api.indexnow.org/IndexNow", data=payload,
         headers={"Content-Type": "application/json; charset=utf-8"})
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=30, context=SSLCTX) as r:
             print(f"indexnow    {r.status} for {len(chunk)} urls")
     except urllib.error.HTTPError as e:
         print(f"indexnow    HTTP {e.code}: {e.read().decode()[:200]}")

@@ -5,18 +5,18 @@
 <title>NYC Traffic Camera Vehicle Count Dataset — Free CSV Download | Bilbo Data</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="An open dataset of vehicle counts derived from New York City&#x27;s public DOT traffic cameras: cars, trucks, buses and motorcycles per camera per timestamp. CSV and Parquet, free, no login, updated continuously.">
-<link rel="canonical" href="https://bilbodata.vercel.app/data.html">
+<link rel="canonical" href="https://bilbodata.com/data.html">
 <link rel="icon" href="/assets/bilbo-pup.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bilbo Data">
 <meta property="og:title" content="NYC Traffic Camera Vehicle Count Dataset — Free CSV Download | Bilbo Data">
 <meta property="og:description" content="An open dataset of vehicle counts derived from New York City&#x27;s public DOT traffic cameras: cars, trucks, buses and motorcycles per camera per timestamp. CSV and Parquet, free, no login, updated continuously.">
-<meta property="og:url" content="https://bilbodata.vercel.app/data.html">
-<meta property="og:image" content="https://bilbodata.vercel.app/assets/og-card.png">
+<meta property="og:url" content="https://bilbodata.com/data.html">
+<meta property="og:image" content="https://bilbodata.com/assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NYC Traffic Camera Vehicle Count Dataset — Free CSV Download | Bilbo Data">
 <meta name="twitter:description" content="An open dataset of vehicle counts derived from New York City&#x27;s public DOT traffic cameras: cars, trucks, buses and motorcycles per camera per timestamp. CSV and Parquet, free, no login, updated continuously.">
-<meta name="twitter:image" content="https://bilbodata.vercel.app/assets/og-card.png">
+<meta name="twitter:image" content="https://bilbodata.com/assets/og-card.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#000;--panel:#0c0d0f;--line:#1b1c1f;--line2:#2a2c31;--ink:#f3f4f5;
@@ -29,10 +29,12 @@ font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiase
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 header{border-bottom:1px solid var(--line);background:#050505}
-header .wrap{display:flex;align-items:center;gap:12px;height:60px}
+header .wrap{display:flex;align-items:center;gap:12px;min-height:60px;
+flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
 header img{height:32px}
-header .bn{font-size:19px;font-weight:500}
-header nav{margin-left:auto;display:flex;gap:18px;font-size:13px}
+header .bn{font-size:19px;font-weight:500;white-space:nowrap}
+header nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px}
+@media(max-width:520px){header nav{margin-left:0;width:100%}}
 h1{font-size:27px;font-weight:400;letter-spacing:-.01em;margin:26px 0 6px}
 h2{font-size:17px;font-weight:400;margin:34px 0 10px;
 border-bottom:1px solid var(--line);padding-bottom:7px}
@@ -57,8 +59,16 @@ border-radius:2px;padding:12px 22px}
 footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 60px;
 color:var(--mut);font-size:12.5px}
 .crumb{font-size:12.5px;color:var(--mut);margin-top:18px}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+table.rank{width:100%;min-width:620px;border-collapse:collapse;font-size:13.5px}
+table.rank th{text-align:left;font-family:var(--mono);font-size:10.5px;
+letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:400;
+border-bottom:1px solid var(--line2);padding:8px 10px 8px 0}
+table.rank td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+table.rank td:nth-child(2){color:var(--ink)}
+table.rank td:first-child{font-family:var(--mono);color:var(--mut);width:34px}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NYC Traffic Camera Vehicle Counts","description":"An open dataset of vehicle counts derived from New York City's public DOT traffic cameras: cars, trucks, buses and motorcycles per camera per timestamp. CSV and Parquet, free, no login, updated continuously.","url":"https://bilbodata.vercel.app/data.html","keywords":["New York City","traffic","vehicle counts","traffic cameras","NYC DOT","computer vision","open data","transportation"],"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"creator":{"@type":"Organization","name":"Bilbo Data","url":"https://bilbodata.vercel.app"},"spatialCoverage":{"@type":"Place","name":"New York City, NY, USA","geo":{"@type":"GeoShape","box":"40.4774 -74.2591 40.9176 -73.7004"}},"variableMeasured":[{"@type":"PropertyValue","name":"car","description":"cars in frame"},{"@type":"PropertyValue","name":"truck","description":"trucks in frame"},{"@type":"PropertyValue","name":"bus","description":"buses in frame"},{"@type":"PropertyValue","name":"moto","description":"motorcycles in frame"},{"@type":"PropertyValue","name":"brightness","description":"mean frame brightness"}],"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/counts.csv"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NYC Traffic Camera Vehicle Counts","description":"An open dataset of vehicle counts derived from New York City's public DOT traffic cameras: cars, trucks, buses and motorcycles per camera per timestamp. CSV and Parquet, free, no login, updated continuously.","url":"https://bilbodata.com/data.html","keywords":["New York City","traffic","vehicle counts","traffic cameras","NYC DOT","computer vision","open data","transportation"],"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"creator":{"@type":"Organization","name":"Bilbo Data","url":"https://bilbodata.com"},"spatialCoverage":{"@type":"Place","name":"New York City, NY, USA","geo":{"@type":"GeoShape","box":"40.4774 -74.2591 40.9176 -73.7004"}},"variableMeasured":[{"@type":"PropertyValue","name":"car","description":"cars in frame"},{"@type":"PropertyValue","name":"truck","description":"trucks in frame"},{"@type":"PropertyValue","name":"bus","description":"buses in frame"},{"@type":"PropertyValue","name":"moto","description":"motorcycles in frame"},{"@type":"PropertyValue","name":"brightness","description":"mean frame brightness"}],"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://raw.githubusercontent.com/rabbishimon613-lang/bilbodata/main/counts.csv"}]}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -66,6 +76,7 @@ color:var(--mut);font-size:12.5px}
 <a class="bn" href="/" style="color:var(--ink)">Bilbo Data</a>
 <nav>
 <a href="/cams/">Cameras</a>
+<a href="/busiest.html">Busiest</a>
 <a href="/data.html">Dataset</a>
 <a href="/skyline.html">SkyLine</a>
 <a href="/about.html">About</a>

@@ -13,4 +13,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://bilbodata.vercel.app/sitemap.xml
+Sitemap: https://bilbodata.com/sitemap.xml

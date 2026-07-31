@@ -9,7 +9,7 @@ Idempotent — re-running replaces the block between the markers.
 import json, os, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://bilbodata.vercel.app"
+SITE = "https://bilbodata.com"
 OPEN, CLOSE = "<!--SEO:START-->", "<!--SEO:END-->"
 
 WEBSITE_LD = {
@@ -137,6 +137,7 @@ foot = f"""{FOOT_OPEN}
         <a href="/cams/queens.html">Queens cameras</a>
         <a href="/cams/bronx.html">Bronx cameras</a>
         <a href="/cams/staten-island.html">Staten Island cameras</a>
+        <a href="/busiest.html">Busiest NYC intersections, ranked</a>
         <a href="/data.html">Open dataset (CSV)</a>
       </div>
       {FOOT_CLOSE}"""

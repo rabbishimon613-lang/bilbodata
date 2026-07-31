@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Busiest NYC Intersections We Have Counted — Ranked | Bilbo Data</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every camera Bilbo Data counts, ranked by how many vehicles are actually in frame on average. 29 New York City intersections, measured from public DOT cameras rather than estimated.">
+<link rel="canonical" href="https://bilbodata.com/busiest.html">
+<link rel="icon" href="/assets/bilbo-pup.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bilbo Data">
+<meta property="og:title" content="The Busiest NYC Intersections We Have Counted — Ranked | Bilbo Data">
+<meta property="og:description" content="Every camera Bilbo Data counts, ranked by how many vehicles are actually in frame on average. 29 New York City intersections, measured from public DOT cameras rather than estimated.">
+<meta property="og:url" content="https://bilbodata.com/busiest.html">
+<meta property="og:image" content="https://bilbodata.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Busiest NYC Intersections We Have Counted — Ranked | Bilbo Data">
+<meta name="twitter:description" content="Every camera Bilbo Data counts, ranked by how many vehicles are actually in frame on average. 29 New York City intersections, measured from public DOT cameras rather than estimated.">
+<meta name="twitter:image" content="https://bilbodata.com/assets/og-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--panel:#0c0d0f;--line:#1b1c1f;--line2:#2a2c31;--ink:#f3f4f5;
+--dim:#8b909a;--mut:#585d66;--live:#4ad991;--accent:#5b8def;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+--sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);background:#050505}
+header .wrap{display:flex;align-items:center;gap:12px;min-height:60px;
+flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+header img{height:32px}
+header .bn{font-size:19px;font-weight:500;white-space:nowrap}
+header nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px}
+@media(max-width:520px){header nav{margin-left:0;width:100%}}
+h1{font-size:27px;font-weight:400;letter-spacing:-.01em;margin:26px 0 6px}
+h2{font-size:17px;font-weight:400;margin:34px 0 10px;
+border-bottom:1px solid var(--line);padding-bottom:7px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;
+text-transform:uppercase;color:var(--mut)}
+.lede{color:var(--dim);max-width:62ch}
+.shot{width:100%;max-width:640px;border:1px solid var(--line2);border-radius:2px;
+display:block;margin:18px 0;background:var(--panel);
+aspect-ratio:22/15;object-fit:contain}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:7px 16px;
+font-size:14px;margin:14px 0}
+.kv dt{color:var(--mut);font-family:var(--mono);font-size:11px;
+letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
+.kv dd{margin:0;color:var(--ink)}
+ul.cols{list-style:none;padding:0;margin:10px 0;columns:3;column-gap:26px;font-size:14px}
+ul.cols li{break-inside:avoid;padding:3px 0;color:var(--dim)}
+@media(max-width:760px){ul.cols{columns:1}.kv{grid-template-columns:1fr}}
+.cta{display:inline-block;margin:16px 0;font-family:var(--mono);font-size:12px;
+letter-spacing:.16em;text-transform:uppercase;color:#04070d;background:var(--accent);
+border-radius:2px;padding:12px 22px}
+.cta:hover{text-decoration:none;filter:brightness(1.12)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 60px;
+color:var(--mut);font-size:12.5px}
+.crumb{font-size:12.5px;color:var(--mut);margin-top:18px}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+table.rank{width:100%;min-width:620px;border-collapse:collapse;font-size:13.5px}
+table.rank th{text-align:left;font-family:var(--mono);font-size:10.5px;
+letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:400;
+border-bottom:1px solid var(--line2);padding:8px 10px 8px 0}
+table.rank td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+table.rank td:nth-child(2){color:var(--ink)}
+table.rank td:first-child{font-family:var(--mono);color:var(--mut);width:34px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Busiest NYC intersections by measured vehicle density","description":"Every camera Bilbo Data counts, ranked by how many vehicles are actually in frame on average. 29 New York City intersections, measured from public DOT cameras rather than estimated.","url":"https://bilbodata.com/busiest.html","numberOfItems":29,"itemListElement":[{"@type":"ListItem","position":1,"name":"Atlantic Ave @ Eastern Pkwy","url":"https://bilbodata.com/cams/atlantic-ave-eastern-pkwy.html"},{"@type":"ListItem","position":2,"name":"Bushwick Ave @ De Kalb Ave","url":"https://bilbodata.com/cams/bushwick-ave-de-kalb-ave.html"},{"@type":"ListItem","position":3,"name":"Atlantic Ave @ Barclays Center","url":"https://bilbodata.com/cams/atlantic-ave-barclays-center.html"},{"@type":"ListItem","position":4,"name":"Flatbush Ave @ Nostrand Ave","url":"https://bilbodata.com/cams/flatbush-ave-nostrand-ave.html"},{"@type":"ListItem","position":5,"name":"Bushwick Ave @ Gates Ave","url":"https://bilbodata.com/cams/bushwick-ave-gates-ave.html"},{"@type":"ListItem","position":6,"name":"7 Ave @ 9 St","url":"https://bilbodata.com/cams/7-ave-9-st.html"},{"@type":"ListItem","position":7,"name":"8 Ave @ 9 St","url":"https://bilbodata.com/cams/8-ave-9-st.html"},{"@type":"ListItem","position":8,"name":"3 Ave @ Atlantic Ave","url":"https://bilbodata.com/cams/3-ave-atlantic-ave.html"},{"@type":"ListItem","position":9,"name":"7 Ave @ Union St","url":"https://bilbodata.com/cams/7-ave-union-st.html"},{"@type":"ListItem","position":10,"name":"Atlantic Ave @ Bedford Ave","url":"https://bilbodata.com/cams/atlantic-ave-bedford-ave.html"},{"@type":"ListItem","position":11,"name":"C2-PE-01-Cntr_at_Caton_Ave-Ex6","url":"https://bilbodata.com/cams/c2-pe-01-cntr-at-caton-ave-ex6.html"},{"@type":"ListItem","position":12,"name":"C2-PE-05-Ctr_at_7th_Ave-Ex4","url":"https://bilbodata.com/cams/c2-pe-05-ctr-at-7th-ave-ex4.html"},{"@type":"ListItem","position":13,"name":"Ft. Hamilton Pkwy @ McDonald Ave","url":"https://bilbodata.com/cams/ft-hamilton-pkwy-mcdonald-ave.html"},{"@type":"ListItem","position":14,"name":"Flatbush Ave and Atlantic Ave","url":"https://bilbodata.com/cams/flatbush-ave-and-atlantic-ave.html"},{"@type":"ListItem","position":15,"name":"Flatbush Ave and 4 Ave","url":"https://bilbodata.com/cams/flatbush-ave-and-4-ave.html"},{"@type":"ListItem","position":16,"name":"Ocean Pkwy @ Church Ave","url":"https://bilbodata.com/cams/ocean-pkwy-church-ave.html"},{"@type":"ListItem","position":17,"name":"C2-PE-06-WB_at_6th_Ave-Ex2","url":"https://bilbodata.com/cams/c2-pe-06-wb-at-6th-ave-ex2.html"},{"@type":"ListItem","position":18,"name":"7 Ave @ 18 St","url":"https://bilbodata.com/cams/7-ave-18-st.html"},{"@type":"ListItem","position":19,"name":"3 Ave @ Union St","url":"https://bilbodata.com/cams/3-ave-union-st.html"},{"@type":"ListItem","position":20,"name":"Grand Army Plaza","url":"https://bilbodata.com/cams/grand-army-plaza.html"},{"@type":"ListItem","position":21,"name":"Flushing Ave @ Williamsburg W St","url":"https://bilbodata.com/cams/flushing-ave-williamsburg-w-st.html"},{"@type":"ListItem","position":22,"name":"Flatbush Ave @ Empire Blvd","url":"https://bilbodata.com/cams/flatbush-ave-empire-blvd.html"},{"@type":"ListItem","position":23,"name":"Eastern Pkwy @ Bedford Ave","url":"https://bilbodata.com/cams/eastern-pkwy-bedford-ave.html"},{"@type":"ListItem","position":24,"name":"Prospect Expwy @ Prospect Park W @ 19 St","url":"https://bilbodata.com/cams/prospect-expwy-prospect-park-w-19-st.html"},{"@type":"ListItem","position":25,"name":"Flatbush Ave @ Eastern Pkwy","url":"https://bilbodata.com/cams/flatbush-ave-eastern-pkwy.html"},{"@type":"ListItem","position":26,"name":"Eastern Pkwy @ Utica Ave","url":"https://bilbodata.com/cams/eastern-pkwy-utica-ave.html"},{"@type":"ListItem","position":27,"name":"Atlantic Ave @ Pennsylvania Ave","url":"https://bilbodata.com/cams/atlantic-ave-pennsylvania-ave.html"},{"@type":"ListItem","position":28,"name":"McDonald Ave @ 10th Ave / 20th St","url":"https://bilbodata.com/cams/mcdonald-ave-10th-ave-20th-st.html"},{"@type":"ListItem","position":29,"name":"C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5","url":"https://bilbodata.com/cams/c2-pe-02-ctr-at-ft-hamltn-pkwy-ex5.html"}]}</script>
+</head>
+<body>
+<header><div class="wrap">
+<img src="/assets/bilbo-pup.png" alt="Bilbo Data">
+<a class="bn" href="/" style="color:var(--ink)">Bilbo Data</a>
+<nav>
+<a href="/cams/">Cameras</a>
+<a href="/busiest.html">Busiest</a>
+<a href="/data.html">Dataset</a>
+<a href="/skyline.html">SkyLine</a>
+<a href="/about.html">About</a>
+</nav>
+</div></header>
+<main class="wrap">
+
+<div class="crumb"><a href="/">Bilbo Data</a> › Busiest intersections</div>
+<p class="eyebrow">Ranking · updated 2026-07-31</p>
+<h1>The busiest NYC intersections we have counted</h1>
+<p class="lede">New York City argues about which corner is worst without ever
+measuring it. These are the 29 intersections Bilbo Data currently counts
+frame by frame, ranked by the average number of vehicles actually visible in a
+frame. Not modelled, not estimated from a survey — counted off the city's own
+public cameras. The counted set is a rotating subset of the 917 cameras;
+every one of them has <a href="/cams/">its own page</a>.</p>
+<div class="tscroll"><table class="rank">
+<thead><tr><th>#</th><th>Intersection</th><th>Borough</th><th>Avg in frame</th>
+<th>Peak</th><th>Busiest hour</th><th>Samples</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><a href="/cams/atlantic-ave-eastern-pkwy.html">Atlantic Ave @ Eastern Pkwy</a></td><td>Brooklyn</td><td>8.4</td><td>16</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>2</td><td><a href="/cams/bushwick-ave-de-kalb-ave.html">Bushwick Ave @ De Kalb Ave</a></td><td>Brooklyn</td><td>6.7</td><td>13</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>3</td><td><a href="/cams/atlantic-ave-barclays-center.html">Atlantic Ave @ Barclays Center</a></td><td>Brooklyn</td><td>5.7</td><td>15</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>4</td><td><a href="/cams/flatbush-ave-nostrand-ave.html">Flatbush Ave @ Nostrand Ave</a></td><td>Brooklyn</td><td>5.6</td><td>12</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>5</td><td><a href="/cams/bushwick-ave-gates-ave.html">Bushwick Ave @ Gates Ave</a></td><td>Brooklyn</td><td>5.0</td><td>11</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>6</td><td><a href="/cams/7-ave-9-st.html">7 Ave @ 9 St</a></td><td>Brooklyn</td><td>4.3</td><td>12</td><td>21:00</td><td>1,283</td></tr>
+<tr><td>7</td><td><a href="/cams/8-ave-9-st.html">8 Ave @ 9 St</a></td><td>Brooklyn</td><td>3.8</td><td>16</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>8</td><td><a href="/cams/3-ave-atlantic-ave.html">3 Ave @ Atlantic Ave</a></td><td>Brooklyn</td><td>3.6</td><td>12</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>9</td><td><a href="/cams/7-ave-union-st.html">7 Ave @ Union St</a></td><td>Brooklyn</td><td>3.5</td><td>10</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>10</td><td><a href="/cams/atlantic-ave-bedford-ave.html">Atlantic Ave @ Bedford Ave</a></td><td>Brooklyn</td><td>3.4</td><td>11</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>11</td><td><a href="/cams/c2-pe-01-cntr-at-caton-ave-ex6.html">C2-PE-01-Cntr_at_Caton_Ave-Ex6</a></td><td>Brooklyn</td><td>3.1</td><td>19</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>12</td><td><a href="/cams/c2-pe-05-ctr-at-7th-ave-ex4.html">C2-PE-05-Ctr_at_7th_Ave-Ex4</a></td><td>Brooklyn</td><td>3.1</td><td>8</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>13</td><td><a href="/cams/ft-hamilton-pkwy-mcdonald-ave.html">Ft. Hamilton Pkwy @ McDonald Ave</a></td><td>Brooklyn</td><td>3.0</td><td>9</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>14</td><td><a href="/cams/flatbush-ave-and-atlantic-ave.html">Flatbush Ave and Atlantic Ave</a></td><td>Brooklyn</td><td>2.8</td><td>10</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>15</td><td><a href="/cams/flatbush-ave-and-4-ave.html">Flatbush Ave and 4 Ave</a></td><td>Brooklyn</td><td>2.8</td><td>8</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>16</td><td><a href="/cams/ocean-pkwy-church-ave.html">Ocean Pkwy @ Church Ave</a></td><td>Brooklyn</td><td>2.8</td><td>13</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>17</td><td><a href="/cams/c2-pe-06-wb-at-6th-ave-ex2.html">C2-PE-06-WB_at_6th_Ave-Ex2</a></td><td>Brooklyn</td><td>2.4</td><td>10</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>18</td><td><a href="/cams/7-ave-18-st.html">7 Ave @ 18 St</a></td><td>Brooklyn</td><td>2.4</td><td>10</td><td>17:00</td><td>1,283</td></tr>
+<tr><td>19</td><td><a href="/cams/3-ave-union-st.html">3 Ave @ Union St</a></td><td>Brooklyn</td><td>2.3</td><td>9</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>20</td><td><a href="/cams/grand-army-plaza.html">Grand Army Plaza</a></td><td>Brooklyn</td><td>2.3</td><td>14</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>21</td><td><a href="/cams/flushing-ave-williamsburg-w-st.html">Flushing Ave @ Williamsburg W St</a></td><td>Brooklyn</td><td>2.1</td><td>14</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>22</td><td><a href="/cams/flatbush-ave-empire-blvd.html">Flatbush Ave @ Empire Blvd</a></td><td>Brooklyn</td><td>2.1</td><td>8</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>23</td><td><a href="/cams/eastern-pkwy-bedford-ave.html">Eastern Pkwy @ Bedford Ave</a></td><td>Brooklyn</td><td>1.9</td><td>9</td><td>18:00</td><td>1,283</td></tr>
+<tr><td>24</td><td><a href="/cams/prospect-expwy-prospect-park-w-19-st.html">Prospect Expwy @ Prospect Park W @ 19 St</a></td><td>Brooklyn</td><td>1.6</td><td>9</td><td>23:00</td><td>1,283</td></tr>
+<tr><td>25</td><td><a href="/cams/flatbush-ave-eastern-pkwy.html">Flatbush Ave @ Eastern Pkwy</a></td><td>Brooklyn</td><td>1.4</td><td>8</td><td>19:00</td><td>1,283</td></tr>
+<tr><td>26</td><td><a href="/cams/eastern-pkwy-utica-ave.html">Eastern Pkwy @ Utica Ave</a></td><td>Brooklyn</td><td>1.3</td><td>9</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>27</td><td><a href="/cams/atlantic-ave-pennsylvania-ave.html">Atlantic Ave @ Pennsylvania Ave</a></td><td>Brooklyn</td><td>1.0</td><td>4</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>28</td><td><a href="/cams/mcdonald-ave-10th-ave-20th-st.html">McDonald Ave @ 10th Ave / 20th St</a></td><td>Brooklyn</td><td>0.1</td><td>1</td><td>00:00</td><td>1,283</td></tr>
+<tr><td>29</td><td><a href="/cams/c2-pe-02-ctr-at-ft-hamltn-pkwy-ex5.html">C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5</a></td><td>Brooklyn</td><td>0.0</td><td>0</td><td>00:00</td><td>1,283</td></tr>
+</tbody></table></div>
+<h2>How to read this</h2>
+<p class="lede">"Average in frame" is how many vehicles the counter sees in a single
+picture, averaged over every sample taken at that camera. It is a density measure,
+not a flow rate — a jammed intersection scores high because the cars are sitting
+there. Night frames are included, which drags the average down at cameras without
+good lighting. The raw numbers behind this table are in the
+<a href="/data.html">open dataset</a>.</p>
+
+</main>
+<footer><div class="wrap">
+Bilbo Data reads the public NYC DOT traffic-camera network and turns it into
+counts. Imagery belongs to NYC DOT; the counts are ours. Updated 2026-07-31.
+</div></footer>
+</body>
+</html>

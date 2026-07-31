@@ -11,7 +11,7 @@ whenever cams_all.json or counts.csv change, then deploy the shell.
 import csv, json, math, os, re, html, collections, datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://bilbodata.vercel.app"
+SITE = "https://bilbodata.com"
 OUT = os.path.join(ROOT, "cams")
 TODAY = datetime.date.today().isoformat()
 
@@ -92,10 +92,12 @@ font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiase
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 header{border-bottom:1px solid var(--line);background:#050505}
-header .wrap{display:flex;align-items:center;gap:12px;height:60px}
+header .wrap{display:flex;align-items:center;gap:12px;min-height:60px;
+flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
 header img{height:32px}
-header .bn{font-size:19px;font-weight:500}
-header nav{margin-left:auto;display:flex;gap:18px;font-size:13px}
+header .bn{font-size:19px;font-weight:500;white-space:nowrap}
+header nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px}
+@media(max-width:520px){header nav{margin-left:0;width:100%}}
 h1{font-size:27px;font-weight:400;letter-spacing:-.01em;margin:26px 0 6px}
 h2{font-size:17px;font-weight:400;margin:34px 0 10px;
 border-bottom:1px solid var(--line);padding-bottom:7px}
@@ -120,6 +122,14 @@ border-radius:2px;padding:12px 22px}
 footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 60px;
 color:var(--mut);font-size:12.5px}
 .crumb{font-size:12.5px;color:var(--mut);margin-top:18px}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+table.rank{width:100%;min-width:620px;border-collapse:collapse;font-size:13.5px}
+table.rank th{text-align:left;font-family:var(--mono);font-size:10.5px;
+letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:400;
+border-bottom:1px solid var(--line2);padding:8px 10px 8px 0}
+table.rank td{padding:7px 10px 7px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+table.rank td:nth-child(2){color:var(--ink)}
+table.rank td:first-child{font-family:var(--mono);color:var(--mut);width:34px}
 """
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -161,6 +171,7 @@ def page(path, title, desc, body, jsonld, image=None, canon=None):
 <a class="bn" href="/" style="color:var(--ink)">Bilbo Data</a>
 <nav>
 <a href="/cams/">Cameras</a>
+<a href="/busiest.html">Busiest</a>
 <a href="/data.html">Dataset</a>
 <a href="/skyline.html">SkyLine</a>
 <a href="/about.html">About</a>
@@ -485,6 +496,66 @@ ld = {
     ],
 }
 urls.append((page("data.html", title, desc, body, ld), 0.9, "hub"))
+
+# ------------------------------------------------------- busiest-cameras page
+# A ranked table is the one thing on this site people link to without being
+# asked, and it is the only page that answers "which NYC intersection is
+# busiest" with a number rather than an opinion.
+ranked = sorted(((cid, s) for cid, s in stats.items() if s["n"] >= 50),
+                key=lambda t: t[1]["veh"] / t[1]["n"], reverse=True)
+title = "The Busiest NYC Intersections We Have Counted — Ranked | Bilbo Data"
+desc = (f"Every camera Bilbo Data counts, ranked by how many vehicles are actually "
+        f"in frame on average. {len(ranked)} New York City intersections, measured "
+        f"from public DOT cameras rather than estimated.")
+rows = []
+for i, (cid, s) in enumerate(ranked, 1):
+    c = by_id[cid]
+    avg = s["veh"] / s["n"]
+    busiest = s["hours"].most_common(1)
+    hr = f"{int(busiest[0][0]):02d}:00" if busiest else "—"
+    rows.append(
+        f'<tr><td>{i}</td><td><a href="/cams/{c["slug"]}.html">{esc(c["name"])}</a></td>'
+        f'<td>{esc(c["area"])}</td><td>{avg:.1f}</td><td>{s["peak"]}</td>'
+        f'<td>{hr}</td><td>{s["n"]:,}</td></tr>')
+
+body = f"""
+<div class="crumb"><a href="/">Bilbo Data</a> › Busiest intersections</div>
+<p class="eyebrow">Ranking · updated {TODAY}</p>
+<h1>The busiest NYC intersections we have counted</h1>
+<p class="lede">New York City argues about which corner is worst without ever
+measuring it. These are the {len(ranked)} intersections Bilbo Data currently counts
+frame by frame, ranked by the average number of vehicles actually visible in a
+frame. Not modelled, not estimated from a survey — counted off the city's own
+public cameras. The counted set is a rotating subset of the {len(cams)} cameras;
+every one of them has <a href="/cams/">its own page</a>.</p>
+<div class="tscroll"><table class="rank">
+<thead><tr><th>#</th><th>Intersection</th><th>Borough</th><th>Avg in frame</th>
+<th>Peak</th><th>Busiest hour</th><th>Samples</th></tr></thead>
+<tbody>
+{chr(10).join(rows)}
+</tbody></table></div>
+<h2>How to read this</h2>
+<p class="lede">"Average in frame" is how many vehicles the counter sees in a single
+picture, averaged over every sample taken at that camera. It is a density measure,
+not a flow rate — a jammed intersection scores high because the cars are sitting
+there. Night frames are included, which drags the average down at cameras without
+good lighting. The raw numbers behind this table are in the
+<a href="/data.html">open dataset</a>.</p>
+"""
+ld = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Busiest NYC intersections by measured vehicle density",
+    "description": desc,
+    "url": f"{SITE}/busiest.html",
+    "numberOfItems": len(ranked),
+    "itemListElement": [
+        {"@type": "ListItem", "position": i, "name": by_id[cid]["name"],
+         "url": f"{SITE}/cams/{by_id[cid]['slug']}.html"}
+        for i, (cid, s) in enumerate(ranked, 1)
+    ],
+}
+urls.append((page("busiest.html", title, desc, body, ld), 0.9, "hub"))
 
 # ------------------------------------------------------------------ sitemaps
 core = [(f"{SITE}/", 1.0), (f"{SITE}/about.html", 0.7),

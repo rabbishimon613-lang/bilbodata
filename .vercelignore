@@ -15,3 +15,15 @@
 !subway.json
 !cams_all.json
 !cam_resolution_census.csv
+
+# generated SEO surface (seo_build.py / seo_submit.py)
+!data.html
+!cams
+!cams/**
+!robots.txt
+!llms.txt
+!sitemap.xml
+!sitemap-core.xml
+!sitemap-cameras.xml
+!busiest.html
+!371ad4d7ca1c478080ed2b8bf85b9a5c.txt

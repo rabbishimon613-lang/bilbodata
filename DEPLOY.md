@@ -53,6 +53,36 @@ Gotchas that have bitten before:
   committers race `main` (~3 min and ~7 min cadence). If `training/` churn
   blocks a rebase: `git checkout -- training/` first, never autostash.
 
+## SEO surface (regenerate before deploying the shell)
+
+The live app is one JS-rendered URL, which is nothing for a crawler to hold on
+to. The static half of the site is generated, not hand-written:
+
+```bash
+python3 seo_build.py && python3 seo_patch.py && python3 seo_ogcard.py
+```
+
+- `seo_build.py` — one page per camera under `cams/` (917), five borough hubs,
+  `cams/index.html`, `data.html` (Dataset JSON-LD → Google Dataset Search),
+  `busiest.html`, plus `robots.txt` and the sitemaps. Rerun whenever
+  `cams_all.json` or `counts.csv` change so the counts on each page stay true.
+- `seo_patch.py` — injects the head block (description, canonical, robots, OG,
+  Twitter, JSON-LD) into the five hand-written pages between `<!--SEO:START-->`
+  markers, and keeps the crawl links in the homepage footer. Idempotent.
+- `seo_ogcard.py` — regenerates `assets/og-card.png` (1200×630 social card).
+- `seo_submit.py` — writes `llms.txt` and pushes every sitemap URL to
+  IndexNow (Bing/Yandex/DuckDuckGo, no account needed). Run it **after**
+  deploying, or the key-file check 403s with `SiteVerificationNotCompleted`.
+
+Gotchas:
+- **`.vercelignore` is an allowlist** (`*` then `!path` lines). Anything new
+  that must be served has to be un-ignored there or it silently 404s in
+  production while working perfectly on localhost.
+- The canonical host is **`bilbodata.com`**. `www.` and `bilbodata.vercel.app`
+  308 to it via `vercel.json` redirects — do not add a third serving host.
+- `cam.html` is deliberately `noindex,follow`: its `?id=` query strings would
+  otherwise mint 917 near-duplicates of the real pages under `/cams/`.
+
 ## Turning the fingerprint loop on (first run)
 1. Push `main` (done as part of the rebuild).
 2. Actions tab → **harvest** → Run workflow (generation 1). It relays itself;
