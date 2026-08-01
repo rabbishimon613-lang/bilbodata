@@ -18,6 +18,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"SkyLine \u2014 NYC subway in 3D","url":"https://bilbodata.com/skyline.html"}</script>
 <!--SEO:END-->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+
 <style>
   html,body,#map{margin:0;padding:0;height:100%;background:#000;font-family:ui-monospace,Menlo,monospace;color:#d4c9a8}
   *{box-sizing:border-box}
@@ -116,13 +117,16 @@
     #legend{display:none}
   }
 </style>
+<link rel="stylesheet" href="assets/mobile.css">
+<link rel="stylesheet" href="assets/desktop.css">
+<script src="assets/mobile.js" defer></script>
+
 <div id="map"></div>
 
 <div class="panel" id="topnav">
   <a class="brand" href="index.html"><img src="assets/bilbo-pup.png" alt="Bilbo"><span><b>Bilbo</b> Data</span></a>
   <a class="t" href="index.html">Modules</a>
   <a class="t" href="library.html">Library</a>
-  <a class="t" href="index.html#brain">BrainView</a>
   <a class="t on">SkyLine</a>
   <a class="t" href="index.html#about">About</a>
 </div>

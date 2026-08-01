@@ -260,6 +260,7 @@ def page(path, title, desc, body, jsonld, image=None, canon=None):
     """Write one static page. `path` is relative to the repo root."""
     canon = canon or f"{SITE}/{path}"
     img = image or f"{SITE}/assets/og-card.png"
+    up = "../" * path.count("/")   # asset prefix: root pages "", cams/* "../"
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -281,6 +282,9 @@ def page(path, title, desc, body, jsonld, image=None, canon=None):
 <meta name="twitter:image" content="{img}">
 {FONTS}
 <style>{CSS}</style>
+<link rel="stylesheet" href="{up}assets/mobile.css">
+<link rel="stylesheet" href="{up}assets/desktop.css">
+<script src="{up}assets/mobile.js" defer></script>
 <script type="application/ld+json">{json.dumps(jsonld, separators=(",", ":"))}</script>
 </head>
 <body>

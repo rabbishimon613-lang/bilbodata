@@ -1,0 +1,100 @@
+/* ============================================================
+   Bilbo Data — desktop experience layer
+   Phones are handled in mobile.css. This file is the opposite
+   problem: big screens were showing a 1200px column with dead
+   margins and phone-sized type. Everything here is >=1100px.
+   ============================================================ */
+
+/* ---- craft details that apply at every width ---- */
+:focus-visible{outline:2px solid var(--accent,#5b8def);outline-offset:2px;border-radius:2px}
+::selection{background:rgba(74,217,145,.26);color:#fff}
+html{scrollbar-color:#2a2c31 #000}
+*::-webkit-scrollbar{width:11px;height:11px}
+*::-webkit-scrollbar-track{background:#050506}
+*::-webkit-scrollbar-thumb{background:#22242a;border:3px solid #050506;border-radius:8px}
+*::-webkit-scrollbar-thumb:hover{background:#33363d}
+
+@media(min-width:1100px){
+
+  /* ---------- the page finally uses the monitor ---------- */
+  .wrap{max-width:min(1340px,94vw);padding:0 34px}
+  header .wrap{max-width:min(1600px,96vw)}
+  .banner .wrap{max-width:min(1600px,96vw)}
+
+  /* ---------- reading comfort ---------- */
+  body{font-size:15.5px}
+  .hero{padding:88px 0 62px}
+  .hero h1{font-size:clamp(52px,4.6vw,80px)}
+  .hero .sub{font-size:19px;max-width:52ch}
+  .statesent{font-size:17px;padding:18px 24px}
+  section.blk{padding:52px 0}
+  section.blk h2{font-size:26px}
+
+  /* ---------- module rail: the instruments get room ---------- */
+  .modhead{margin-top:52px;padding-bottom:13px;gap:16px}
+  .modhead h2{font-size:22px}
+  .modhead .say{font-size:13.5px}
+  .showcase{transition:border-color .16s}
+  .showcase:hover{border-color:#26292f}
+  .sc-body{grid-template-columns:300px minmax(0,1fr)}
+  .showcase.odd .sc-body{grid-template-columns:380px minmax(0,1fr)}
+  .showcase.foot .sc-body{grid-template-columns:340px minmax(0,1fr)}
+  .sc-raw{padding:26px 24px}
+  .sc-raw .rawimg{height:196px}
+  .showcase.odd .sc-raw .rawimg{height:290px}
+  .showcase.foot .sc-raw .rawimg{height:236px}
+  .sc-read{padding:24px 32px 26px}
+  .sc-read .who{font-size:38px}
+  .showcase.odd .sc-read .who{font-size:32px}
+  .showcase.foot .sc-read .who{font-size:48px}
+  .sc-read .whosub{font-size:15px;max-width:76ch}
+  .sc-facts .f .fv{font-size:16px}
+  .whencard .wd{font-size:23px}
+
+  /* interactive affordances that were missing */
+  .cell,.ecard,.card{transition:border-color .14s,background .14s,transform .14s}
+  .ecard:hover,.card:hover{border-color:#2f333a}
+  .sc-nav button,.btn,.pill,nav.tabs button,nav.tabs a{transition:color .14s,border-color .14s,background .14s}
+
+  /* ---------- library ---------- */
+  .layout{grid-template-columns:264px minmax(0,1fr);gap:38px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:16px}
+  .doccard{padding:26px 30px 24px}
+  .doccard h4{font-size:22px}
+  .doccard p{font-size:15px}
+
+  /* ---------- research document ---------- */
+  .wrap.doc{max-width:min(1400px,94vw)}
+  .doclayout{grid-template-columns:minmax(0,1fr) 250px;gap:56px}
+  h1.doc{font-size:clamp(30px,2.9vw,42px)}
+  .md{padding:36px 0 130px}
+  .md p,.md li{font-size:15.5px;max-width:82ch}
+  .md h2{font-size:23px;margin-top:62px}
+  .md h3{font-size:18.5px}
+  .md blockquote{font-size:16px;padding:16px 22px}
+  .md table{font-size:14px}
+}
+
+@media(min-width:1500px){
+  body{font-size:16px}
+  .wrap{max-width:1440px}
+  .sc-read .who{font-size:42px}
+  .showcase.foot .sc-read .who{font-size:54px}
+  .sc-raw .rawimg{height:220px}
+  #nycmap{height:660px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(252px,1fr))}
+  .layout{grid-template-columns:280px minmax(0,1fr);gap:46px}
+}
+
+@media(min-width:1800px){
+  .wrap{max-width:1560px}
+  .md p,.md li{font-size:16.5px}
+  #nycmap{height:720px}
+}
+
+/* the contents rail earns its keep on wide screens */
+@media(min-width:1120px){
+  .toc{border-left:1px solid var(--line,#1b1c1f);padding-left:20px!important}
+  .toc a{padding:5px 0;line-height:1.35;border-left:2px solid transparent;padding-left:10px;margin-left:-12px}
+  .toc a.on{border-left-color:var(--live,#4ad991)}
+}

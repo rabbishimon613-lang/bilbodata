@@ -1,0 +1,32 @@
+{
+  "categories": [
+    "Surveillance Infrastructure",
+    "Vision & Recognition",
+    "Policy & Law",
+    "Fleet & Industry"
+  ],
+  "docs": [
+    {
+      "id": "DOC-001",
+      "title": "Axon Vehicle Intelligence — Outpost, Lightpost, and the Streetlight as a Sensor",
+      "category": "Surveillance Infrastructure",
+      "date": "2026-08-01",
+      "read": 26,
+      "file": "research/axon-vehicle-intelligence.md",
+      "blurb": "Axon moved its cameras off officers and onto street furniture. What Outpost and Lightpost actually are, what they can recognise, what cities paid, and the accuracy numbers nobody has published.",
+      "stats": [
+        { "k": "Announced", "v": "Apr 2025", "sub": "Outpost + Lightpost", "tone": "" },
+        { "k": "Install time", "v": "< 1 hr", "sub": "on existing streetlight", "tone": "good" },
+        { "k": "Plate capture", "v": "155 mph", "sub": "~328 ft / 100 m daylight", "tone": "" },
+        { "k": "Douglas County", "v": "$22.8M", "sub": "10 years · 100 units", "tone": "good" },
+        { "k": "Published accuracy", "v": "None", "sub": "no plate or attribute rate", "tone": "bad" },
+        { "k": "Plates tied to crime", "v": "<1%", "sub": "ACLU figure", "tone": "bad" }
+      ],
+      "headline": {
+        "title": "HEADLINE FINDING — THE MOUNT IS THE PRODUCT, NOT THE CAMERA",
+        "tone": "bad",
+        "body": "The Axis plate camera and the Ubicquia streetlight node are both commodity parts. What is new is that bolting them together collapses a fixed camera from a civil-works project into a one-hour service call — and collapses the political cost from a siting hearing into an attachment agreement. Cameras cheap to install are installed in quantity, and can be re-aimed at a different street in an hour with no procurement event. Meanwhile Axon publishes no accuracy figure, no false-positive rate, and no product-level retention standard."
+      }
+    }
+  ]
+}

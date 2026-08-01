@@ -1,0 +1,171 @@
+/* ============================================================
+   Bilbo Data — mobile experience layer
+   Loaded on every page after the page's own <style>.
+   Desktop is untouched; everything here is <=980px.
+   ============================================================ */
+
+/* ---- global overflow guard (all widths) ---- */
+html,body{max-width:100%;overflow-x:hidden}
+img,video,canvas,svg{max-width:100%}
+.m-tablescroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border:1px solid var(--line,#1b1c1f);border-radius:4px}
+.m-tablescroll>table{margin:0;border:0;min-width:520px}
+
+/* the hamburger + sheet exist only on small screens */
+.m-burger{display:none}
+.m-sheet{display:none}
+
+@media(max-width:980px){
+
+  /* ---------- header ---------- */
+  header{z-index:80}
+  header .wrap{gap:10px;height:58px;padding:0 16px}
+  header .brand img{height:30px}
+  header .brand .bn{font-size:18px}
+  header .brand .dt{display:none}
+  header nav.tabs{display:none}
+  header .mark{display:none}
+  header .whois{margin-left:auto;padding:10px 14px;font-size:10.5px;letter-spacing:.12em;border-radius:3px}
+
+  .m-burger{display:grid;place-content:center;gap:5px;width:44px;height:44px;flex:none;
+    background:none;border:1px solid var(--line2,#2a2c31);border-radius:3px;cursor:pointer;padding:0}
+  .m-burger i{display:block;width:18px;height:1.5px;background:var(--ink,#f3f4f5);transition:transform .18s,opacity .18s}
+  .m-burger.on i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .m-burger.on i:nth-child(2){opacity:0}
+  .m-burger.on i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  .m-sheet{display:block;position:fixed;left:0;right:0;top:0;z-index:60;
+    background:rgba(4,5,6,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line,#1b1c1f);
+    padding:88px 16px 22px;transform:translateY(-102%);transition:transform .26s cubic-bezier(.4,0,.2,1);
+    max-height:100dvh;overflow-y:auto}
+  .m-sheet.on{transform:translateY(0)}
+  .m-sheet a,.m-sheet button.m-item{display:flex;align-items:center;justify-content:space-between;width:100%;
+    font-family:var(--sans,system-ui);font-size:20px;font-weight:300;color:var(--ink,#f3f4f5);
+    background:none;border:0;border-bottom:1px solid var(--line,#1b1c1f);padding:18px 2px;text-align:left;cursor:pointer}
+  .m-sheet .m-item.on{color:var(--live,#4ad991)}
+  .m-sheet .m-item:after{content:"→";color:var(--mut,#585d66);font-size:15px}
+  .m-sheet .m-cta{margin-top:22px;display:block;text-align:center;font-family:var(--mono,monospace);font-size:12px;
+    font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#04070d;background:var(--accent,#5b8def);
+    border:0;border-radius:3px;padding:16px;width:100%;cursor:pointer}
+  .m-sheet .m-mark{margin-top:18px;font-family:var(--mono,monospace);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--mut,#585d66);line-height:1.8}
+  .m-scrim{position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .22s}
+  .m-scrim.on{opacity:1;pointer-events:auto}
+  body.m-locked{overflow:hidden}
+
+  /* ---------- ticker ---------- */
+  .banner .wrap{height:32px;font-size:11.5px;padding:0 16px;justify-content:flex-start;
+    -webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+
+  /* ---------- page rhythm ---------- */
+  .wrap{padding:0 16px}
+  main{padding-bottom:64px}
+  .hero{padding:44px 0 34px}
+  .hero h1{font-size:clamp(30px,8.5vw,44px);max-width:none}
+  .hero .sub{font-size:16px;margin-top:16px}
+  .hero .cta{margin-top:24px;gap:9px}
+  .btn{padding:13px 18px;font-size:14px}
+  .statesent{margin-top:28px;padding:14px 16px;font-size:15px}
+  section.blk{padding:32px 0}
+  section.blk h2{font-size:20px}
+  .top{padding:22px 0 18px!important}
+  .top h1{font-size:clamp(26px,7.5vw,36px)!important}
+  .top .sub{font-size:15px}
+
+  /* ---------- module rail ---------- */
+  .modhead{flex-wrap:wrap;gap:10px;margin-top:28px}
+  .modhead h2{font-size:18px}
+  .modhead .say{flex-basis:100%;font-size:12.5px;line-height:1.5}
+  .modhead .rate{margin-left:0;flex-basis:100%}
+
+  /* showcase cards — stack, never squeeze */
+  .sc-body,
+  .showcase.odd .sc-body,
+  .showcase.foot .sc-body{grid-template-columns:1fr!important;min-height:0}
+  .sc-raw,.sc-read,.cwrap,.sc-facts .f{min-width:0}
+  .sc-raw{flex-direction:column!important;border-right:none!important;border-bottom:1px solid var(--line,#1b1c1f);
+    padding:16px 16px 18px;gap:12px}
+  .sc-raw .rawimg,
+  .showcase.odd .sc-raw .rawimg,
+  .showcase.foot .sc-raw .rawimg{width:100%!important;height:auto!important;aspect-ratio:16/10;flex:none}
+  .sc-raw .rawimg img{width:100%;height:100%;object-fit:contain}
+  .sc-raw .rawmeta{font-size:10px;line-height:1.7;word-break:break-word}
+  .whencard{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px}
+  .whencard .wd{font-size:16px}
+  .whencard .wt{font-size:13px;margin-top:0}
+  .whencard .wp{flex-basis:100%;font-size:12.5px;margin-top:6px;padding-top:8px}
+  .sc-top{flex-wrap:wrap;gap:8px;row-gap:6px}
+  .sc-top .cnt{margin-left:0;flex-basis:100%}
+  .sc-top .folder{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sc-read{padding:18px 16px 20px}
+  .sc-read .who,
+  .showcase.odd .sc-read .who,
+  .showcase.foot .sc-read .who{font-size:clamp(21px,6.4vw,30px)!important;line-height:1.16}
+  .sc-read .whosub{font-size:13.5px}
+  .conf{margin-left:0;margin-top:8px;display:inline-block}
+  .sc-facts{grid-template-columns:1fr 1fr!important}
+  .sc-facts .f{padding:12px 0 13px 14px}
+  .sc-facts .f:nth-child(odd){border-left:none;padding-left:0}
+  .sc-facts .f:nth-child(n+3){border-top:1px solid var(--line,#1b1c1f)}
+  .sc-facts .f .fv{font-size:14px;word-break:break-word}
+  .sc-where{font-size:10.5px;gap:7px}
+  .sc-rec{font-size:9px;letter-spacing:.12em}
+  .sc-rec span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .compass{gap:12px}
+  .odspec{font-size:10.5px;line-height:1.8;word-break:break-word}
+
+  /* ---------- generic grids ---------- */
+  .g4,.g3,.g2{grid-template-columns:1fr 1fr!important}
+  .split2,.prod{grid-template-columns:1fr!important}
+  .loop{grid-template-columns:1fr 1fr!important}
+  .evalgrid{grid-template-columns:1fr!important}
+  .headgrid,.rotgrid,.thumbs{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important}
+  .quoteblk{margin:34px 0 6px;padding:20px 18px}
+  .quoteblk p{font-size:16px}
+
+  /* ---------- map ---------- */
+  #nycmap{height:64vh;min-height:340px}
+  .campanel{position:static;width:auto;border-radius:0;border-left:none;border-right:none;max-height:none}
+  .campanel.on{display:flex}
+  .maphint{font-size:9px;padding:6px 8px;gap:7px;max-width:calc(100% - 28px)}
+  .maplegend{font-size:9px;padding:9px 10px}
+
+  /* ---------- library ---------- */
+  .layout,.doclayout{grid-template-columns:1fr!important;gap:18px}
+  .rail{position:static!important;max-height:none!important;padding-right:0}
+  .bar{gap:9px}
+  .search{width:100%;padding:12px}
+  .count{margin-left:0}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(146px,1fr))!important}
+  .box{grid-template-columns:1fr!important}
+  nav.sections{overflow-x:auto;scrollbar-width:none}
+  nav.sections::-webkit-scrollbar{display:none}
+  nav.sections button{white-space:nowrap;font-size:10.5px;padding:10px 14px}
+
+  /* ---------- research ---------- */
+  .dochead{padding:22px 0 20px}
+  h1.doc{font-size:clamp(21px,6vw,28px)}
+  .tiles{grid-template-columns:1fr 1fr;gap:9px}
+  .tile{padding:13px 14px}
+  .tile .v{font-size:22px}
+  .tile .k{font-size:9px}
+  .callout{padding:16px 16px}
+  .md h2{font-size:17px;margin-top:40px}
+  .md h3{font-size:15.5px}
+  .md p,.md li{font-size:14.5px}
+  .md table{font-size:12.5px}
+  .md thead th,.md tbody td{padding:10px 11px}
+}
+
+@media(max-width:430px){
+  .sc-facts{grid-template-columns:1fr!important}
+  .sc-facts .f{border-left:none;padding-left:0}
+  .sc-facts .f:nth-child(n+2){border-top:1px solid var(--line,#1b1c1f)}
+  .g4,.g3,.g2,.loop{grid-template-columns:1fr!important}
+  .grid{grid-template-columns:1fr 1fr!important}
+}
+
+/* honour reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .m-sheet,.m-scrim,.m-burger i{transition:none}
+  html{scroll-behavior:auto}
+}
