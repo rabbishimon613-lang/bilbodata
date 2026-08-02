@@ -29,6 +29,48 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 
+# --------------------------------------------------------- SERP length fits
+# Google renders roughly 60 characters of a <title> and 160 of a description
+# before it truncates. Every one of the 917 camera titles used to blow past
+# both, so the informative half — the street name — was being cut off in the
+# result that actually matters. These two keep the generated pages inside the
+# window without hand-editing hundreds of files.
+
+def fit_title(head, tail=" | Bilbo Data", limit=60, keep=""):
+    """Prefer the branded title; drop the brand before losing real words.
+
+    `keep` is a short suffix that must survive truncation. The eastbound and
+    westbound cameras at one interchange share every word except the direction
+    marker, so without this they truncate to byte-identical titles.
+    """
+    head = " ".join(str(head).split())
+    keep = " ".join(str(keep).split())
+    full = f"{head} {keep}".strip() if keep else head
+    if len(full) + len(tail) <= limit:
+        return full + tail
+    if len(full) <= limit:
+        return full
+    budget = limit - 1 - (len(keep) + 1 if keep else 0)
+    cut = head[:budget]
+    sp = cut.rfind(" ")
+    if sp > budget * 0.6:
+        cut = cut[:sp]
+    cut = cut.rstrip(" ,;:–—-") + "…"
+    return f"{cut} {keep}" if keep else cut
+
+
+def fit_desc(text, limit=160):
+    """Trim to a clean word boundary so the snippet never cuts mid-word."""
+    text = " ".join(str(text).split())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit - 1]
+    sp = cut.rfind(" ")
+    if sp > limit * 0.6:
+        cut = cut[:sp]
+    return cut.rstrip(" ,;:–—-") + "…"
+
+
 # ------------------------------------------------------------- camera names
 # 146 of the 917 DOT names are machine strings ("C2-BQE-22-WB_at_Lee_Ave-Ex31").
 # index.html already decodes them client-side; this is that same pretty()
@@ -325,19 +367,24 @@ STREET_SPLIT = re.compile(r"\s*(?:@|at|&)\s*", re.I)
 for cam in cams:
     name, area = cam["name"], cam["area"]
     parts = [p.strip() for p in STREET_SPLIT.split(name) if p.strip()]
-    title = f"{name} Traffic Camera — Live View, {area} NYC | Bilbo Data"
+    _dm = re.search(r"\s*(\((?:north|south|east|west)bound\))\s*$", name)
+    _core = name[:_dm.start()] if _dm else name
+    title = fit_title(f"{_core} Traffic Camera — {area}, NYC",
+                      keep=_dm.group(1) if _dm else "")
     s = stats.get(cam["id"])
 
     if s and s["n"]:
         avg = s["veh"] / s["n"]
-        desc = (f"Live NYC DOT traffic camera at {name} in {area}. "
-                f"Bilbo Data has counted {s['veh']:,} vehicle passes here across "
-                f"{s['n']:,} samples — averaging {avg:.1f} per frame, peaking at "
-                f"{s['peak']}. Live image, vehicle mix and nearby cameras.")
+        # Lead with the measured number: it is the one thing this page has that
+        # every other NYC camera listing does not.
+        desc = fit_desc(f"Live NYC DOT camera at {name}, {area}. "
+                        f"{s['veh']:,} vehicle passes counted here across "
+                        f"{s['n']:,} samples — {avg:.1f} per frame, peaking at "
+                        f"{s['peak']}.")
     else:
-        desc = (f"Live NYC DOT traffic camera at {name} in {area}, New York City. "
-                f"Current street view, exact location, and the nearest cameras on "
-                f"the Bilbo Data network.")
+        desc = fit_desc(f"Live NYC DOT traffic camera at {name} in {area}, "
+                        f"New York City — street view, exact location and the "
+                        f"nearest cameras on the network.")
 
     # enrichment rows — these are what stop 917 pages reading as one template
     grade_label = GRADE.get(cam["id"], ("Not yet measured", 0, 0))[0]
@@ -479,10 +526,10 @@ for road, group in sorted(roads.items()):
     counted = sum(1 for c in group if stats.get(c["id"], {}).get("n"))
     counted_line = (f" {counted} of them are counted frame by frame by Bilbo Data."
                     if counted else "")
-    title = f"{road} Traffic Cameras — {len(group)} Live Views | Bilbo Data"
-    desc = (f"Every NYC DOT traffic camera on the {road}: {len(group)} live views "
-            f"across {', '.join(boroughs)}, with exit numbers, direction of travel "
-            f"and measured vehicle counts where we have them.")
+    title = fit_title(f"{road} Traffic Cameras — {len(group)} Live Views")
+    desc = fit_desc(f"Every NYC DOT traffic camera on the {road}: {len(group)} live "
+                    f"views across {', '.join(boroughs)}, with exit numbers, "
+                    f"direction of travel and measured vehicle counts.")
     items = "\n".join(
         f'<li><a href="/cams/{c["slug"]}.html">{esc(c["name"])}</a></li>' for c in group)
     body = f"""
@@ -532,10 +579,10 @@ for area, group in sorted(areas.items()):
     counted = sum(1 for c in group if stats.get(c["id"], {}).get("n"))
     counted_line = (f" {counted} of them are currently being counted frame-by-frame "
                     f"by Bilbo Data." if counted else "")
-    title = f"{area} Traffic Cameras — All {len(group)} Live NYC DOT Feeds | Bilbo Data"
-    desc = (f"Every one of the {len(group)} public NYC DOT traffic cameras in {area}, "
-            f"mapped and listed with live views. {counted} are currently counted by "
-            f"Bilbo Data's computer vision.")
+    title = fit_title(f"{area} Traffic Cameras — All {len(group)} Live Feeds")
+    desc = fit_desc(f"All {len(group)} public NYC DOT traffic cameras in {area}, "
+                    f"mapped and listed with live views. {counted} are counted "
+                    f"frame by frame by Bilbo Data.")
     items = "\n".join(
         f'<li><a href="/cams/{c["slug"]}.html">{esc(c["name"])}</a></li>' for c in group)
     body = f"""
@@ -575,10 +622,10 @@ nearest neighbours.{counted_line} Pick an intersection.</p>
 
 # --------------------------------------------------------- camera directory
 total_counted = sum(1 for c in cams if stats.get(c["id"], {}).get("n"))
-title = f"All {len(cams)} NYC Traffic Cameras — Live Views by Borough | Bilbo Data"
-desc = (f"A complete, browsable index of all {len(cams)} public New York City DOT "
-        f"traffic cameras, sorted by borough, each with a live image and location. "
-        f"Free, no login.")
+title = fit_title(f"All {len(cams)} NYC Traffic Cameras, by Borough")
+desc = fit_desc(f"A browsable index of all {len(cams)} public New York City DOT "
+                f"traffic cameras, sorted by borough, each with a live image "
+                f"and location. Free, no login.")
 body = f"""
 <div class="crumb"><a href="/">Bilbo Data</a> › Cameras</div>
 <p class="eyebrow">Full network index</p>
@@ -633,10 +680,10 @@ try:
 except Exception:
     pass
 w = (net.get("windows") or {}).get("1mo") or {}
-title = "NYC Traffic Camera Vehicle Count Dataset — Free CSV Download | Bilbo Data"
-desc = ("An open dataset of vehicle counts derived from New York City's public DOT "
-        "traffic cameras: cars, trucks, buses and motorcycles per camera per "
-        "timestamp. CSV and Parquet, free, no login, updated continuously.")
+title = fit_title("NYC Traffic Camera Vehicle Count Dataset — Free CSV")
+desc = fit_desc("An open dataset of vehicle counts from New York City's public DOT "
+                "traffic cameras: cars, trucks, buses and motorcycles per camera "
+                "per timestamp. CSV and Parquet, free, no login.")
 body = f"""
 <div class="crumb"><a href="/">Bilbo Data</a> › Dataset</div>
 <p class="eyebrow">Open data</p>
@@ -707,10 +754,10 @@ urls.append((page("data.html", title, desc, body, ld), 0.9, "hub"))
 # busiest" with a number rather than an opinion.
 ranked = sorted(((cid, s) for cid, s in stats.items() if s["n"] >= 50),
                 key=lambda t: t[1]["veh"] / t[1]["n"], reverse=True)
-title = "The Busiest NYC Intersections We Have Counted — Ranked | Bilbo Data"
-desc = (f"Every camera Bilbo Data counts, ranked by how many vehicles are actually "
-        f"in frame on average. {len(ranked)} New York City intersections, measured "
-        f"from public DOT cameras rather than estimated.")
+title = fit_title("The Busiest NYC Intersections, Ranked")
+desc = fit_desc(f"Every camera Bilbo Data counts, ranked by how many vehicles are "
+                f"actually in frame on average. {len(ranked)} New York City "
+                f"intersections, measured from public DOT cameras, not estimated.")
 rows = []
 for i, (cid, s) in enumerate(ranked, 1):
     c = by_id[cid]
