@@ -109,3 +109,127 @@ first — two pulse committers race `main`.
   not a fix.
 - **Git auto-deploy stays disabled** (`vercel.json` sets
   `git.deploymentEnabled.main = false`). Left exactly as is, per doctrine.
+
+---
+
+## 2026-08-04 — second sweep
+
+### The headline: last sweep's work is still not live, and had never been pushed
+
+The metadata fix from 2026-08-02 is **still not deployed**. Verified directly:
+`bilbodata.com/cams/atlantic-ave-111-st.html` serves the old 76-character title
+(`… Traffic Camera — Live View, Brooklyn NYC | Bilbo Data`) while the file on
+disk carries the fixed 51-character one.
+
+Worse, that commit had never left this machine — the branch was **ahead 1** on
+`main`, so the fix existed only in this working copy. It is now rebased onto
+origin and pushed, together with this sweep's commit. Pushing is safe here:
+`vercel.json` still sets `git.deploymentEnabled.main = false`, so nothing
+deploys off a push. That setting was not touched.
+
+**Two sweeps of metadata work are now queued behind one manual redeploy.**
+
+### Checked
+
+- **Surface size:** 917 camera pages + 25 hubs/data pages = 932 audited;
+  **947 sitemap URLs** (up 1 — see research.html below).
+- **Search Console:** still **unverified** for bilbodata.com, second sweep
+  running. Re-checked: no Google verification file in the repo, no service
+  account, no `gcloud` config, no Google environment variables, and none of the
+  keyring's 28 entries is a Google credential. **No indexing, impression or
+  ranking figures appear in this entry because none were measurable.**
+- **Canonical host:** enforced and verified live — `www.bilbodata.com` and
+  `bilbodata.vercel.app` both 308 to `bilbodata.com`.
+- **robots.txt:** correct, opens everything, names the sitemap index, welcomes
+  the AI answer engines.
+- **noindex:** exactly one page, `cam.html`, deliberate and correct.
+- **Canonicals:** now present on all 932 pages (was 931 — see below).
+- **Structured data:** 919 `WebPage`, 917 `BreadcrumbList`, 8 `CollectionPage`,
+  plus `WebSite`, `AboutPage`, `Dataset` and `ItemList`. **Zero parse errors.**
+- **Duplicates:** zero duplicate titles, zero duplicate descriptions.
+- **Internal links / orphans:** **zero broken internal links, zero orphans.**
+  A first pass flagged 1,848 broken links and 1 orphan; both were artefacts of
+  the audit script resolving relative hrefs against the repo root instead of the
+  page directory. `assets/desktop.css` and `assets/mobile.css` are present and
+  return 200 live. The only two remaining "links" are JavaScript template
+  fragments (`$2`, `'+d.file+'`) inside research.html, not markup.
+- **Weight:** unchanged; camera pages ~9 KB.
+
+### Changed
+
+- **The five hand-written pages were still over the SERP limits.** The last
+  sweep fixed the *generated* templates, and those hold up — all 923 camera
+  pages measure inside the window. The hand-written ones were missed:
+  - `skyline.html` title 67 chars → 54 (dropped the `| Bilbo Data` suffix, the
+    same treatment the camera titles already get behind a length check).
+  - `library.html` title 63 → 54.
+  - `index.html` description 181 → 157, keeping the "No faces, no plates."
+    differentiator and cutting elsewhere.
+  - `about.html` description 182 → 148.
+  - `library.html` description 181 → 140.
+  Fixed in `seo_patch.py`, not by hand-editing the HTML, so the next
+  regeneration keeps them.
+- **`research.html` was invisible to search.** It ships with the Research
+  Library (commit `f8cc68a8`), is live, returns 200 and is linked from
+  `library.html` — but it had **no meta description, no canonical, no Open
+  Graph, no structured data, and appeared in no sitemap**. It was the only page
+  on the site missing a canonical. Added to `seo_patch.py` with a real title,
+  description and `CollectionPage` schema, and added to the core sitemap in
+  `seo_build.py`. That is the +1 URL.
+- **Whole surface regenerated** against current counts
+  (`seo_build.py` → `seo_patch.py` → `seo_ogcard.py`), so the vehicle counts
+  quoted in every camera description are current rather than two days stale.
+
+### A measurement note for future sweeps
+
+An audit that measures `<title>` and `<meta description>` straight out of the
+HTML **overcounts by 4 characters for every `&`**, because the source carries
+`&amp;`. That produced a false alarm this run: 14 titles and 10 descriptions
+looked over-limit, and after unescaping only 2 titles and 3 descriptions
+actually were — all of them on the hand-written pages, none on a camera page.
+Measure what Google renders, not what the file stores.
+
+### Blocked — needs the user, once
+
+- **bilbodata.com is not verified in Search Console.** Unchanged. To unblock:
+  add the property and verify by DNS TXT record (simplest — the domain's DNS is
+  already managed for Vercel), or drop the Google HTML verification file at the
+  repo root **and un-ignore it in `.vercelignore`**, which is an allowlist — an
+  unlisted file silently 404s in production. Then, for automated reads, create a
+  Google Cloud service account, enable the Search Console API, add its email as
+  a full user on the property, and store the JSON key where this routine can
+  read it.
+
+  Until then this line repeats in every sweep.
+
+### Waiting on a manual redeploy
+
+**Everything above is committed and pushed but NOT live.** Per `DEPLOY.md` the
+shell is deployed by hand. To publish, from the repo root:
+
+```bash
+vercel --prod --yes
+```
+
+`git pull --rebase` first — the pulse committers race `main`.
+
+**After the redeploy, run `python3 seo_submit.py`** to push the URL set to
+IndexNow. It 403s if run before the host serves the changes.
+
+### Found, not changed — with reasons
+
+- **IndexNow was again deliberately not submitted.** Same reasoning as last
+  sweep, and it still holds: the URL set barely changed (one addition), while
+  everything that *did* change is metadata on pages that still serve the old
+  tags in production. Submitting now spends the signal on stale pages. It should
+  run immediately after the redeploy — at which point two sweeps of metadata
+  changes plus `research.html` all become worth announcing at once.
+- **`/cams/road/` still returns 404.** Unchanged: there is no corridor index,
+  only the 17 individual corridor hubs, all live and linked. Nothing points at
+  the bare directory, so it is invisible to crawlers rather than broken. A
+  corridor index would be a new page, not a fix.
+- **Git auto-deploy stays disabled.** Left exactly as is, per doctrine.
+- **The repo needs housekeeping.** Git reported "too many unreachable loose
+  objects" and a stale `.git/gc.log` blocking automatic cleanup — a side effect
+  of the pulse committers' churn. Not an SEO matter and not touched, but it will
+  keep nagging on every git operation until someone runs `git prune`.
