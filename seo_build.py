@@ -834,7 +834,11 @@ print("404.html    written")
 
 # ------------------------------------------------------------------ sitemaps
 core = [(f"{SITE}/", 1.0), (f"{SITE}/about.html", 0.7),
-        (f"{SITE}/library.html", 0.6), (f"{SITE}/skyline.html", 0.7)]
+        (f"{SITE}/library.html", 0.6), (f"{SITE}/skyline.html", 0.7),
+        # research.html ships with the Research Library and is linked from
+        # library.html, but it was never listed here — a live, crawlable page
+        # that no sitemap advertised.
+        (f"{SITE}/research.html", 0.6)]
 
 
 def write_sitemap(path, entries):

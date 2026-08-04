@@ -29,38 +29,46 @@ WEBSITE_LD = {
 PAGES = {
     "index.html": dict(
         title="Bilbo Data — Live NYC Traffic Camera Counts, All 917 Cameras",
-        desc=("Live vehicle counts read off New York City's 917 public DOT traffic "
-              "cameras by computer vision. Real-time dashboard, per-camera history "
-              "and a free open dataset. No faces, no plates."),
+        desc=("Live vehicle counts read off New York City's 917 public DOT cameras "
+              "by computer vision. Dashboard, per-camera history and an open "
+              "dataset. No faces, no plates."),
         canon=SITE + "/",
         ld=[WEBSITE_LD],
     ),
     "about.html": dict(
         title="About Bilbo Data — An Ethical Read of NYC's Public Cameras",
         desc=("Why Bilbo Data counts vehicles instead of identifying people: the "
-              "privacy line, the technical ceiling, and what an open read of New "
-              "York City's public camera network is actually for."),
+              "privacy line, the technical ceiling, and what an open read of "
+              "NYC's cameras is for."),
         canon=SITE + "/about.html",
         ld=[{"@context": "https://schema.org", "@type": "AboutPage",
              "name": "About Bilbo Data", "url": SITE + "/about.html"}],
     ),
     "library.html": dict(
-        title="Vehicle Library — What Bilbo Data Can Tell Apart on NYC Cameras",
-        desc=("The vehicle library behind Bilbo Data: the body types, fleet liveries "
-              "and markings the system recognises on New York City traffic cameras, "
-              "and where the resolution ceiling stops it."),
+        title="Vehicle Library — What Bilbo Data Tells Apart on Camera",
+        desc=("The body types, fleet liveries and markings Bilbo Data recognises "
+              "on New York City traffic cameras, and where the resolution ceiling "
+              "stops it."),
         canon=SITE + "/library.html",
         ld=[{"@context": "https://schema.org", "@type": "CollectionPage",
              "name": "Bilbo Data Vehicle Library", "url": SITE + "/library.html"}],
     ),
     "skyline.html": dict(
-        title="SkyLine — 3D Map of NYC Subway Tunnels and Live Trains | Bilbo Data",
+        title="SkyLine — 3D Map of NYC Subway Tunnels and Live Trains",
         desc=("A 3D cutaway of New York City showing the subway tunnels under the "
               "streets and live train positions from the MTA feed, rendered in the "
               "browser."),
         canon=SITE + "/skyline.html",
         ld=[{"@context": "https://schema.org", "@type": "WebPage",
              "name": "SkyLine — NYC subway in 3D", "url": SITE + "/skyline.html"}],
+    ),
+    "research.html": dict(
+        title="Research Library — How Bilbo Data Reads NYC Cameras",
+        desc=("The write-ups behind Bilbo Data: how vehicles are counted, what the "
+              "camera resolution ceiling allows, and what the open dataset covers."),
+        canon=SITE + "/research.html",
+        ld=[{"@context": "https://schema.org", "@type": "CollectionPage",
+             "name": "Bilbo Data Research Library", "url": SITE + "/research.html"}],
     ),
     "cam.html": dict(
         title="Camera Detail — Live Vehicle Counts | Bilbo Data",
