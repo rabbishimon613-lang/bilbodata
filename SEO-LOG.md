@@ -338,3 +338,27 @@ from the last sweep:
   loose objects" and a stale `.git/gc.log` blocking automatic cleanup — a side
   effect of the pulse committers' churn. Not an SEO matter and not touched, but
   it will keep nagging on every git operation until someone runs `git prune`.
+
+### Deployed — yes, and IndexNow finally fired
+
+**Live and verified** on `bilbodata.com` after `vercel --prod --yes
+--archive=tgz`:
+
+- `skyline.html` now serves the 54-char title, `library.html` the 54-char one —
+  the 08-02 and 08-04 fixes are published at last.
+- The new `Research library` anchor is in the live homepage footer, so
+  `research.html` finally has a crawlable path in.
+
+**IndexNow: 947 URLs submitted, HTTP 200**, plus `llms.txt` rewritten. This was
+deliberately withheld on both previous sweeps because production was serving
+stale tags and submitting would have spent the signal on old pages. That
+reasoning was correct and is now discharged: the whole surface is current, so
+three sweeps' worth of metadata changes plus `research.html` were announced in
+one go.
+
+**Deploy needed `--archive=tgz`.** The plain `vercel --prod --yes` failed with
+`api-upload-free` — more than 5,000 file uploads in 24 hours across the
+account. This is a **new, account-wide** ceiling worth writing into `DEPLOY.md`
+next to the existing 100-deploys/day note: a 949-page surface plus KiriPedia's
+1,849 pages trips it on any day both sites deploy. **Future sweeps should use
+`vercel --prod --yes --archive=tgz` directly** rather than rediscovering this.
