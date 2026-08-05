@@ -233,3 +233,108 @@ IndexNow. It 403s if run before the host serves the changes.
   objects" and a stale `.git/gc.log` blocking automatic cleanup — a side effect
   of the pulse committers' churn. Not an SEO matter and not touched, but it will
   keep nagging on every git operation until someone runs `git prune`.
+
+---
+
+## 2026-08-05 — third sweep
+
+### The headline: two sweeps of work are finally live
+
+The 08-02 and 08-04 entries both ended with everything committed, pushed and
+**not deployed**, waiting on a manual redeploy that never came. That rule is
+retired as of 2026-08-04 (Pedro's call) precisely because the queue kept
+growing. This run deployed.
+
+Confirmed stale before deploying — live vs. local titles:
+
+| page | live (before) | local (now) |
+|---|---|---|
+| `skyline.html` | 67 chars, `… Live Trains \| Bilbo Data` | 54 |
+| `library.html` | 63 chars, `… Can Tell Apart on NYC Cameras` | 54 |
+
+So the SERP-window fixes from both previous sweeps had been sitting unpublished
+for three days. They are live now.
+
+### Search Console — still blocked, and now confirmed at the source
+
+Checked directly in the signed-in console this run: the account holds exactly
+**two** properties, `kiripedia.org` and `https://cyberputa.vercel.app/`.
+**There is no bilbodata.com property at all** — it was never added, so there is
+nothing to verify and nothing to read. No impressions, ranking or coverage
+figures appear in this entry because none are measurable.
+
+To unblock, once: add `bilbodata.com` as a property and verify by DNS TXT
+record (simplest — the domain's DNS is already managed for Vercel), or drop the
+Google HTML verification file at the repo root **and un-ignore it in
+`.vercelignore`**, which is an allowlist — an unlisted file silently 404s in
+production. Then, for automated reads, create a Google Cloud service account,
+enable the Search Console API, add its email as a full user on the property,
+and store the JSON key where this routine can read it.
+
+This line repeats every sweep until it is done.
+
+### Changed
+
+- **`research.html` was orphaned for crawlers, and the last sweep's note that
+  it "is linked from `library.html`" was true only in a browser.** Its sole
+  inbound link is built in JavaScript — `href="research.html?doc='+d.id+'"`
+  inside a template string — which no crawler follows. So the page was
+  reachable by a human, present in the sitemap, and had **zero crawlable
+  inbound links**.
+
+  Added a real anchor to the homepage footer crawl block in `seo_patch.py`
+  (template, not a hand-edit, so regeneration keeps it), with a comment
+  recording why it has to exist. Verified in the built `index.html`.
+
+- **Whole surface regenerated** (`seo_build.py` → `seo_patch.py` →
+  `seo_ogcard.py`) against current counts, so the vehicle numbers quoted in
+  every camera description are current rather than three days stale. 917 camera
+  pages, 25 hubs + data pages, 947 sitemap URLs, `robots.txt` and the 1200×630
+  OG card rewritten.
+
+### Checked — all clean
+
+Measured on the **rendered** text, not the stored HTML, per the `&amp;` lesson
+from the last sweep:
+
+- **Metadata, 949 pages:** 0 missing titles, 0 missing descriptions, **0 titles
+  over 60, 0 descriptions over 160, 0 duplicate titles, 0 duplicate
+  descriptions.** Average title 55, average description 151. Both previous
+  sweeps' fitter work holds.
+- **Canonicals:** present on all 949 pages. Exactly one `noindex` — `cam.html`,
+  which is deliberate (its `?id=` query strings would otherwise mint 917
+  near-duplicates of the real `/cams/` pages).
+- **Structured data:** 0 JSON-LD parse errors across all 949 pages. 919
+  WebPage, 918 WebSite/Place/ImageObject, 917 GeoCoordinates + PostalAddress +
+  BreadcrumbList, 4,738 ListItem, 25 CollectionPage, plus the single Dataset,
+  GeoShape and DataDownload on `data.html`.
+  - *Audit note for future runs:* a naive type count reports 917 pages with a
+    missing `@type`. That is wrong — the camera pages wrap their schema in
+    `@graph`, and the count has to recurse into it. Don't raise this as a bug
+    again.
+- **Internal links:** **0 broken internal links** across the site. Every one of
+  the 917 camera pages has inbound links, median 7. The only true crawl-orphans
+  were `404.html` and `cam.html` (both correct) and `research.html` (fixed
+  above).
+  - *Audit note:* `cams/index.html` also shows as an orphan under a naive
+    check. It is not — the homepage links it as `/cams/`, and a path normalizer
+    has to expand a bare trailing slash to `index.html` to see it.
+- **Robots.txt:** allows everything, and explicitly welcomes GPTBot,
+  PerplexityBot, ClaudeBot, Google-Extended and CCBot. Sitemap declared.
+
+### Found, not changed — with reasons
+
+- **`/cams/road/` still returns 404.** Unchanged and still not a defect: there
+  is no corridor index, only the 17 individual corridor hubs, all live and
+  linked. Nothing points at the bare directory, so it is invisible to crawlers
+  rather than broken. A corridor index would be a new page, not a fix.
+- **Git auto-deploy stays disabled.** Left exactly as is, per doctrine. This
+  run deployed from the CLI.
+- **The `.gitignore` edit in the working tree is not this routine's** — it adds
+  `.env` / `.env.*` and belongs to another session. Left unstaged and
+  uncommitted, as were the 93 untracked files from the harvest and vision work.
+  Nothing was staged with `git add -A`.
+- **The repo still needs housekeeping.** Git reports "too many unreachable
+  loose objects" and a stale `.git/gc.log` blocking automatic cleanup — a side
+  effect of the pulse committers' churn. Not an SEO matter and not touched, but
+  it will keep nagging on every git operation until someone runs `git prune`.
