@@ -1,0 +1,3790 @@
+{
+"https://bilbodata.com/": {
+"hash": "a9fe2521882154a00767b9bb519fe7018f8c347e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/about.html": {
+"hash": "3b74f74f2ac42bcd84140dec7715f934a9587e52",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/busiest.html": {
+"hash": "63438e4c5f4bccdace52bf9d357acf4f90cd856a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/": {
+"hash": "f97db196e420d0a04cbaf7dc0f617c84b8a107f8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-110-st.html": {
+"hash": "fb514c6928f4beaf4f119ac26f622ffb4950dbb7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-124-st.html": {
+"hash": "5da8d5789e70c1853348a196b2d3d1731a9e2032",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-14-st.html": {
+"hash": "0ac10b7292f94b49ca7ad0b038e9186552dffa88",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-23-st.html": {
+"hash": "ca4f5c7c52961fa1cc4890d5c1d9b89ab1c03878",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-40-st.html": {
+"hash": "d38f20ea0fbdea08d7d1057ab248c8b7c532b193",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-42-st.html": {
+"hash": "1b1baaff6cb460123227b8f76159054bbd9c7e15",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-57-st.html": {
+"hash": "121743135e61691171689fd9c2b2a6728d3d53c6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-59-st.html": {
+"hash": "9340fce2ac3bce466e5bcd86bac71414b4a18930",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-62-st.html": {
+"hash": "57a80295accb2af5d216183c1e8d7dd87f701ffd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-84-st.html": {
+"hash": "a55e7b03de199bc5274d6478a179205a937f2e0d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-86-st.html": {
+"hash": "c1167d6df7a58696ab49e1ed4cd14a4da40fcce1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-96-st.html": {
+"hash": "9cf46b3a94774202d8b0f5f56c44134a26974f40",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-e-120-street.html": {
+"hash": "4b859baa1d84f648692be70bae74520c78a57696",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-e-14-st.html": {
+"hash": "27222cd528a23d05140fade9e2fea67dec740290",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-ave-e-houston-st.html": {
+"hash": "107883d922ba60bda9ebf1ceb9a595be3733c10d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1-st-camera-south-bound-bpu.html": {
+"hash": "290d1107822a69bf921c464f09da613864a7cfb8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/10-ave-23-st.html": {
+"hash": "bd9dc83b54c5f0d0d0bd4a8380e81fe540db8a87",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/10-ave-49-st.html": {
+"hash": "9434686af460954009bf58e673c8b64b580b0415",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/10-ave-57-st.html": {
+"hash": "42386eae0a0f9e918379d876d52059822e8861be",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/10-ave-w-34-st.html": {
+"hash": "dfcedd51e25f608d3d679669b99342314123f2bc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/11-ave-34-st.html": {
+"hash": "7d41dda03dc33e0fd07fe1d94daf38d65669484f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/11-ave-42-st.html": {
+"hash": "df3d205888aed8e9067b1271e23d12e5cb003758",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/11-ave-49-st.html": {
+"hash": "c4b64a05dae8c2f5691ce0ee6613cd444c6fee40",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/11-ave-rt-9a-14-st.html": {
+"hash": "34a7a5890faa293fb6699bbb5cb2acefe61a9400",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/11-ave-w-40-st.html": {
+"hash": "d858b1563d843848a4f737967558c59194ef229d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/12-ave-22-st.html": {
+"hash": "2c0f79558c429d703862a27d931a1e42a8426b3c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/12-ave-34-st.html": {
+"hash": "c28c57b869eee54139971299f97dc891a736cacb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/12-ave-42-st.html": {
+"hash": "9c41a20402195f97beae920798f16071c38dadf9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/12-ave-57-st.html": {
+"hash": "f1870a51f5247c0381a2bb9ef6440f72c17dd659",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/12-ave-w-49-st.html": {
+"hash": "1a047140f2b302c720ce1a1dcdd61e9bca94395d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/1st-camera-north-bound-bpu.html": {
+"hash": "cdf51325cb8579720445d7eb0295f56417a8b11b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-125-st.html": {
+"hash": "a0260931cfda642cf91df5d4847be71dc2fd8ca6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-23-st.html": {
+"hash": "d466fbe38851228cca67709615cafbf2be3e6909",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-36-st-midtown-tunnel.html": {
+"hash": "9fb5433e2ff74df312b5a9af303f5b1b95fae3b6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-42-st.html": {
+"hash": "8273f4cdccf037d8dc5c143db869cda9552187ec",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-49-st.html": {
+"hash": "543c07911b28913e66714caf91d6c3e6ab101d04",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-58-st.html": {
+"hash": "6465a7c069b2800d8a2d0f64266d44db90cda902",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-59-st-qbb.html": {
+"hash": "1c7c3bef2a53a0b1c36b20dbc26dcd9e5402e511",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-72-st.html": {
+"hash": "e936523033defe7f28f320a856aea52756fd9150",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-74-st.html": {
+"hash": "0f1c0c80c07feb51a130863e00eb66b611fff35d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-79-st.html": {
+"hash": "5cff652a821148224f939db9df100990be63b749",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-86-st.html": {
+"hash": "0e72f663e879b3594a5885c69905b5b9fa4d2379",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-e-102-st.html": {
+"hash": "dbe9f4c4f1e2b56a42017394514b167c0cba4419",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-e-110-street.html": {
+"hash": "79e605487d63387f74d5dda84187344cbb56a2ff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-e-116-st.html": {
+"hash": "e1a51c42ccc85fde39f3767bf7da67ad4133d538",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-e-128-street.html": {
+"hash": "65e5fb731c520dd0392edeab796a5b3c3f767462",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2-ave-e-14-st.html": {
+"hash": "7dafd9070b68a6b0f08c7e3854313c504e6523f6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/207-st-9-ave.html": {
+"hash": "90172f1c69e3b7d6e4a15514fc4ed34c1a0ef7b8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2nd-camera-north-bound-bpu.html": {
+"hash": "325ea606f6ada3bbdb0f33e1e2b1f103477a4b39",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/2nd-camera-south-bound-bpu.html": {
+"hash": "e1d55ef4e4a6a958016cff0e63bdd0e042ebbd31",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-114-st.html": {
+"hash": "f31b5b3210ee51a86d3b3c94f79d21175284f258",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-14-st.html": {
+"hash": "6e1a499563d5a9a68e9afa1cc7af334bafeaf6ef",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-23-st.html": {
+"hash": "4c96db53129275fdf9b78b4488d7dca32eee8065",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-34-st.html": {
+"hash": "028b619631edaad84be06fdd021219aad154236b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-42-st.html": {
+"hash": "b93108eda14b8025feee9cc3cb8af5cd42fc8341",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-49-st.html": {
+"hash": "e1d92fdac2cd3d701176bdad6aee73450f23ac3f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-57-st.html": {
+"hash": "6c7c084e7df17ede5514cf144c5dd77efa5cc5a4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-60-st.html": {
+"hash": "8cc17dd56a1e52f251e825ee72dec5ca8eabced8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-63rd-st.html": {
+"hash": "b5c6f87341a1dc360f45c85f3fd5275aedbd18f5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-65-st-ent-eb-bqe-gowanus.html": {
+"hash": "fa97211f304c7e887153e6065a469c12b3caf5ca",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-atlantic-ave.html": {
+"hash": "95767de9561cfa654523a9354ba62b7c598265d5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-e-120-street.html": {
+"hash": "fa723509da5b1b71082b5592a98a4b1e6653ff7a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-e-125-st.html": {
+"hash": "f51e712f2e4e31863b5dede3f2677a1eb8b199e8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-e-14-st.html": {
+"hash": "99522011703c010f3b2f54293169973ad65b1bf2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-e-86-st.html": {
+"hash": "0c137bed81b592dcd0f161cbefb8004df9de770b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-e-88-st.html": {
+"hash": "465a09c24888e28aef43fc7c7cb18fb9cf96c1c4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-prospect-ave.html": {
+"hash": "e75fb184a4d6307b8967fe49b60e29e62220dc41",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3-ave-union-st.html": {
+"hash": "5e2d6f3c2498b0b7f7c2f106390f048c1ca85886",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3rd-av-e-156-st.html": {
+"hash": "c32cd1f5704a9a213fd6d13ffda8af6c9f130e3d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/3rd-camera-north-bound-bpu.html": {
+"hash": "2a995af3ac1cab0309bcc3f7e97e00258ebf1787",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/4-ave-38-st.html": {
+"hash": "10a14014680f8c40b2a082ed79f83ea9b4d55e88",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/4-ave-prospect-ave.html": {
+"hash": "4aad20968a09d8b0ecb7176b51f4a4f97529ac22",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/4-ave-shore-rd.html": {
+"hash": "478e7cc4c83dc6c558b99b539036af3f73ade35d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/46-st-bet-5-ave-madison-ave.html": {
+"hash": "4297b30ae02168e87975f8d8dbbb418d1c8184c5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/47-st-bet-5-ave-madison-ave-manhattan.html": {
+"hash": "bcd461a112a5a56b91586030ebb8b2a8a9743075",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-23-st.html": {
+"hash": "ab2414f57c763529fcae104e314999b6162186b3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-34-st.html": {
+"hash": "ef4a5166cd98775549028f9ae68a75120aaec442",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-35-st.html": {
+"hash": "a8d38515dc20b87c1fdfa131191ed06e5d03c8a7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-42-st.html": {
+"hash": "4ac79c5e9a00aa878396cc46cadb276b6f3739ee",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-46-st.html": {
+"hash": "3401d80229f256649d0e89261ae66fc7cc6350d3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-47-st.html": {
+"hash": "88e8ef596dd1f8a901219273732a34a759cd23b9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-49-st.html": {
+"hash": "7f5d014976205f815e99c1397839bdf27190580b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-50-st.html": {
+"hash": "4466247e0cd602fb938a4f7ce38655c1400c98c6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-57-st.html": {
+"hash": "a94a9ecc3a154f80dba617a13ad14a9bf3bdb077",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-59-st.html": {
+"hash": "f6c4895c4df9bf60199791279603a3d254390672",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-66-st.html": {
+"hash": "5f827a490e739aa4e6dec15ecfccfe5d3eee58d4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-84-st.html": {
+"hash": "88ea36e5513580ceaa980e8044cecb6bbfabf3d8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-86-st.html": {
+"hash": "f8de0c5b2ebe941330fe18a9c83b9d4f029e0121",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-96-st.html": {
+"hash": "595848d27a56fc6e5dcc6405924573ef29fd650e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-e-58-st.html": {
+"hash": "1874ccc2fc38603bfa6bf081add9c240f73cd683",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/5-ave-e-60-st.html": {
+"hash": "949317f61b36fe4b8d62dc5b9832d2b89f121788",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/50-st-btwn-8-ave-broadway.html": {
+"hash": "9ccb72391e3018a65eb241d7167dfeb25204b7b8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/58-st-qbb-ul-approach.html": {
+"hash": "6bfa6251c6a3ea20745e543064d92615e94a61e8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-23-st.html": {
+"hash": "5520ccc7670d6dcc95a623be5e8ad5c7fa5014cd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-30-st.html": {
+"hash": "c495ebe27ec486d63be16f814a273f468ec6bef6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-34-st.html": {
+"hash": "131a2503541bbf9466ac0a5bdf8d797a00217dc3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-39-st.html": {
+"hash": "5bf9a997723522ec0894748aefb4a86bacaa0c3c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-42-st.html": {
+"hash": "5c353597b777c3cd41657c5207c0b5b7c55e9f67",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-49-st.html": {
+"hash": "5640d221f49f873a45fef439bbc36715f5004dd0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-50-st.html": {
+"hash": "6d99c8fcacf3deaac66c5c005d8ee86d60843aa7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-57-st.html": {
+"hash": "42fd1e9afeb6f503241181c85f8462ce82f68cf3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-58-st.html": {
+"hash": "903fc5b5abe01d9cbb7a50d7f16a36ac87e39c52",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-65-st-ent-eb-bqe-gowanus.html": {
+"hash": "bcdfd8f61b845e7cf780cc4d3a9d209a1d062281",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/6-ave-west-houston-st.html": {
+"hash": "d0f4195e067b4c1d0a35d5a33cd2e5c5203e66d7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/62-st-qbb-upper-level-exit-ramp.html": {
+"hash": "76602e79a7636f413c12b7dfd2b6c40b8fbd53ea",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-145-st.html": {
+"hash": "b716bb83d316c16fdae04999e0655ca38107e200",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-18-st.html": {
+"hash": "bb6a2292a0575c63d38533a7f43412af24e0c5a9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-23st.html": {
+"hash": "5fb10ff1f0643319f804485b54d49f337a5c7b5a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-32-st.html": {
+"hash": "da7e729fc949ef0080dda4f61ac2610b8f389cf8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-36-st.html": {
+"hash": "b30df7a7de7a0a4e75cf5f96b9c454049fece8d0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-42-st.html": {
+"hash": "45b662008bd22c6e3948371e7e36cbea0ba215c8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-43-st-64-186-ptz.html": {
+"hash": "1bba02bfeecf0f42ee092baf96a810d4cb7e6f10",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-43-st.html": {
+"hash": "3cd97d22cf228cf2fc560f0639fa01da00e1d340",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-44-st.html": {
+"hash": "2612d6f080392980b4f01d3dd1b900f2bd3ec872",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-54-st.html": {
+"hash": "ee74eeff81bb360748c80bf3bb329cfca2d3d6c9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-57-st.html": {
+"hash": "2863ff168ad0cfbeb1f16571e85f225b774a106a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-9-st.html": {
+"hash": "f4e7c106efd08b1947f7a9b033c13c3fc7d0eb4b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-adam-clayton-powell-blvd-125-st.html": {
+"hash": "4ba3012be9f3c840ebefd72e06b33b212645f9c4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-nb-bay-ridge-pkwy.html": {
+"hash": "730e25ecca30cf9710f9153928635556932fcb38",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/7-ave-union-st.html": {
+"hash": "18b8d0ad4d74874cfeab84dec89be0a056c6fdc6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8-ave-44-st.html": {
+"hash": "9dfbc5b5b7b5fece330687e11a226b53945ed71b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8-ave-49-st.html": {
+"hash": "c2d43e865a0bfba82042f499ba84853e8210ea3a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8-ave-57-st.html": {
+"hash": "7daf0199d0a1a5f6120904bd01b5634e91399b69",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8-ave-9-st.html": {
+"hash": "3dc77cbc2f30a165036291e4c2f656db8f3a837f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8-ave-columbus-cr-south.html": {
+"hash": "74825b5a1fe31a989b74aadd0aaf5a58299d2fc3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8th-ave-31st-st.html": {
+"hash": "9554841211d0c5b4e10baa0199e35de1feb827d2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/8th-ave-33rd-st.html": {
+"hash": "31c9186d3075bdf2c5442164d1f01d3d5fc9e9d6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/9-ave-14-st.html": {
+"hash": "d2653a517898440dad4fa89209db0345a359f756",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/9-ave-45-st.html": {
+"hash": "84962b074705b5baa906639409fcbf9b4b77353d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/adams-st-willoughby-st.html": {
+"hash": "df2fa862bde7d1d3c25f00d7c120ee73bb3b0068",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/allan-st-1-ave-houston-st-b.html": {
+"hash": "a3d68da14a678ab7aa6fc3f8afad0097d11407b9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/allen-st-delancey-st-b.html": {
+"hash": "ade6d8b930c3da47dc0159f62e9e8f834a0db3c6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amboy-rd-annadale-rd.html": {
+"hash": "197d718ee5c6627ee924879c60f248d2b7f30b0f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amboy-rd-nelson-ave.html": {
+"hash": "6768c37d3c131fac3751341d837e55f7c2667602",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-178-st.html": {
+"hash": "6e06d5bff4cc7908f8288063fcb38dca3139b62b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-72-st.html": {
+"hash": "4e94f489b901b7434b10a97d5a67b17b9706e195",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-86-st.html": {
+"hash": "b443b5c1c970e2ab661bcc1070fcff09f8350301",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-ave-181-st.html": {
+"hash": "29eb0ca683d6a695daa3cb9ac7a2d2264f23d26e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-ave-60-st.html": {
+"hash": "2437e94d3ea05d5537add3a5854c69ff5f97d7b8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-ave-79-st.html": {
+"hash": "4a82f6f72e4c1ab4eb6b671a2572375a819a7cbc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/amsterdam-ave-w-180-st.html": {
+"hash": "2965effd344c5382527694e5eef223a33e81d2d1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/astoria-blvd-108-st.html": {
+"hash": "c818e8f647d40a9b5080c4d12f76fc2124495ddf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/astoria-blvd-82-st.html": {
+"hash": "233e1a0bfe22bf8598940d7e425183ce72f89547",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/astoria-blvd-94-st.html": {
+"hash": "353fb0fe8140d8689c61e02a71a21cae6c2dc290",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/astoria-blvd-n-s-r-32-st.html": {
+"hash": "bcfa518b0b2cc51f4d54dc262f5517e2d22a2c9b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/astoria-blvd-s-s-r-33-st.html": {
+"hash": "43e93444f0396fe30660494805b8b6545315174f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-111-st.html": {
+"hash": "a169dbce6486f897379d887ca150bed3b42c23ca",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-barclays-center.html": {
+"hash": "b42b1a4a9c7c9f812975551f83e864d7144f49b1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-bedford-ave.html": {
+"hash": "0236881e898a003a5adbca1abbe66c03f5edacee",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-boerum-pl.html": {
+"hash": "be943768a26e3bc953e976309711831f597ad229",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-bqe.html": {
+"hash": "16a6034b7f9b0aa286008be1cc131506a90a85e4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-clinton-st.html": {
+"hash": "de5cb4af9c6e9009172983d31e82429a8208c37b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-eastern-pkwy.html": {
+"hash": "5573c8cb74b478d545ed58204d7f853c9e6ecbe4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-henry-st.html": {
+"hash": "1cbb18940635ed051963ebad7a908a01589ab7e5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-hicks-ave-quad-ptz.html": {
+"hash": "9519b9dce5913f1085d3edcb23c5fcbc9ae3ffc1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-hicks-ave-quad.html": {
+"hash": "a6eab997c5ec396ef68d2ea09f82190a0eef9354",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-highland-pl-berriman-st.html": {
+"hash": "58280d27487073f07bd50d7ba53114454658b5cd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/atlantic-ave-pennsylvania-ave.html": {
+"hash": "995a36e1d22bb47e6dc66cae83ff7012333a2d0e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/audobon-ave-w-181-st.html": {
+"hash": "1c77cda66f4207cc641bae77cabaa0f0df9ac6cd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ave-c-18-st.html": {
+"hash": "064d5d979f5220d23a4549e5947de2e7f7e840ab",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ave-c-23-st.html": {
+"hash": "987db1af0357045f4d7b5466eacc315782fa45da",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ave-of-americas-central-park-south.html": {
+"hash": "449b84aa81d9535cba9355b73528a499e64f78c9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/baxter-st-canal-street.html": {
+"hash": "91755658f35c4669a9d2b2e730da420ecbc87ec6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bay-parkway-benson-ave.html": {
+"hash": "3c0e07fd46bd85097df348152b91952227693316",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bay-pkwy-78-st-kings-hwy.html": {
+"hash": "5c661ca6955ebab703f2733487b838da9a3c14c8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bay-st-richmond-terr.html": {
+"hash": "badcb4c7d34b56967ac83ed5be0fbbfcfb56f2df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-15-north-rdwy-manhattan-anchorage.html": {
+"hash": "6586e94ae91a192051e621e0b5d7510795ddc0f6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-16-south-rdwy-manhattan-anchorage.html": {
+"hash": "d1236298425e641f6849509a9a503e7da6eda109",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-21-north-rdwy-above-south-st.html": {
+"hash": "a6bd3e64bba62253cb0ffd6439b7e1285169d0bb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-22-bqe-old-fulton-st.html": {
+"hash": "6959cd7383f3818f987c0251ac06a45bbd924280",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-24-south-rdwy-above-south-st.html": {
+"hash": "ff1f813955428fad04b5315ed6bc8d4606d6ea81",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-25-north-rdwy-west-of-manhattan-twr.html": {
+"hash": "f962116decc8378893333837a4dd575be1eb3de5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-26-south-rdwy-west-of-manhattan-twr.html": {
+"hash": "5ff1563f8b4110bd089cd820068f117e461cc983",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-27-south-west-manhattan-tower.html": {
+"hash": "b35b6c46703549c4bd2d00a8a1212a46d0582a17",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-27a-manhattan-tower-south.html": {
+"hash": "9af874e7290bc206de5c4b497df064f12a787c3b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-28a-manhattan-tower-north.html": {
+"hash": "5b4148348c0b560c775e8fb575d383128b72c61e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-39-north-rdwy-bridge-midspan.html": {
+"hash": "0978f46083793030b4654bc3167c833c9af25937",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-42-south-rdwy-bridge-midspan.html": {
+"hash": "8f880c13ad6f655f6c82b06710d5db9fef7f7ffc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-43-north-rdwy-center-expansion-jt.html": {
+"hash": "0530a5f4de53dde0a25dde94856c0c52d96c3e6d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-45-south-rdwy-350ft-west-of-bklyn-twr.html": {
+"hash": "0fd7dffee952037291b0c02d6719d125a8f3f978",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-47-north-rdwy-west-of-bklyn-twr.html": {
+"hash": "4a711047832184a50a0bb59bbf50b2e6db32e533",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-50-south-rdwy-west-of-bklyn-twr.html": {
+"hash": "1d6b2f876cd7ba37fd335078e1e24c467194ba4e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-51-north-west-brooklyn-tower.html": {
+"hash": "124d2d32f35545a634bb3a20f4619a2a472ed984",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-51a-brooklyn-tower-south-rdwy.html": {
+"hash": "96986fffc49e374aada329dfdc8b5c06e0bc01ba",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-54-south-east-brooklyn-tower.html": {
+"hash": "af0890d41a757762daae86b128eee66a944fc41d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-63-north-rdwy-bklyn-twr-east.html": {
+"hash": "c9e0d50c52fe84f64e3b71b60581b9627dfe231e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-64-south-rdwy-bklyn-twr-side-sapn.html": {
+"hash": "dc8ddd0e39847f7e111768300778d6deb2a0821a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-65-north-rdwy-above-water-st-bklyn.html": {
+"hash": "48fed40f665168a56967055a610793e0f6966b69",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-68-south-rdwy-above-water-st-bklyn.html": {
+"hash": "a63799cd391d42a1bcd414d39568b4665c485501",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-71-north-rdwy-front-st.html": {
+"hash": "4d22ae970eed60f0548087812aa49cd7b361d225",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-72-south-rdwy-front-st.html": {
+"hash": "a88890ec9938902c8cc5d047089ace85f765dcca",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-manhattan-hub.html": {
+"hash": "6aa182b5e802f8b1255bd022104ea1e87e11c1d0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bb-ramp-from-pearl-st.html": {
+"hash": "b707c82306c66dd9f765b34793fdbc5ac5a71094",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-b-101-st.html": {
+"hash": "23c1f2d98d58c8930d35c375f2d9986f33c62fd5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-b-140-st.html": {
+"hash": "1ed5570fad4a56b44e2f6454bacc552b07df73fe",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-b-32-st.html": {
+"hash": "88019ad54fe1bc54ed769ec030552f873f61e338",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-b-90-st.html": {
+"hash": "59e80ce9931dedce7b4cc1d06a16666099e820eb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-b-mott-ave.html": {
+"hash": "222688ac1323faf5d4b7b4f224362a3be0de6938",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-beach-116-st.html": {
+"hash": "1597d69def6157a60d2462a44f1c780b22ad6705",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/beach-channel-dr-beach-69-st.html": {
+"hash": "05bd9a334b39bbd81c2365ff763d83d1a94e179f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-130-st.html": {
+"hash": "7798685837a737a86de5f45fb3ba3d4e01b95fc8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-68-st.html": {
+"hash": "1e2f4f5f12c9ef9d95bf696584419e4a04fa4957",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-avenue-x.html": {
+"hash": "f94ff43ea27d97c1e1726b12765cbbd9302bf142",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-bay-8-st.html": {
+"hash": "109eefc8af2ff6b81c76313cb97bdbcc0ad9623a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-brookville-blvd.html": {
+"hash": "955a1a8a15d94e5d48514af824a0ed817d8a8d78",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-cropsey-ave-quad-2-3.html": {
+"hash": "163524b6cb2329ce89b937557b732c77185f05d4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-cropsey-ave.html": {
+"hash": "86a1bc1b7d96e7faf5332e65fab076e63e9b8275",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-erskine-st.html": {
+"hash": "0c9e349914c19f6f792df206be3a591b1f6412b5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-flatbush-ave.html": {
+"hash": "1ef1f614df14b496beb6c3d647471cbf36ef3cdc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-guy-r-brewer-blvd.html": {
+"hash": "62898847e1c813eedcedbc1c5eae39ce3a547d40",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-ocean-pkwy.html": {
+"hash": "06fd81c9b47c2c54975247c18a6d65fe5c171b0d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-pennsylvania-ave.html": {
+"hash": "9ead60be6acb4fc9b6537ec8d86156757a73d1fd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-plumb-3-st.html": {
+"hash": "c7c3f88aa26458108faee25ede0aa376a07cd2ac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/belt-pkwy-verrazano-bridge.html": {
+"hash": "b9c78e721d9e897a9f77e0ee3f27476123b3b20d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/boerum-pl-fulton-st-joralemon-st.html": {
+"hash": "f45018a50d3db471320d466e51c84bf7c8fd2216",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/boston-rd-claremont-pkwy-wilkins-ave.html": {
+"hash": "f1d293acd340e03946cdc11e98b25dc8c2d68af8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/boston-rd-e-169-st.html": {
+"hash": "e0e007b6c5ebca928d0fa04f915c6f76f14a6c76",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/boston-rd-gun-hill-rd.html": {
+"hash": "6d015cf54775ab18967b1f2954aab01d483cdc19",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bowery-cooper-sq-4-st.html": {
+"hash": "96d4173a4b1137099dbfca8012bf4fe3f9d35289",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-atlantic-ave-exit-westbound.html": {
+"hash": "898079cf132f6e0e8061a375a6004386958ced5b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-belt-pkwy-ramp-60-st.html": {
+"hash": "0f8751c60ceb5438343cb1cab25353c863c04fdd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-broadway-37-ave.html": {
+"hash": "b0dc6fa1eff2980814945c0389e314ba8902432c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-e-b-ent-ramp-broadway.html": {
+"hash": "d4542a523bb8a8cc1afa8fc938745a4d91691952",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-pearl-st.html": {
+"hash": "cec51aaa05598c8e1c1e9f81050533ecd6a6b9dd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-queens-blvd.html": {
+"hash": "eb2daa4b916832f0a4be216c09cccaa72336b2b4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-sands-st-eastbound-video-detection.html": {
+"hash": "a4fc3898736cb9a01b6114d7d41d7f55e8b551f8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-sands-st-westbound-video-detection.html": {
+"hash": "b424306c0f06b4c4fd322bf2cf6db0cd37e1e891",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-sands-st.html": {
+"hash": "edb1e6bb725ce4a7a2b73dcdb8885d8726c4136a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bqe-vander-voort-ave.html": {
+"hash": "d3c9b33853fe213c0ea5347e6dac2bafc2545f5d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/br-br-19-n-rdwy-fdr-dr.html": {
+"hash": "5325882b3477795a382f78526629ff37098f077f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/br-br-20-s-rdwy-fdr-dr.html": {
+"hash": "ba893d81c5d1f32949bf4bb3096c01e62b8ad68a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-125-st.html": {
+"hash": "60257e056aa23b8b78016fdf45178af2b6dbf2da",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-145-st.html": {
+"hash": "ca1f847db12de91f570f09c8f80170849c4ad23f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-169-street.html": {
+"hash": "b4915e648140822158c14eaf2974405e79ca19aa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-38-st.html": {
+"hash": "579eac70f704e9915c804a601fe7bdcb03bc7108",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-42-st.html": {
+"hash": "df317d3ac7f8daf5c97c269333a58979bcf42805",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-43-st.html": {
+"hash": "fc918278632f11b80077a60ed18946b738d004a6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-45-st.html": {
+"hash": "d26329ce82304314ee0bb68af4ef946996a8b03d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-st-quad-east.html": {
+"hash": "047c8ac9a49dbb23924e0c97b317ec89a483717c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-st-quad-north.html": {
+"hash": "6c802e66e235b777867f1bb86f51b6fc3671616a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-st-quad-south.html": {
+"hash": "1609ab778366240aac57cbd6bf5622e3ef451e89",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-st-quad-west.html": {
+"hash": "6176c2a632cd8650d30d393f408d43f40592d2e2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-st.html": {
+"hash": "33c88bf691aa3252621156e72fea0a565f7fcc3d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-46-street.html": {
+"hash": "a0b5d347b30963cb84fa2ad26988a1fd689c5933",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-6-ave-33-st.html": {
+"hash": "9354f518b6bb444e0e799f0c884bb2d0818b31f3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-96-st.html": {
+"hash": "2f671e20932205df89ec7c85b3e4a75ca612de43",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-battery-pl.html": {
+"hash": "bdc008f69311d7cd7162248066375793f9f1e719",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-chambers-st.html": {
+"hash": "1e95dd606b010b0dcbad9a49f062690dd3cd0fd5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-columbus-circle.html": {
+"hash": "d9a21522ec7c72f66a1a9a8e10ce544ecd030524",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-morris-st.html": {
+"hash": "3189f48b7fba012e2352980ab483a69c7fa3c5e5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broadway-vesey-st.html": {
+"hash": "bc6c6f2d83f6f519d3dbbb4bf4e950c1de04d974",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx-river-pkwy-233-st.html": {
+"hash": "52402f7d0e971166646cc42a51a136a9084be739",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx-river-pkwy-e-174th-st-exit-3-southbound.html": {
+"hash": "df22e25b4a213f0e59e3a0b7cd2208c4bd66e63d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx-river-pkwy-e-gun-hill-rd.html": {
+"hash": "06b0e5b34a7f743e8193c51ebc685cf642807890",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx-river-pkwy-east-gun-hill-rd-nb.html": {
+"hash": "ea04b7f0cf35e695966dd62d61c1b5f62bb41736",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx-river-pkwy-wakefield-ave.html": {
+"hash": "0efcf6f1941a7f10c235f80df7978938e6b7c34b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bronx.html": {
+"hash": "a60ea82f98c8f23ac98f4a67b64c43ef5d1f189f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-bridge-centre-street.html": {
+"hash": "d7f75c932f6b95a0c163e657a83bb35facff829d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-bridge-ped-walk-way.html": {
+"hash": "e9aa4fe16db8435db050e790cfaab82db2859f32",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-30th-ave-exit-43-westbound.html": {
+"hash": "ea9252c32f3415ddc31452689da915161c4adce9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-31st-ave-exit-41.html": {
+"hash": "b39aabb0e2b7cb3016540d5602ff72e6ba90a575",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-31st-ave-exit-43-eastbound.html": {
+"hash": "c6c63a777358b56a5d5ae1957b1f2999d45fc71d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-41st-ave-eastbound.html": {
+"hash": "2a1cf70fe8ca06b72fa857e4edb88691526668f1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-54th-ave-eastbound.html": {
+"hash": "21da7c704ec4d6a8d7cdaf82de975a21d3a45910",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-atlantic-ave-exit-27-eastbound.html": {
+"hash": "bf3d0d51f151ef90f70ac72778236db880153d72",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-broadway-eastbound.html": {
+"hash": "8d0df25dab82b0fc61b3ba0260a078874623c1b6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-broadway-exit-40-westbound.html": {
+"hash": "abcff7cb46a3a2b03b9cd85f0bc8e62672192bab",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-congress-st-exit-27-westbound.html": {
+"hash": "cde05cc7f08d4468ddff5ed45e31d988cc35de56",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-furmn-st-ll-exit-28a-westbound.html": {
+"hash": "2803d45b4c3b02daa255eee2472ae28c3ab914c6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-furmn-st-up-exit-28a-westbound.html": {
+"hash": "60da1d8d188832e06ff9209ba940be5284a948f7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-gcp-astoria-blvd-eastbound.html": {
+"hash": "25a3b2a0eb4ea61ffed643c92f51c4c19f0168fe",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-grand-ave-exit-32.html": {
+"hash": "c8e94700dfdc21c19dabafb821d0e05e1ca16eb5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-kent-ave-exit-31-westbound.html": {
+"hash": "c65a0a44fead0008dce4f1615848a3ba9bb6182c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-lee-ave-exit-31-westbound.html": {
+"hash": "2dc2562794d96105ff68b7d6f5918ec876dc7602",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-manhattan-ave-exit-33-westbound.html": {
+"hash": "659d8badd7c5757e09fb7941a3225e53f877a937",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-middagh-st-exit-28a-westbound.html": {
+"hash": "949e08a16f14aff452c25d901f05cc1333d83fd9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-midgh-st-exit-28a-westbound.html": {
+"hash": "78964beac5f9d625afeb9a19b118f1332f6bcddd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-morgan-st-westbound.html": {
+"hash": "8d18df30bc108f09bde9b3906d0c88229abb4663",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-mtrpolitan-av-exit-32-eastbound.html": {
+"hash": "365e0f4659fd216ed84170dc689755930798d8d1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-s-5th-st-exit-32-westbound.html": {
+"hash": "629e143744277c107ee67412b818c58a9cfcefc3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-sackett-st-exit-26-westbound.html": {
+"hash": "74f65e1b5bbd00bb5f8830ba99dea7c99427140e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-sands-st-exit-29a-westbound.html": {
+"hash": "59e730c77774d77790dbdcb6d97c2fa8ef002257",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-state-st-up-exit-27-westbound.html": {
+"hash": "8d6941ab247efaa35ac46bcc59d6ad5c2e863065",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-stewart-ave-kosciuszko-bridge-eastbound.html": {
+"hash": "14dfcf83550dc71cdd22100bb20507f96eebaea7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-stewart-ave-kosciuszko-bridge-westbound.html": {
+"hash": "29eedf11dc7af0c5e7b823f7c70535d236aa1400",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-stewart-ave-westbound.html": {
+"hash": "6b00facfe29cf7dee351d17a1cdbe20956bfc2bb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-union-st-exit-26-westbound.html": {
+"hash": "05caea68245781fcba87b304c4e04f49289045b8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn-queens-expwy-wythe-ave-exit-31-westbound.html": {
+"hash": "58f06a238191677357aaba4e74b1d66f88ef1a23",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/brooklyn.html": {
+"hash": "3b39d40d5b4c18af949eba5494cfe030ebaf43c3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/broome-st-lafayette-st.html": {
+"hash": "0cc9842ae2c60a6386b123fff83cb160cf51dd07",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-blvd-e-castle-hill-ave.html": {
+"hash": "b57e07be9b96b4957be1a109f50ea7abb9b059d4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-blvd-e-white-plains-rd-camera-1.html": {
+"hash": "121d2867fc5e0264152bfb475e2247a9cb03e1b2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-blvd-e-white-plains-rd-camera-2.html": {
+"hash": "9d642fc4f0837e03fb18a273ad9e753f8f317415",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-blvd-lincoln-ave.html": {
+"hash": "6b8723add321cf3a63bd3f73c3230f069b8f7943",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-blvd-w-castle-hill-ave.html": {
+"hash": "b38f930b2677c2e7d1801427ddb0205d066725d1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-expwy-buhre-ave-exit-8a-southbound.html": {
+"hash": "d74e5b4c3f4bef735e014e9ae58ba7a5b9fbcd6a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-expwy-cbx-hutchinson-int-exit-6a.html": {
+"hash": "f3ca797872dc96200c57d0bdb5514f9784a609af",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-expwy-lasalle-ave-exit-7c-southbound.html": {
+"hash": "c4c397d1bf701d303bda489140cd47d5a83390f8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-expwy-middle-town-rd-exit-7c-northbound.html": {
+"hash": "7cd74298b27815fc50dfd5b42ef093f45fc6b62d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bruckner-expy-wilkinson-ave.html": {
+"hash": "69f29061465bf1870b88653472ba6374348fb406",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bushwick-ave-de-kalb-ave.html": {
+"hash": "ad9d96a625bd026c45036ec1791bfb77d42ee9f6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/bushwick-ave-gates-ave.html": {
+"hash": "bec1e4ceb3c9463436518aa18258527739d84f3a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cadman-plz-e-washington-st-prospect-st.html": {
+"hash": "322de064299ebc3ef5d97e8fe0d2487d19c558d9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cadman-plz-w-prospect-st-quad-1-3.html": {
+"hash": "3e6dda1016f2601b3dbae5e7e341a52287ddba03",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cadman-plz-w-prospect-st-quad-ptz-1-2.html": {
+"hash": "c610597b9f2e1c936d822c698d288e6a78a6c01e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cadman-plz-west-tillary-st.html": {
+"hash": "ca88206754dd4e65fb88053d5ccfdae5d8f38d77",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-st-6-ave.html": {
+"hash": "abf437fc1344f44fa942d2e6c258c07b81241f4e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-st-broadway.html": {
+"hash": "69734b3ba5e071bed6ea3c557fab98123ebe6495",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-st-greenwich-st-holland-tunnel.html": {
+"hash": "92c89a4d3d1d0ca2d6441033e587f6d20e46915b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-st-hudson-st.html": {
+"hash": "453af1e9c6df4b41b81bf7757d42ecc8dafee3bf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-street-allen-street.html": {
+"hash": "83b3f96018ec966ef7ec637b6dc4cc71477b7521",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/canal-street-chrystie-street.html": {
+"hash": "760954b2792528fc3095c7c13c99d8b5314aa9e0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cbx-morris-ave-174th-st.html": {
+"hash": "d5a941b63fe077d195c11d28703e2098e8ca3ac9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-72nd-st-post-37.html": {
+"hash": "dd055b2ffad3794b4789912038403cca91aa1c93",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-s-columbus-cr.html": {
+"hash": "ff57b8efd730b690a9aa608b5ef87150499e0898",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-100-st.html": {
+"hash": "fecbc12703a30efaab130670177ebcb5ee0963ce",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-65-st.html": {
+"hash": "fd0225709f1c4ee83934ba2ace89f9a26e8d5f75",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-66-st.html": {
+"hash": "84f17c49edb8d29f00aac6f7e4cfc3605cfa2f4d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-72-st.html": {
+"hash": "fcd0c2df8b451943bcad1bb24c102ed0a11df055",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-77-st.html": {
+"hash": "4ad8d4119cb200b0aaa40dc150de87cec4b7b9d9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/central-park-west-w-61-st.html": {
+"hash": "6c9e6e02d5156f7f17af9027e9a11112c8ee68aa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/church-street-vesey.html": {
+"hash": "32944b84e0f05ba373a2614372bbb0c8b1f05252",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/clearview-expy-26-ave.html": {
+"hash": "c24b037a2924604c8f0cd9d5f10b502160da485e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/clearview-expy-35-st.html": {
+"hash": "c2fa31c96ad3845583496c783258d9425332ce3d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/clearview-expy-56-ave.html": {
+"hash": "c5d1c1f138fd225f20d5a8ae1c1f90afc4d4fceb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/clearview-northern-blvd.html": {
+"hash": "39d2fec99a530bc7cf6f6a2401cb9f450f7a6370",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/college-point-blvd-35-ave.html": {
+"hash": "98b79ecd8958575f3f873c673f7b3e9bbc62345b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/college-point-blvd-booth-memorial-ave.html": {
+"hash": "5583cb32a1980ced608f78cdc62e7c571ecf81cf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/college-point-blvd-roosevelt-ave.html": {
+"hash": "fae2c25b8c06f96eda20edd5ad4bf9dc3013d1e6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/college-point-blvd-sanford-ave.html": {
+"hash": "c0ebb4adc97f00c4715328ad8597c0ad62944d8b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/columbia-st-bqe-ent-exit.html": {
+"hash": "d3f427b2e866eb42b47b8507c6d89016b2321be1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/columbia-st-carroll-st.html": {
+"hash": "bf63be12c1c2606f577858d8ef3d2ebdc021faed",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/columbia-st-degraw-st.html": {
+"hash": "42059368ce9070d8f37505e698958688fc616767",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/coney-island-ave-kings-hwy.html": {
+"hash": "6992befec7ad04c371ce7dda01c34a1282be3fdd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cpw-110-st.html": {
+"hash": "8b81243ce28fd8eebb733a5ca2ad6d126a94e6ab",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/crescent-st-39-ave.html": {
+"hash": "a6ee35c866254ffdea5d15805aec42fa9cf1ce19",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/crescent-st-41-ave.html": {
+"hash": "2c9ca74686253b60138cf56417f3cd24a3f5bd82",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bay-blvd-107-ave.html": {
+"hash": "6839944546b30004d11959dfd9fb4a79a420c6b1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bay-blvd-20-rd.html": {
+"hash": "9400cf9a22d5a04b782da0fcef18203f67f6364b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bay-blvd-6-rd.html": {
+"hash": "a59035072f5d2ac7e6f3aa0a444c707cbf4e6625",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-amsterdam-ave-ex-hrd-northbound.html": {
+"hash": "e978b2a29ed1b5bb64489817e80c5916f541319a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-bronx-river-pkwy-exit-4a-southbound.html": {
+"hash": "8b70ec4637977cab1dca25ffd487c637b79e436a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-e-tremont-ave-exit-10.html": {
+"hash": "71c81bdd0670a8581712fa67682441c2bd71fd18",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-macombs-rd-exit-2a.html": {
+"hash": "87469431110e1b5f0c772209645cc86ddfbc01bc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-nelson-ave-exit-02a-northbound.html": {
+"hash": "5a762aea803cfedaedf82e85ce427761616cb202",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-pennyfield-av-tnb.html": {
+"hash": "82d0c956d37f9dbfd102d119939d9ef3dc5b2d8e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-walton-ave-exit-2a-southbound.html": {
+"hash": "5e7fe3251b37d70b8109fd8afab8de9c2e6571ae",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expwy-weeks-ave-exit-t02b-northbound.html": {
+"hash": "a10194e76cfe08501b9e4f8aecc4269beaaf237f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-bronx-expy-arthur-ave.html": {
+"hash": "be28d09bedc6aa58bb8b573819c6b4dd97397e7f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-expy-14-ave.html": {
+"hash": "8ad592736cc9e21eda0b83addfdd3a711b19cf39",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-100-ave.html": {
+"hash": "215e3f8ad6fddb88651d1e3d1072646e76e11425",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-113-ave.html": {
+"hash": "2e810b204f8534603879014326111cb4fff6c9cd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-bayside-marina.html": {
+"hash": "d29f254e45d3bb2799440fdeeb244a713b128c39",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-braddock-ave.html": {
+"hash": "92cbe216e1fdf4ab83fc24edd997b018c7346e8e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-clearview-expy.html": {
+"hash": "d663a60fbcbe591439828d8eeba915e8599f6511",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-throgsneck.html": {
+"hash": "cbad7a17dd9504faa51d248231d1b86e20bb458f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-union-tpke.html": {
+"hash": "3b6280094fc5896e4299098e714e0eb2701d996c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/cross-island-pkwy-west-alley-rd.html": {
+"hash": "1548e06a679dec77163c34579b764c581e65a1b1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/crotona-pkwy-cross-bronx-expwy.html": {
+"hash": "12fd174ddde1261868a4cd53df66500825afc49e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/delancey-st-bowery-st.html": {
+"hash": "b9d9cd1cd215311b0fbbfd81384993253e76bfd4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/delancy-st-essex-st.html": {
+"hash": "500678dbabd4496e2038f3c000d24b0b0746aff3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoogle-rd-e-vernon-ave.html": {
+"hash": "c4b4f3424a7ef205368144233b37a63709c6e5b1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoogle-rd-e-wainwright-ave.html": {
+"hash": "db70edaf2641acbeec4aaa52d68fa483da63b45c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoole-rd-e-arden-ave-quad-ptz-1-130.html": {
+"hash": "2fbb4377f69194614ae7f1b62cfb7d3764b33287",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoole-rd-e-bloomingdale-rd-quad-ptz.html": {
+"hash": "fad3358633be2c30cc5f7e056b51660741644818",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoole-rd-w-arden-ave-quad-ptz.html": {
+"hash": "1b67801c24863f1c06af1723e936f084e68ffc5b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/drumgoole-rd-west-arthur-kill-rd-ptz.html": {
+"hash": "f301b2aec39d50b8fa00a36652c81d7c803f4a6d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/dyer-ave-w-34-st.html": {
+"hash": "932e22079f7fea62048e6b78cb65de914a8ed733",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/dyer-ave-w-36-st.html": {
+"hash": "8f10baec8859a57107058049d14ceaa36e530ede",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/dyer-ave-w-40-st.html": {
+"hash": "eed8f0f5801918a2501072756866690535cf0f0b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/dyer-ave-w-41-st.html": {
+"hash": "5b6a084351cfc5119dc74f5f0cc3cb3ed9d2fb0c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/e-14-st-irving-pl-lexington-av.html": {
+"hash": "24574882a4ac6cf1cc2bdbbafb49dcb2e8b15b04",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/e-57-st-qbb.html": {
+"hash": "d37f402d813ee4f89672bda53006a6dfec431fad",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/e-63-st-qbb.html": {
+"hash": "375a478ca92484232412b15c0dccacc40c71d4df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/e-8-st-lafayette-st.html": {
+"hash": "95f3fc7a39278100a8894274780473d0f294d256",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/east-21-st-qbb-upper-roadway-exit-ramp.html": {
+"hash": "86830a13634b48f65e35fc7955efa071cee93191",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/east-gun-hill-rd-allerton-ave.html": {
+"hash": "e444674995deb3e540c219530dda7fa5335c29a2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/east-houston-st-ave-b.html": {
+"hash": "6d37c778bcfa248ee9d0696136f33b0c47ab48da",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/eastern-pkwy-bedford-ave.html": {
+"hash": "2813da7bc9177af2a38e937a5a5dad73489cd0bc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/eastern-pkwy-utica-ave.html": {
+"hash": "a0deae6dbcb331b0c67e439a01489da43da506a4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/exterior-st-3-ave.html": {
+"hash": "d988dd5bc58775e8371d6f37ffe8a98c1750aa2e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/farmers-blvd-147-ave-175-st.html": {
+"hash": "c628be79a254a5e2dfb9bb95f5d81156a71f13f0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/farmers-blvd-n-conduit-ave.html": {
+"hash": "ebbb33fd1e7c4cf83f3f3814a4de31b787c9f55f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/father-capodanno-blvd-2000-ft-n-of-seaview-ave.html": {
+"hash": "c3e8f9937e4b4a740952e7450e8b2324efaa6a89",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/father-capodanno-blvd-midland-ave.html": {
+"hash": "3710ffc249937465ee2b6aa9bb48431b133ea940",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/father-capodanno-blvd-ocean-ave.html": {
+"hash": "b3fba3f90c1d33fd8dd799cdde1cdf6a2eda0195",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/father-capodanno-blvd-sands-ln.html": {
+"hash": "a9a7e141517c2ce885fb032509ba782e741f4334",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/father-capodanno-blvd-seaview-ave.html": {
+"hash": "2a7ca9f32288f14e1a36980684545556898d1aa1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-145-st.html": {
+"hash": "bacb998253464ecad9ef8fd332084f732eb89ddc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-38-st.html": {
+"hash": "a5eabc359f8bd5022e5f8a1dd4a71f21b1bf7551",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-48-st.html": {
+"hash": "2464b8420cbc33e42c57e8f5c631edb160da85c1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-101-st.html": {
+"hash": "207492928d0a4dd4f7ec842eee188272fa707bff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-111-st.html": {
+"hash": "f4d8820a50f8431475a9cf61f61190e711f6ff7b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-131-st-3-ave-br.html": {
+"hash": "a13c0fa9f68ef6ffe1de8e4bb39b73bbbc820739",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-135-street.html": {
+"hash": "8c676556a1b698f81f767eb2833264569ba4b4c5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-155-street.html": {
+"hash": "911b3a84dbdcd78ca070ba41b2f025d6ce33e93c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-23-st.html": {
+"hash": "9806a770b5a40f86a79079ab0a5be66780f94db4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-36-st.html": {
+"hash": "fa13af5b38976d2382e2aeeb3000963b33dcffe7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-64-st.html": {
+"hash": "cec8d557c806e222dc665e2d79133d00a64b3291",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-73-st.html": {
+"hash": "82834e96681aacbb2e705d389a8001d29eb9f9cc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-79-st.html": {
+"hash": "d003478c23a7fca7e673d492d513f43b5fe1e617",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-90-st.html": {
+"hash": "27207e44d9dd73baed84a3646501f766202138cb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-96-street.html": {
+"hash": "5ea47d72b41c999f85bf406f2427259e172b61f1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-bpu-entrance.html": {
+"hash": "f8f81d4474cc089ba0f72fb7d5af80e50bcbbc03",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-brooklyn-bridge-exit-nb.html": {
+"hash": "fec67c7b10d81f893e3c742cc9097cbc7bfe2040",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-brooklyn-bridge.html": {
+"hash": "25ad8f8410fddc7d93941b9c00437617fdf9f26a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-catherine-street.html": {
+"hash": "bdb8a5aba80ba1d77a8a6b59dffd0dbc03316040",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-dr-old-slip.html": {
+"hash": "d7690c7b52d45a1109727719790b727c62431c3e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-drive-124-st.html": {
+"hash": "152cdacfc372704881a7ce75a4986f953d8ade8f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-e-127-st.html": {
+"hash": "1fadcb62bcdb69753f59841005a6fba268c07c24",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-e-53-st.html": {
+"hash": "db47b12e2cd0305195e07d16bbdb6e4675b12f08",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-e-6-st.html": {
+"hash": "9cae07f830b096c099a030bf73bc8e0b9be13630",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fdr-grand-st.html": {
+"hash": "c2979f12068b8243b3e4cc4a5754fe06453b4660",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-4-ave.html": {
+"hash": "762f0b1f5218a81f773daf92365f64c899200d08",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-atlantic-ave.html": {
+"hash": "6d7a08901bb226fa60754d3e86ab33331a5d31ac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-ave-u.html": {
+"hash": "b02ae5cd0d7714bbf886ee8982fef1d95f6dccf0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-aviator-sports-golf-club.html": {
+"hash": "297f52fdb55e27adfe42f2718506c226577b6f54",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-concord-st.html": {
+"hash": "df42fbc4fa3fc16eb28551ee1386474d1aa081db",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-dekalb-ave.html": {
+"hash": "9e1632797a4489a0b3d319461ca9593805a7c631",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-eastern-pkwy.html": {
+"hash": "b3591eaead0ff990da2bb2a0fa2e68e2a087df54",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-empire-blvd.html": {
+"hash": "842e57a4669b8187cdbdf7f5294598fc38b4382e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-fillmore-ave.html": {
+"hash": "696e5e8b8ac73df74009997465b126f2eb344539",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-fulton-st.html": {
+"hash": "058b1be4ece994c90a740b965a8e038626059d51",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-kings-hwy.html": {
+"hash": "61855d1e0a0905b4afa931dce71e7f38141690ad",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-marine-park.html": {
+"hash": "1952cc784cfcd1857f6b90202570e6d36667e988",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-nostrand-ave.html": {
+"hash": "07497bf5e577f7db5e723237d3e9402071c2686a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-tillary-st.html": {
+"hash": "518adcb4d26628e3e071f83ddfde72d9245f600d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-utica-ave.html": {
+"hash": "49c78d64a870d325ca6c6e469995a021e7be0fe0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flatbush-ave-willoughby.html": {
+"hash": "7ba877dbb5c9d7448b5cff8de27b6f306e878aae",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-54-st.html": {
+"hash": "d1ce50ee080cd3995886affbe842913df456e333",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-61-st.html": {
+"hash": "e3ac0da9e500ee3f78ece17eae24df96a878b280",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-fresh-pond-rd.html": {
+"hash": "c31e189de2aeddfb6f4a2da75802dba03f341d73",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-grand-ave-64-st.html": {
+"hash": "cdb34d8ca7863df93bbfa38672ea028a61f5b2c6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-navy-st.html": {
+"hash": "bcdacc0abbe4cb5af7633404c1ff09120db2904e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-ave-williamsburg-w-st.html": {
+"hash": "da10afd6b07b4f58dbcabd3eae8efdc9de1d684d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/flushing-bridge.html": {
+"hash": "57e38549f81db53ddf8667266d56a48acd23d0bd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fordham-rd-grand-concourse.html": {
+"hash": "cb02a0db8f6e9f8cce3da9cabde15b73f00834a9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fordham-rd-hughes-ave.html": {
+"hash": "d4b7aad78d307e61bb4fb59eed2c99b065572ec6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fordham-rd-major-deegan-expy.html": {
+"hash": "42cb3e12e41b2e02bd39be8039a1ce7193d4aa4a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/fort-hamilton-pkwy-60-st.html": {
+"hash": "742112be00f3b0cef38f1e3957fd61fd02749733",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ft-hamilton-pkwy-mcdonald-ave.html": {
+"hash": "85f6240cbbc90a99f53c14ba5555a549912e480a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ft-washington-178-st.html": {
+"hash": "35774bc66d04e3d1dbc2994283083e9be61155f0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/furman-st-atlantic-ave.html": {
+"hash": "119d6c80f65e0e6722d3dadbd67bb7802e78470d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/furman-st-joralemon-st.html": {
+"hash": "b2e76341fd5e891e0f5e2eec22ec9ade61c370df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/galvin-ave-w-40-st.html": {
+"hash": "d7102d1f95ebb4a59ee0310acc3137af12b4faed",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gatling-pl-86-st.html": {
+"hash": "51608364cceb5314537d8961e6dca93e39818103",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gcp-166-st.html": {
+"hash": "ee200f0c2575b9a650a7e4081672602e512c70ae",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gcp-214-st.html": {
+"hash": "9a8415da248f0b47d39c46c9dba99c408d91f1c8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gcp-31-st.html": {
+"hash": "7fcca9e05d79a50dd6ff46554d47d1734ce1f527",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gcp-astoria-blvd-49-st.html": {
+"hash": "0e23ecf8ceddf903da598c55a138ec7ba34b9c1c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gcp-lga-94-st-exit.html": {
+"hash": "f77ea500534cf381904f4fc8daa5a9bc8fa57e6e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-26th-st-exit-23-westbound.html": {
+"hash": "daa73f7845c2c723060638fb17c587c8038df3aa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-37th-st-exit-23-eastbound.html": {
+"hash": "df5d67dfbbb594a86b7655f4d534c4df46b4f634",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-54th-st-eastbound.html": {
+"hash": "d7e4b47128edb381dcd783ca69f9cc89e848fdda",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-63rd-st-westbound.html": {
+"hash": "87b6d18f6722b4bae5a5fda3803363bd1a0a8505",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-92nd-st-vrrazano-bridge-westbound.html": {
+"hash": "256996a1d06c9d2ad8562644968c35bd33cb4091",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-cole-st-westbound.html": {
+"hash": "e9ef860a1443989d854ca4d8f5b5e3be98dc2277",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-ft-hmiltn-pkwy-exit-19-westbound.html": {
+"hash": "8951c93ccc77a27c6eedd3cece85892805f31e07",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expwy-prospect-expy-exit-24-eastbound.html": {
+"hash": "7b5e99fa04c6ed997875c1be5ed4485543d60b9a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expy-49-st.html": {
+"hash": "fe7a30eeda4011290d0d0e7629b182dd8d49db2d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expy-7-ave-67-st.html": {
+"hash": "0238bd8acd63716cbaf7a76d54f3376fe4977026",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expy-ft-hamilton-pkwy.html": {
+"hash": "2bb607f87ae3495062328bc09e117aae978e434a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/gowanus-expy-gatling-pl-92-st-4-34.html": {
+"hash": "21bb416fd71d2e9775bde1bcebb9000494a41786",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-army-plaza.html": {
+"hash": "c5db4f7740b6286fd8fd9fc102bc3d5f70039438",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-ave-hamilton-pl.html": {
+"hash": "2a6b1b7c48d56c711ebd69be341409ec20580180",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-ave-lie.html": {
+"hash": "139245f6e9301a6f212a2f881d9dcc6cdd27cae3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-188-st.html": {
+"hash": "09ebbf7277ed25a69f8bbf62915c4e898237f2bb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-64th-ave-exit-10-eastbound.html": {
+"hash": "dfe849d27a5c568496e4298ae8cace5f623dfee3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-69th-rd-exit-11-westbound.html": {
+"hash": "e90468096a73f6a4ecd663224e332fbcea84be4f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-72nd-rd-exit-11-eastbound.html": {
+"hash": "8c01e8645f6e93ef0107dde6af2c915ab63ecbba",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-ditmars-blvd-exit-9-eastbound.html": {
+"hash": "011cab19e96747e3910125c7facbe5219d1627ac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-midland-pkwy.html": {
+"hash": "cf556dad84c32e9c30166d4f7518cf41c6c0ac46",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-nsr-79-st.html": {
+"hash": "6f165b4365350f2ba22286f8f34552601daf6245",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-parson-blvd.html": {
+"hash": "ab061598a18dd1547bc03638171cfaa712787285",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-central-pkwy-springfield-blvd-0-98.html": {
+"hash": "2804de1d2c7e7c21ca0512abfcfde491a7d15085",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-concourse-161-st.html": {
+"hash": "077aa269c21c2eb8ecff1ee55fce24a4ebcfa7f4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-concourse-bedford-park-blvd.html": {
+"hash": "789b9a70a4c7d53eb1d87666d88afa94e984d83a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-concourse-e-149-st.html": {
+"hash": "a2c35ca5a5a46d06c3b29a6690b6ababd1d601a1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-concourse-moshulu-pkwy.html": {
+"hash": "c95d82ff0690834c09d8dc361896bc47333c0f9b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-allen-st.html": {
+"hash": "ddc2e95a2058a030705aa161441d87913e999058",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-borinquen-pl-union-ave.html": {
+"hash": "3a15b672869244e2e0691fdf91eed15b80690f19",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-bowery.html": {
+"hash": "e5abdf9dc947f8890ebce57c3f0e1339524ce890",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-broadway.html": {
+"hash": "63e148bc9507bd282b556473a7d78389b6100123",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-bushwick-ave.html": {
+"hash": "d450740cea2db87849d1f931e0f957a0607ae15a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-essex-st.html": {
+"hash": "d96f2fbb42fac7229833958c24e571e7d6e61391",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/grand-st-graham-ave.html": {
+"hash": "fe78a22bf300222b979d69396807de24ac84ad36",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/guy-brewer-blvd-n-conduit-ave.html": {
+"hash": "f01062b6fcf8c58a33e142359440c6d8d272d224",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hamilton-ave-9-st.html": {
+"hash": "4319d9b8e97aa5d05a4cda0f85272b22b4f8aa09",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hamilton-ave-hamilton-pl-15-st-n-sr.html": {
+"hash": "7370933b01eef241273149b8d6dc9a7e1617ba88",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hamilton-ave-hamilton-pl-15-st-s-sr.html": {
+"hash": "3d01a8e260196144b3510fb87ae823b8b8770d2c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hamilton-ave-henry-st.html": {
+"hash": "7fd62313d13d7f5465975e9a5cb145051c658851",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hamilton-ave-hicks-st.html": {
+"hash": "95f90971ee1cd6defe0ab9aae5984a066b34fc59",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/harlem-river-dr-150-st.html": {
+"hash": "f2c48f451e270b02b86ce718467a3e6a74221253",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/harlem-river-dr-dyckman-st-10-av.html": {
+"hash": "5affb287862470960c10c9308894cd21e75c48d3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/harlem-river-dr-ramp-before-gwb-amst-179st-exit.html": {
+"hash": "2eb1a2e44878effa0a3a70f1232000d15eb24fdb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/harlem-rvr-dr-fdr-166-st.html": {
+"hash": "b71eb734cf4334c6c24d3a96dceb674f68fb8e6d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hempstead-ave-at-jamaica-ave.html": {
+"hash": "31398cbb65debda62d60b56c319603d5f3896922",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hempstead-ave-springfield-ave.html": {
+"hash": "0792e09699ab9ba224b9cfb9899096a7d17b8394",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/henry-hudson-158-st.html": {
+"hash": "eed94ca475bfaac8b407af097774eccff9138ba8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/henry-hudson-pkwy-125-st.html": {
+"hash": "b98d92f4bab86af1ab28c084b973a46467951017",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/henry-hudson-pkwy-232-st.html": {
+"hash": "9d4062c9911d01e90abf1c90f30956e9c8cafdba",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/henry-hudson-pkwy-70-st.html": {
+"hash": "3f2169e623105df8c1e767de6ceacf3cef348b97",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/henry-hudson-pkwy-96-st.html": {
+"hash": "e1e6295367fe77931d45157d747764423bacf286",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hicks-st-nb-sackett-st.html": {
+"hash": "5b54d76af4786c10fcd0d0149f50331d65fe78e0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hillside-ave-little-neck-pkwy.html": {
+"hash": "07676e67834c88a20cf2af4815014fbd7dcf9149",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/houston-st-bowery-st.html": {
+"hash": "8672f7bce8f92882dbe219950a1bf52ba8d97e4c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/houston-st-broadway.html": {
+"hash": "ff09db4e1bd295bd11a5ae3726a313e878c7d874",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/houston-st-christies-st.html": {
+"hash": "13080671dc1215fbb8cdec7d5ebfd075139db867",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/houston-st-lafeyette-st.html": {
+"hash": "8b3db4b979a8c4fff9b8fad7114ba72a8f67ae0c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hudson-st-erickson-pl-beach.html": {
+"hash": "8ba30ab800833103f98dd93c7d9d9025f1c842c7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hudson-st-laight-st.html": {
+"hash": "1539f99c815f3605619ad942ef9d0ff638a78a90",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hutchhinson-river-pkwy-bruckner-expy.html": {
+"hash": "3ffafbe04ff52bdd1833c606ed04e4bb3d1687a4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hutchhinson-river-pkwy-waterbury-ave.html": {
+"hash": "33d60dcd85db8fa096552fdfe8fb78b3e19d1756",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hutchhinson-river-pkwy-westchester-ave.html": {
+"hash": "66cf1828fb28665017b2b3688a7ffbd4b1a9a2f3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-ave-page-ave.html": {
+"hash": "417fd2f873d1cb866f5f2a3dd62b65d44b25d723",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-arden-ave.html": {
+"hash": "4c080b867628af176932c3922c156c5e4f6ed694",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-bay-st.html": {
+"hash": "f1cba37769213f411e591867decbc07325baaa1f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-guyon-ave.html": {
+"hash": "635b762627903693d433a86c83be20b7984dcc05",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-huguenot-ave.html": {
+"hash": "f7f910407268e8496a7b50ccd9d6bacc2d9bf1f3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-midland-ave.html": {
+"hash": "af4a15c57af47143a0ec8ebedb62e59f64c258b9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-nelson-ave.html": {
+"hash": "2f04f8f96b4f71a135d2a866dcc15cd862390766",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-new-dorp-lane.html": {
+"hash": "e7c0211605e976066735504697b960b5c201482b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-richmond-ave.html": {
+"hash": "9806d77ae19b67d52fa7e9b72b757f6d4db49332",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-seaview-ave.html": {
+"hash": "175516edaf69aca7666f7015e32607366af8bbaf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-seguine-ave.html": {
+"hash": "8aca0f15975dccd9283319138541471454a4dbef",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/hylan-blvd-west-fingerboard-rd-sand-ln.html": {
+"hash": "2ce48151b664efaab9b3e1733290e5312b16eae8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/irving-pl-14-st.html": {
+"hash": "78a723ca18cfd71bc4511a7c43068652bf1a265b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackie-robinson-pkwy-burns-st.html": {
+"hash": "f36e71e8621721672127b804ba5d6e3feb52cee8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackie-robinson-pkwy-metropolitan-ave.html": {
+"hash": "069382b0a798bcdffacff8d931c6cc5e123a8d04",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackson-ave-11-st.html": {
+"hash": "de9def54a3c162134d14b9faa2b580432339730d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackson-ave-21-st.html": {
+"hash": "2170b482f5e1e8f62698036c7909ed365be26156",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackson-ave-42-rd.html": {
+"hash": "4d96906e1127b885835ec4b341c9c937d86e32f8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jackson-ave-thomson-ave.html": {
+"hash": "381525ddd9dc8e601aa6bb2246e135c67d0457f9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jamaica-ave-165-st.html": {
+"hash": "22c30e8125f8a1ff1f64a704474c16e7881669f0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jamaica-ave-168-st.html": {
+"hash": "fb17965849874bae77efe9aa603359a103d6259a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/jamaica-ave-sutphin-blvd.html": {
+"hash": "bc48fb3b5dfd5da1b46754129473e4a1cf5deae5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/kenmare-st-cleveland-pl.html": {
+"hash": "3683247e0bcb731c3da9b4f985443f8d29d33144",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/kissena-blvd-holly-ave.html": {
+"hash": "98efaae3c2ec4d50cd4a78916a672eb35d6f441e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/kissena-blvd-lie-n-s-r.html": {
+"hash": "fd0be5a8a26d3e95baec64a167075439be0f5bac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/kissena-blvd-sanford-ave.html": {
+"hash": "fa6eb7cefe015bb16f178f964a21303315bcb403",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/korean-war-veterans-pkwy-arden-ave.html": {
+"hash": "f347db6781d115c7cd6335fd13295f3d84600f2e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/korean-war-veterans-pkwy-bloomngdale-rd-exit-2-northbound.html": {
+"hash": "bbdf20a68f778357d9a2305e371189d2c51f8301",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/korean-war-veterans-pkwy-tyrllan-ave-outrbr-northbound.html": {
+"hash": "8ce1870b23f62aef06cf5c8b4063f1f758d51eff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lenox-ave-125-st.html": {
+"hash": "7745b1c5fe3ece01b70c2b37fadacd6e59ec8580",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-23-st.html": {
+"hash": "247787d8d830c8652a722cf2a37ece3a986bc576",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-34-st.html": {
+"hash": "7ab6181d439cb5cf6396bac92e9fd63dea35756c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-42-st.html": {
+"hash": "fa3a9db3376b06803dca3d97ea9eb5f6cabad3f9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-49-st.html": {
+"hash": "c00c2495d9958fd3e9e35702cf70cdbbd0b4bb81",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-53-st.html": {
+"hash": "6f3ee13f3e0c62fa1a07f6811ff604f143eca046",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-57-st.html": {
+"hash": "57133c1e0868d1f46b4e1a0eea7993bc6e7b6cbd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-72-st.html": {
+"hash": "bca826bcc4cde9f86635ce4d43fd0d7f7660d136",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-96-st.html": {
+"hash": "1c311d26dec5c942f88edd2764d5cc5e71d5aa04",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-e-110-street.html": {
+"hash": "e0b993eab4b8f1156d3514d2621768776dfb4d91",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-e-120-st.html": {
+"hash": "8a664176c3a512e2a81e2c23474412cd953d36ec",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-e-125-st.html": {
+"hash": "aa2f863f058a37a39ff701cd453af52a8764416a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lexington-ave-e-128-street.html": {
+"hash": "113bb5591810517a9ea1ec71caab7609a3106012",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lie-college-point-blvd.html": {
+"hash": "55dfd4dc4c3e08d41ba4b6e5dff4132e982a5b19",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lie-marathon-pkwy.html": {
+"hash": "83c5379f42913dea8e41ec223f98e6c653855ee4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lie-oceania-st.html": {
+"hash": "b73ee1ccabcf8d7fbe9d1e7eea9dfc2746981589",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lie-s-s-r-kissena-blvd.html": {
+"hash": "bf716b8b312d81a8ede5c45e698d261c4c5a56be",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lily-pond-ave-school-rd.html": {
+"hash": "18027ae5083567e6b8926336e2b9ed6b30f2dd84",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lincoln-tun-approach-bet-9av-10av-w-33-st-3-50.html": {
+"hash": "79a47f3eaef07c3d9873e6cb1ff72c66527f32e9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/lincoln-tun-approach-bet-9ave-10ave-w31-st.html": {
+"hash": "b0857c9422e4ca042f515d29a36ef7796ab62109",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/linden-blvd-pennsylvania-ave.html": {
+"hash": "8576ea344c5f07a353297e39316ff123c790098b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-163rd-st-exit-25-westbound.html": {
+"hash": "59ba4535e5a1fe3f3ee8cee97527fff5c0bf655d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-213th-st-exit-28-eastbound.html": {
+"hash": "c59d612e3258a387e5ae92ad96d7216f947947d5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-220th-st-exit-29-westbound.html": {
+"hash": "81f4d383ba84448fd8a89de29d1c281bcdcd6640",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-27th-st-exit-15-eastbound.html": {
+"hash": "ad10ab74ce0b0cf1a1d6b125ae29f7132d72fda2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-48th-st-ll-exit-16-eastbound.html": {
+"hash": "6c1350989f75b44c330b41d67e0f6339cbfeb1e9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-60th-st-exit-18-eastbound.html": {
+"hash": "abc032f5896bede1f1593d727d58cc34ce2f7335",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-clearview-exwy-exit-27-westbound.html": {
+"hash": "90a842b352c51ece4a6a95838e0fb6d6ae02ce48",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-gcp-exit-22a-gcp-eastbound.html": {
+"hash": "9d0fef4d0851edd308674e97b5e6ababb6eee904",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expwy-queens-blvd-exit-19-westbound.html": {
+"hash": "efde8ffd060ec1b54d178bf830af1e50b6de4681",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expy-douglaston-pkwy.html": {
+"hash": "6c1ae38d6077a13d7edadf61440396502c4c707c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expy-east-hampton-blvd.html": {
+"hash": "b2df473368751178dcd383fb8ef845baf971cb17",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expy-exit-29.html": {
+"hash": "115a926fb727f0769d26f691145513a459d1eae8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expy-greenpoint-ave.html": {
+"hash": "dd6eba6a1889eff788cc8f71577744aa04586a55",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/long-island-expy-qmt-pulaski-br.html": {
+"hash": "f1f284ab41484c6e3e058816ce480de3ef7e09df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-34-st.html": {
+"hash": "d38450102df9d116cf1cd9974645268d7775318a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-57-st.html": {
+"hash": "42c6ce06042d8b3ba16b2e98167c2202ac14bccc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-42-st.html": {
+"hash": "95ee5f75cd2e44d5c5788f5a08d1930e8446a15a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-46-st-manhattan.html": {
+"hash": "6ee1bb18fb9e0d0cad53f62e683b092b2b37514d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-49-st.html": {
+"hash": "fa9eaccd88cdd9c364e0c110ffa147a25fc4bacc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-79-st.html": {
+"hash": "8069c8a5e265054e5c24f22aaf0746388ad8bfb3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-e-43-st.html": {
+"hash": "164dfab49233f3d34a30fe62eafc417cd5653575",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/madison-ave-e-44-st.html": {
+"hash": "ba3604d8efeb8b875ff0f4337a276bdd8cc5b658",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/main-st-lie-n-s-r.html": {
+"hash": "9eaab796c2a39e8458afcd9de45906edc931dfea",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/main-st-sanford-ave.html": {
+"hash": "f74939537f2b3dff2b1c6fa67055bad1620ab852",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-225-st.html": {
+"hash": "787a760c15ced7fe0f9048ef3509d92a142a952c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-230-st.html": {
+"hash": "a21234ac5de249b5676bdd9373c2f6d399dd413b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-depot-pl-ex7-cbx-southbound.html": {
+"hash": "c67a30d92a276428302bd4122f7a59417efbe1eb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-e-135th-st-exit-1.html": {
+"hash": "702d3c81e3fb441883c44732462ec9bf42735f99",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-e-138th-st-exit-3-southbound.html": {
+"hash": "9d104ba5da359b58e320c6b89cfb47eec16d8343",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-grand-concrse-exit-3-southbound.html": {
+"hash": "eeb44bfac26b6b8d39539726b2aa881e4e666ad2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-heath-ave-exit-9-southbound.html": {
+"hash": "cf7ff4e08efc4d5e54c7fc13f15d2271bafe2963",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-jerome-ave-exit-13-northbound.html": {
+"hash": "01bb060dfe2b1a91cbd4f4ee6a26242982ebc1b2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-macombs-dam-bridge-exit-5-northbound.html": {
+"hash": "03436088a0b797cfb1212ac7ef38683084946f86",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-mosholu-pkwy-exit-12-northbound.html": {
+"hash": "15308aa8a4d4678879c00af8c4abb0e83c9a4330",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-w-179th-st-exit-8-northbound.html": {
+"hash": "100d9c9a9f3574b6b25bc21858f1e372a6f71528",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expwy-willis-ave-exit-2-northbound.html": {
+"hash": "b8c25400ec7e1b275d231694e5e557aae1a5aedc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expy-macombs-dam-bridge.html": {
+"hash": "a8fc2bb7d21f3f465ef4a19576872e4941f2146f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-expy-van-cortland-pk-s.html": {
+"hash": "f4e0d574d43c9260878a50fa1d36a0bf94b7095d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/major-deegan-triboro-bridge.html": {
+"hash": "6b8b294ef2c196feb93c6efa9633910eb99de980",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/malcolm-x-blvd-lenox-ave-110-st-cpn.html": {
+"hash": "9b55197a665d148ffb70cf29a4bc936ece9a97bf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/malcom-x-blvd-145-st.html": {
+"hash": "19560b01b82a6fe39edf96e296ac3dc7d6705fcd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/manhattan.html": {
+"hash": "f967eb5b6e03bc80b1802c2b98c8d5b322b3e91d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/marmion-av-cross-bronx-expwy.html": {
+"hash": "051349dd18bfccad14cf7c0a245a6f5e7631f794",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/martin-luther-king-jr-expwy-forest-ave-exit-11-northbound.html": {
+"hash": "600b01846f4863bc98b91621abe32889272a061b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/martin-luther-king-jr-expwy-walkr-st-bayonne-bridge-northbound.html": {
+"hash": "6e56f76042cfb6c28273a4bf5b7ac1af0601a889",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/martin-luther-king-jr-expwy-watchogue-rd-exit-10-southbound.html": {
+"hash": "3b24e22a0b292fbc3ab086f92ef083b4f07b7dcf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mcdonald-ave-10th-ave-20th-st.html": {
+"hash": "7d991007a889022be0c9501056ad69ef0d0f3cc8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mcguinness-blvd-bayard-st.html": {
+"hash": "4ec3770ca75c5ff35d0c6115a3d40c3fd76fe2ad",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mcguinness-blvd-green-st.html": {
+"hash": "396b4d4b703200d1c9db43ab9fa2e5b1c03d8b09",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mcguinness-blvd-greenpoint-ave.html": {
+"hash": "1f5e28bf8bc485b1121fc4af782296561ccf45a0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/metropolitan-ave-berry-st.html": {
+"hash": "79b0400ac62f8799552be0c2125133a2076aa162",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/metropolitan-ave-fresh-pond-rd.html": {
+"hash": "445a32b92a2cd3880fb8a5d5c6b3ff1dbf155f76",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/metropolitan-ave-grand-st.html": {
+"hash": "4467c21e101d762bb7bfcb094a0f867e42096bf7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/metropolitan-ave-union-ave.html": {
+"hash": "8660f1aaca24b1d62eede3bc6102300e0ade336e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-16-manhattan-colonade-entr.html": {
+"hash": "0dcec43575f30750b959e08c9b6dd3d4eeb6217a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-16a-manh-east-of-colonnade-entr.html": {
+"hash": "deb7dcfeec51c56fccae6e9dfa9f643c5291a420",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-17-manh-lrw-x-over.html": {
+"hash": "29e70397751c957f28e41910ff7028142ac8ce8d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-19-manh-n-urdw-anch.html": {
+"hash": "01b7fb035d9a8da9fda9c0344e8813f967aab62f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-20-mahn-s-urw-anch.html": {
+"hash": "44c7b106f6b30c43cfbf415d5aa056e1b0a23d54",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-21-manh-n-urdwy-arch.html": {
+"hash": "49e765329d35d7b144b8322ebc1df5693243adc5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-23-manh-lrdwy-twr.html": {
+"hash": "2cae13dbf36e723cd0d6fe27bfdabbffeae659bd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-24-manh-s-urdwy-twr.html": {
+"hash": "8ade77d399c57161cd3c274698e1b7b218b33b60",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-29-brklyn-s-urdwy-twr.html": {
+"hash": "5b7199036859c99f1c249b5da5b1e381b9c6e349",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-30-brk-s-urw-twr-walk-way.html": {
+"hash": "884e7351cbe490d5f581eaf49c874e9bfa1509b5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-32-bklyn-s-urdw-anch.html": {
+"hash": "470dafd4bdda623bd1f13a7c6c495c6f206409ff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mhb-33-bklyn-lrw-ex-ramp.html": {
+"hash": "ac1d48f335140525f46e99d1aebdfcad6b710d65",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/mlk-expy-walker-st.html": {
+"hash": "5c9dd83071b7f433d8f410771d44f924d7c22a80",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/morningstar-rd-richmond-terr.html": {
+"hash": "a9ac12ae69e187060e0a62da5147cac483fd35a6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/morningstar-rd-walker-st.html": {
+"hash": "3d1767390c0085e269c8dc92a9b72995925f4642",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/myrtle-ave-79-lane.html": {
+"hash": "04ebbcd91f804d02eb8a02c537dcfae6f9027adf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/narrow-rd-n-richmond-rd.html": {
+"hash": "586298934c23a57b8ac961d87596fc434de5153a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/narrows-rd-south-fingerboard-rd.html": {
+"hash": "fc5de3045c973b38277ce13fb3fc76fceacbd206",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/narrows-rd-south-hylan-blvd.html": {
+"hash": "1234863576cd986bdaaf024721ad722251992b9f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/narrows-rd-south-lily-pond-ave.html": {
+"hash": "4a8c54d595faed3e9484914fab9bdcc6cde97f68",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/nassau-expwy-n-hanger-rd.html": {
+"hash": "6a3ef5d319385d77a30418556d21278552f08932",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/nb-cross-brx-expy-webster-av-exit-ramp-e-174-st-cater-av.html": {
+"hash": "8c6a7cbdd6e543d949527061533c58fc1f6302d3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/new-eng-thru-bartow.html": {
+"hash": "f9bd2c192b72573225a0464178ddb6a17135b263",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-108-st.html": {
+"hash": "79cf06189c6673cbd8be2f515e66923076632421",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-114-st.html": {
+"hash": "9c2f88b31ac8378b1e0d60e6bdcd695cd97c36c5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-161-st.html": {
+"hash": "57a7cd025fdd98daf4a1fd490478f192a604cbe2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-48-st.html": {
+"hash": "ee56a6193f7137cf6fa19e0b73d73137db1132af",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-51-st.html": {
+"hash": "51810fcc6c5d90e91fc121a4af6ae5c4afc3e174",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-68-st.html": {
+"hash": "9ba2cff31c3782bb0496a55a24d970783bc65551",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-82-st.html": {
+"hash": "264727f91070e86345de9ae85e0147c8aad3d0fd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-bell-blvd.html": {
+"hash": "050f601472d17d20baa04f5f542ba585ee042f80",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-francis-lewis-blvd.html": {
+"hash": "9cf933c8d094a425af98204ee02aceb44d1ca013",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-honeywell-bridge.html": {
+"hash": "4076770587429228119a7eaff3a6b7cd521242b4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-little-neck-pkwy.html": {
+"hash": "64fb65cacc268fd04e56dba045f3c26f1054d18a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-main-st.html": {
+"hash": "4d5ed9c45e6adb6223381201122e1cc44c7387e0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-parsons-blvd.html": {
+"hash": "9825937432e268e7c4bc46b2eef7d04c22e97930",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-steinway.html": {
+"hash": "1aa46a0ff8dc2774ee1e3d2bdd78d5cd83b78435",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-union-st.html": {
+"hash": "99b16bfb8e39c15a4d81f634baefc9d5ff41ab0f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/northern-blvd-utopia-pkwy.html": {
+"hash": "92e0a759f716858bc70c6c3da999ec401977ca9c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-ave-i.html": {
+"hash": "574cea2257055481a87542ac26b5603cf7981a6e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-ave-x.html": {
+"hash": "9a408b9753337e378d0cfdc51c9f4874b23a2f6f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-church-ave.html": {
+"hash": "6afc85c681bd96fcd897d72a65b46060ba7c5a63",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-ditmas-ave.html": {
+"hash": "8607399721c56b13a07d27d7f5f92ce06684c4fe",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-kings-hwy.html": {
+"hash": "d82a62e51a181483520ae9dda4f6e256a1bdb43e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/ocean-pkwy-surf-av-sea-breeze-ave.html": {
+"hash": "f3e03daab52e35ca1be0c19bda6772a13c4f36ea",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/old-fulton-st-furman-st.html": {
+"hash": "44f1961981195ee335da15e219b4515d617b081f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/old-fulton-st-prospect-st.html": {
+"hash": "8eba3f72daa34eb4730bd1b8e4242f4d99a70290",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/old-fulton-st-vine-st-hicks-st-quad.html": {
+"hash": "daebffe8343dae018b31f06c729bcd444822321a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/old-fulton-vine-st-hicks-st.html": {
+"hash": "4524b8a78fa63ce91677fe9f277fab71b7d6ec87",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/outerbridge-crossing-tyrellan-ave.html": {
+"hash": "7c10e9b9b0390bf6d349aed18f4a677c89de08c7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-106-st.html": {
+"hash": "33810f4de5b0297f9a65b869daf760a33d3c1fb9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-23-st.html": {
+"hash": "73e23db9e10d7fc8132b76cd17b3f309c2b9bc3c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-34-st.html": {
+"hash": "a279023a8b3414b6948c19e7a21573165c556010",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-37-st.html": {
+"hash": "8346f56fb0239fea61f5cf8dfb6f27a96060526e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-53-st.html": {
+"hash": "c3bb1f1e11929c6e27d9d2b64607bec4c9bea576",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-57-st.html": {
+"hash": "f609c02aeadbb0fec0a9a42cddec2044af77e79c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-72-st.html": {
+"hash": "268cab1249539800ad5cdccadee04c6569e185d8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-79-st.html": {
+"hash": "1fd12d2ddf29cba331e5b612c4969ecd80285b2b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-86-st.html": {
+"hash": "4730b6302cb3a1533b36e38ad09246f41f82235d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-96-st.html": {
+"hash": "8c608c3935763e9d4586cddfffeb9ebbc664ad08",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-e-116-street.html": {
+"hash": "c63366cc8a027a3759b2c6266f1be90dc6a4b3ce",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/park-ave-e-125-st.html": {
+"hash": "60068ca4cd135f131bc86c0fb4a76c0bcf1210df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pearl-st-dover.html": {
+"hash": "7ff992cfb053f69abefec7eda40ed587b9132e8c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pearl-street-st-james-pl.html": {
+"hash": "8924ac0fac6e43baeab378005a559538244ca055",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pelham-pkwy-e-b-boston-rd.html": {
+"hash": "f4d60c2c93e61d5bfe0e816688edc4325069072f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pelham-pkwy-stillwell-ave.html": {
+"hash": "66e094bf9751c57348d4ef3ff78e0480e423af10",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pelham-pkwy-w-b-boston-rd.html": {
+"hash": "40f4ba3a514d1f1dc7b884326bb3d18f837c74d8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pelham-pkwy-williamsbridge-rd.html": {
+"hash": "04411a9aec998b3c35fa19dd5cb03f16e19f2027",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/pennsylvania-ave-flatlands-ave.html": {
+"hash": "4f0bb97c0b2d03a7f00a7a6ffea4298392d2740a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expwy-6th-ave-exit-2-westbound.html": {
+"hash": "3d28691700f00a66c3b853602b046de435bf775a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expwy-7th-ave-exit-4.html": {
+"hash": "d6151d24f886dc580efe57a696a41fbab26abc7d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expwy-caton-ave-exit-6.html": {
+"hash": "f00312f656ef1be3fcb44d9b69ad69d695d66036",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expwy-ft-hamilton-pkwy-exit-5.html": {
+"hash": "0e69cfa87300e21885000800b68f0d56e510603d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expwy-prospect-park-w-19-st.html": {
+"hash": "c8a3bdcc02973c53f313e5d000919dd001b89815",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-expy-3rd-ave-4th-ave.html": {
+"hash": "b47eb20ba988ffad15c2a70e6084f42dd67c8773",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-pkwy-3-ave.html": {
+"hash": "d99231da76760c970a700a165b6a00647f90dfa0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/prospect-st-old-fulton-st.html": {
+"hash": "4bbec1ad2119cabd79061cf4e4b7169b1ac96285",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-crescent-st.html": {
+"hash": "60af1808bfb0086a432a84d9f5b0a272ba0dc432",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ll-cm-11-st.html": {
+"hash": "7e08900da549c080c297dd5de5b9833813106312",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ll-cm-e-channel.html": {
+"hash": "7d9d9376e15a9780cda5f2ec8cf4ccfdb6bc2ed4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ll-cm-york-ave.html": {
+"hash": "71420d479011847a62d93d24d62bd980e83adbe9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-nor-1-ave.html": {
+"hash": "cce782b8fa90b59eaac1fd10047814fd92dcdd0e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-nor-york-ave.html": {
+"hash": "60e62b767b1c889414983a8ae00fdb6a1fb4f177",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-sor-1-ave.html": {
+"hash": "fea64ecfe6c8b362f7ffe663ef37b9d3ed3244d9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-sor-sutton-pl.html": {
+"hash": "b4848dba23f699039b03e8ebeda4c9e5d771668f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-sor-w-channel.html": {
+"hash": "bd06408e295e1b6f1e3aecbeb8785e24f4f37a5e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-sur-vernon-blvd.html": {
+"hash": "476243217e0bccbc973d10e8fe1735b0f01dd4e1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ul-cm-roosevelt.html": {
+"hash": "ca6b7fe145efe2f85cc41a3bc1d82d7e4dc3e8df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ul-cm-york-ave.html": {
+"hash": "2745f002ec0edef010391664575d0611edc906a2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ul-entrance-thomson-ave.html": {
+"hash": "1fb20a750ad2febd2bb1a34f465728958a6e93e7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-ul-queens-pier.html": {
+"hash": "e95c7c7c3f17449680eacb4fde7a0f2e6aea52da",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qbb-uramp-23-st.html": {
+"hash": "4ed08a5210dec5eee575e52151855c996f4aaa57",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qns-blvd-65-ave.html": {
+"hash": "9f6c1741b16285e77258512bb718a24a9c5f365c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qns-blvd-65-pl.html": {
+"hash": "81059bf82ee83258d0fad96f3b07b7d7f5d15e95",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/qns-blvd-qncnt-mall.html": {
+"hash": "202b70b831abfa21875f4582bcd92d6d466fe12e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-36-st.html": {
+"hash": "dc183e7696670bcde50e9ff6ec147b4b2ee0fe54",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-39-st-east.html": {
+"hash": "14c0b2ae5f2d400a6c324892da7cd81921d723d8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-39-st.html": {
+"hash": "c19e52cc7335f3b5162d0c532733c1eb8a27752a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-48-st.html": {
+"hash": "933f562c0814ee4b568b05666b2cb4a916b740bb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-51-st.html": {
+"hash": "850ea0a200aeb8dd3f4fc36b5ed7562b826fdcad",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-63-dr.html": {
+"hash": "554e2351c9b7c66b22cef058929ad64fea0cba1a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-e-b-43-st.html": {
+"hash": "700114bdd5a78d0b6b4081d8e113646c73e8751a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-hillside-ave.html": {
+"hash": "73e601c228c7fdf946239f9bab0eaa756f698101",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-jackson-ave.html": {
+"hash": "3c8a1b1af37159a47315822e188dc92f69d02a5b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-skillman.html": {
+"hash": "389e5fff6f57b26bd598a2c361a0f64bea64c741",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-sunnyside-br.html": {
+"hash": "fb56e22beee8a407ec15d3cd77444ddbdb735196",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-union-tpke.html": {
+"hash": "9035bdfcbc8404390875d02d52e1483540301be3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-blvd-yellowstone-blvd.html": {
+"hash": "24fc25a7c6ba141013d66788bee56d249892238a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-midtown-tunnel-35-st-exit.html": {
+"hash": "186fb58282dd3bb141c92aad8755453397982cd6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-midtown-tunnel-exit-37-st.html": {
+"hash": "e753374424046376c2d60b3fdcf76c3536ace1c1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-plaza-n-northern-blvd.html": {
+"hash": "8fbb47f900842268fe5fb0ea654e17ddf846c780",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-plaza-north-2811-westside.html": {
+"hash": "4c26949f246712b61bfea03b1f8722cfc48acf4d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-plaza-north-east-21-st.html": {
+"hash": "be1c794f348455d6f6de46c8a811a4dc12d1177b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-plaza-south-11-st-ramp-to-ul.html": {
+"hash": "92957f43fc900d09633e74203189f50524f3d137",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens-plz-s-27-st.html": {
+"hash": "06a38d897b22e5d103ab8676a596ef291f8feecb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/queens.html": {
+"hash": "2678018e61aff253b5ebb9220699293901663a1c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-amboy-rd-quad-ptz-1-218.html": {
+"hash": "1d9682d4436b96f31efa539e8492ed900c711fc5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-arthur-kill-rd-quad-ptz.html": {
+"hash": "b8bb20f76e766ca063c29bdd6883fdc2baa8929a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-draper-pl.html": {
+"hash": "95f243c876d1d4f8460ff8f8917fb245adc97e4f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-forest-ave.html": {
+"hash": "91054cf1ab6d33209e5982848058d7671571a7af",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-forest-hills-rd.html": {
+"hash": "7beca194fa84dbe370721207c26c5bdc2e81459f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-north-access-rd.html": {
+"hash": "a772a50b9255fadc2a55d17fc591f2e59226131e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-signs-rd-quad-ptz-0-138.html": {
+"hash": "262e369cf91f07edafa779812f1e9a06f5e74afa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/richmond-ave-wainwright-ave-quad-ptz-0-146.html": {
+"hash": "00ba9e6f97431fc2721fcd0b663397f1c2442f7e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/riverside-dr-79-st.html": {
+"hash": "c5e82e1954c9088c1428d07eec128cd94cb20fd6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/riverside-dr-pedestrian-crossing-nof-181-st.html": {
+"hash": "a96bb06d2467d145f58cb8b081ce1ee5bbd4bdac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/riverside-dr-washington-br-ent-ramp.html": {
+"hash": "457aff373f1faf809ca6400e0e8e6c8dba9d81ed",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/bronx-river-pkwy.html": {
+"hash": "d4496981d8fd02b09601d8444a058e6ba7ca0fd4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/brooklyn-queens-expwy.html": {
+"hash": "76b9ad120add93295b96fc5543c2b4f7f971494f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/bruckner-expwy.html": {
+"hash": "13b3727a9565957088e5b3bf82dbcddbdcd549f2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/cross-bronx-expwy.html": {
+"hash": "0ca962b6965a5e673004e75364015386b3a812d5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/gowanus-expwy.html": {
+"hash": "5bc3c66a3c6901deac5131d13d743cc219765bfa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/grand-central-pkwy.html": {
+"hash": "f739df410bbfdd3676c8292284813835a39bd283",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/korean-war-veterans-pkwy.html": {
+"hash": "acc4616c1a81122685c123fec1cb1797ff89b39f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/long-island-expwy.html": {
+"hash": "42fd21df2db0c7d72d82f14cdd779603de38c4c4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/major-deegan-expwy.html": {
+"hash": "6b97c0226aa959688ced779b079cdece2cf70255",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/martin-luther-king-jr-expwy.html": {
+"hash": "8d63427b74b4d8cfc06ad3597938d6460e28c57b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/prospect-expwy.html": {
+"hash": "08af2d3fb60140bc2ebdd7ff50dc9a6220f45de1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/sheridan-expwy.html": {
+"hash": "f8b12a600833928e8acaaf6731efe05c74207811",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/staten-island-expwy.html": {
+"hash": "ffa2a2874f37739bdacdaea62868055574f3bb06",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/throgs-neck-expwy.html": {
+"hash": "8c045666a884be9e63820a6a90b345fac9a88dbd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/van-wyck-expwy.html": {
+"hash": "4239dca6c44961240d961dcf8d098be836ff483e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/west-shore-expwy.html": {
+"hash": "07be1937c9aaf9295707099e2a9f2f8eee9dc49e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/road/west-side-hwy.html": {
+"hash": "f550ccc80f13128eea0d01245c1e311c24ae83b4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-baisley-blvd.html": {
+"hash": "75c077567e8d173d7f0564fb56587bd2368c7756",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-brookville-blvd.html": {
+"hash": "af2617168b4e4dad1be1ba5ef5fa53925d363156",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-division-st.html": {
+"hash": "dc393e9ddd2971bef5868c736ba85a11c5c03ebb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-farmers-blvd.html": {
+"hash": "b557c657bd0b5450c202c6966b4db8b55e68b2f7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-guy-brewer-blvd.html": {
+"hash": "f61c764a03986105db48af2f80e1a65e6b1876d9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-lefferts-blvd.html": {
+"hash": "eb2bb21c78dda36eb357b9c402b90324867b38cf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-s-conduit-ave.html": {
+"hash": "bab24247b5e2db7dc8f2e83d9ace68f9ac804494",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-blvd-van-wyck-expy-e-s-r.html": {
+"hash": "89a428db8c183d775e7f4a3213bedbf50c2a792a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-pkwy-flatlands-ave.html": {
+"hash": "e5d1df7c5f48fc383c4e9203147c0a95db4bacaf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockaway-pkwy-seaview-ave.html": {
+"hash": "2b9e5742525545de9760f0fdc47cbc80b0cc2864",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockefeller-plaza-w-49-st.html": {
+"hash": "c928fcdab0ea5b2bece44c7f7ed21a8549a03e5f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockefeller-plaza-w-50-st.html": {
+"hash": "2d9e050f4887a86912008e32487fb855d0a48bde",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockefeller-plaza-w-51-st.html": {
+"hash": "5bf913a89f94f00df2abe70246c1140c22d43bd8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rockefeller-plz-48-st-between-5-ave-6-ave.html": {
+"hash": "0bd68dadbc3941471d770faff16d71e619266f3b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roebling-st-south-4-st.html": {
+"hash": "2fe479749be4d30a57a925b9567b6154a1ae8647",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-50-st.html": {
+"hash": "52d88c0b155cedf70df144af034582e0dbf93262",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-79st.html": {
+"hash": "38b5041ccc1576fa87241911feff641323d1f135",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-baxter-ave.html": {
+"hash": "5e8a2425ca5f4a10d46c94a9e97d8b59357dd193",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-broadway-74-st.html": {
+"hash": "4b6828bc626db7ffb9af0a420c6e27b448c6e007",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-elmhurst-ave.html": {
+"hash": "2d0eff52e12b85ee73f7775566b71892b3245639",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/roosevelt-ave-parsons-blvd.html": {
+"hash": "4823a1e9f930770153d5be8447c31501ae7085f6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/rt-9a-n-moore-st.html": {
+"hash": "47dbeb8a3c09f8b9c74e6044eccc2ac982b60995",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/s-conduit-ave-150-st.html": {
+"hash": "5b8eab54227f81c67eba2c9ad885dbbf4cf5abf5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-adams-st.html": {
+"hash": "3e9d08753ae7ccc2cbf1c0fefa51717d60c216cd",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-bqe-ent.html": {
+"hash": "123dce39a6d5eec3277f213be5a5b1b59eb618e8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-brooklyn-bridge-ent.html": {
+"hash": "9fe1ad1d264b5131250396e0c078fde9e430723d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-jay-st-quad-ptz.html": {
+"hash": "3d48e889dd502a2fc23591742c17e2ae714ab74e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-jay-st-quad.html": {
+"hash": "098da0378aa0c0216b63800a35875991ec9241e5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sands-st-pearl-st-quad-ptz-1-10.html": {
+"hash": "c3f70f5082d8fce5e7da86137559e9f0f829f243",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/school-rd-bay-st.html": {
+"hash": "b3b35781d289346a9cc8f180eff8ab8e11bde030",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/seagirt-blvd-b-32-st.html": {
+"hash": "f811d0731c32ff3f25ecdf7d4a5aa1c180d6eda3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/seagirt-blvd-b-9-st.html": {
+"hash": "1b99e325faee04685fbc55bc40384f6683e3e47a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sedgwick-ave-cedar-ave.html": {
+"hash": "696382ca1983f4d485cfd3e098a6d24d3d8fb5a3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sheridan-expwy-cross-brx-exit-pwy-southbound.html": {
+"hash": "e7b1db8ccb070e033e7ebe0f0cbf19fef6c15650",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/shore-front-pkwy-beach-108-st.html": {
+"hash": "519c48da4761dacb39bab9b2a8406eb9b992a834",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sie-clove-rd.html": {
+"hash": "051c729ad8473c4821611f04a0cb49038689a9a1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sie-fingerboard-rd.html": {
+"hash": "b9f1529fa45bda3f24f447aed6e8dba6fc02f43b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sie-richmond-ave.html": {
+"hash": "d2be6aebd781762f7720e498adb0f1d97ad69992",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/smith-st-9-st.html": {
+"hash": "a3a8ed9508815872252d4c34e75d73d206e8fe0b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/soundview-ave-lafayette-ave.html": {
+"hash": "684ea1caa484b3a1d4600f6837b5ba78ace7c183",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/south-st-broad-st.html": {
+"hash": "da0f4391555161ee4666972bac239df5f8080fc5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/south-street-pike-street.html": {
+"hash": "f31fcd9007dcddefeeb7417de5dc256eae0b3879",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/southern-bl-cross-bronx-expwy.html": {
+"hash": "b4fb4d16ce70ee1ce673fede95f968f8061a8d95",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/springfield-ave-jamaica-ave.html": {
+"hash": "afd7eb0e50d2bec88f3b80425581af7f7b9241b4",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/springfield-blvd-merrick-blvd.html": {
+"hash": "f2c967bed30c2865f10d35c9dadbb4b92f5c37e5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/st-nicholas-ave-125-st.html": {
+"hash": "e12dd29322ac63525a1aaafc83b47bcc6ba16b09",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/st-nicholas-ave-145-st.html": {
+"hash": "c44b48a080d8a445b31ef18dcc77dc24eb41f90a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/st-nicholas-ave-181-st.html": {
+"hash": "f2a2267a59446ce8e5a86cf253872097c3092e79",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-bradley-ave-exit-11-eastbound.html": {
+"hash": "2d61284a564c6483141ae710bbc8d126e0d7f6c5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-btwn-clove-road-and-richmond-road-westbound.html": {
+"hash": "16e017b801a7facbfe8278b405e41938064f14f1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-crafton-ave-exit-10-eastbound.html": {
+"hash": "53366302b6ff2456a12cb2bafefc366d0f2b78e1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-fingerboard-rd-exit-15-eastbound.html": {
+"hash": "cb2a54c09181e85642c21f2e9262284fb883f7b1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-forest-ave-westbound.html": {
+"hash": "6a4b5b21d8e1bc0e27222224d55de0ca55752035",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-hyland-blvd-exit-14-westbound.html": {
+"hash": "de2989e4a0b1c89c5120920a841d62d7e24fd027",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-lambert-st-exit-6-westbound.html": {
+"hash": "2016129a2dbdc1af1de5572c7fff0d8933016c57",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-manor-rd-eastbound.html": {
+"hash": "501ab95860b0edc9a5cb1fd1e929f7568f1ffaa5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-mlk-int-exit-9-westbound.html": {
+"hash": "3f90764f68b515f1ff7c02e8280a49466fa8f6a6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-mosel-ave-eastbound.html": {
+"hash": "87bc593b27896e6443fdfaadc68ee574ea1ddd8c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-renwick-ave-eastbound.html": {
+"hash": "4f7d492a5f444ea0cbfa4b2184fb38fd68220947",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-richmond-ave-westbound.html": {
+"hash": "0d76e5dcea373b49ec272c3504acd536a26cb6b7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-south-ave-exit-5-westbound.html": {
+"hash": "dce47536ce0f351020bcb2cfba16da3fa9933597",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-victory-blvd-exit-10-eastbound.html": {
+"hash": "3570adfcdb923cd64a6fc1606119b97e120fe172",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-woolley-ave-exit-10-eastbound.html": {
+"hash": "19d4c9af5ee049bd491449d3f0292295737cabcc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expwy-wse-int-exit-3-eastbound.html": {
+"hash": "eb50cffdd934aa99249987541f38533a1b272e74",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expy-fingerboard.html": {
+"hash": "71926c1255b798981192f45ef78a8e0805b97c7c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expy-forest-ave.html": {
+"hash": "6c630e52cf35a5a3e14aaf234ed73c9564d4e311",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expy-hylan-blvd.html": {
+"hash": "d7c6ccfba2c4a5ee56e1c80303328b94c3572eff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expy-slosson-ave.html": {
+"hash": "6f1b352a15d57d93d07c523267254dc884d11710",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island-expy-west-shore-expy.html": {
+"hash": "670b5ddea9c145208ff61da5db08b0cf866a5741",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/staten-island.html": {
+"hash": "959836412eb07ca05a2b68f3fcdc6f94e7ccad58",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/stillwell-ave-86-st.html": {
+"hash": "a9e2a7ef8f8c94f4e40b8cfbb6571aad828b8c36",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/stillwell-ave-neptune-ave.html": {
+"hash": "4392935427cbd9815e7e6eb95b0b8d97f1c20878",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/stillwell-ave-surf-ave.html": {
+"hash": "060258274b140f6ece40e9985d773a3085997950",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/sutton-pl-58-st.html": {
+"hash": "808d6369d9ebd1f0bea68c531c700b9251dc0586",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/third-ave-bridge.html": {
+"hash": "df23ab59962d196687b10aad04b8a782a9eca36b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/throgs-neck-expwy-otis-ave-southbound.html": {
+"hash": "26664fb6b8d9ccda17f2792c8c35c9f0e8076e54",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/throgs-neck-expwy-randall-ave.html": {
+"hash": "fe4444093341ba9aadcde673d31484f7ee8cb443",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/tillary-st-eb-jay-st.html": {
+"hash": "6c8e69dee559502225479a9de12e427fdcbfc7e7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/tillary-st-gold-st.html": {
+"hash": "7877b4c76227388503f6319c12015a43ebe8baac",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/tillary-st-jay-st.html": {
+"hash": "6e88f80de1f8da504b28ee44649e818ec0ff2f47",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/under-cliff-ave-boscobe-pl.html": {
+"hash": "28db35e8a2674e6437ce4f200fdb80189fff793e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/union-sq-14-st.html": {
+"hash": "4f8a923141b75fe7dccf883e6708d9ec24a0766f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/union-tpke-little-neck-pkwy.html": {
+"hash": "0eca49f7fefc709aa42de5ce64fcffbc6e799d02",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/van-dam-st-48-ave.html": {
+"hash": "464bc17f2621b6648887f04d5956a8be072cdea3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/van-dam-st-bet-48-ave-hunter-pt.html": {
+"hash": "8dc1139e29b4a47b6b8c1fa2130e539fa80d1233",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/van-wyck-expwy-67th-rd-exit-11-southbound.html": {
+"hash": "26aac22b8254593397ff78ff51a92ac769095ce5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/van-wyck-expwy-gcp-intr-exit-14-northbound.html": {
+"hash": "268ee2e81075b206d4ff4a3f09b7ae1a3841518a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/van-wyck-expwy-main-st-exit-8-northbound.html": {
+"hash": "3427193a25316e23309d602680d4e610a802a8ce",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/vanderbilt-ave-e-45-st.html": {
+"hash": "b6bb9867e7ba68bb2767a496f4991bd055ed1d38",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/varick-st-beach-st.html": {
+"hash": "f3c62e4b46b1484ed9bc63eb3b4ca6397f7a8c09",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/varick-st-broome-st.html": {
+"hash": "523f352ceaa8b0847b0a40ade77be395a3bfe0bb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/varick-st-laight-st.html": {
+"hash": "32c953bd75b480796ba2998d547f803384e93ca2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/varick-st-watt-st.html": {
+"hash": "a3d10b911156d0bfee6319469290760fc9008107",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/veterans-rd-bloomingdale-rd-quad-ptz-0-130.html": {
+"hash": "443c30bb275fa876dc84f7d545aee5cc905c99e9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-bay-st.html": {
+"hash": "430d715b4cf8cddf49e2ca97e3dd02360333dbe1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-christopher-lamberts-la-quad-ptz.html": {
+"hash": "798d8954c7b98a2df3f376500ec52fddbc006ffb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-gannon-ave.html": {
+"hash": "07f60cdcd329ea2d3aee80abdd7eb8fadb72ddf3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-jersey-st.html": {
+"hash": "3be5694e022953eb31dd82e023a10b782cb57973",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-morani-st.html": {
+"hash": "8a5db3de31501920e3baf6d49180b443138a7180",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/victory-blvd-richmond-ave-quad-ptz.html": {
+"hash": "a943dbebf16bae999d94d8eec90ed7912a1ed72a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/washington-st-prospect-st.html": {
+"hash": "1581b7901c91d8283e84b3865fdbc53db1ed5d35",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/water-st-john-st.html": {
+"hash": "d04a59045cb1a7ad35e9510c22f8c11cd549ec8f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/water-st-whitehall.html": {
+"hash": "c25901357932ae3f00c655d00e980b53e476b300",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-1-bklyn-plaza.html": {
+"hash": "2477c6ced66fc2d3ede4b98ac0513d19e3e615ee",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-10-nir-4-fdr-rd.html": {
+"hash": "6fd723d8ee2fbe519303021b51e5c1fd7e676f5c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-11-nir-5-east-of-manhattan-tower.html": {
+"hash": "9167af9bd130f5930a63d58a47fe800dfb9b5276",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-12-nir-12-manhattan-mid-span.html": {
+"hash": "d56c5c343f990f16ec901f8ee140c529d553826c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-16-sor-4-kent-ave-south.html": {
+"hash": "2d1d6dcee7eb40d9430f84184f08e85ca6febefb",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-17-sor-2-delancey-st-fdr.html": {
+"hash": "4dc91e056f56fcce90276713fceecc890f04f732",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-20-above-bedford-ave-berry-st.html": {
+"hash": "69e35c85913fb530a04e35a9831b5a679cee85be",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-25-sir-4-bklyn-twr.html": {
+"hash": "dc7883fa6d0dfc489a8cb564964c3385df0d1721",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-26-sir-kent-ave.html": {
+"hash": "aa8385ebcb61a7710ff48df2dac03986c3629dee",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-4-nor-bklyn-mid-span.html": {
+"hash": "4fe538efd2149d18fbc4a1f79185103dd1016f49",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-5-nor-5-delancey-st-north-fdr.html": {
+"hash": "c2e253e579cc9864087eae685856f8bb424fa2bf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-6-north-rdwy-delancey-st-clinton-st.html": {
+"hash": "0d18d90bbe48b8ce70cae3d046af22983dd73e97",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-6-south-rdwy-delancy-st-clinton-st.html": {
+"hash": "adf0808359d95ac78afbbbb1832b94a49e1aec30",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-8-nir-bklyn-anch-kent-av.html": {
+"hash": "2eaa9a2514ffe0edb549be4b5e06e37326f0a690",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-nor-3-kent-ave-north.html": {
+"hash": "95d36afaccff1513bab4de4cae8aa6a2d243a0f7",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wbb-sir-1-manhattan-anchorage.html": {
+"hash": "d3e21a134e8ca852a17c0b5523ae100046762a2e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/webster-ave-e-165.html": {
+"hash": "83024ac4a600be0f22a6db56cf6e20eb3d6e106b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/webster-ave-e-180-st.html": {
+"hash": "23f8230017763e36a2948a0eafb8e7910be08a9c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-broadway-west-houston-st.html": {
+"hash": "838590952d2246dd752c5f1ad87c43b203c0b3b9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-houston-hudson-st.html": {
+"hash": "c12fb8a04efe917a1076059939c0ff26bbed3281",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-houston-varick-st.html": {
+"hash": "1d518d71d7e51abbab837db5ee58c68b5fd95d4d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-arden-ave-exit-4-northbound.html": {
+"hash": "ea84521c9e4569b3f2c07d3561c4ced13a4e5e91",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-bloomfield-ave-exit-9-northbound.html": {
+"hash": "c119997790ab6267339a666c3e8edc2a9fe96f3b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-bloomngdale-rd-exit-3-southbound.html": {
+"hash": "4447d76f314c9fc5d8ee0da0833480f621b6d227",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-edwrd-crry-ave-exit-9-southbound.html": {
+"hash": "a7a9b5b46f9ddc3f7cdf3ae8b5cd8ee50a134b6d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-englewood-ave-exit-2-northbound.html": {
+"hash": "7f71adec8b64db75a48a4837b42a7f2f04cb54e1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-frsh-kills-crk-exit-5-northbound.html": {
+"hash": "59f545039b2330165ea9a9a2adc0d1c5161780f2",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-meredith-blvd-exit-8-southbound.html": {
+"hash": "6e88c70b608282292c7037e1ee7ba1ed44a23fda",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-muldoon-ave-exit-5-northbound.html": {
+"hash": "551b1cf485c8b617d988e142a345b0e18f50f0cc",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-rossville-ave-exit-4-southbound.html": {
+"hash": "7b8b34f044d8a04ad7eba1b0f917acd02d7e0b8d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-south-ave-exit-8-southbound.html": {
+"hash": "04457554846df1c54ac6c866e15efbe947555f0f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-victory-blvd-exit-7-southbound.html": {
+"hash": "e16cde1aab901a7ef344355f6f3cecb05cdb6d2c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expwy-woodrow-rd-exit-3-southbound.html": {
+"hash": "cc1591bbb36b03de0b670b20a85f86995e653cd0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-arden-ave.html": {
+"hash": "36d91593d642a35d9e1cec941a6d1579ce8d8628",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-bloomingdale-rd.html": {
+"hash": "fdfa2f96cfe6fb6a6c3a6104c3e6393b5e432525",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-park-ride.html": {
+"hash": "aadb86089489a6b4269a22d269b08da1a9ec94b0",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-rossville-ave.html": {
+"hash": "5609398d5777d093a0b76f8babade0c7d6a9c54d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-south-ave.html": {
+"hash": "7b1af391498d0bf2df654d65ea521b39acb31549",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-shore-expy-victory-blvd.html": {
+"hash": "66b336c5c998bc95fa3736ce4e8624200c4f6c6b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-side-hwy-bpu-entrance.html": {
+"hash": "6e504009d6a719db9f19ebbcf000d05dedfb6213",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-side-hwy-vestry-st-northbound.html": {
+"hash": "af49d5733891cc13421215cf2560d343748adaff",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-side-hwy-vestry-st.html": {
+"hash": "23d8bd47c9bff69d345d5fb84dee560bcaa2b02c",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-side-hwy-w-23rd-st.html": {
+"hash": "48dcb69dbb6e219918ea237ffad8779c16613e7d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-battery-place.html": {
+"hash": "fe28a10ed00b71f2da9753c3a36ebf8160778803",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-canal-st.html": {
+"hash": "ae3081f77110d7800f020a74065f3bc5a279f7e1",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-chambers.html": {
+"hash": "5ac8b9b4d9c32ecf3cb4e40bf885c8d5dc9b05df",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-clarkson.html": {
+"hash": "a0dccc1226d3af01bbe63b616982a6d0950ccff3",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-fulton.html": {
+"hash": "6df310535a55aafdb60133bfc80f2234493c9b11",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-murray.html": {
+"hash": "b99947ad7126f7ef304f868602866212d6307589",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-west-houston-st.html": {
+"hash": "05a2bbd505df21901fee8476fae6cad0a0ae7f17",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-st-west-thames-battery-tunnel.html": {
+"hash": "2cb18ac0debbea3846fc1079e999959eb697647e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-street-intrepid.html": {
+"hash": "5fd8f83fbab3747208409b1a185e858d9c546992",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/west-street-underpass-entrance.html": {
+"hash": "aba04932865dbd156003cfb163261db99f074dfa",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/whitestone-expy-28-rd-n-of-linden-pl.html": {
+"hash": "7021a19a08d96607d5b7decc1f22a58136f5c43f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-101-ave.html": {
+"hash": "f7b5c494ad7658043e794a2ed9df9331017bd46e",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-91-ave.html": {
+"hash": "f276d2abddc0891570a4a0d16277210a724124c9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-97-ave.html": {
+"hash": "65bbc7496ac7488304fe26604f5ce8d9580a63ad",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-dry-harbor-rd.html": {
+"hash": "ad675c54093755e1ac951d6e6c042be83bf25fbf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-furmanville-ave.html": {
+"hash": "040a535154401041eab0b0287ff261fb9c9eadea",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-hoffman-dr.html": {
+"hash": "319279d86096ef2d4e814935b60b2d31f7d5f20a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-jamaica-ave.html": {
+"hash": "299d116e69ebd9a6414bbb6b9c557768c094b12f",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-liberty-ave.html": {
+"hash": "b6dad0e5a7f2ee277ca81bbf6a2f571aed32e158",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-metropolitan-ave.html": {
+"hash": "f0f0c1f8e7394c8ae349c642646c2e37137fbbf8",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-myrtle-ave.html": {
+"hash": "22f92c3c68db1d84bd61b08072493a5f6aafd203",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-park-ln.html": {
+"hash": "daa035674d4e0d03ab14b517e0ed168a7e170bc5",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-rockaway-blvd.html": {
+"hash": "d34c6a17e70dd6a6da02f1a7994eaef1812e6104",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/woodhaven-blvd-union-tpke.html": {
+"hash": "441b4776db34f25d7f8ff8d10d2b06293b3b8835",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/worth-st-centre-st.html": {
+"hash": "e5ff3ae4e7412e7f5989723e87041dc111078a6a",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/worth-street-lafayette-street.html": {
+"hash": "3e3521eea73a0e7b009968a62ff8b7fb75c59ee9",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wythe-ave-north-12-st.html": {
+"hash": "3a8ac0eb806bef460bb9edd7deb1d7d1e9968956",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wythe-ave-williamsburg-st-e.html": {
+"hash": "4421a97a4ceee16a3a516e695e9f4b9714c55548",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/wythe-ave-williamsburg-st-w.html": {
+"hash": "75b2fe4957450ad0e9dc66d479bd34f594ef29fe",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/york-ave-63-st.html": {
+"hash": "9078e618bb2db2a9b4c174411b6ba59408e3e323",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/cams/york-ave-72-st.html": {
+"hash": "26114e33edad3a4bdfa2c6ac90ff292da9615dbf",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/data.html": {
+"hash": "b49b46b4e3355f65ddc40a8aeb477a29a20f162b",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/library.html": {
+"hash": "a24a938f7a0169b5bac865aa50e234b4d2953b6d",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/research.html": {
+"hash": "2f3d6b35eda7abb57b560816a6f701b5fd16fcf6",
+"lastmod": "2026-08-06"
+},
+"https://bilbodata.com/skyline.html": {
+"hash": "31591a27c2894efd1847161df7e35ab298cd6c06",
+"lastmod": "2026-08-06"
+}
+}

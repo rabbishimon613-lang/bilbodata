@@ -362,3 +362,126 @@ account. This is a **new, account-wide** ceiling worth writing into `DEPLOY.md`
 next to the existing 100-deploys/day note: a 949-page surface plus KiriPedia's
 1,849 pages trips it on any day both sites deploy. **Future sweeps should use
 `vercel --prod --yes --archive=tgz` directly** rather than rediscovering this.
+
+---
+
+## 2026-08-06 — nightly sweep
+
+**Deploy doctrine changed.** The "commit and stop, never run `vercel --prod`"
+rule at the top of this file is **retired as of 2026-08-04 (Pedro's call)**,
+because the queue of undeployed changes just grew every sweep. Every sweep now
+deploys. Git auto-deploy stays off; deploys remain explicit CLI actions.
+
+### Search Console — still blocked, and this is the fourth run reporting it
+
+Checked directly this run: `sc-domain:bilbodata.com` returns **"Oops, you don't
+have access to this property"** for the signed-in account
+(`ppargabastos@gmail.com`). No service account, no stored token, nothing in the
+keyring. **There are still no measurable numbers for this site — no
+impressions, no clicks, no coverage counts, and none are estimated below.**
+
+**The one-time action that unblocks it:** in Search Console, add `bilbodata.com`
+as a property under `ppargabastos@gmail.com` and choose **HTML file
+verification**, then drop the token filename into this repo — the file will be
+committed, un-ignored in `.vercelignore` (it is an allowlist) and deployed on
+the next sweep, after which every future run can read real numbers. A DNS TXT
+record at the registrar works equally well and needs no code change.
+
+### Changed — the freshness signal was lying, and that is now fixed
+
+This is the substantive finding of the run, and it is systematic, so it was
+fixed in the generator rather than per page.
+
+**What was wrong.** Every camera page printed `Updated {TODAY}` in its footer
+and every one of the 947 sitemap entries carried `lastmod={TODAY}`, both
+stamped from the build clock. So a nightly regeneration told Google that the
+entire 947-page surface had changed — every night, unconditionally.
+
+**Why that is not merely cosmetic.** The counts behind those pages have not
+moved since **2026-07-20** (verified: that is the newest `ts` in `counts.csv`,
+and the file itself was last written 2026-07-27). Diffing this run's
+regeneration against the last commit, **every single one of the 917 camera
+pages differed by exactly one line — the date string.** Zero had a changed
+vehicle count. The site was announcing daily freshness for data that was
+seventeen days stale, which wastes crawl budget on 917 unchanged pages and
+teaches Google to disregard `lastmod` for this host entirely.
+
+**The fix, in `seo_build.py`:**
+
+- New `_data_date()` reads the real high-water mark out of `counts.csv`. The
+  footer now reads **"Counts current to 2026-07-20"** instead of "Updated
+  <today>", and the rankings page eyebrow likewise. The page now states
+  something true.
+- New `lastmod_for()` hashes each page's bytes and only advances `lastmod` when
+  the content actually changed, with state in `seo_lastmod.json` (947 entries,
+  committed so it persists between sweeps). The sitemap-index `lastmod` values
+  are now derived from the maximum of their children rather than from the clock.
+- `_local_path()` maps a bare trailing slash to `index.html`, because
+  `https://bilbodata.com/cams/` is a directory on disk — without it that one URL
+  raises `IsADirectoryError` and silently re-stamps today forever. Caught by
+  reconciling the state file (946) against the sitemap (947); the same
+  normalisation trap the internal-link audit has to handle.
+
+**Verified by running the whole chain three times in a row:** the second and
+third runs produce a **byte-identical `sitemap-cameras.xml`**. Before this
+change every run rewrote all 917 lines. This run itself is the baseline, so all
+947 URLs legitimately carry `2026-08-06` — the footer text genuinely changed on
+every page. From the next sweep on, only pages that really change will move.
+
+### Checked — all clean
+
+Measured on **rendered** text (`html.unescape`), per the `&amp;` lesson, with
+JSON-LD counts recursing into `@graph`, per the note below.
+
+- **Metadata, 949 pages:** 0 missing titles, 0 missing descriptions, **0 titles
+  over 60, 0 descriptions over 160, 0 duplicate titles, 0 duplicate
+  descriptions.** Average title 54, average description 150.
+- **Canonicals:** present on all 949. **noindex: exactly one — `cam.html`**,
+  deliberate, so its `?id=` query strings don't mint 917 near-duplicates.
+- **Structured data:** **0 JSON-LD parse errors** across all 949 pages. 919
+  WebPage, 918 WebSite/Place/ImageObject, 917 GeoCoordinates + PostalAddress +
+  BreadcrumbList, 4,738 ListItem, 25 CollectionPage, 24 ItemList, plus the
+  Dataset, AboutPage and Organization singletons.
+- **Internal links: 0 broken, 0 orphans.** Every camera and hub page has
+  inbound links. `404.html` is the only page with none, which is correct.
+- **robots.txt:** allows everything, declares the sitemap, explicitly welcomes
+  GPTBot, PerplexityBot, ClaudeBot, Google-Extended and CCBot.
+- **Sitemaps:** 947 URLs, set and ordering both identical to the last commit —
+  no page added, dropped or reshuffled.
+
+### Audit notes for future runs — do not re-raise these
+
+- **`research.html -> $2` is not a broken link.** A naive `href="..."` scrape
+  picks up `href="$2"` from a JavaScript regex replacement string inside an
+  inline markdown renderer (`seo_patch.py`-injected page, lines ~155–157). It is
+  a capture-group reference, not a URL. Third sweep to notice it; recording it
+  so it is the last.
+- The `@graph`-recursion note and the `cams/index.html` orphan note from
+  previous entries both still apply and were both handled correctly here.
+
+### Found, not changed — with reasons
+
+- **The data pipeline appears to be dead, and that is bigger than SEO.**
+  `counts.csv` last changed 2026-07-27 and its newest reading is 2026-07-20.
+  The self-perpetuating Actions chain that is supposed to keep committing counts
+  has produced nothing since then; the last `train-gate` rotation tick was
+  2026-08-02. **Not touched** — reviving GitHub Actions chains is outside an SEO
+  sweep's remit and racy against the pulse committers. But every camera page is
+  now honestly dated, so the staleness is visible rather than hidden. **Flagged
+  for the user: the counts are the entire value proposition of these 917 pages,
+  and they stopped seventeen days ago.**
+- **`changefreq` is still `daily` on every URL.** Left alone deliberately. It is
+  wrong today, but it becomes right again the moment the worker is revived, and
+  `lastmod` — which is the field Google actually weighs — is now honest. Revisit
+  only if the pipeline stays dead.
+- **`/cams/road/` still returns 404.** Unchanged and still not a defect: there
+  is no corridor index, only the 17 individual corridor hubs, all live and
+  linked. Nothing points at the bare directory.
+- **The `.gitignore` edit in the working tree is not this routine's.** It adds
+  `.env` / `.env.*` and belongs to another session. A `git pull --rebase` was
+  required and refused to run with it dirty, so it was stashed, the rebase ran
+  ("Already up to date"), and it was restored and **verified byte-identical to a
+  backup taken first**. Left unstaged and uncommitted, along with the ~90
+  untracked harvest and vision files. Nothing was staged with `git add -A`.
+- **Repo housekeeping still nagging:** "too many unreachable loose objects" and
+  a stale `.git/gc.log`. Not an SEO matter; someone should run `git prune`.

@@ -8,12 +8,38 @@ whenever cams_all.json or counts.csv change, then deploy the shell.
 
     python3 seo_build.py
 """
-import csv, json, math, os, re, html, collections, datetime
+import csv, hashlib, json, math, os, re, html, collections, datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://bilbodata.com"
 OUT = os.path.join(ROOT, "cams")
 TODAY = datetime.date.today().isoformat()
+
+
+def _data_date():
+    """The date the counts actually run to — not the date we happen to rebuild.
+
+    Every camera page used to print "Updated {TODAY}" and every sitemap entry
+    carried lastmod={TODAY}, so a nightly regeneration told Google that all 917
+    pages had changed even when the underlying counts had not moved for weeks.
+    That is a false freshness signal, and it also made content hashing useless
+    because the date string alone changed every file. Read the real high-water
+    mark out of counts.csv instead, and fall back to TODAY only if it is
+    unreadable.
+    """
+    try:
+        newest = ""
+        with open(os.path.join(ROOT, "counts.csv")) as fh:
+            for row in csv.DictReader(fh):
+                stamp = (row.get("ts") or "")[:10]
+                if len(stamp) == 10 and stamp > newest:
+                    newest = stamp
+        return newest or TODAY
+    except Exception:
+        return TODAY
+
+
+DATA_DATE = _data_date()
 
 BOROUGH_SLUG = {
     "Manhattan": "manhattan", "Brooklyn": "brooklyn", "Queens": "queens",
@@ -346,7 +372,7 @@ def page(path, title, desc, body, jsonld, image=None, canon=None):
 </main>
 <footer><div class="wrap">
 Bilbo Data reads the public NYC DOT traffic-camera network and turns it into
-counts. Imagery belongs to NYC DOT; the counts are ours. Updated {TODAY}.
+counts. Imagery belongs to NYC DOT; the counts are ours. Counts current to {DATA_DATE}.
 </div></footer>
 </body>
 </html>
@@ -771,7 +797,7 @@ for i, (cid, s) in enumerate(ranked, 1):
 
 body = f"""
 <div class="crumb"><a href="/">Bilbo Data</a> › Busiest intersections</div>
-<p class="eyebrow">Ranking · updated {TODAY}</p>
+<p class="eyebrow">Ranking · counts current to {DATA_DATE}</p>
 <h1>The busiest NYC intersections we have counted</h1>
 <p class="lede">New York City argues about which corner is worst without ever
 measuring it. These are the {len(ranked)} intersections Bilbo Data currently counts
@@ -841,27 +867,67 @@ core = [(f"{SITE}/", 1.0), (f"{SITE}/about.html", 0.7),
         (f"{SITE}/research.html", 0.6)]
 
 
+# lastmod is only advanced when a page's bytes actually change. The previous
+# behaviour stamped TODAY on all 947 URLs every night, which trains Google to
+# ignore the field entirely. State lives in seo_lastmod.json (url -> hash+date).
+LASTMOD_STATE = os.path.join(ROOT, "seo_lastmod.json")
+
+try:
+    with open(LASTMOD_STATE) as _fh:
+        _lastmod = json.load(_fh)
+except Exception:
+    _lastmod = {}
+
+
+def _local_path(url):
+    # A bare trailing slash is a directory on disk ("/cams/" -> cams/index.html).
+    # Without this the open() below raises IsADirectoryError and the URL silently
+    # re-stamps TODAY every run — the same normalisation trap the link audit hits.
+    rel = url[len(SITE):].lstrip("/")
+    path = os.path.join(ROOT, rel or "index.html")
+    return os.path.join(path, "index.html") if os.path.isdir(path) else path
+
+
+def lastmod_for(url):
+    """Stored date if the page is byte-identical to last run, else today."""
+    try:
+        with open(_local_path(url), "rb") as fh:
+            digest = hashlib.sha1(fh.read()).hexdigest()
+    except OSError:
+        return TODAY
+    prev = _lastmod.get(url)
+    if prev and prev.get("hash") == digest:
+        return prev.get("lastmod", TODAY)
+    _lastmod[url] = {"hash": digest, "lastmod": TODAY}
+    return TODAY
+
+
 def write_sitemap(path, entries):
+    stamps = {u: lastmod_for(u) for u, _ in entries}
     body = "\n".join(
-        f"  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod>"
+        f"  <url><loc>{u}</loc><lastmod>{stamps[u]}</lastmod>"
         f"<changefreq>daily</changefreq><priority>{p}</priority></url>"
         for u, p in entries)
     with open(os.path.join(ROOT, path), "w") as fh:
         fh.write('<?xml version="1.0" encoding="UTF-8"?>\n'
                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                  f"{body}\n</urlset>\n")
+    return max(stamps.values()) if stamps else TODAY
 
 
 cam_urls = [(u, p) for u, p, kind in urls if kind == "cam"]
 hub_urls = [(u, p) for u, p, kind in urls if kind == "hub"]
-write_sitemap("sitemap-cameras.xml", cam_urls)
-write_sitemap("sitemap-core.xml", core + hub_urls)
+cams_stamp = write_sitemap("sitemap-cameras.xml", cam_urls)
+core_stamp = write_sitemap("sitemap-core.xml", core + hub_urls)
+
+with open(LASTMOD_STATE, "w") as fh:
+    json.dump(_lastmod, fh, indent=0, sort_keys=True)
 
 with open(os.path.join(ROOT, "sitemap.xml"), "w") as fh:
     fh.write('<?xml version="1.0" encoding="UTF-8"?>\n'
              '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-             f'  <sitemap><loc>{SITE}/sitemap-core.xml</loc><lastmod>{TODAY}</lastmod></sitemap>\n'
-             f'  <sitemap><loc>{SITE}/sitemap-cameras.xml</loc><lastmod>{TODAY}</lastmod></sitemap>\n'
+             f'  <sitemap><loc>{SITE}/sitemap-core.xml</loc><lastmod>{core_stamp}</lastmod></sitemap>\n'
+             f'  <sitemap><loc>{SITE}/sitemap-cameras.xml</loc><lastmod>{cams_stamp}</lastmod></sitemap>\n'
              "</sitemapindex>\n")
 
 with open(os.path.join(ROOT, "robots.txt"), "w") as fh:
