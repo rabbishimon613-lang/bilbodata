@@ -485,3 +485,120 @@ JSON-LD counts recursing into `@graph`, per the note below.
   untracked harvest and vision files. Nothing was staged with `git add -A`.
 - **Repo housekeeping still nagging:** "too many unreachable loose objects" and
   a stale `.git/gc.log`. Not an SEO matter; someone should run `git prune`.
+
+---
+
+## 2026-08-07 — nightly sweep
+
+**Nothing changed on this site tonight, and that is the result, not a skipped
+run.** The whole surface regenerated to bytes identical to what is already live.
+Details below.
+
+### Search Console — still blocked, fifth consecutive run reporting it
+
+Checked directly again: `sc-domain:bilbodata.com` returns **"Oops, you don't
+have access to this property"** for the signed-in account
+(`ppargabastos@gmail.com`). No service account file, no `.env`, nothing in the
+keyring. **There are still no measurable numbers for this site — no impressions,
+no clicks, no coverage counts, and none are estimated below.**
+
+**The one-time action that unblocks it:** in Search Console, add `bilbodata.com`
+as a property under `ppargabastos@gmail.com` and choose **HTML file
+verification**, then drop the token filename into this repo — it will be
+committed, un-ignored in `.vercelignore` (an allowlist) and deployed on the next
+sweep, after which every future run can read real numbers. A DNS TXT record at
+the registrar works equally well and needs no code change.
+
+### The freshness fix from 2026-08-06 is confirmed working
+
+This is the first sweep that could actually test it, and it passed.
+
+Ran the full chain — `seo_build.py`, `seo_patch.py`, `seo_ogcard.py` — against a
+clean tree. **Zero tracked files changed.** Not one of the 917 camera pages, not
+`sitemap-cameras.xml`, not `seo_lastmod.json`, not `robots.txt`.
+
+Before the fix, this exact run would have rewritten 917 pages and 947 sitemap
+`lastmod` values with tonight's date, announcing to Google that the entire
+surface had changed when the underlying counts had not moved since 2026-07-20.
+The content-hash gate now holds across a real overnight gap, not just across
+three back-to-back runs in one session. The live sitemap still reads
+`lastmod 2026-08-06` on all 917 camera URLs, which is correct — that is the day
+the footer text genuinely last changed.
+
+### Checked — all clean, all unchanged
+
+Measured on rendered text (`html.unescape`), with JSON-LD counts recursing into
+`@graph`. Every figure is identical to the 2026-08-06 sweep, as it must be for a
+byte-identical surface.
+
+- **Metadata, 949 pages:** 0 missing titles, 0 missing descriptions, **0 titles
+  over 60, 0 descriptions over 160, 0 duplicate titles, 0 duplicate
+  descriptions.** Average title 54, average description 150.
+- **Canonicals:** present on all 949. **noindex: exactly one — `cam.html`**,
+  deliberate.
+- **Structured data:** **0 JSON-LD parse errors** across all 949 pages. 919
+  WebPage, 918 WebSite/Place/ImageObject, 917 GeoCoordinates + PostalAddress +
+  BreadcrumbList, 4,738 ListItem, 25 CollectionPage, 24 ItemList, plus the
+  Dataset, AboutPage, GeoShape, DataDownload and Organization singletons.
+- **Internal links: 0 broken, 0 orphans.**
+- **robots.txt:** allows everything, declares the sitemap, explicitly welcomes
+  GPTBot, PerplexityBot, ClaudeBot, Google-Extended and CCBot.
+- **Sitemaps:** 947 URLs, byte-identical to the last commit.
+
+### The dead pipeline, now diagnosed precisely
+
+The last sweep flagged that "the data pipeline appears to be dead". It is dead,
+and this run pinned down which parts and — probably — why.
+
+| chain | trigger | last run | state |
+|---|---|---|---|
+| `worker` (the counts) | self-relaying | **2026-07-19**, succeeded | stopped relaying, 19 days |
+| `harvest` (fingerprint crops) | self-relaying | **2026-07-23**, two cancelled | chain broken, 15 days |
+| `train-gate` | **cron**, every 30 min | 2026-08-07 06:12, succeeded | still ticking, doing nothing |
+
+**The pattern is the tell.** Both *self-perpetuating* chains stopped; the one
+*cron-triggered* workflow is still running fine, succeeding in about 25 seconds
+a tick because there are no new crops to bank. A workflow that can no longer
+trigger its own successor, while cron-triggered ones keep running, is the
+classic signature of an **expired or revoked relay token** — here `WORKER_PAT`,
+which is the classic PAT that `DEPLOY.md` already notes is overdue for
+replacement. That is a hypothesis from the failure shape, not something read off
+an error page; the run logs would confirm it in a minute.
+
+**Not fixed here, deliberately.** Reviving Actions chains is outside an SEO
+sweep's remit, it races the pulse committers, and rotating a token is a
+credential action this routine does not take. **Flagged for the user, and it is
+the biggest thing wrong with this property: the counts are the entire value
+proposition of these 917 pages, and they stopped 18 days ago.** Every page is at
+least honest about it now — they all say "Counts current to 2026-07-20".
+
+### Found, not changed — with reasons
+
+- **`changefreq` is still `daily` on all 947 URLs.** The last sweep said revisit
+  if the pipeline stayed dead. It has stayed dead — and the answer is still to
+  leave it. Google has said publicly it ignores `changefreq`; `lastmod`, which
+  it does weigh, is now honest. Rewriting 947 sitemap lines to correct a field
+  nothing reads would be churn for its own sake. **Fixing the worker fixes this
+  properly.**
+- **No deploy this run, and no queue behind it.** The deploy doctrine changed on
+  2026-08-04 so that changes stop piling up; there are no changes. The live site
+  was checked directly and already serves tonight's exact bytes. Deploying an
+  identical build would only spend from the account-wide 100-deploys-per-day
+  free-tier cap that KiriPedia and Cyberputa share.
+- **`seo_submit.py` not run, for the same reason.** IndexNow is for URLs that
+  are new or changed; not one of the 947 is either. Pinging all of them nightly
+  is precisely the crawl-budget waste the 2026-08-06 fix removed. It should run
+  again on the first sweep after the worker comes back.
+- **The `.gitignore` edit in the working tree is still not this routine's.** It
+  adds `.env` / `.env.*` and belongs to another session. No rebase was needed
+  this run (`origin/main` was already level — itself further evidence the pulse
+  committers are dead), so it was never stashed, and it was verified
+  byte-identical to a backup at the end. Left unstaged, along with the ~90
+  untracked harvest and vision files. Nothing was staged with `git add -A`.
+- **Audit notes that stay retired:** `research.html -> $2` is still not a broken
+  link (it is a JavaScript capture-group reference), `/cams/road/` is still
+  correctly a 404 with nothing pointing at it, and the `@graph` recursion and
+  `cams/index.html` normalisation traps were both handled again here.
+- **Repo housekeeping still nagging:** "too many unreachable loose objects" and
+  a stale `.git/gc.log`, printed on every git command. Not an SEO matter;
+  someone should run `git prune`.
