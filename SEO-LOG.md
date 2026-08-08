@@ -4,9 +4,12 @@ One dated section per nightly sweep. Read the most recent entry before the next
 sweep so the routine builds on itself instead of re-auditing the same ground.
 Anything found but deliberately left alone is written down with the reason.
 
-Deploy doctrine for this project (from `DEPLOY.md`): redeploys are **rare and
-manual**. The sweep commits its changes and stops there — it never runs
-`vercel --prod`, and it never re-enables git auto-deploy.
+Deploy doctrine for this project (changed 2026-08-04, Pedro's call): the sweep
+**always deploys what it changed**, in the same run, with `vercel --prod --yes`.
+This overrides the "redeploys are RARE and MANUAL" line still sitting in
+`DEPLOY.md` — that rule was retired because the queue just grew every sweep.
+A sweep that changes no site bytes still deploys nothing; there is simply
+nothing to publish. Git auto-deploy stays off, permanently.
 
 ---
 
@@ -602,3 +605,122 @@ least honest about it now — they all say "Counts current to 2026-07-20".
 - **Repo housekeeping still nagging:** "too many unreachable loose objects" and
   a stale `.git/gc.log`, printed on every git command. Not an SEO matter;
   someone should run `git prune`.
+
+---
+
+## 2026-08-08 — nightly sweep
+
+**No site bytes changed tonight, for the second sweep running, and that is the
+correct result rather than a skipped pass.** The whole surface regenerated to
+files byte-identical to what production already serves — verified against
+production this time, not just against the last commit.
+
+### Search Console — still blocked, sixth consecutive run reporting it
+
+Checked directly again tonight: `sc-domain:bilbodata.com` returns **"Oops, you
+don't have access to this property"** for the signed-in account
+(`ppargabastos@gmail.com`). No service account, no `.env`, nothing in the
+keyring. **There are still no measurable numbers for this site — no
+impressions, no clicks, no positions, no coverage counts — and none are
+estimated anywhere in this entry.**
+
+**The one-time action that unblocks it:** in Search Console, add
+`bilbodata.com` as a property under `ppargabastos@gmail.com` and pick **HTML
+file verification**, then drop the token file into this repo — it gets
+committed, un-ignored in `.vercelignore` (an allowlist) and deployed on the
+next sweep, after which every future run can read real numbers. A DNS TXT
+record at the registrar works just as well and needs no code change.
+
+### The freshness gate held again — now confirmed across two overnight gaps
+
+Ran the full chain against a clean tree: `seo_build.py` (917 cameras, 25
+hubs+data, 947 sitemap URLs, robots.txt), `seo_patch.py` (6 head blocks + the
+homepage footer), `seo_ogcard.py` (1200x630 card). **Zero tracked files
+changed.** Not one camera page, not a sitemap, not `seo_lastmod.json`.
+
+Before the 2026-08-06 content-hash fix, this run would have restamped 917 pages
+and 947 `lastmod` values with tonight's date and told Google the entire surface
+had changed while the underlying counts had not moved since 2026-07-20. The gate
+has now survived two separate overnight gaps, not just back-to-back runs inside
+one session.
+
+**Production was compared directly this run, which last sweep did not do:** a
+camera page fetched from `bilbodata.com` is byte-identical to the local file,
+and the live sitemaps serve 917 / 30 / 2 URLs matching local exactly. Live
+`lastmod` still reads `2026-08-06` — the day the footer text genuinely last
+changed. Nothing is queued and nothing is stale.
+
+### Checked — all clean, all unchanged from 2026-08-07
+
+Measured on rendered text (`html.unescape`), JSON-LD counted recursively
+through `@graph`.
+
+- **Metadata, 949 pages:** 0 missing titles, 0 missing descriptions, **0 titles
+  over 60 chars, 0 descriptions over 160, 0 duplicate titles, 0 duplicate
+  descriptions.** Average title 54, average description 150.
+- **Canonicals:** present on all 949. **noindex: exactly one — `cam.html`**,
+  deliberate, because its `?id=` query strings would otherwise mint 917
+  near-duplicates of the real pages under `/cams/`.
+- **Structured data:** **0 JSON-LD parse errors** across all 949. 4,738
+  ListItem, 919 WebPage, 918 Place / WebSite / ImageObject, 917 GeoCoordinates
+  + PostalAddress + BreadcrumbList, 25 CollectionPage, 24 ItemList, 5
+  PropertyValue, 2 Organization, plus the Dataset, AboutPage, GeoShape and
+  DataDownload singletons.
+- **Internal links: 0 broken, 0 orphans.**
+- **robots.txt:** allows everything, declares the sitemap, explicitly welcomes
+  GPTBot, PerplexityBot, ClaudeBot, Google-Extended and CCBot.
+
+### The dead pipeline — 20 days now, and the diagnosis is unchanged
+
+| chain | trigger | last run | state |
+|---|---|---|---|
+| `worker` (the counts) | self-relaying | **2026-07-19**, succeeded | stopped relaying, **20 days** |
+| `harvest` (fingerprint crops) | self-relaying | **2026-07-23**, two cancelled | chain broken, **16 days** |
+| `train-gate` | **cron**, every 30 min | 2026-08-08 11:49, succeeded | still ticking, ~29s a tick, nothing to do |
+
+The shape is the same tell as last sweep, one day more pronounced: both
+*self-perpetuating* chains are dead while the *cron-triggered* one still runs
+fine. That is the signature of an expired or revoked relay token — `WORKER_PAT`,
+the classic PAT that `DEPLOY.md` itself flags as overdue for replacement. Still
+a hypothesis read off the failure shape, not off an error page.
+
+Further corroboration this run: `origin/main` was **exactly level** with local
+(0 ahead, 0 behind) after a fetch, so no rebase was needed at all. The two pulse
+committers that normally race `main` every 3 and 7 minutes have committed
+nothing. The last three commits on `main` are all SEO sweeps.
+
+**Not fixed here, deliberately** — reviving Actions chains is outside an SEO
+sweep's remit, and rotating a credential is an action this routine does not
+take. **It remains the biggest thing wrong with this property: the counts are
+the entire value proposition of these 917 pages and they stopped 20 days ago.**
+Every page is at least honest about it — all 917 read "Counts current to
+2026-07-20".
+
+### Found, not changed — with reasons
+
+- **No deploy this run, and no queue behind it.** The 2026-08-04 doctrine exists
+  so changes stop piling up; there are no changes. Production was fetched and
+  confirmed byte-identical. Deploying an identical build would only spend from
+  the account-wide 100-deploys-per-day free-tier cap that KiriPedia and
+  Cyberputa share.
+- **`seo_submit.py` not run, same reason.** IndexNow is for URLs that are new or
+  changed; not one of the 947 is either. Pinging all of them nightly is exactly
+  the crawl-budget waste the 2026-08-06 fix removed. It should fire again on the
+  first sweep after the worker comes back.
+- **`changefreq` is still `daily` on all 947 URLs.** Google has said publicly it
+  ignores `changefreq`, and `lastmod` — which it does weigh — is now honest.
+  Rewriting 947 lines to correct a field nothing reads is churn. Fixing the
+  worker fixes this properly.
+- **The `.gitignore` edit in the working tree is still not this routine's.** It
+  adds `.env` / `.env.*` and belongs to another session. It was backed up before
+  the chain ran and verified byte-identical afterwards; it is left unstaged,
+  along with ~90 untracked harvest and vision files. Nothing was staged with
+  `git add -A`.
+- **Audit false positives that stay retired:** `research.html -> $2` is a
+  JavaScript capture-group reference, not a link; and the `../assets/*.css`
+  hits are the auditor failing to resolve `..` relative to the page's own
+  directory — the files exist, are tracked, and are un-ignored in
+  `.vercelignore`.
+- **Repo housekeeping still nagging:** "too many unreachable loose objects" and
+  a stale `.git/gc.log` print on every git command. Not an SEO matter; someone
+  should run `git prune`.
