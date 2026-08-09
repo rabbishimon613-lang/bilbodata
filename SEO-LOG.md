@@ -724,3 +724,122 @@ Every page is at least honest about it — all 917 read "Counts current to
 - **Repo housekeeping still nagging:** "too many unreachable loose objects" and
   a stale `.git/gc.log` print on every git command. Not an SEO matter; someone
   should run `git prune`.
+
+---
+
+## 2026-08-09 — nightly sweep
+
+**No site bytes changed tonight, for the third sweep running, and production
+was re-verified byte-identical rather than assumed.** The whole surface
+regenerated to files identical to what `bilbodata.com` already serves.
+
+### Search Console — still blocked, seventh consecutive run reporting it
+
+**Blocked twice over this run.** No credentials exist locally — re-checked
+tonight: no service account, no `.env`, no gcloud config, nothing Google-related
+in the keyring. **And no browser was reachable at all this run** (the signed-in
+Chrome extension was disconnected, and the in-app browser hung), so the property
+could not even be re-checked by hand the way the last six sweeps did.
+
+**There are no measurable numbers for this site — no impressions, no clicks, no
+positions, no coverage counts — and none are estimated anywhere in this entry.**
+
+**The one-time action that unblocks it:** in Search Console, add
+`bilbodata.com` as a property under `ppargabastos@gmail.com` and pick **HTML
+file verification**, then drop the token file into this repo — it gets
+committed, un-ignored in `.vercelignore` (an allowlist) and deployed on the next
+sweep, after which every future run can read real numbers. A DNS TXT record at
+the registrar works just as well and needs no code change.
+
+### The freshness gate held for a third overnight gap
+
+Full chain against a clean tree: `seo_build.py` (917 cameras, 25 hubs+data, 947
+sitemap URLs, robots.txt), `seo_patch.py` (6 head blocks + the homepage footer),
+`seo_ogcard.py` (1200x630 card). **Zero tracked files changed** — not a camera
+page, not a sitemap, not `seo_lastmod.json`.
+
+**Production compared directly again:** a camera page fetched from
+`bilbodata.com` is byte-identical to the local file; the live sitemaps serve
+917 / 30 / 2 URLs matching local exactly; live `lastmod` still reads
+`2026-08-06`, the day the footer text genuinely last changed. Nothing is queued
+and nothing is stale.
+
+### Checked — all clean, all unchanged from 2026-08-08
+
+Measured on rendered text (`html.unescape`), JSON-LD counted recursively.
+
+- **Metadata, 949 deployed pages:** 0 missing titles, 0 missing descriptions,
+  **0 titles over 60 chars, 0 descriptions over 160, 0 duplicate titles, 0
+  duplicate descriptions.** Average title 54, average description 150.
+- **Canonicals:** present on all 949. **noindex: exactly one — `cam.html`**,
+  deliberate, because its `?id=` query strings would otherwise mint 917
+  near-duplicates of the real pages under `/cams/`.
+- **Structured data: 0 JSON-LD parse errors.** 4,738 ListItem, 919 WebPage, 918
+  WebSite / Place / ImageObject, 917 GeoCoordinates + PostalAddress +
+  BreadcrumbList, 25 CollectionPage, 24 ItemList, 5 PropertyValue, 2
+  Organization, plus the Dataset, AboutPage, GeoShape and DataDownload
+  singletons. Identical to last sweep.
+- **Internal links: 0 broken, 0 orphans.** The only pages with no inbound link
+  are `404.html` and `cam.html`, both correct.
+- **robots.txt (verified live):** allows everything, declares the sitemap,
+  explicitly welcomes GPTBot, PerplexityBot, ClaudeBot, Google-Extended, CCBot.
+
+### One new file, and it is correctly invisible
+
+The audit scanned **950** HTML files rather than 949 — `ad/map.html`, untracked
+and belonging to another session. It has no description and no canonical, which
+looked like a defect for about a minute. It is not: `.vercelignore` is an
+allowlist and `ad/` is not on it, so the file has never deployed and never will
+until someone adds it. **Deployed surface remains 949 pages, all clean.**
+Recorded so the next sweep does not re-investigate it.
+
+### The dead pipeline — 21 days now, diagnosis unchanged
+
+| chain | trigger | last run | state |
+|---|---|---|---|
+| `worker` (the counts) | self-relaying | **2026-07-19**, succeeded | stopped relaying, **21 days** |
+| `harvest` (fingerprint crops) | self-relaying | **2026-07-23**, two cancelled | chain broken, **17 days** |
+| `train-gate` | **cron**, every 30 min | 2026-08-09 11:54, succeeded | still ticking, ~25s a tick, nothing to do |
+
+Same tell as the last two sweeps, one day more pronounced: both
+*self-perpetuating* chains are dead while the *cron-triggered* one runs fine.
+That is the signature of an expired or revoked relay token — `WORKER_PAT`, which
+`DEPLOY.md` itself flags as overdue for replacement. Still a hypothesis read off
+the failure shape, not off an error page.
+
+`origin/main` was **exactly level** with local after a fetch (0 ahead, 0 behind),
+so no rebase was needed. The two pulse committers that normally race `main`
+have committed nothing.
+
+**Not fixed here, deliberately** — reviving Actions chains is outside an SEO
+sweep's remit and rotating a credential is an action this routine does not take.
+**It remains the biggest thing wrong with this property: the counts are the
+entire value proposition of these 917 pages and they stopped 21 days ago.** All
+917 pages are at least honest about it — every one reads "Counts current to
+2026-07-20".
+
+### Found, not changed — with reasons
+
+- **No deploy this run, and no queue behind it.** The 2026-08-04 always-deploy
+  doctrine exists so changes stop piling up; there are no changes. Production
+  was fetched and confirmed byte-identical. Deploying an identical build would
+  only spend from the account-wide free-tier deploy cap that KiriPedia and
+  Cyberputa share — and Cyberputa needed one tonight.
+- **`seo_submit.py` not run, same reason.** IndexNow is for URLs that are new or
+  changed; not one of the 947 is either. It should fire again on the first sweep
+  after the worker comes back.
+- **`changefreq` is still `daily` on all 947 URLs.** Google ignores it, and
+  `lastmod` — which it does weigh — is honest. Fixing the worker fixes this
+  properly.
+- **The `.gitignore` edit in the working tree is still not this routine's.** It
+  adds `.env` / `.env.*` and belongs to another session. Left unstaged, along
+  with ~90 untracked harvest, vision and ad files. Nothing was staged with
+  `git add -A`; nothing was committed to this repo at all tonight except this
+  log entry.
+- **Audit false positives that stay retired:** `research.html -> $2` and
+  `'+d.file+'` are JavaScript capture-group and template-concat references, not
+  links; the `../assets/*.css` hits are the auditor failing to resolve `..`
+  relative to the page's own directory.
+- **Repo housekeeping still nagging:** "too many unreachable loose objects" and a
+  stale `.git/gc.log` print on every git command. Not an SEO matter; someone
+  should run `git prune`.
