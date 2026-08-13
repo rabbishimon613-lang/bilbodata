@@ -947,3 +947,109 @@ outside an SEO sweep's remit, so this is escalated, not fixed.
   not re-investigated: it has no description and no canonical, but
   `.vercelignore` is an allowlist and `ad/` is not on it, so the file has never
   deployed. Deployed surface remains 949.
+
+---
+
+## 2026-08-13 — nightly sweep
+
+**The static surface is byte-identical for a fifth consecutive run.** Same cause
+as the last four entries, now 25 days old: the counts every page is built from
+have not moved since the worker chain died.
+
+### Search Console — still blocked, confirmed directly again
+
+Pointed the signed-in Google account (`ppargabastos@gmail.com`) at the property
+rather than carrying the line forward on trust. Search Console answered:
+
+> Oops, you don't have access to this property — Property: bilbodata.com
+
+**No clicks, no impressions, no CTR, no position, no index coverage for this
+property tonight, and none estimated.** This remains the only one of the three
+sites with no search data at all.
+
+**The one-time fix, unchanged:** add `bilbodata.com` in Search Console as a
+*domain* property and complete DNS TXT verification at the registrar. Sitemaps,
+robots, canonicals and JSON-LD are all already in place — verification is the
+single switch that turns measurement on here.
+
+### Regenerated, and the output was identical again
+
+`python3 seo_build.py && python3 seo_patch.py && python3 seo_ogcard.py` ran
+clean — 917 camera pages, 25 hubs+data, 947 sitemap URLs, 404 and robots
+written, head blocks patched into all six hand-written pages, OG card at
+1200×630.
+
+**Zero tracked SEO files changed.** Not one byte, because `cams_all.json`
+(4 July) and `counts.csv` (27 July) have not moved.
+
+### Checked — all clean, all unchanged from the last three sweeps
+
+Measured on rendered text, JSON-LD counted recursively, scoped to the pages
+`.vercelignore` actually ships.
+
+- **Metadata, 949 deployed pages:** 0 missing titles, 0 missing descriptions,
+  **0 titles over 60 chars, 0 descriptions over 160, 0 duplicate titles, 0
+  duplicate descriptions.** Average title 55, average description 150.
+- **Canonicals:** present on all 949. **noindex: exactly one — `cam.html`**,
+  deliberate, for the reason `DEPLOY.md` gives.
+- **Structured data: 0 JSON-LD parse errors.** 4,738 ListItem, 919 WebPage,
+  918 WebSite / Place / ImageObject, 917 GeoCoordinates + PostalAddress +
+  BreadcrumbList, 25 CollectionPage, 24 ItemList, 5 PropertyValue, 2
+  Organization. Identical to the last three sweeps.
+- **robots.txt (verified live):** allows everything, declares the sitemap,
+  explicitly welcomes GPTBot, PerplexityBot, ClaudeBot, Google-Extended, CCBot.
+- **Sitemaps (verified live):** `sitemap.xml` is an index pointing at
+  `sitemap-core.xml` and `sitemap-cameras.xml` — **947 URLs total, matching
+  what `seo_build.py` generated this run exactly.**
+- **Production fetched and hash-compared, not assumed.** `index.html`,
+  `cams/index.html`, `busiest.html`, `data.html`, `about.html` and
+  `library.html` all hash **identical** to their local counterparts. Nothing
+  is queued behind a deploy.
+
+### The dead pipeline — 25 days, diagnosis unchanged for the fifth sweep
+
+| chain | trigger | last run | state |
+|---|---|---|---|
+| `worker` (the counts) | self-relaying | **2026-07-19**, succeeded | stopped relaying, **25 days** |
+| `harvest` (fingerprint crops) | self-relaying | **2026-07-23**, two cancelled | chain broken, **21 days** |
+| `train-gate` | **cron**, every 30 min | 2026-08-13 05:17, succeeded | still ticking fine |
+
+The tell is now five sweeps old: **both self-perpetuating chains are dead while
+the cron-triggered one runs perfectly.** That is the signature of an expired or
+revoked relay token — `WORKER_PAT`, which `DEPLOY.md` itself flags as overdue
+for replacement. Still a hypothesis read off the failure shape, not off an
+error page.
+
+**This remains the biggest thing wrong with this property.** The counts are the
+entire value proposition of these 917 pages, and every one has been serving
+"Counts current to 2026-07-20" for over three weeks. The pages are at least
+honest about it. Reviving Actions chains and rotating a credential are both
+outside an SEO sweep's remit — escalated, not fixed.
+
+### Found, not changed — with reasons
+
+- **No deploy this run, and the always-deploy doctrine is satisfied, not
+  bypassed.** That rule exists because changes were queueing behind a manual
+  redeploy. There is no queue: the regenerated surface is byte-identical and
+  production was verified identical page-for-page by hash. Deploying would
+  spend from the account-wide free-tier deploy cap to publish files that are
+  already published — and KiriPedia needs that cap tonight.
+- **`seo_submit.py` not run, same reason.** IndexNow is for URLs that are new
+  or changed. Not one of the 947 is either. It should fire on the first sweep
+  after the worker comes back and the counts move.
+- **`origin/main` is exactly level with local** (0 ahead, 0 behind) after a
+  fetch, so no rebase was needed. The two pulse committers that normally race
+  `main` have committed nothing — consistent with the worker being dead. A
+  `git pull --rebase` was attempted first and refused because of the 93
+  unstaged paths below; the fetch-and-compare confirmed there was nothing to
+  rebase onto.
+- **93 untracked and modified paths in the working tree are not this
+  routine's** — harvest, vision, dataset and ad files, plus a `.gitignore` edit
+  belonging to another session. Nothing was staged with `git add -A`; the only
+  thing committed to this repo tonight is this log entry.
+- **`changefreq` is still `daily` on all 947 URLs.** Google ignores it, and
+  `lastmod` — which it does weigh — is honest. Fixing the worker fixes this
+  properly.
+- **Repo housekeeping still nagging:** "too many unreachable loose objects"
+  prints on every git command. Not an SEO matter; someone should run
+  `git prune`.
