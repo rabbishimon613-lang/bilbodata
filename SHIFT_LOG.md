@@ -71,22 +71,29 @@ once before. It is the single most expensive recurring failure in this project.
   leaving the cron as the backstop, so a relay failure can never fail a good generation.
 - Re-enabled the `harvest` workflow. All five workflows now report `active`.
 
-**Restart status at shift end — not yet verified, and I'm not calling it revived.**
-I dispatched a deliberately short worker generation (`run_seconds=600`) as a probe
-rather than firing a 5.5h run cold. At the end of the shift, ~1h45m after dispatch, it
-was **still on the sampling step and had pushed no pulse commit**, for a loop bounded at
-ten minutes. It has not failed — setup, checkout, deps and the compaction step all
-passed — but it is slower than the bound implies and unexplained. Possible causes worth
-checking in this order: `counter.py --minute` stalling on camera fetches (there is at
-least one hard-404 camera in the list, and its timeout behaviour under the worker's
-fetch pool is untested), `pipeline.py` taking minutes per iteration across 917 cameras,
-or the initial `storage.py compact` on the 76 MiB `vehicles.csv` backlog. Locally that
-compaction took 1.3s and dropped the file to a header, losslessly, into parquet — so
-it's the least likely of the three.
+**Restart CONFIRMED end-to-end.** I dispatched a deliberately short generation
+(`run_seconds=600`) as a probe rather than firing a 5.5h run cold. It ran
+19:15:42 → 19:27:20 UTC — ~11.5 minutes for a ten-minute bounded loop, i.e. exactly
+right — and every stage did what it was supposed to:
 
-The pre-existing `vehicles.csv` backlog is also why the first generation is not
-representative: it starts by archiving 76 MiB of 19–20 July data before sampling
-anything new. **Do not read this probe's duration as the steady-state cadence.**
+- `storage.py compact` cleared the 19–20 July hot-log backlog into parquet
+  (`vehicles 2026-07-19.parquet, 5474.1 KB`), matching the local dry-run byte for byte.
+- **Two pulse commits pushed successfully**, 19:23:16Z and 19:27:04Z. That is the proof
+  that mattered: the push path works.
+- The relay logged `launched generation 1` **on its first attempt**.
+
+First new vehicle data since 2026-07-20. The chain is alive.
+
+**Then I had to defuse the trap this shift's own handoff flagged.** The relay propagates
+`run_seconds` forward, so the probe relayed a *second* ten-minute generation, and left
+alone the chain would have churned ten-minute runs indefinitely. Cancelled generation 1
+(`!cancelled()` means a cancelled run correctly does not relay, so the chain stopped
+cleanly) and dispatched a proper generation at `run_seconds=20000`. Run
+`31904029825`, started 19:28:58Z, is the real steady-state chain.
+
+Note for future probes: the first generation after an outage is not representative —
+it spends its opening minutes archiving the accumulated hot-log backlog before sampling
+anything new.
 
 ### Track A — data
 
@@ -139,17 +146,15 @@ debt. The rest is still there for the watchdog.
   a superseded pre-parquet artefact and the parquet archives are the real forever-record,
   but it's still an original, so decide rather than reflexively delete. Then sweep all
   917 cameras for 404s and prune the retired ones.
-- **Verify first, before anything else.** Two blockers were removed this shift but
-  neither restart was observed all the way through, so treat both as unconfirmed:
-  1. **Did the worker probe finish, commit and relay?** `gh run list --workflow=worker.yml`.
-     If it succeeded and relayed, generation 1 is running at `run_seconds=600` — cancel
-     it and dispatch a proper generation at `20000`, because the relay propagates
-     `run_seconds` forward and the chain would otherwise churn ten-minute runs forever.
-     If it timed out or hung, the loop itself is the shift: profile `counter.py --minute`
-     and `pipeline.py` per-iteration, starting with fetch timeouts against dead cameras.
-  2. **Did harvest's `:17` cron fire and actually push a manifest?** That is the real
-     proof the 100 MiB unwedge worked end-to-end. Confirm a `harvest gen N` commit
-     landed on `main` and, if a rotation triggered, that an archive reached the `crops`
-     release.
+- **Verify first, before anything else.** The worker is confirmed alive (see above), but
+  two things still need eyes:
+  1. **Is the worker chain still relaying at full length?** `gh run list --workflow=worker.yml`
+     — expect a ~5.5h generation handing off to the next. If a generation is running at
+     `run_seconds=600` again, something re-dispatched a probe and never reset it.
+  2. **Did harvest's `:17` cron fire and actually push a manifest?** This is the one
+     genuinely unverified thing from shift 1 — the 100 MiB unwedge is proven on the
+     write side (a 1.4 MB file now pushes fine) but no harvest generation has completed
+     since. Confirm a `harvest gen N` commit landed on `main`, and if a rotation
+     triggered, that an archive reached the `crops` release.
 
 ---
