@@ -1,0 +1,1428 @@
+{
+ "ts": 1786821578,
+ "rounds": 4,
+ "spacing_s": 45,
+ "window_s": 135,
+ "sampled": 100,
+ "seed": 613,
+ "by_tier": {
+  "hd": {
+   "cams": 25,
+   "stale": 0,
+   "dead": 1,
+   "fresh": 24
+  },
+  "sd": {
+   "cams": 75,
+   "stale": 0,
+   "dead": 0,
+   "fresh": 75
+  }
+ },
+ "verdicts": {
+  "fresh": 99,
+  "dead": 1
+ },
+ "cameras": [
+  {
+   "id": "09cc9eed-0732-4199-a6ca-b3d0bbbad860",
+   "name": "C1-MDE-06-NB_at_Macombs_Dam_Br-Ex5",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "13064b49-6f97-43a2-9cf8-947767afaa12",
+   "name": "C5-BQE-42-WB_at_30th_Ave-Ex43",
+   "area": "Queens",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "2aed4b42-b46e-4f27-9cf9-d1d72ee5f036",
+   "name": "C3-WSE-08-SB_at_Victory_Blvd-Ex7",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "2f433a28-9a3f-4202-9b3b-a1dc7c6d1b1f",
+   "name": "C3-WSE-11-SB_at_Edwrd_Crry_Ave-Ex9",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "42e78c2b-3c70-47dc-8685-f1b5eca3deb5",
+   "name": "C2-BQE-30B_W_at_Stewart Ave",
+   "area": "Brooklyn",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "50fed16e-8068-4b89-ada4-246fc112b924",
+   "name": "C2-BQE-30A_W_at_Stewrt_Ave_Kosc-Br",
+   "area": "Brooklyn",
+   "tier": "hd",
+   "res": [
+    3840,
+    2160
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "5e7535c0-fee4-4989-8481-0addea488020",
+   "name": "Hylan Blvd @ Huguenot Ave",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "5f4bef40-ddee-41fa-a623-6388d561f416",
+   "name": "C2-PE-01-Cntr_at_Caton_Ave-Ex6",
+   "area": "Brooklyn",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "6c1d7768-9e5f-4541-99c4-77dc8fac932b",
+   "name": "C3-SIE-03-WB_at_South_Ave-Ex5",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "6eee8e60-805b-403c-9c82-bac9e60d9cd9",
+   "name": "C1-BRE-09-SB_at_Lasalle_Ave-Ex7C",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "7384e16f-2921-4b14-b5a8-15cf58ef7ef0",
+   "name": "C5-BQE-31-EB_at_54th_Ave",
+   "area": "Queens",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "77ea2042-4c1b-4a2c-b861-88dfa9f579f8",
+   "name": "C5-LIE-11-EB_at_60th_St-Ex18",
+   "area": "Queens",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "7c996b88-8ee6-4b0d-99c8-5764cf68f3bc",
+   "name": "C1-MDE-03-SB_at_E.138th_St-Ex3",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "8431fefb-2068-4c83-920a-a6db628e7ce6",
+   "name": "C1-BRP-01-SB_at_E.174th_St-Ex3",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "8ff75339-6269-457e-8fb0-55af56997c5b",
+   "name": "C5-LIE-22-WB_at_163rd_St-Ex25",
+   "area": "Queens",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "94051372-369e-4c2f-9850-90763a8faf88",
+   "name": "C3-SIE-12-WB_Btwn_Clove_Road_and_Richmond_Road",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "99098e73-0848-4c19-895e-f81651f76c39",
+   "name": "C1-CBX-17-Med_at_E.Tremont_Ave-Ex10",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "b18d0e36-c053-435d-921e-813ab5f65a0a",
+   "name": "C2-BQE-22-WB_at_Lee_Ave-Ex31",
+   "area": "Brooklyn",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "b221fdc4-ca81-41ae-875e-bf0341377758",
+   "name": "C1-BRE-06_W - WB_at_CBX-Hutch_Int-EX6A",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "d67b0c15-549a-42f9-b99c-13023667f724",
+   "name": "C1-SHE-02-SB_at_Cross_Brx_Expwy",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "ddd3f06a-7e0e-4e00-b76a-52a511e9009d",
+   "name": "C5-VWE-20_NB_at_Main_Street-Ex8",
+   "area": "Queens",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 0,
+   "distinct_frames": 0,
+   "verdict": "dead",
+   "last_modified": null
+  },
+  {
+   "id": "ded03849-7c56-43e5-8e82-05b61c175aca",
+   "name": "C1-CBE-04_N - NB_at_Macombs Rd-Ex2A",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "e38e3af7-19e6-4c8d-aa05-a21c8d5a7b29",
+   "name": "C1-BRE-10-NB_at_Middle_Twn_Rd-Ex7C",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "ef24beea-023c-4377-86c9-f9c8836c961b",
+   "name": "C3-SIE-04A-WB_at_Richmond Ave",
+   "area": "Staten Island",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "efea49ae-8d39-4ebd-b2a9-9259361d4233",
+   "name": "C1-CBE-10-SB_at_Brx.Rvr_Pkwy-Ex4A",
+   "area": "Bronx",
+   "tier": "hd",
+   "res": [
+    1920,
+    1080
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "557af346-2f9f-4306-8388-3974b7a49e4d",
+   "name": "Crescent st @ 41 Ave",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "24101bcf-29a7-4417-b77d-1f0368dc212d",
+   "name": "Hudson St @ Laight St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "ebd920f9-8522-4ae7-af8f-b887256fdaa1",
+   "name": "Amboy Rd @ Annadale Rd",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "23bcc0dd-d395-45fe-8106-676ba7293208",
+   "name": "Varick St @ Watt St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "e7c0ccc5-bf19-453f-a5cd-c02b9feb2123",
+   "name": "Drumgoogle Rd E @ Wainwright Ave",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "9dbb3101-9918-4b61-946f-a34d7c7c662b",
+   "name": "East Houston St @ Ave B",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "899dfa1e-a2c5-490a-b8ba-480493634846",
+   "name": "Coney Island Ave @ Kings Hwy",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "8d7e94a5-7a81-4e92-8171-9f6c0f0ca7bf",
+   "name": "FDR @ E 53 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "8ed1baa8-48ab-4ec7-9110-7b89162ce8c3",
+   "name": "Hylan Blvd @ West Fingerboard Rd & Sand Ln",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "0360205b-183b-4dd3-a01f-e7f0deb5ff1f",
+   "name": "Shore Front Pkwy @ Beach 108 St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f68ca680-62ac-4ad5-aa9d-7a83742b15d3",
+   "name": "Staten Island Expy @ Fingerboard",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "1c3a5c25-a40c-40d6-8f6b-030294269fd1",
+   "name": "Lily Pond Ave @ School Rd",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "a9fb8f19-98a1-4b2b-a920-a3537cc4908f",
+   "name": "Lexington Ave @ E 120 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "dfed3e07-de07-4243-8a41-509a1800cd1e",
+   "name": "Hamilton Ave @ 9 St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "e86cf7d8-0782-40d7-885c-f4a9218988d9",
+   "name": "Belt Pkwy @ 68 St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "98b37dd5-bd64-4ace-add0-37f5135df600",
+   "name": "St Nicholas Ave @ 125 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "74fcddb5-5030-4be4-864c-e315e58b86f4",
+   "name": "Long Island Expy @ Douglaston Pkwy",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "8ea73365-6c7b-423a-87fc-4b6fc279dafa",
+   "name": "BQE @ Sands St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "6728d273-d20b-44b7-868a-d54c00e50fab",
+   "name": "Amsterdam @ 178 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f664cb82-a0fc-467e-9a6a-ca34c89cc63c",
+   "name": "Northern Blvd @ Main St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "1f81dbf0-4360-49fd-b768-b1a09d730eb1",
+   "name": "Gowanus Expy @ 7 Ave & 67 St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "ae67eb8d-0aed-4204-b7a1-3621ed9eef65",
+   "name": "Tillary St EB @ Jay St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "e73b2210-e5e7-42c0-a48f-5ce07b28da43",
+   "name": "Park Ave @ 96 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "df5bc905-6296-4f6e-ae6e-20a39b56da43",
+   "name": "BB-51 North West Brooklyn Tower",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "80b83728-4712-4ab6-aa2f-ae384eb1b91c",
+   "name": "Father Capodanno Blvd @ Seaview Ave",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "afff9762-e6d4-4b4d-a2e7-60c13763dd16",
+   "name": "Bowery @ Cooper Sq & 4 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "9a01683c-321a-421b-b9c3-056bbf851f25",
+   "name": "C2-PE-06-WB_at_6th_Ave-Ex2",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    640,
+    352
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "0537e9a6-3e6f-480c-9c6e-bb3ad15356ae",
+   "name": "Richmond Ave @ North Access Rd",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "81db80c2-13fe-4ae7-8b47-c08aa42d512f",
+   "name": "5 Ave @ 66 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "bca4a4b0-d73f-4937-9301-85ff8293bd94",
+   "name": "7 AVE @ 42 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "7d06c900-a5e5-49ca-96b9-93a0662a2069",
+   "name": "Belt Pkwy @ Verrazano Bridge",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "a40475d9-6266-4f92-b695-bb6addd39892",
+   "name": "Flatbush Ave @ Ave U",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "c1b36d36-ce3d-43e3-af83-0cb29bd67e10",
+   "name": "Boerum Pl @ Fulton St & Joralemon St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "66810a94-7065-4f6e-b306-3d3088930d89",
+   "name": "11 Ave/Rt 9A @ 14 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "08c57946-9560-49b9-97a5-43dc5b74fd86",
+   "name": "Cadman Plz E/Washington St @ Prospect St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "7609996b-ec61-4c06-bb58-c9aa93c65b80",
+   "name": "Grand St @ Graham Ave",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f4e822f7-d2a2-4146-851c-04b2fa6d5265",
+   "name": "5 Ave @ 42 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "936d479d-402f-468a-b1c6-b2c2a68a0b4c",
+   "name": "Harlem River Dr Ramp @ Before GWB & Amst_179St Exit",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "dce301aa-b937-4041-b9fc-960abcd79178",
+   "name": "Varick St @ Laight St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "9b4553f1-6aa3-46eb-8905-ecbfecb83ce3",
+   "name": "Northern Blvd @ Honeywell Bridge",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "3486cafa-aab2-418a-baa4-89dcc438e8c9",
+   "name": "5 Ave @ 23 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "cbd7c7a6-9bc5-4d6d-baf4-61b648dd589d",
+   "name": "Astoria Blvd N S/R @ 32 St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "82ff853c-50e3-403a-855b-5f17708a4f38",
+   "name": "Sands St @ Pearl St - quad - ptz - 1.10",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f9608ba1-608f-4dad-a8aa-9a9c1978b363",
+   "name": "McDonald Ave @ 10th Ave / 20th St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "023cc794-4600-4c02-91e7-4603597172e1",
+   "name": "Wythe Ave @ Williamsburg st w",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "bc01e999-cfba-409b-9542-19c7e86cf410",
+   "name": "C3-WSE-05-NB_at_Arden_Ave-Ex4",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    720,
+    480
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "abb47d30-e011-47bc-ac00-622924bc5acd",
+   "name": "Belt Pkwy @ Cropsey Ave",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "0267c1e2-6eaf-49d4-a063-df89e9242993",
+   "name": "FDR Dr @ 79 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "523499eb-29b7-4ab9-a2a7-4b7f7836f311",
+   "name": "Rockaway Blvd @ Division St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "a3058350-1552-459f-8379-2fd06895e70a",
+   "name": "Delancey St @ Bowery St ",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "c3169415-bb26-4cea-8a12-36afd3e37f18",
+   "name": "Cross Island Pkwy @ Braddock Ave\u00a0",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "c79840eb-e25e-41cc-8a54-f8eaa6e29463",
+   "name": "C2-BQE-25-WB_at_S.5th_St-Ex32",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    640,
+    352
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "0a49d947-2a5b-498d-a386-2cef5ce883fa",
+   "name": "50 St Btwn\u00a08 Ave & Broadway",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "d125f801-5576-4e42-874c-a643a86019c0",
+   "name": "Bay St @ Richmond Terr.",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "6cc9b754-096d-4c5c-94b7-64f6b69523d5",
+   "name": "C3-WSE-12-NB_at_Bloomfield_Ave_Ex9",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    720,
+    480
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "df527f8d-1d60-4c90-9b22-badbb87e469d",
+   "name": "Furman St @ Joralemon St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f4633287-e3eb-463e-a73c-0917e6243c5b",
+   "name": " Belt Pkwy @  Guy R Brewer Blvd ",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "cb0647f4-b9fd-4065-a297-ebfcd4f8d270",
+   "name": "Queens Plz S @ 27 St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "66533d67-7fe3-4250-b850-88c2fd7ec0e0",
+   "name": "Father Capodanno Blvd @ Midland Ave",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "fcd793fc-d600-40a6-949b-b168d96368fd",
+   "name": "LIE @ Oceania St",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "856ef0b2-123d-4211-9619-1334fb7ac219",
+   "name": "Ocean Pkwy @ Surf Av @ Sea Breeze Ave",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "2b391c96-b487-4e60-81ad-784766fa48da",
+   "name": "LIE @ Marathon Pkwy",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "36ff050c-ba9c-4920-beaf-ea3b02f2cde5",
+   "name": "Bronx River Pkwy @ East Gun Hill RD (NB)",
+   "area": "Bronx",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "ec9eda79-e250-4e6f-a8f6-e51021fb054f",
+   "name": "Amsterdam Ave @ 60 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "be6b6830-b90d-40ab-98ab-9d67eb81e673",
+   "name": "3 Ave @ 65 St - Ent. EB BQE/Gowanus",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "23994d9e-7e59-4808-8d47-405f779d19cf",
+   "name": "1 Ave @ 14 St",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "da689305-b159-4051-9d01-9881803adb4b",
+   "name": "C5-BQE-41-EB_at_31st_Ave-Ex43",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    720,
+    480
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "7e13d5e6-bd1a-47af-ba28-39c50e2736c2",
+   "name": "Hylan Blvd @ Nelson Ave",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "111e79a9-eb5a-44d0-b062-481ac0a81901",
+   "name": "Belt Pkwy @ Plumb 3 St",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "9cdf1f47-307d-48e8-8627-e77e189b5fed",
+   "name": "207 ST @ 9 Ave",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "053afe02-e1b3-4bea-9995-787e72c7fff4",
+   "name": "Atlantic Ave @ Barclays Center",
+   "area": "Brooklyn",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "f3d82b25-6b10-44c7-ae89-30df075a7ac8",
+   "name": "Broadway @ 46 St- Quad North",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "cea3d6a8-b248-441a-8acd-188ffa5ea630",
+   "name": "C3-SIE-06A-E_at_Crafton_Ave_Ex10",
+   "area": "Staten Island",
+   "tier": "sd",
+   "res": [
+    720,
+    480
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "5c29ba71-1757-45db-8318-e1a2bad57e75",
+   "name": "Queens Blvd @ Hillside Ave",
+   "area": "Queens",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  },
+  {
+   "id": "99bd1846-c0e4-4689-b077-63d2525bf1aa",
+   "name": "Amsterdam Ave @ W 180 st ",
+   "area": "Manhattan",
+   "tier": "sd",
+   "res": [
+    352,
+    240
+   ],
+   "fetches_ok": 4,
+   "distinct_frames": 4,
+   "verdict": "fresh",
+   "last_modified": null
+  }
+ ]
+}
