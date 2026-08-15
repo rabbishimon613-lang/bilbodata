@@ -68,3 +68,15 @@ Two tracks every shift: **A = data/findings**, **B = features and fixes**.
 - [ ] **Give the camera pages something that changes.** Six consecutive SEO sweeps
   reported "surface unchanged" because the pipeline behind the pages was dead. With the
   worker alive again, confirm the pages actually move.
+- [ ] **96% of the camera pages have nothing on them but an address.** Measured by the
+  SEO sweep 2026-08-15: of 923 camera pages, **35 carry real counts** (samples, vehicle
+  passes, average and peak in frame, vehicle mix, busiest hour — genuinely unique data
+  nobody else publishes) and **888 say "not yet in the counted set"**. Those 888 differ
+  from each other only by intersection name, coordinates, nearest subway, camera ID and
+  a nearest-cameras list. That is the textbook definition of programmatic index bloat,
+  and it is very likely why the corpus is not gaining index traction. **The fix is not
+  888 hand-edits and it is not noindex** — it is the counter covering more of the
+  network, which the revived worker chain now makes possible. Priority order: widen the
+  counted set, then regenerate the pages, then re-measure the ratio. If after a fair run
+  the counted set plateaus well short of 917, *then* consider consolidating the
+  uncounted cameras into borough-level pages instead of one page each.

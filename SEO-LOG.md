@@ -1151,3 +1151,83 @@ sweep's remit. Escalated, not fixed.
   `git add -A`; the only path committed tonight is this log.
 - **`changefreq` is still `daily` on all 947 URLs.** Google ignores it and
   `lastmod` is honest. Fixing the worker fixes this properly.
+
+---
+
+## 2026-08-15 — deep pass (Friday rotation). The counted set is 3.8% of the corpus.
+
+**Canonical host confirmed at run time:** `bilbodata.com`, from `STATE.md`
+("917 cameras... live at **bilbodata.com** (the canonical host)") and a live 200.
+Local was 21 commits behind `origin/main` and was fast-forwarded first; the pulse
+committers are writing again, roughly every four minutes.
+
+### Measured, not estimated
+
+- **Search Console: still unverified. Nothing about traffic was measured and
+  nothing is claimed.** No impressions, no clicks, no positions, no index
+  coverage appear in this entry, because none of them could be read. This is the
+  seventh consecutive sweep to say so. See blocked, below.
+- **Live surface:** `sitemap.xml` is an index over `sitemap-core.xml` (30 URLs)
+  and `sitemap-cameras.xml` (917), **947 total**, unchanged and matching source.
+  `robots.txt` 200 and permissive. Camera pages 200.
+- **Titles and descriptions: 923 pages, 923 distinct titles, 923 distinct
+  descriptions.** No duplication at the tag level. Checked because it is cheap
+  and because cyberputa had a real collision problem.
+
+### The finding — and it reframes six previous sweeps
+
+**Of 923 camera pages, 35 carry real data and 888 do not.**
+
+The 35 counted pages say something no other page on the internet says. Example,
+3 Ave @ Atlantic Ave: 1,283 samples, 4,642 vehicle passes, 3.6 average in frame,
+peak of 12, a mix of 3,389 cars / 1,130 trucks / 120 buses / 3 motorcycles, and a
+busiest hour. That is a genuine dataset and a genuine reason for the page to rank.
+
+The other **888 — 96.2% of the corpus —** say *"This camera is mapped on the
+Bilbo Data network but is not yet in the counted set."* Strip that out and what
+remains is an intersection name, a borough, coordinates, a compass direction, the
+nearest subway stop, a resolution, a camera ID and a list of nearby cameras. Page
+text runs about 1,600 characters, of which the great majority is boilerplate
+repeated verbatim 923 times.
+
+Per the doctrine's own test for programmatic properties — *does this page say
+something no other page says?* — **888 pages fail it.** This is very likely the
+real reason the corpus has never gained index traction, and it is a better
+explanation than anything the previous six sweeps proposed.
+
+**Nothing was noindexed, deliberately.** The doctrine forbids mass-applying it on
+a hunch, and it would be actively wrong here: the worker chain came back to life
+*today* after 27 days dead, so those 888 pages are on a path to having real data
+rather than being permanently thin. Noindexing a page the day before it becomes
+good is the worst available move. Recorded, escalated to `FEATURE_BACKLOG.md`,
+not acted on.
+
+### Also true, and stale
+
+**All 923 pages still read "Counts current to 2026-07-20"** — 26 days old. The
+worker restarting does not fix this; the pages are static and only change when
+the generator reruns. **Reviving the pipeline and regenerating the pages are two
+separate jobs and only the first one has happened.**
+
+### Changed this run
+
+- **`FEATURE_BACKLOG.md`** — the 35/888 measurement, with the fix in priority
+  order: widen the counted set, regenerate, re-measure. Explicitly rules out 888
+  hand-edits and rules out noindex.
+- **This log and `DIARY.md`.**
+
+Nothing on the site itself was edited. **No build, no deploy** — the surface is
+unchanged from what production already serves, so there is nothing queued behind
+a redeploy and the always-deploy rule is satisfied rather than bypassed.
+
+- **`seo_submit.py` not run.** IndexNow is for new or changed URLs; none of the
+  947 is either. It should fire on the first sweep after the pages regenerate
+  with fresh counts — that will be a real change worth announcing.
+
+### Blocked — needs Pedro, one action, seventh run running
+
+- **Verify `bilbodata.com` in Google Search Console.** Until this is done every
+  Bilbo entry in this log will continue to contain no traffic numbers at all,
+  because there is no honest way to get any. It is a one-time DNS TXT record or
+  HTML file. **This property is the only one of the six that is running
+  completely blind.**
