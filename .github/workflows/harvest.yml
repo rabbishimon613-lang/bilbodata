@@ -67,6 +67,8 @@ jobs:
           fi
 
       - name: Commit manifest + telemetry only
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "bilbo-harvest"
           git config user.email "actions@users.noreply.github.com"
@@ -74,8 +76,24 @@ jobs:
           [ -f fp_out/crops_meta.jsonl ] && cat fp_out/crops_meta.jsonl >> fp/crops_meta.cloud.jsonl
           [ -f fp_out/labels_auto.jsonl ] && cat fp_out/labels_auto.jsonl >> fp/labels_auto.cloud.jsonl
           [ -f fp_out/harvest_status.json ] && cp fp_out/harvest_status.json training/harvest_cloud.json
+
+          # Roll the manifests before they reach GitHub's 100MiB per-file cliff.
+          # The absence of this guard is what wedged the entire chain on
+          # 2026-07-23: crops_meta.cloud.jsonl hit 108MB and every push from
+          # then on was rejected, silently, for 23 days. worker.yml has had an
+          # equivalent guard on counts.csv/vehicles.csv since the beginning.
+          # If the release upload fails the rolled lines are still recoverable
+          # from git history, so a failed upload must not fail the run.
+          python fp/rotate_meta.py --rotate --out rotate_out
+          for a in rotate_out/*.jsonl.gz; do
+            [ -f "$a" ] || continue
+            gh release upload crops "$a" || echo "::warning::manifest archive upload failed: $a"
+          done
+          rm -rf rotate_out
+
           python fp/pace.py || true
-          git add fp/crops_meta.cloud.jsonl fp/labels_auto.cloud.jsonl training/harvest_cloud.json training/pace.json 2>/dev/null || true
+          git add fp/crops_meta.cloud.jsonl fp/labels_auto.cloud.jsonl fp/crops_total.json \
+                  training/harvest_cloud.json training/pace.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "harvest gen ${GEN}: manifest + telemetry"
           for i in 1 2 3; do
@@ -93,4 +111,15 @@ jobs:
             exit 0
           fi
           NEXT=$((GEN + 1))
-          gh workflow run harvest.yml -f generation="$NEXT" -f run_seconds="$RUN_SECONDS" || true
+          # Retry: a single transient 503 from the API here kills the whole
+          # chain until the cron restarter picks it up. See worker.yml, where
+          # exactly that happened on 2026-07-20 and cost 25 days.
+          for i in 1 2 3 4 5; do
+            if gh workflow run harvest.yml -f generation="$NEXT" -f run_seconds="$RUN_SECONDS"; then
+              echo "launched generation $NEXT"
+              exit 0
+            fi
+            echo "relay attempt $i failed; retrying in $((i * 15))s"
+            sleep $((i * 15))
+          done
+          echo "::warning::relay failed 5x — the 6-hourly cron will restart the chain"

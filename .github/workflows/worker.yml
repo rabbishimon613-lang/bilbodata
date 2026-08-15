@@ -23,6 +23,16 @@ on:
       run_seconds:
         description: how long this generation samples before handing off (~5.5h default; set small to test the chain)
         default: "20000"
+  schedule:
+    # CHAIN RESTARTER. A self-perpetuating chain with no restarter has a single
+    # point of failure, and on 2026-07-20T00:29Z it found it: the relay step's
+    # `gh workflow run` got one transient "HTTP 503: No server is currently
+    # available", the chain stopped dead, and the whole vehicle pipeline was
+    # down for 25 days before anyone looked. harvest.yml had this restarter
+    # from the start; worker.yml never did. Concurrency makes it a no-op while
+    # a generation is alive — it only ever bites when the chain is actually
+    # down. Offset from harvest's :17 so the two don't queue together.
+    - cron: "43 */6 * * *"
 
 permissions:
   contents: write
@@ -35,6 +45,12 @@ jobs:
   run:
     runs-on: ubuntu-latest
     timeout-minutes: 350          # < 6h hard cap; the loop stops before this
+    env:
+      # `inputs` is empty on a schedule event, so every use goes through these
+      # defaulted env vars. Reading ${{ inputs.run_seconds }} directly would
+      # expand to nothing on a cron restart and break the loop arithmetic.
+      GEN: ${{ github.event.inputs.generation || '0' }}
+      RUN_SECONDS: ${{ github.event.inputs.run_seconds || '20000' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -53,7 +69,7 @@ jobs:
           git config user.name  "bilbo-worker"
           git config user.email "actions@users.noreply.github.com"
           python storage.py compact || echo "::warning::compact failed — hot logs not archived"
-          END=$(( $(date +%s) + ${{ inputs.run_seconds }} ))
+          END=$(( $(date +%s) + RUN_SECONDS ))
           i=0
           while [ "$(date +%s)" -lt "$END" ]; do
             python counter.py --minute                 # ~50s: detect, track, tag one minute (vehicles only)
@@ -93,8 +109,19 @@ jobs:
             echo "no WORKER_PAT secret -> chain stops here. Set it to run 24/7."
             exit 0
           fi
-          NEXT=$(( ${{ inputs.generation }} + 1 ))
-          gh workflow run worker.yml \
-            -f generation="$NEXT" \
-            -f run_seconds="${{ inputs.run_seconds }}" \
-            && echo "launched generation $NEXT" || echo "relay dispatch failed"
+          NEXT=$(( GEN + 1 ))
+          # Retry with backoff. The unretried single attempt that used to live
+          # here is what killed the chain on 2026-07-20 — one 503 and the
+          # pipeline was down for 25 days. Five attempts, and the cron
+          # restarter above is the backstop if all five somehow fail.
+          for i in 1 2 3 4 5; do
+            if gh workflow run worker.yml \
+                 -f generation="$NEXT" \
+                 -f run_seconds="$RUN_SECONDS"; then
+              echo "launched generation $NEXT"
+              exit 0
+            fi
+            echo "relay attempt $i failed; retrying in $((i * 15))s"
+            sleep $((i * 15))
+          done
+          echo "::warning::relay failed 5x — the 6-hourly cron will restart the chain"

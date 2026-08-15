@@ -12,3 +12,10 @@ runner.log
 runner.out
 runner.err
 .runner.lock
+
+.env
+.env.*
+
+# staging dir for rolled manifest archives — these go to the crops release,
+# never into git (rolling them out of git is the entire point)
+rotate_out/

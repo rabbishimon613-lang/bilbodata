@@ -32,6 +32,21 @@ def line_count(path):
         return sum(1 for _ in f)
 
 
+def crop_total():
+    """Cumulative crops ever harvested, across manifest rotations.
+
+    MANIFEST is rolled into the crops release when it nears GitHub's 100MiB
+    file cliff, so its raw line count drops at each rotation. Counting lines
+    directly would make the plateau clock read as if the corpus had shrunk
+    and hand out a nonsense ETA. rotate_meta keeps a monotonic total.
+    """
+    try:
+        from rotate_meta import total_for
+        return total_for("crops")
+    except Exception:
+        return line_count(MANIFEST)
+
+
 def load(path):
     try:
         return json.load(open(path))
@@ -47,7 +62,7 @@ def save(path, data):
 
 def main():
     now = int(time.time())
-    crops = line_count(MANIFEST)
+    crops = crop_total()
     state = load(PACE)
 
     hist = state.get("history", [])

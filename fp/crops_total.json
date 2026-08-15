@@ -1,0 +1,19 @@
+{
+ "crops": {
+  "rotated_lines": 353440,
+  "archives": [
+   {
+    "name": "crops_meta.cloud_20260815T190746.jsonl.gz",
+    "lines": 353440,
+    "ts": 1786820987
+   }
+  ]
+ },
+ "crops_total": 358440,
+ "updated": 1786820987,
+ "labels": {
+  "rotated_lines": 0,
+  "archives": []
+ },
+ "labels_total": 16800
+}

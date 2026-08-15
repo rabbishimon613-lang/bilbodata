@@ -96,7 +96,15 @@ jobs:
         env:
           LAST_COUNT: ${{ steps.rot.outputs.last_count }}
         run: |
-          TOTAL=$(wc -l < fp/crops_meta.cloud.jsonl 2>/dev/null || echo 0)
+          # Cumulative across rotations. fp/crops_meta.cloud.jsonl is now rolled
+          # into the crops release whenever it nears GitHub's 100MiB file cliff,
+          # so its raw line count collapses at each rotation — a bare `wc -l`
+          # would read that as the corpus shrinking and stop firing bursts
+          # forever. rotate_meta.py --total is monotonic across rotations, and
+          # equals the old line count exactly for every pre-rotation stamp, so
+          # the per-account last_count values stay valid across this change.
+          TOTAL=$(python fp/rotate_meta.py --total crops 2>/dev/null \
+                  || wc -l < fp/crops_meta.cloud.jsonl 2>/dev/null || echo 0)
           LAST=${LAST_COUNT:-0}
           NEW=$((TOTAL - LAST))
           echo "total=$TOTAL account_last=$LAST new=$NEW threshold=$NEW_CROPS_THRESHOLD"
