@@ -17639,3 +17639,153 @@ ts,cam_id,name,car,moto,bus,truck,veh_total,brightness,lit,samples,stale
 2026-08-24T10:58,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,1,0,0,3,4,126.6,1,11,1
 2026-08-24T10:58,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,1,0,0,0,1,116.9,1,11,1
 2026-08-24T10:58,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,2,0,0,0,2,122.8,1,12,0
+2026-08-24T11:00,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,1,0,0,0,1,136.4,1,12,0
+2026-08-24T11:00,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,1,0,0,0,1,151.4,1,6,6
+2026-08-24T11:00,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,2,0,0,0,2,132.3,1,10,2
+2026-08-24T11:00,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,1,0,0,1,2,103.3,1,12,0
+2026-08-24T11:00,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,150.1,1,9,3
+2026-08-24T11:00,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,1,95.9,1,12,0
+2026-08-24T11:00,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,2,0,0,1,3,109.3,1,12,0
+2026-08-24T11:00,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,9,0,1,1,11,94.1,1,12,0
+2026-08-24T11:00,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,7,0,0,3,10,151.1,1,10,2
+2026-08-24T11:00,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,3,0,0,2,5,114.4,1,12,0
+2026-08-24T11:00,a8805cdb-e305-42d0-b011-cb825380cf8e,Bushwick Ave @ Cooper St,3,0,0,2,5,118.6,1,12,0
+2026-08-24T11:00,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,4,0,0,3,7,128.1,1,12,0
+2026-08-24T11:00,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,5,0,0,3,8,126.5,1,10,2
+2026-08-24T11:00,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,1,0,0,0,1,114.7,1,1,11
+2026-08-24T11:00,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,5,0,0,0,5,127.2,1,12,0
+2026-08-24T11:00,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,3,0,0,3,6,101.0,1,12,0
+2026-08-24T11:00,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,2,0,0,0,2,133.7,1,12,0
+2026-08-24T11:00,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,0,0,0,0,0,102.7,1,12,0
+2026-08-24T11:00,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,1,0,0,2,3,109.4,1,12,0
+2026-08-24T11:00,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,4,0,0,1,5,112.0,1,10,2
+2026-08-24T11:00,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,9,0,0,4,13,112.5,1,7,5
+2026-08-24T11:00,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,7,0,1,1,9,134.7,1,12,0
+2026-08-24T11:00,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,2,0,0,2,4,95.7,1,12,0
+2026-08-24T11:00,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,6,0,0,0,6,116.2,1,6,6
+2026-08-24T11:00,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,5,0,0,0,5,132.1,1,12,0
+2026-08-24T11:00,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,4,0,0,0,4,133.8,1,10,2
+2026-08-24T11:00,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,5,0,0,2,7,127.3,1,10,2
+2026-08-24T11:00,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,0,0,0,2,2,126.1,1,10,2
+2026-08-24T11:00,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,1,0,0,0,1,118.5,1,10,2
+2026-08-24T11:00,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,2,0,0,0,2,122.9,1,12,0
+2026-08-24T11:01,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,1,0,0,0,1,134.6,1,12,0
+2026-08-24T11:01,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,1,0,0,1,2,149.5,1,7,5
+2026-08-24T11:01,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,4,0,0,1,5,130.8,1,10,2
+2026-08-24T11:01,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,1,0,0,0,1,102.2,1,12,0
+2026-08-24T11:01,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,151.6,1,8,4
+2026-08-24T11:01,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,96.5,1,12,0
+2026-08-24T11:01,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,2,0,0,0,2,109.6,1,12,0
+2026-08-24T11:01,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,9,0,0,2,11,92.7,1,12,0
+2026-08-24T11:01,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,9,0,0,3,12,150.0,1,10,2
+2026-08-24T11:01,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,2,0,0,1,3,116.5,1,12,0
+2026-08-24T11:01,a8805cdb-e305-42d0-b011-cb825380cf8e,Bushwick Ave @ Cooper St,3,0,0,2,5,115.0,1,12,0
+2026-08-24T11:01,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,5,0,1,1,7,127.2,1,12,0
+2026-08-24T11:01,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,6,0,0,2,8,126.8,1,10,2
+2026-08-24T11:01,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,1,0,0,0,1,114.7,1,1,11
+2026-08-24T11:01,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,7,0,0,0,7,128.0,1,12,0
+2026-08-24T11:01,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,2,0,0,1,3,101.9,1,12,0
+2026-08-24T11:01,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,4,0,0,0,4,132.5,1,12,0
+2026-08-24T11:01,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,1,0,0,0,1,104.2,1,12,0
+2026-08-24T11:01,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,1,0,0,1,2,110.3,1,12,0
+2026-08-24T11:01,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,1,0,0,0,1,111.8,1,10,2
+2026-08-24T11:01,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,6,0,0,4,10,111.1,1,6,6
+2026-08-24T11:01,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,6,0,1,1,8,136.1,1,12,0
+2026-08-24T11:01,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,2,0,0,1,3,97.2,1,12,0
+2026-08-24T11:01,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,5,0,0,1,6,109.6,1,9,3
+2026-08-24T11:01,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,4,0,0,0,4,130.9,1,12,0
+2026-08-24T11:01,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,5,0,0,1,6,134.1,1,10,2
+2026-08-24T11:01,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,4,0,0,4,8,126.9,1,10,2
+2026-08-24T11:01,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,0,0,0,2,2,126.4,1,10,2
+2026-08-24T11:01,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,1,0,0,0,1,118.5,1,10,2
+2026-08-24T11:01,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,4,0,0,0,4,123.0,1,12,0
+2026-08-24T11:02,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,127.3,1,12,0
+2026-08-24T11:02,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,1,0,0,0,1,156.1,1,6,6
+2026-08-24T11:02,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,1,0,0,3,4,131.1,1,9,3
+2026-08-24T11:02,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,2,0,0,0,2,103.4,1,12,0
+2026-08-24T11:02,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,151.8,1,8,4
+2026-08-24T11:02,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,4,0,0,0,4,97.0,1,12,0
+2026-08-24T11:02,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,1,0,0,0,1,109.7,1,12,0
+2026-08-24T11:02,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,9,0,0,2,11,97.0,1,12,0
+2026-08-24T11:02,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,6,0,0,4,10,149.7,1,10,2
+2026-08-24T11:02,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,2,0,0,1,3,111.9,1,12,0
+2026-08-24T11:02,a8805cdb-e305-42d0-b011-cb825380cf8e,Bushwick Ave @ Cooper St,6,0,0,3,9,118.3,1,12,0
+2026-08-24T11:02,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,5,0,1,2,8,128.3,1,12,0
+2026-08-24T11:02,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,8,0,0,2,10,125.9,1,10,2
+2026-08-24T11:02,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,1,0,0,0,1,114.7,1,1,11
+2026-08-24T11:02,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,4,0,0,0,4,125.1,1,12,0
+2026-08-24T11:02,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,3,0,0,1,4,103.1,1,12,0
+2026-08-24T11:02,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,4,0,0,1,5,132.9,1,12,0
+2026-08-24T11:02,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,0,0,0,0,0,104.4,1,12,0
+2026-08-24T11:02,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,3,0,0,1,4,111.3,1,12,0
+2026-08-24T11:02,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,4,0,0,1,5,111.5,1,10,2
+2026-08-24T11:02,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,6,0,0,2,8,110.2,1,7,5
+2026-08-24T11:02,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,7,0,0,1,8,137.0,1,12,0
+2026-08-24T11:02,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,2,0,0,1,3,97.2,1,12,0
+2026-08-24T11:02,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,8,0,0,2,10,110.3,1,7,5
+2026-08-24T11:02,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,6,0,0,0,6,130.8,1,12,0
+2026-08-24T11:02,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,5,0,0,1,6,134.3,1,10,2
+2026-08-24T11:02,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,6,0,0,1,7,127.6,1,10,2
+2026-08-24T11:02,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,2,0,0,2,4,125.4,1,10,2
+2026-08-24T11:02,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,1,0,0,0,1,118.3,1,10,2
+2026-08-24T11:02,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,3,0,0,0,3,123.0,1,12,0
+2026-08-24T11:03,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,0,0,0,0,0,130.3,1,12,0
+2026-08-24T11:03,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,2,0,0,0,2,153.0,1,6,6
+2026-08-24T11:03,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,4,0,1,1,6,122.2,1,11,1
+2026-08-24T11:03,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,0,0,0,1,1,104.4,1,12,0
+2026-08-24T11:03,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,152.8,1,9,3
+2026-08-24T11:03,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,1,0,0,0,1,105.1,1,12,0
+2026-08-24T11:03,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,2,0,0,0,2,109.7,1,12,0
+2026-08-24T11:03,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,7,0,0,0,7,97.5,1,12,0
+2026-08-24T11:03,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,7,0,0,3,10,149.5,1,10,2
+2026-08-24T11:03,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,2,0,0,2,4,111.5,1,12,0
+2026-08-24T11:03,a8805cdb-e305-42d0-b011-cb825380cf8e,Bushwick Ave @ Cooper St,5,0,0,3,8,119.2,1,12,0
+2026-08-24T11:03,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,3,0,1,3,7,127.3,1,12,0
+2026-08-24T11:03,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,6,0,0,3,9,127.3,1,10,2
+2026-08-24T11:03,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,1,0,0,0,1,114.7,1,1,11
+2026-08-24T11:03,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,5,0,0,0,5,121.2,1,12,0
+2026-08-24T11:03,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,0,0,0,2,2,103.4,1,12,0
+2026-08-24T11:03,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,1,0,0,0,1,133.3,1,12,0
+2026-08-24T11:03,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,0,0,0,0,0,104.9,1,12,0
+2026-08-24T11:03,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,2,0,0,2,4,112.8,1,12,0
+2026-08-24T11:03,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,2,0,0,0,2,110.9,1,10,2
+2026-08-24T11:03,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,8,0,0,4,12,110.5,1,7,5
+2026-08-24T11:03,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,7,0,0,1,8,134.1,1,12,0
+2026-08-24T11:03,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,4,0,0,2,6,96.5,1,12,0
+2026-08-24T11:03,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,5,0,1,2,8,113.0,1,8,4
+2026-08-24T11:03,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,4,0,0,1,5,131.4,1,12,0
+2026-08-24T11:03,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,4,0,0,1,5,133.8,1,10,2
+2026-08-24T11:03,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,6,0,0,2,8,127.2,1,10,2
+2026-08-24T11:03,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,0,0,0,2,2,125.5,1,10,2
+2026-08-24T11:03,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,2,0,0,0,2,119.5,1,10,2
+2026-08-24T11:03,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,2,0,0,0,2,122.9,1,12,0
+2026-08-24T11:05,c89b62d1-35be-4bb8-b22b-a77c2583733c,Eastern Pkwy @ Utica Ave,1,0,0,0,1,132.6,1,12,0
+2026-08-24T11:05,f4c47f52-9c8d-494a-92da-4dcc09a19fab,Eastern Pkwy @ Bedford Ave,2,0,0,0,2,146.0,1,6,6
+2026-08-24T11:05,2fe54994-17f6-499d-a3ab-8c6dc9dbda9e,Atlantic Ave @ Bedford Ave,7,0,0,2,9,122.2,1,11,1
+2026-08-24T11:05,2e43a9d0-1df8-4a38-ae20-2e0f359bb55d,Flatbush Ave @ Empire Blvd,1,0,0,0,1,103.6,1,12,0
+2026-08-24T11:05,1c51b3ec-3d29-4025-928d-4e182e7c0bd5,Grand Army Plaza,0,0,0,0,0,152.8,1,9,3
+2026-08-24T11:05,cb68b8b1-9093-4f2e-acf2-8133b047e8df,Flatbush Ave @ Eastern Pkwy,0,0,0,0,0,115.1,1,12,0
+2026-08-24T11:05,2064d8ab-597a-45d8-a3c9-5ab95a4e69e6,7 Ave @ Union St,1,0,0,0,1,110.1,1,12,0
+2026-08-24T11:05,fde1748c-7c0f-4df8-8acd-120df29a9305,Atlantic Ave @ Eastern Pkwy,11,0,0,1,12,96.4,1,12,0
+2026-08-24T11:05,6851bbf7-e079-4379-b021-e5c7dafcb8c9,8 Ave @ 9 St,8,0,0,3,11,150.8,1,10,2
+2026-08-24T11:05,74707723-013b-4bf1-9a8b-c209dbf71984,Bushwick Ave @ Gates Ave,3,0,0,1,4,111.9,1,12,0
+2026-08-24T11:05,a8805cdb-e305-42d0-b011-cb825380cf8e,Bushwick Ave @ Cooper St,4,0,0,4,8,112.9,1,12,0
+2026-08-24T11:05,068461e2-c62f-4ce4-adac-5f9efe92af1d,Bushwick Ave @ De Kalb Ave,4,0,1,2,7,127.0,1,12,0
+2026-08-24T11:05,089d8066-4e5e-4549-9496-a5f4ffb56ef5,7 Ave @ 9 St,4,0,0,3,7,129.6,1,10,2
+2026-08-24T11:05,a8f2d065-c266-4378-ac63-50b81677da84,C2-PE-02-Ctr_at_Ft_Hamltn_Pkwy-Ex5,1,0,0,0,1,114.7,1,1,11
+2026-08-24T11:05,053afe02-e1b3-4bea-9995-787e72c7fff4,Atlantic Ave @ Barclays Center,7,0,0,0,7,110.5,1,12,0
+2026-08-24T11:05,fa287d30-44a9-48ef-90d6-5ab0a54eab15,Flatbush Ave and Atlantic Ave,2,0,0,1,3,100.4,1,12,0
+2026-08-24T11:05,5f4bef40-ddee-41fa-a623-6388d561f416,C2-PE-01-Cntr_at_Caton_Ave-Ex6,6,0,0,0,6,132.6,1,12,0
+2026-08-24T11:05,f9608ba1-608f-4dad-a8aa-9a9c1978b363,McDonald Ave @ 10th Ave / 20th St,1,0,0,0,1,104.4,1,12,0
+2026-08-24T11:05,9955d671-39ad-4fb7-b63e-4e78cf6ac157,Flatbush Ave and 4 Ave,3,0,1,3,7,110.2,1,12,0
+2026-08-24T11:05,2293205b-2b15-44da-8220-6833a13c5a80,Ocean Pkwy @ Church Ave,1,0,0,1,2,111.9,1,10,2
+2026-08-24T11:05,3c079db6-117c-4e79-94ed-5178c1517091,Prospect Expwy @ Prospect Park W @ 19 St,4,0,0,3,7,109.7,1,6,6
+2026-08-24T11:05,5a9ebe48-fb36-4de7-8666-f50de83c7941,Flatbush Ave @ Nostrand Ave,7,0,0,1,8,136.2,1,12,0
+2026-08-24T11:05,88895623-f6fa-4509-a927-8eae076725da,Ft. Hamilton Pkwy @ McDonald Ave,2,0,0,4,6,97.7,1,12,0
+2026-08-24T11:05,0bbea8bd-10f1-4126-b3c5-9e9432eab749,Atlantic Ave @ Pennsylvania Ave,9,0,1,1,11,114.9,1,10,2
+2026-08-24T11:05,d401c83b-2f78-49dd-8974-14c819a992b2,C2-PE-05-Ctr_at_7th_Ave-Ex4,3,0,0,0,3,131.7,1,12,0
+2026-08-24T11:05,40961631-fb83-4f48-8ffb-3385448d4e5f,7 Ave @ 18 St,2,0,0,1,3,133.7,1,10,2
+2026-08-24T11:05,f801cf2f-cd02-4077-aa53-99ee8a00e1ab,3 Ave @ Atlantic Ave,4,0,0,2,6,128.1,1,10,2
+2026-08-24T11:05,ed0f8bd4-fe44-4f86-98a9-91f45b446200,3 Ave @ Union St,0,0,0,2,2,124.8,1,10,2
+2026-08-24T11:05,2e0d5197-6073-411f-9d1a-326b30841679,Flushing Ave @ Williamsburg W St,0,0,0,0,0,120.0,1,10,2
+2026-08-24T11:05,9a01683c-321a-421b-b9c3-056bbf851f25,C2-PE-06-WB_at_6th_Ave-Ex2,2,0,0,0,2,122.9,1,12,0
