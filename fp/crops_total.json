@@ -1,6 +1,6 @@
 {
  "crops": {
-  "rotated_lines": 1080279,
+  "rotated_lines": 1276062,
   "archives": [
    {
     "name": "crops_meta.cloud_20260815T190746.jsonl.gz",
@@ -26,14 +26,19 @@
     "name": "crops_meta.cloud_20260825T234346.jsonl.gz",
     "lines": 182505,
     "ts": 1787701429
+   },
+   {
+    "name": "crops_meta.cloud_20260828T161012.jsonl.gz",
+    "lines": 195783,
+    "ts": 1787933416
    }
   ]
  },
- "crops_total": 1251681,
- "updated": 1787914124,
+ "crops_total": 1281062,
+ "updated": 1787933416,
  "labels": {
   "rotated_lines": 0,
   "archives": []
  },
- "labels_total": 60800
+ "labels_total": 61600
 }
